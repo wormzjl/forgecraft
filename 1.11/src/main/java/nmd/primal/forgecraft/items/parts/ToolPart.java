@@ -27,7 +27,7 @@ public class ToolPart extends Item implements ToolNBT{
         this.setMaxDamage(material.getMaxUses());
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
-        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
+        //this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
 
