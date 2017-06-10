@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
+import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 //import nmd.primal.core.api.PrimalBlocks;
 

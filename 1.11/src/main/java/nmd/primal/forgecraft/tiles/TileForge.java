@@ -15,6 +15,7 @@ import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
+import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 /**
  * Created by mminaie on 11/30/16.
@@ -72,7 +73,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-            CommonUtils.makeSmoke(world, pos);
+            makeSmoke(world, pos);
         }
     }
 

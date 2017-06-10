@@ -18,6 +18,7 @@ import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
+import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -117,7 +118,8 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-            CommonUtils.makeSmoke(world, pos);
+
+            makeSmoke(world, pos);
         }
     }
 
