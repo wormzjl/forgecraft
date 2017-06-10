@@ -31,7 +31,7 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static nmd.primal.core.common.helper.CommonUtils.makeSmoke;
+import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 /**
  * Created by mminaie on 1/21/17.
