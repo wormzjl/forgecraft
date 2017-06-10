@@ -28,7 +28,7 @@ repositories {
 
     maven {
         name = "primal"
-        url "http://maven.nmd.so"
+        url "https://maven.nmd.so"
     }
 }
 

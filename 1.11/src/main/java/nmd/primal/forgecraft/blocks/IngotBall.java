@@ -92,7 +92,7 @@ public class IngotBall extends BlockCustomBase {
     {
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
-            if ( ThreadLocalRandom.current().nextInt(0,1) == 0) {
+            if ( ThreadLocalRandom.current().nextInt(0,4) == 0) {
                 if(state.getValue(ACTIVE) == true) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, Boolean.valueOf(false)), 2);
                     world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);

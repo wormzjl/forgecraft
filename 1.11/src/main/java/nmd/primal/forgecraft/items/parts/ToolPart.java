@@ -208,7 +208,7 @@ public class ToolPart extends Item implements ToolNBT{
                     }
 
                     if (getHot(item) == false) {
-                        if (item.getSubCompound("tags").getInteger("modifiers") == 0) {
+                        if (getModifiers(item) == 0) {
                             return 0.0F;
                         }
                     }

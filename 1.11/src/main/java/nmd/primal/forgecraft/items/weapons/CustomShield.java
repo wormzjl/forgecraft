@@ -10,6 +10,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.ModInfo;
 
 import javax.annotation.Nullable;
 
@@ -18,13 +19,16 @@ import javax.annotation.Nullable;
  */
 public class CustomShield extends ItemShield {
 
-    public CustomShield(Item.ToolMaterial material)
+    public CustomShield(String name, Item.ToolMaterial material)
     {
-        this.maxStackSize = 1;
-        this.setCreativeTab(CreativeTabs.COMBAT);
+        this.setUnlocalizedName(name);
+        this.setRegistryName(name);
+        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
+        this.setMaxStackSize(1);
+        this.setNoRepair();
         this.setMaxDamage(material.getMaxUses());
-        this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter()
-        {
+
+        this.addPropertyOverride(new ResourceLocation("blocking"), new IItemPropertyGetter() {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {

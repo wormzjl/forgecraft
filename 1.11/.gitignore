@@ -16,6 +16,8 @@ usercache.json
 usernamecache.json
 options.txt
 screenshots/
+world/
+mods/
 
 # eclipse
 bin

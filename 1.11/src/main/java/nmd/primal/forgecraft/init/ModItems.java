@@ -20,6 +20,7 @@ import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
 
 /**
@@ -91,6 +92,11 @@ public class ModItems {
     public static Item steelsword;
     public static Item wootzsword;
 
+    public static Item wroughtironshield;
+    //public static Item cleanironshield;
+    //public static Item steelshield;
+    //public static Item wootzshield;
+
     public static Item matchlockmusket;
 
     //public static Item forgingmanual;
@@ -155,6 +161,8 @@ public class ModItems {
         cleanironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_CLEAN_IRON);
         steelsword = new CustomSword("ironsword", PrimalMaterials.TOOL_BASIC_STEEL);
         wootzsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WOOTZ_STEEL);
+
+        wroughtironshield = new CustomShield("wroughtironshield", PrimalMaterials.TOOL_WROUGHT_IRON);
 
         /**********
          INGOTS AND CHUNKS
@@ -237,6 +245,7 @@ public class ModItems {
          WEAPONS
          **********/
         GameRegistry.register(ironsword);
+        GameRegistry.register(wroughtironshield);
         //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
@@ -305,6 +314,7 @@ public class ModItems {
          WEAPONS
          **********/
         registerRender(ironsword);
+        registerRender(wroughtironshield);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);
     }
