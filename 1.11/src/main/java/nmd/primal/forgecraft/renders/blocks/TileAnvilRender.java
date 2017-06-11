@@ -14,9 +14,8 @@ import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalItems;
-import nmd.primal.forgecraft.blocks.Anvil;
+import nmd.primal.forgecraft.blocks.AnvilStone;
 import nmd.primal.forgecraft.blocks.IngotBall;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -41,7 +40,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
 
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
-        if (state.getBlock() instanceof Anvil) {
+        if (state.getBlock() instanceof AnvilStone) {
 
         GL11.glPushMatrix();
         GL11.glTranslated(x, y + 1.5D, z);
@@ -88,7 +87,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
          */
 
 
-            if (state.getValue(Anvil.FACING) == EnumFacing.NORTH) {
+            if (state.getValue(AnvilStone.FACING) == EnumFacing.NORTH) {
                 int counter = 0;
                 for (int i = 0; i < 5; i++) {
                     for (int a = 0; a < 5; a++) {
@@ -103,7 +102,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                     ) {
                                 GL11.glPushMatrix();
 
-                                GL11.glTranslated(tile.getNormalX(a), -0.49D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.499D, tile.getNormalZ(i));
                                 GL11.glRotated(-90.0F, 1.0F, -0.0F, 0.0F);
                                 GL11.glScaled(0.25D, 0.25D, 0.25D);
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
@@ -117,7 +116,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.465D, tile.getNormalZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -129,8 +128,9 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.51D, tile.getNormalZ(i));
                                 GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                GL11.glRotated(180.0F, 0.0F, 0.0F, 1.0F);
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -142,12 +142,17 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.435D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.450D, tile.getNormalZ(i));
                                 GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                                GL11.glRotated(90.0F, 0.0F, 0.0F, 1.0F);
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
-                            if (item.equals(ModItems.ironhoehead)) {
+                            if (item.equals(ModItems.ironhoehead) ||
+                                    item.equals(ModItems.cleanironhoehead) ||
+                                    item.equals(ModItems.steelhoehead) ||
+                                    item.equals(ModItems.steelhoehead)
+                                    ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
@@ -168,7 +173,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.50D, tile.getNormalZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -178,7 +183,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                     }
                 }
             }
-            if (state.getValue(Anvil.FACING) == EnumFacing.SOUTH) {
+            if (state.getValue(AnvilStone.FACING) == EnumFacing.SOUTH) {
                 int counter = 0;
                 for (int i = 0; i < 5; i++) {
                     for (int a = 0; a < 5; a++) {
@@ -271,7 +276,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                     }
                 }
             }
-            if (state.getValue(Anvil.FACING) == EnumFacing.WEST) {
+            if (state.getValue(AnvilStone.FACING) == EnumFacing.WEST) {
                 int counter = 0;
                 for (int a = 0; a < 5; a++) {
                     for (int i = 0; i < 5; i++) {
@@ -361,7 +366,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                     }
                 }
             }
-            if (state.getValue(Anvil.FACING) == EnumFacing.EAST) {
+            if (state.getValue(AnvilStone.FACING) == EnumFacing.EAST) {
                 int counter = 0;
                 for (int a = 0; a < 5; a++) {
                     for (int i = 0; i < 5; i++) {

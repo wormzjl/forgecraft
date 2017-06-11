@@ -12,8 +12,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.ToolNBT;
+import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,13 +22,17 @@ import java.util.List;
  */
 public class ToolPart extends Item implements ToolNBT{
 
-    public ToolPart(String name, Item.ToolMaterial material) {
+    private int ID;
+
+    public ToolPart(String name, Item.ToolMaterial material, Integer ID) {
         this.setMaxDamage(material.getMaxUses());
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         //this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
+
+        this.ID = ID;
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {
@@ -222,6 +225,10 @@ public class ToolPart extends Item implements ToolNBT{
     public static boolean isHidden()
     {
         return false;
+    }
+
+    public int getID() {
+        return ID;
     }
 
     @Override

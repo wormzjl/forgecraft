@@ -2,26 +2,26 @@
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"parent": "block/block",
 	"textures": {
-		"particle": "blocks/stone",
-		"texture": "blocks/stone",
-		"texture1": "blocks/anvil_base",
-		"texture2": "blocks/anvil_base_top"
+		"particle": "forgecraft:blocks/stone",
+		"texture": "forgecraft:blocks/stone",
+		"texture1": "forgecraft:blocks/anvil_base",
+		"texture2": "forgecraft:blocks/anvil_base_top"
 	},
 	"elements": [
 		{
-			"__comment": "Box3",
+			"__comment": "Cube1",
 			"from": [ 0, 0, 0 ],
 			"to": [ 16, 14, 16 ],
 			"faces": {
 				"down": { "uv": [ 0, 0, 16, 16 ], "texture": "#texture" },
 				"north": { "uv": [ 0, 2, 16, 16 ], "texture": "#texture" },
-				"south": { "uv": [ 0, 2, 16, 16 ], "texture": "#texture1" },
+				"south": { "uv": [ 0, 2, 16, 16 ], "texture": "#texture" },
 				"west": { "uv": [ 0, 2, 16, 16 ], "texture": "#texture" },
 				"east": { "uv": [ 0, 2, 16, 16 ], "texture": "#texture" }
 			}
 		},
 		{
-			"__comment": "Box41",
+			"__comment": "Cube2",
 			"from": [ 0, 14, 0 ],
 			"to": [ 16, 16, 16 ],
 			"faces": {

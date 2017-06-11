@@ -112,25 +112,25 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        pickaxehead = new ToolPart("ironpickaxehead", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironaxehead = new ToolPart("ironaxehead", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironshovelhead = new ToolPart("ironshovelhead", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironhoehead = new ToolPart("ironhoehead", PrimalMaterials.TOOL_WROUGHT_IRON);
+        pickaxehead = new ToolPart("ironpickaxehead", PrimalMaterials.TOOL_WROUGHT_IRON, 8);
+        ironaxehead = new ToolPart("ironaxehead", PrimalMaterials.TOOL_WROUGHT_IRON, 9);
+        ironshovelhead = new ToolPart("ironshovelhead", PrimalMaterials.TOOL_WROUGHT_IRON, 10);
+        ironhoehead = new ToolPart("ironhoehead", PrimalMaterials.TOOL_WROUGHT_IRON, 11);
 
-        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalMaterials.TOOL_CLEAN_IRON, 17);
+        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalMaterials.TOOL_CLEAN_IRON, 18);
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalMaterials.TOOL_CLEAN_IRON, 19);
+        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalMaterials.TOOL_CLEAN_IRON, 20);
 
-        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelaxehead = new ToolPart("steelaxehead", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelshovelhead = new ToolPart("steelshovelhead", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelhoehead = new ToolPart("steelhoehead", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalMaterials.TOOL_BASIC_STEEL, 26);
+        steelaxehead = new ToolPart("steelaxehead", PrimalMaterials.TOOL_BASIC_STEEL, 27);
+        steelshovelhead = new ToolPart("steelshovelhead", PrimalMaterials.TOOL_BASIC_STEEL, 28);
+        steelhoehead = new ToolPart("steelhoehead", PrimalMaterials.TOOL_BASIC_STEEL, 29);
 
-        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzaxehead = new ToolPart("wootzaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzhoehead = new ToolPart("wootzhoehead", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 35);
+        wootzaxehead = new ToolPart("wootzaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 36);
+        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalMaterials.TOOL_WOOTZ_STEEL, 37);
+        wootzhoehead = new ToolPart("wootzhoehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 38);
         /**********
          TOOLS
          **********/

@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.ToolNBT;
+import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;

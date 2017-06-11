@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft;
+package nmd.primal.forgecraft.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

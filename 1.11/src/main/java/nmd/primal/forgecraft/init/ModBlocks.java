@@ -142,7 +142,7 @@ public class ModBlocks {
                     if (pItem instanceof WorkMallet && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                        world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
@@ -150,7 +150,7 @@ public class ModBlocks {
                     /*if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
@@ -203,13 +203,13 @@ public class ModBlocks {
                     if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
                         //System.out.println("Activating");
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                        if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -255,13 +255,13 @@ public class ModBlocks {
                     if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                        world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
                         world.playEvent(1031, pos, 0);
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                        if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -307,13 +307,13 @@ public class ModBlocks {
                 if (pItem instanceof ForgeHammer && world.getBlockState(belowPos).getBlock().equals(Blocks.IRON_BLOCK)) {
                     player.swingArm(hand);
                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                    world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(Anvil.FACING, player.getHorizontalFacing()), 2);
+                    world.setBlockState(belowPos, ModBlocks.ironanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
                     world.playEvent(1031, pos, 0);
                     //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                     return true;
                 }
                 if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                    if(world.getBlockState(belowPos).getBlock() instanceof Anvil) {
+                    if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
 
                         TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -354,8 +354,8 @@ public class ModBlocks {
         steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk"); //steel_ingot steelchunk.json steelchunkhot.json - done
         wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk"); //wootz_ingot wootzchunk.json wootzchunkhot.json - done
 
-        stoneanvil = new Anvil(Material.ANVIL, "stoneanvil", 5.0f);
-        ironanvil = new Anvil(Material.ANVIL, "ironanvil", 6.0f);
+        stoneanvil = new AnvilStone(Material.ANVIL, "stoneanvil", 5.0f);
+        ironanvil = new AnvilStone(Material.ANVIL, "ironanvil", 6.0f);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
 
