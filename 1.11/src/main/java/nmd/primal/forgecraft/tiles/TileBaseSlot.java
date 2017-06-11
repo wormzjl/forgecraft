@@ -74,8 +74,16 @@ public abstract class TileBaseSlot extends BaseTile {
     public void clearSlots()
     {
         this.slotList.clear();
+        this.markDirty();
+        this.updateBlock();
     }
 
+    public void clearSlot(int index) {
+        this.slotList.set(index, ItemStack.EMPTY);
+        this.markDirty();
+        this.updateBlock();
+
+    }
 
     // ***************************************************************************** //
     //  NBT

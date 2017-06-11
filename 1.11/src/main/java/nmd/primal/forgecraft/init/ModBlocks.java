@@ -156,7 +156,7 @@ public class ModBlocks {
                         return true;
                     }*/
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                        if(world.getBlockState(belowPos).getBlock().equals(ModBlocks.stoneanvil)) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -209,7 +209,7 @@ public class ModBlocks {
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -261,7 +261,7 @@ public class ModBlocks {
                         return true;
                     }
                     if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
+                        if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -313,7 +313,7 @@ public class ModBlocks {
                     return true;
                 }
                 if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
-                    if(world.getBlockState(belowPos).getBlock() instanceof AnvilStone) {
+                    if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                         TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
 
@@ -354,8 +354,8 @@ public class ModBlocks {
         steelchunk = new IngotBall(Material.IRON, "steelchunk", 6.0f, "chunk"); //steel_ingot steelchunk.json steelchunkhot.json - done
         wootzchunk = new IngotBall(Material.IRON, "wootzchunk", 6.0f, "chunk"); //wootz_ingot wootzchunk.json wootzchunkhot.json - done
 
-        stoneanvil = new AnvilStone(Material.ANVIL, "stoneanvil", 5.0f);
-        ironanvil = new AnvilStone(Material.ANVIL, "ironanvil", 6.0f);
+        stoneanvil = new AnvilStone(Material.ANVIL, "stoneanvil", 5.0f, true);
+        ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
 

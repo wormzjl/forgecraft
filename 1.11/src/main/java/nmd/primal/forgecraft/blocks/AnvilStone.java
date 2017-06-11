@@ -41,49 +41,14 @@ import java.util.concurrent.ThreadLocalRandom;
 /**
  * Created by mminaie on 3/4/17.
  */
-public class AnvilStone extends CustomContainerFacing implements AnvilHandler {
+public class AnvilStone extends AnvilBase {
 
-/*
-    double[] normalMin = {0.0625, 0.25, 0.4375, 0.625, 0.8125};
-
-    public double getNormalMin(Integer x) {
-        return normalMin[x];
-    }
-
-    double[] normalMax = {0.1875, 0.375, 0.5625, 0.75, 0.9375};
-
-    public double getNormalMax(Integer x) {
-        return normalMax[x];
-    }
-
-    double[] reverseMin = {0.8125, 0.625, 0.4375, 0.25, 0.0625};
-
-    public double getReverseMin(Integer x) {
-        return reverseMin[x];
-    }
-
-    double[] reverseMax = {0.9375, 0.75, 0.5625, 0.375, 0.1875};
-
-    public double getReverseMax(Integer x) {
-        return reverseMax[x];
-    }
-*/
-    public AnvilStone(Material material, String registryName, Float hardness) {
-        super(material);
-        setUnlocalizedName(registryName);
-        setRegistryName(registryName);
-        setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setHardness(hardness);
+    public AnvilStone(Material material, String registryName, Float hardness, Boolean anvil) {
+        super(material, registryName, hardness, anvil);
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
-
-        /*if (!player.isSwingInProgress) {
-            player.swingArm(hand);
-        }*/
-
 
         /******************************************************************************
          Crafting AnvilStone Recipes
@@ -116,124 +81,4 @@ public class AnvilStone extends CustomContainerFacing implements AnvilHandler {
         }
         return false;
     }
-
-    @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state)
-    {
-        if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops"))
-        {
-            TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
-            if (tile !=null)
-            {
-                for (ItemStack stack : tile.getSlotList())
-                {
-                    if (stack != null) {
-                        float offset = 0.7F;
-                        double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        EntityItem item = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
-                        item.setDefaultPickupDelay();
-                        world.spawnEntity(item);
-                    }
-                }
-            }
-        }
-
-        super.breakBlock(world, pos, state);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileAnvil();
-    }
-
-    @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
-    {
-        //if(!worldIn.isRemote) {
-            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2);
-        //}
-    }
-
-    @Override
-    public int getMetaFromState(IBlockState state) {
-        int i = 0;
-
-        if( state.getValue(FACING) == EnumFacing.EAST) {
-            i = 0;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.WEST) {
-            i = 1;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.SOUTH){
-            i = 2;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.NORTH){
-            i = 3;
-            return i;
-        }
-        return i;
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        IBlockState iblockstate = this.getDefaultState();
-
-        if (meta == 0){
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST);
-        }
-        if (meta == 1) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST);
-        }
-        if (meta == 2) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH);
-        }
-        if (meta == 3) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH);
-        }
-        return iblockstate;
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING});
-    }
-
-    @Override
-    public boolean isFullCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isOpaqueCube(IBlockState state)
-    {
-        return false;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-    {
-        return true;
-    }
-
-    @Override
-    public EnumBlockRenderType getRenderType(IBlockState state)
-    {
-        return EnumBlockRenderType.MODEL;
-    }
-
 }

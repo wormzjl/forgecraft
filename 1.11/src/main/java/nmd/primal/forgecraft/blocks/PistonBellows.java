@@ -16,6 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModSounds;
@@ -94,7 +95,7 @@ public class PistonBellows extends CustomContainerFacing {
                     }
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
                         TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true)
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
@@ -125,7 +126,7 @@ public class PistonBellows extends CustomContainerFacing {
                     }
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
                         TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true)
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
@@ -156,7 +157,7 @@ public class PistonBellows extends CustomContainerFacing {
                     }
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
                         TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true)
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
@@ -187,7 +188,7 @@ public class PistonBellows extends CustomContainerFacing {
                     }
                     if (world.getBlockState(tempPos).getBlock() == ModBlocks.bloomery) {
                         TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true)
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true)
                                 && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
@@ -396,7 +397,7 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.EAST)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -413,7 +414,7 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.WEST)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -430,7 +431,7 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.SOUTH)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -447,7 +448,7 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (world.getBlockState(tempPos).getBlock() instanceof Bloomery) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Bloomery.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Bloomery.FACING) == EnumFacing.NORTH)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }

@@ -13,6 +13,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
@@ -25,6 +26,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.crafting.FireSource;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -91,19 +94,18 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                 /***********************
                 FUEL SLOT CODE
                  ***********************/
-                if(pItem.isEmpty()) {
-                    if (player.isSneaking()) {
-                        if (!fuelItem.isEmpty()) {
-                            if(facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH || facing == EnumFacing.EAST || facing == EnumFacing.WEST ) {
-                            //System.out.println();
-                                CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(0));
-                                tile.setSlotStack(0, ItemStack.EMPTY);
-                                tile.markDirty();
-                                tile.updateBlock();
-                                return true;
-                            }
+
+                if (player.isSneaking()) {
+                    if (!tile.getSlotStack(0).isEmpty()) {
+                        if(player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
+                            ItemStack returnStack = tile.getSlotStack(0).copy();
+                            PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
+                            tile.clearSlot(0);
+                            return true;
                         }
                     }
+                }
+                if(pItem.isEmpty()) {
                     if(!player.isSneaking()){
                         if(world.getBlockState(pos).getValue(ACTIVE) == true){
                             Integer tempInt = tile.getHeat();
@@ -115,7 +117,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider/
                         }
                     }
                 }
-                if((pItem.getItem() == Items.FLINT_AND_STEEL) || (pItem.getItem() == PrimalItems.FIRE_BOW) || pItem.getItem() == PrimalItems.TORCH_WOOD_LIT || pItem.getItem() == PrimalItems.TORCH_NETHER_LIT  ) {
+                if((FireSource.useSource(world, pos, player, pItem, hand, facing, hitX, hitY, hitZ))) {
                     world.setBlockState(pos, state.withProperty(ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();

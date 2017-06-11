@@ -262,6 +262,8 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
+            }
+            if( this.getMaxDamage(item) - this.getDamage(item) < 5 ){
 
             }
         }

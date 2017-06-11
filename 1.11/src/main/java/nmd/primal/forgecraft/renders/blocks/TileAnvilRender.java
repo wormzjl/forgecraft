@@ -14,6 +14,7 @@ import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.forgecraft.blocks.AnvilBase;
 import nmd.primal.forgecraft.blocks.AnvilStone;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.init.ModItems;
@@ -40,7 +41,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
 
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
-        if (state.getBlock() instanceof AnvilStone) {
+        if (state.getBlock() instanceof AnvilBase) {
 
         GL11.glPushMatrix();
         GL11.glTranslated(x, y + 1.5D, z);
@@ -87,7 +88,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
          */
 
 
-            if (state.getValue(AnvilStone.FACING) == EnumFacing.NORTH) {
+            if (state.getValue(AnvilBase.FACING) == EnumFacing.NORTH) {
                 int counter = 0;
                 for (int i = 0; i < 5; i++) {
                     for (int a = 0; a < 5; a++) {

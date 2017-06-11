@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.util;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
@@ -17,7 +18,9 @@ import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -169,9 +172,9 @@ public interface AnvilHandler {
 
 
 
-/*****************************************************************************
- Adding and Removing Inventory With Tongs
- *****************************************************************************/
+    /*****************************************************************************
+     Adding and Removing Inventory With Tongs
+     *****************************************************************************/
 
     default boolean doAnvilInventoryManager(ItemStack pItem, World world, TileAnvil tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
         if ( (!(pItem.getItem() instanceof WorkMallet)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
@@ -721,4 +724,56 @@ public interface AnvilHandler {
         return false;
     }
 
+    static void doDrops(World world, BlockPos pos) {
+        if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops")) {
+            TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+            if (tile != null) {
+                for (ItemStack stack : tile.getSlotList()) {
+                    if (stack != null) {
+                        float offset = 0.7F;
+                        double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        ItemStack dropStack = null;
+                        if (stack.getItem() instanceof BaseMultiItem) {
+                            BaseMultiItem item = (BaseMultiItem) stack.getItem();
+
+                            switch (item.getID()) {
+                                case 6:
+                                    dropStack = new ItemStack(ModBlocks.ironball, 1);
+                                    break;
+                                case 7:
+                                    dropStack = new ItemStack(ModBlocks.ironchunk, 1);
+                                    break;
+                                case 15:
+                                    dropStack = new ItemStack(ModBlocks.ironcleanball, 1);
+                                    break;
+                                case 16:
+                                    dropStack = new ItemStack(ModBlocks.ironcleanchunk, 1);
+                                    break;
+                                case 24:
+                                    dropStack = new ItemStack(ModBlocks.steelball, 1);
+                                    break;
+                                case 25:
+                                    dropStack = new ItemStack(ModBlocks.steelchunk, 1);
+                                    break;
+                                case 33:
+                                    dropStack = new ItemStack(ModBlocks.wootzball, 1);
+                                    break;
+                                case 34:
+                                    dropStack = new ItemStack(ModBlocks.wootzchunk, 1);
+                                    break;
+                            }
+
+                        } else {
+                            dropStack = stack;
+                        }
+                        EntityItem itemDrop = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, dropStack);
+                        itemDrop.setDefaultPickupDelay();
+                        world.spawnEntity(itemDrop);
+                    }
+                }
+            }
+        }
+    }
 }

@@ -80,7 +80,8 @@ public class Crucible extends Block {
     {
 
         if(!world.isRemote){
-            spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
+            if(this.getUnlocalizedName().equals("tile.emptycruciblecracked")){} else spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
+
             if(StringUtils.isEmpty(this.getUnlocalizedName()) == false) {
                 if(checkDrops(this.getUnlocalizedName()) != null) {
                     if (checkDrops(this.getUnlocalizedName()).equals(this.getUnlocalizedName())) {
@@ -118,6 +119,9 @@ public class Crucible extends Block {
         if(name.equals("tile.rawwootzcrucible")){
             string = this.getUnlocalizedName();
         }
+        if(name.equals("tile.emptycruciblecracked")){
+            string = this.getUnlocalizedName();
+        }
 
         return string;
     }
@@ -139,6 +143,8 @@ public class Crucible extends Block {
             return Item.getItemFromBlock(ModBlocks.wootzball);
         } else if (name.equals("tile.rawcleanironcrucible")){
             return PrimalItems.GOLDEN_STICK;
+        }else if (name.equals("tile.emptycruciblecracked")){
+            return Items.CLAY_BALL;
         }
         else return Items.AIR;
     }

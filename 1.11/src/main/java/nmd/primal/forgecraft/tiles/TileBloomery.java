@@ -9,6 +9,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.ParticleHelper;
 import nmd.primal.forgecraft.blocks.Bloomery;
@@ -35,7 +36,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         World world = this.getWorld();
         if(!world.isRemote){
             IBlockState state = world.getBlockState(this.pos);
-            if(state.getValue(Bloomery.ACTIVE) == true){
+            if(state.getValue(PrimalStates.ACTIVE) == true){
                 if(this.getHeat() < 100){
                     this.setHeat(100);
                 }
@@ -46,7 +47,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
                 //IBlockState state = world.getBlockState(this.pos);
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
-                if (world.getBlockState(this.getPos()).getValue(Bloomery.ACTIVE)) {
+                if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
                         world.setBlockState(this.getPos(), state.withProperty(Forge.ACTIVE, false), 2);
                         this.markDirty();
@@ -139,7 +140,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     }
 
     private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
-        if(state.getValue(Bloomery.ACTIVE) == true){
+        if(state.getValue(PrimalStates.ACTIVE) == true){
             if(!stack.isEmpty()) {
                 if(h > 0) {
                     this.setHeat(h - 25);
@@ -152,7 +153,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
             }
         }
-        if(state.getValue(Bloomery.ACTIVE) == false){
+        if(state.getValue(PrimalStates.ACTIVE) == false){
             if(h > 50){
                 this.setHeat(h - 50);
             }
