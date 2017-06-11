@@ -20,17 +20,19 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBreaker;
+import nmd.primal.forgecraft.util.BreakerHandler;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 4/9/17.
  */
-public class Breaker extends CustomContainerFacing {
+public class Breaker extends CustomContainerFacing implements BreakerHandler {
 
     public static final PropertyBool ACTIVE =  PropertyBool.create("active");
 
@@ -43,52 +45,6 @@ public class Breaker extends CustomContainerFacing {
         setHardness(hardness);
     }
 
-    private void doWork (World world, IBlockState state, BlockPos pos, TileBreaker tile){
-        if (state.getValue(FACING) == EnumFacing.EAST) {
-            if(tile.getCharge() > world.getBlockState(pos.east()).getBlockHardness(world, pos.east())) {
-                if (world.getBlockState(pos.east()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.east());
-                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-1);
-                }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
-            }
-        }
-        if (state.getValue(FACING) == EnumFacing.WEST) {
-            if(tile.getCharge() > world.getBlockState(pos.west()).getBlockHardness(world, pos.west())) {
-                if (world.getBlockState(pos.west()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.west());
-                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
-            }
-        }
-        if (state.getValue(FACING) == EnumFacing.SOUTH) {
-            if(tile.getCharge() > world.getBlockState(pos.south()).getBlockHardness(world, pos.south())) {
-                if (world.getBlockState(pos.south()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.south());
-                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
-            }
-        }
-        if (state.getValue(FACING) == EnumFacing.NORTH) {
-            if(tile.getCharge() > world.getBlockState(pos.north()).getBlockHardness(world, pos.north())) {
-                if (world.getBlockState(pos.north()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.north());
-                    CommonUtils.spawnItemEntityFromWorld(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, ThreadLocalRandom.current().nextInt(1, 2)));
-                }
-            } else {
-                //tile.getSlotStack(0).damageItem(10, (EntityPlayer) null);
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()-10);
-            }
-        }
-        tile.setCharge(0.0f);
-    }
-
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
@@ -96,29 +52,45 @@ public class Breaker extends CustomContainerFacing {
             TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
 
+            /*if(tile.getCharge() < 5 ){
+                if(pItem == ItemStack.EMPTY){
+                    if(player.isSneaking()){
+                        ItemStack tempStack = tile.getSlotStack(0).copy();
+                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                        tile.setSlotStack(0, ItemStack.EMPTY);
+                        return true;
+                    }
+                }
+            }*/
+
             if(state.getValue(ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
                 world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, false));
-
-                doWork(world, state, pos, tile);
+                doBreaking(world, state, pos, tile);
+                tile.setCharge(0);
+                return true;
             }
             if(!player.isSneaking() && pItem.isEmpty()) {
                 if (!state.getValue(ACTIVE)) {
                     world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(ACTIVE, true), 2);
-                }
-                if(tile.getCharge() < 181) {
-                    tile.setCharge(tile.getCharge() + 2.0f);
-                    tile.updateBlock();
-                    //System.out.println(tile.charge);
                     return true;
+                }
+                if(state.getValue(ACTIVE)) {
+                    if (tile.getCharge() < 181) {
+                        tile.setCharge(tile.getCharge() + 2.0f);
+                        tile.updateBlock();
+                        //System.out.println(tile.charge);
+                        return true;
+                    }
                 }
             }
 
             if(pItem.getItem() instanceof WorkMallet){
-
                 tile.setSlotStack(0, player.inventory.getCurrentItem());
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                 return true;
             }
+
+
 
         }
 
