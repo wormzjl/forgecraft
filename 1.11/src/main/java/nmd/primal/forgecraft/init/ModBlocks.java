@@ -30,6 +30,7 @@ public class ModBlocks {
 
     public static Block firebox;
     public static Block bloomery;
+    public static Block bloomery_adobe;
     public static Block blockbreaker;
 
     public static Block pistonbellowsoak;
@@ -88,7 +89,8 @@ public class ModBlocks {
     public static void init() {
 
         firebox = new Forge(Material.ROCK);
-        bloomery = new Bloomery(Material.ROCK, "bloomery");
+        bloomery = new BloomeryBase(Material.ROCK, "bloomery", 1500);
+        bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 1560);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
@@ -365,6 +367,7 @@ public class ModBlocks {
     public static void register() {
         registerBlock(firebox);
         registerBlock(bloomery);
+        registerBlock(bloomery_adobe);
         registerBlock(blockbreaker);
 
         registerBlock(pistonbellowsoak);

@@ -1,20 +1,12 @@
 {
   "variants": {
-    "active=false,covered=false,facing=north": { "model": "forgecraft:bloomery" },
-    "active=false,covered=false,facing=east":  { "model": "forgecraft:bloomery", "y": 90 },
-    "active=false,covered=false,facing=south": { "model": "forgecraft:bloomery", "y": 180 },
-    "active=false,covered=false,facing=west":  { "model": "forgecraft:bloomery", "y": 270 },
-    "active=true,covered=false,facing=north": { "model": "forgecraft:bloomery_lit" },
-    "active=true,covered=false,facing=east":  { "model": "forgecraft:bloomery_lit", "y": 90 },
-    "active=true,covered=false,facing=south": { "model": "forgecraft:bloomery_lit", "y": 180 },
-    "active=true,covered=false,facing=west":  { "model": "forgecraft:bloomery_lit", "y": 270 },
-    "active=true,covered=true,facing=north": { "model": "forgecraft:bloomery_lit_covered" },
-    "active=true,covered=true,facing=east":  { "model": "forgecraft:bloomery_lit_covered", "y": 90 },
-    "active=true,covered=true,facing=south": { "model": "forgecraft:bloomery_lit_covered", "y": 180 },
-    "active=true,covered=true,facing=west":  { "model": "forgecraft:bloomery_lit_covered", "y": 270 },
-    "active=false,covered=true,facing=north": { "model": "forgecraft:bloomery_covered" },
-    "active=false,covered=true,facing=east":  { "model": "forgecraft:bloomery_covered", "y": 90 },
-    "active=false,covered=true,facing=south": { "model": "forgecraft:bloomery_covered", "y": 180 },
-    "active=false,covered=true,facing=west":  { "model": "forgecraft:bloomery_covered", "y": 270 }
+    "active=false,facing=north": { "model": "forgecraft:bloomery" },
+    "active=false,facing=east":  { "model": "forgecraft:bloomery", "y": 90 },
+    "active=false,facing=south": { "model": "forgecraft:bloomery", "y": 180 },
+    "active=false,facing=west":  { "model": "forgecraft:bloomery", "y": 270 },
+    "active=true,facing=north": { "model": "forgecraft:bloomery_lit" },
+    "active=true,facing=east":  { "model": "forgecraft:bloomery_lit", "y": 90 },
+    "active=true,facing=south": { "model": "forgecraft:bloomery_lit", "y": 180 },
+    "active=true,facing=west":  { "model": "forgecraft:bloomery_lit", "y": 270 }
   }
 }

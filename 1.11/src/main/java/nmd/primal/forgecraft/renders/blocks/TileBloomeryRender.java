@@ -10,6 +10,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.Bloomery;
+import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import org.lwjgl.opengl.GL11;
 
@@ -25,7 +26,7 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
 
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
-        if (state.getBlock() instanceof Bloomery) {
+        if (state.getBlock() instanceof BloomeryBase) {
 
             GL11.glPushMatrix();
             GL11.glTranslated(x + 0.5D, y + 0.0626D, z + 0.5D);

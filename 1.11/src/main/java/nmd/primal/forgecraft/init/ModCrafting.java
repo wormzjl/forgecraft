@@ -217,7 +217,7 @@ public class ModCrafting {
                 new ItemStack(ModBlocks.emptycruciblehot, 1),
                 new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
                 new ItemStack(ModBlocks.emptycrucible, 1),
-                2100,
+                1450,
                 1600,
                 600,
                 0.25f,
@@ -254,7 +254,7 @@ public class ModCrafting {
                 new ItemStack(ModBlocks.hotcookedironcrucible, 1),
                 new ItemStack(ModBlocks.failedironcruciblehot, 1),
                 new ItemStack(ModBlocks.coolironcrucible, 1),
-                1550,
+                1400,
                 1200,
                 800,
                 0.33f,
@@ -306,14 +306,14 @@ public class ModCrafting {
                 new ItemStack(ModBlocks.hotcookedsteelcrucible, 1),
                 new ItemStack(ModBlocks.failedsteelcrucible, 1),
                 new ItemStack(ModBlocks.coolsteelcrucible, 1),
-                1550,
+                2100,
                 1500,
                 1000,
                 0.2f,
                 0.25f
         );
 
-        //PLACE HOLDER FOR WOOTZ
+        //TODO PLACE HOLDER FOR WOOTZ
 
 
         /******************************************************************************
