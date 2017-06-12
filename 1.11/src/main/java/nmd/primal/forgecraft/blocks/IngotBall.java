@@ -65,7 +65,7 @@ public class IngotBall extends BlockCustomBase {
                 world.setBlockState(pos, Blocks.FLOWING_LAVA.getDefaultState().withProperty(BlockDynamicLiquid.LEVEL, 1), 3);
             }
             if(!state.getValue(PrimalStates.ACTIVE)){
-                PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(this, 1));
+                //PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(this, 1));
             }
         }
     }
