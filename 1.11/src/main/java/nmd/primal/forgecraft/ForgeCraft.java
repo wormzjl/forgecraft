@@ -13,6 +13,8 @@ import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.*;
 import nmd.primal.forgecraft.proxy.CommonProxy;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 //import nmd.primal.forgecraft.common.init.*;
 
@@ -31,6 +33,7 @@ public class ForgeCraft
     public static SimpleNetworkWrapper NETWORK;
     @SidedProxy(clientSide = ModInfo.CLIENT_PROXY, serverSide = ModInfo.SERVER_PROXY)
     public static CommonProxy proxy;
+    public static Logger LOGGER = LogManager.getLogger(ModInfo.MOD_ID);
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
