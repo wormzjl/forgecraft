@@ -14,6 +14,7 @@ public class ModInfo {
         /** Mod Details**/
     public static final String MOD_ID = "forgecraft";
     public static final String MOD_NAME = "Kitsu's ForgeCraft";
+    public static final String MOD_CONFIG = "primal/" + MOD_ID;
     //public static final String MOD_PREFIX = MOD_ID + ":";
     public static final String MOD_CHANNEL = MOD_ID;
     public static final String MOD_VERSION = "1.2.30";

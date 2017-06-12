@@ -33,3 +33,9 @@ item.ironaxe.name=Iron Axe
 item.ironshovel.name=Iron Shovel
 item.ironhoe.name=Iron Hoe
 item.ironsword.name=Iron Sword
+
+# -- configuration -- #
+forgecraft.config.title=ForgeCraft Config
+
+forgecraft.compatibility=Compatibility
+forgecraft.compatibility.tooltip=Compatibility Features
