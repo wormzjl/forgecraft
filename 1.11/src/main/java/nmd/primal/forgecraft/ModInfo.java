@@ -83,19 +83,4 @@ public class ModInfo {
             return new ItemStack(ModItems.forgehammer);
         }
     };
-
-    /*
-        public static CreativeTabs TAB_PRIMAL = new CreativeTabs(MOD_ID)
-    {
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public ItemStack getTabIconItem() {
-            return new ItemStack(PrimalItems.FLINT_HATCHET);
-        }
-
-    };
-    */
-
-
 }

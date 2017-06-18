@@ -16,10 +16,12 @@ import nmd.primal.forgecraft.proxy.CommonProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Locale;
+
 //import nmd.primal.forgecraft.common.init.*;
 
 @Mod(   modid = ModInfo.MOD_ID,
-        name = ModInfo.MOD_NAME,
+        name = ModInfo.MOD_ID,
         version = ModInfo.MOD_VERSION,
         acceptedMinecraftVersions = ModInfo.MC_VERSIONS,
         dependencies = ModInfo.DEPENDENCIES
@@ -38,6 +40,8 @@ public class ForgeCraft
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
+        Locale.setDefault(Locale.ENGLISH);
+
 
         NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel(ModInfo.MOD_CHANNEL);
         NetworkRegistry.INSTANCE.registerGuiHandler(this, new GuiHandler());
@@ -54,6 +58,7 @@ public class ForgeCraft
         //ModEvents.registerClientEvents();
 //        ModItems.registerRenders();
         proxy.preInit();
+
     }
 
     @EventHandler
@@ -73,15 +78,4 @@ public class ForgeCraft
         //this.proxy.postInit(event);
     }
 
-    /*@EventHandler
-    public void serverStarting(FMLServerStartingEvent event)
-    {
-        //event.registerServerCommand(new PrimalCommand());
-    }
-
-    //public File getConfigDirectory()
-    //{
-    //    return CONFIG_DIRECTORY;
-    //}
-    */
 }
