@@ -112,6 +112,8 @@ public abstract class AnvilBase extends CustomContainerFacing implements AnvilHa
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
 
+
+
     @Override
     public boolean isFullCube(IBlockState state)
     {
