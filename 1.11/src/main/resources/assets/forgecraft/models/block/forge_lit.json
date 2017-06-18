@@ -1,6 +1,7 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
+		"particle": "forgecraft:blocks/brick",
 		"texture": "forgecraft:blocks/brick",
 		"texture1": "forgecraft:blocks/brick_lit"
 	},

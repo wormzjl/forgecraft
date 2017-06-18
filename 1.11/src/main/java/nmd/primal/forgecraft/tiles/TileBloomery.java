@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.tiles;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -9,17 +10,15 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
-import nmd.primal.core.common.helper.CommonUtils;
-import nmd.primal.core.common.helper.ParticleHelper;
-import nmd.primal.forgecraft.blocks.Bloomery;
+import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucible;
-import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
-import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
+import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -49,7 +48,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(Forge.ACTIVE, false), 2);
+                        world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -105,7 +104,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 10);
             if(decrInt == 0) {
                 decrInt = 1;
             }
@@ -146,11 +145,31 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.setHeat(h - 25);
                 }
                 if(h < 10 ){
-                    world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
                 }
             }
             if(stack.isEmpty()){
-                world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+                world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
+            }
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_FAIR){
+                if(this.getHeat() > 1610){
+                    this.setHeat(1600);
+                }
+            }
+            if(this.getSlotStack(0).getItem() == Items.COAL && this.getSlotStack(0).getMetadata() == 1){
+                if(this.getHeat() > 1210){
+                    this.setHeat(1200);
+                }
+            }
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_GOOD){
+                if(this.getHeat() > 2110){
+                    this.setHeat(2100);
+                }
+            }
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_HIGH){
+                if(this.getHeat() > 3510){
+                    this.setHeat(3500);
+                }
             }
         }
         if(state.getValue(PrimalStates.ACTIVE) == false){
@@ -159,6 +178,13 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             }
             if(h < 0){
                 this.setHeat(0);
+            }
+        }
+        if(world.getBlockState(pos).getBlock() instanceof BloomeryBase){
+            BloomeryBase tempBlock = (BloomeryBase) world.getBlockState(pos).getBlock();
+            if(this.getHeat() > tempBlock.getMaxHeat()){
+                world.setBlockState(pos, Blocks.FIRE.getDefaultState(), 2);
+                //world.markTileEntityForRemoval(this);
             }
         }
         this.updateBlock();
@@ -177,6 +203,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 if(stack.getMetadata() == 1) {
                     return true;
                 }
+            }
+            if(stack.getItem() == PrimalItems.CHARCOAL_GOOD
+                    || stack.getItem() == PrimalItems.CHARCOAL_HIGH
+                    || stack.getItem() == PrimalItems.CHARCOAL_FAIR){
+                return true;
             }
         }
         if(index == 1){

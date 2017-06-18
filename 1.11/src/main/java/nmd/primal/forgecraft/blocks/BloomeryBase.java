@@ -3,14 +3,12 @@ package nmd.primal.forgecraft.blocks;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
@@ -23,11 +21,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.crafting.FireSource;
+import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.tiles.TileBloomery;
@@ -35,24 +32,31 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
-
 /**
- * Created by mminaie on 1/21/17.
+ * Created by mminaie on 6/11/17.
  */
-public class Bloomery extends CustomContainerFacing implements ITileEntityProvider {
+public class BloomeryBase extends CustomContainerFacing implements ITileEntityProvider {
 
-    //public static final PropertyBool PrimalStates.ACTIVE =  PropertyBool.create("PrimalStates.ACTIVE");
-    public static final PropertyBool COVERED =  PropertyBool.create("covered");
+    //public static final PropertyBool COVERED =  PropertyBool.create("covered");
+    private int maxHeat;
 
-    public Bloomery(Material material, String registryName) {
+    public BloomeryBase(Material material, String registryName, Integer maxHeat) {
         super(material);
-        setUnlocalizedName(ModInfo.ForgecraftBlocks.BLOOMERY.getUnlocalizedName());
+        setUnlocalizedName(registryName);
         setRegistryName(registryName);
-        //setRegistryName(ModInfo.ForgecraftBlocks.FIREBOX.getRegistryName());
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
+        setResistance(5.0f);
+        this.maxHeat=maxHeat;
+    }
+
+    public int getMaxHeat() {
+        return maxHeat;
+    }
+
+    public void setMaxHeat(int maxHeat) {
+        this.maxHeat = maxHeat;
     }
 
     @Override
@@ -67,7 +71,7 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
             if(state.getValue(PrimalStates.ACTIVE) == true) {
-                makeSmoke(world, pos);
+                FireHelper.makeSmoke(world, pos, 50);
             }
         }
     }
@@ -248,142 +252,100 @@ public class Bloomery extends CustomContainerFacing implements ITileEntityProvid
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        if(!worldIn.isRemote){
-            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false)), 2);
+        if(!worldIn.isRemote) {
+            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)), 2);
         }
-
     }
 
     @Override
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if( state.getValue(FACING) == EnumFacing.EAST && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 0;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.WEST && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 1;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.SOUTH && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 2;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.NORTH && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 3;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.EAST && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 4;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.WEST && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 5;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.SOUTH && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 6;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.NORTH && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == false){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 7;
             return i;
         }
-        if( state.getValue(FACING) == EnumFacing.EAST && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == true){
-            i = 8;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.WEST && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == true){
-            i = 9;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.SOUTH && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == true){
-            i = 10;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.NORTH && state.getValue(PrimalStates.ACTIVE) == true && state.getValue(COVERED) == true){
-            i = 11;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.EAST && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == true){
-            i = 12;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.WEST && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == true){
-            i = 13;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.SOUTH && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == true){
-            i = 14;
-            return i;
-        }
-        if( state.getValue(FACING) == EnumFacing.NORTH && state.getValue(PrimalStates.ACTIVE) == false && state.getValue(COVERED) == true){
-            i = 15;
-            return i;
-        }
+
         return i;
     }
 
     @Override
-    public IBlockState getStateFromMeta(int meta)
-    {
-        IBlockState iblockstate = this.getDefaultState();
+    public IBlockState getStateFromMeta(int meta) {
+        EnumFacing enumfacing;
+        Boolean active;
+        switch (meta & 7)
+        {
+            case 0:
+                enumfacing = EnumFacing.EAST;
+                active = false;
+                break;
+            case 1:
+                enumfacing = EnumFacing.WEST;
+                active = false;
+                break;
+            case 2:
+                enumfacing = EnumFacing.SOUTH;
+                active = false;
+                break;
+            case 3:
+                enumfacing = EnumFacing.NORTH;
+                active = false;
+                break;
+            case 4:
+                enumfacing = EnumFacing.EAST;
+                active = true;
+                break;
+            case 5:
+                enumfacing = EnumFacing.WEST;
+                active = true;
+                break;
+            case 6:
+                enumfacing = EnumFacing.SOUTH;
+                active = true;
+                break;
+            case 7:
+                enumfacing = EnumFacing.NORTH;
+                active = true;
+                break;
+            default:
+                enumfacing = EnumFacing.NORTH;
+                active = false;
+        }
 
-        if (meta == 0){
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 1) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 2) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 3) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 4) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 5) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 6) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 7) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(false));
-        }
-        if (meta == 8) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 9) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 10) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 11) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 12) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 13) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 14) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        if (meta == 15) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)).withProperty(COVERED, Boolean.valueOf(true));
-        }
-        return iblockstate;
+        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(active));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalStates.ACTIVE, COVERED});
+        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalStates.ACTIVE});
     }
 
     @Override

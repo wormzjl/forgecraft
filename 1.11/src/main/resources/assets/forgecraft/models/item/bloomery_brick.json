@@ -4,5 +4,5 @@
     "particle": "forgecraft:blocks/brick",
     "texture": "forgecraft:blocks/brick"
   },
-  "parent": "forgecraft:block/firebox"
+  "parent": "forgecraft:block/bloomery_brick"
 }

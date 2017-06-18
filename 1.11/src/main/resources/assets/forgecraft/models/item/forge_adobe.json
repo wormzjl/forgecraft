@@ -1,0 +1,8 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "primal:blocks/adobebrick",
+    "texture": "primal:blocks/adobebrick"
+  },
+  "parent": "forgecraft:block/forge"
+}

@@ -3,7 +3,7 @@ To-Dos
 *** Bugs ***
 
 
-*** Priority ***
+*** Current Feature ***
 
 
 *** Feature Musket ***
@@ -19,7 +19,6 @@ To-Dos
 
 *** Backlog ***
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
-- [ ] Add Yew
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
