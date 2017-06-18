@@ -3,7 +3,6 @@ package nmd.primal.forgecraft.blocks;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
@@ -24,7 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.crafting.FireSource;
-import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
@@ -33,8 +31,6 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
-import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 /**
  * Created by mminaie on 6/11/17.
@@ -51,6 +47,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
+        setResistance(5.0f);
         this.maxHeat=maxHeat;
     }
 
@@ -74,7 +71,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
             if(state.getValue(PrimalStates.ACTIVE) == true) {
-                FireHelper.makeSmoke(world, pos, 10);
+                FireHelper.makeSmoke(world, pos, 50);
             }
         }
     }

@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "active": {
+      "true": {
+        "textures": {
+          "particle": "primal:blocks/adobebrick",
+          "texture": "primal:blocks/adobebrick",
+          "texture1": "forgecraft:blocks/adobebrick_lit"
+        },
+        "model": "forgecraft:forge_lit"
+      },
+      "false": {
+        "textures": {
+          "particle": "primal:blocks/adobebrick",
+          "texture": "primal:blocks/adobebrick"
+        },
+        "model": "forgecraft:forge"
+      }
+    },
+    "facing": {
+      "north": {},
+      "east": {"y": 90},
+      "south": {"y": 180},
+      "west":{"y": 270}
+    }
+  }
+}
+
+

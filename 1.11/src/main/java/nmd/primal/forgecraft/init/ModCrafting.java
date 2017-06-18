@@ -24,8 +24,10 @@ public class ModCrafting {
         Random rand = new Random();
 
         /***Forge***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.firebox),
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_brick),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
+        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_adobe),
+                "X X", "XYX", "X X", 'X', PrimalItems.ADOBEBRICK_DRY, 'Y', Blocks.FURNACE);
         /***Bloomery***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery_brick),
                 "X X", "X X", "XXX", 'X', Items.BRICK);

@@ -7,17 +7,13 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
-//import nmd.primal.forgecraft.CommonUtils;
-
-import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileBreaker;
-import nmd.primal.forgecraft.blocks.CustomContainerFacing.*;
-
-import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.core.common.helper.CommonUtils.randomCheck;
+
+//import nmd.primal.forgecraft.CommonUtils;
 
 /**
  * Created by mminaie on 6/11/17.

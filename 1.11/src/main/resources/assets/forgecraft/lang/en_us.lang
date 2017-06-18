@@ -1,7 +1,8 @@
 itemGroup.forgecraft=ForgeCraft
 
 
-tile.firebox.name=Forge
+tile.forge_brick.name=Brick Forge
+tile.forge_brick.name=Adobe Forge
 tile.bloomery.name=Bloomery
 tile.stoneanvil.name=Stone Anvil
 tile.pistonbellows.name=Wooden Piston Bellows

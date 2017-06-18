@@ -16,10 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.BloomeryBase;
-import nmd.primal.forgecraft.blocks.Crucible;
-import nmd.primal.forgecraft.blocks.CrucibleHot;
-import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
@@ -465,7 +462,7 @@ public class ItemStoneTongs extends Item {
  Pulls the Tool Parts from the Forge
  *****/
             if(itemstack.getTagCompound().getInteger("type") == 0){
-                if (world.getBlockState(pos).getBlock() == ModBlocks.firebox) {
+                if (world.getBlockState(pos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(pos);
                     for (int i = 2; i < tile.getSlotListSize(); i++) {
                         if (tile.getSlotStack(i).getItem().equals(ModItems.ironchunkhot)) {

@@ -9,7 +9,6 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import org.lwjgl.opengl.GL11;

@@ -28,7 +28,8 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
  */
 public class ModBlocks {
 
-    public static Block firebox;
+    public static Block forge_brick;
+    public static Block forge_adobe;
     public static Block bloomery_brick;
     public static Block bloomery_adobe;
     public static Block blockbreaker;
@@ -88,8 +89,9 @@ public class ModBlocks {
 
     public static void init() {
 
-        firebox = new Forge(Material.ROCK);
-        bloomery_brick = new BloomeryBase(Material.ROCK, "bloomery", 5000);
+        forge_brick = new Forge(Material.ROCK, "forge_brick", 5000);
+        forge_adobe = new Forge(Material.ROCK, "forge_adobe", 5000);
+        bloomery_brick = new BloomeryBase(Material.ROCK, "bloomery_brick", 5000);
         bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 5000);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
 
@@ -365,7 +367,8 @@ public class ModBlocks {
 
 
     public static void register() {
-        registerBlock(firebox);
+        registerBlock(forge_brick);
+        registerBlock(forge_adobe);
         registerBlock(bloomery_brick);
         registerBlock(bloomery_adobe);
         registerBlock(blockbreaker);
@@ -430,7 +433,9 @@ public class ModBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
-        registerRender(firebox);
+        registerRender(forge_brick);
+        registerRender(forge_adobe);
+
         registerRender(blockbreaker);
         registerRender(pistonbellowsoak);
         registerRender(pistonbellowsjungle);
@@ -438,8 +443,10 @@ public class ModBlocks {
         registerRender(pistonbellowsspruce);
         registerRender(pistonbellowsdarkoak);
         registerRender(pistonbellowsacacia);
+
         registerRender(bloomery_brick);
         registerRender(bloomery_adobe);
+
         registerRender(emptycrucible);
         registerRender(emptycruciblehot);
         registerRender(emptycruciblecracked);

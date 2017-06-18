@@ -12,17 +12,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
-import nmd.primal.core.common.helper.CommonUtils;
-import nmd.primal.core.common.helper.ParticleHelper;
-import nmd.primal.forgecraft.blocks.Bloomery;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucible;
-import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
-import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
+import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -52,7 +48,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
                 if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(Forge.ACTIVE, false), 2);
+                        world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -149,11 +145,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.setHeat(h - 25);
                 }
                 if(h < 10 ){
-                    world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
                 }
             }
             if(stack.isEmpty()){
-                world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
+                world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
             }
             if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_FAIR){
                 if(this.getHeat() > 1610){

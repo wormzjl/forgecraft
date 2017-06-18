@@ -18,7 +18,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileForge;
@@ -81,9 +80,9 @@ public class PistonBellows extends CustomContainerFacing {
 
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
                     BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
-                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                    if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                         TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.EAST)) {
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.EAST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
                                 tile.setHeat(tile.getHeat() + 50);
@@ -109,9 +108,9 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
                     BlockPos tempPos = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
-                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                    if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                         TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.WEST)) {
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.WEST)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
                                 tile.setHeat(tile.getHeat() + 50);
@@ -137,9 +136,9 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
                     BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
-                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                    if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                         TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.SOUTH)) {
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.SOUTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
                                 tile.setHeat(tile.getHeat() + 50);
@@ -165,9 +164,9 @@ public class PistonBellows extends CustomContainerFacing {
                 }
                 if (state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
                     BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
-                    if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                    if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                         TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                        if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.NORTH)) {
+                        if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.NORTH)) {
                             if (tile != null) {
                                 //System.out.println(world.getBlockState(tempPos).getValue(Forge.FACING));
                                 tile.setHeat(tile.getHeat() + 50);
@@ -377,9 +376,9 @@ public class PistonBellows extends CustomContainerFacing {
         if(state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE) {
             if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
                 BlockPos tempPos = new BlockPos(pos.getX() + 1, pos.getY(), pos.getZ());
-                if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.EAST)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.EAST)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -394,9 +393,9 @@ public class PistonBellows extends CustomContainerFacing {
 
             if (state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
                 BlockPos tempPos = new BlockPos(pos.getX() - 1, pos.getY(), pos.getZ());
-                if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.WEST)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.WEST)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -411,9 +410,9 @@ public class PistonBellows extends CustomContainerFacing {
 
             if (state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
                 BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() + 1);
-                if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.SOUTH)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.SOUTH)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }
@@ -428,9 +427,9 @@ public class PistonBellows extends CustomContainerFacing {
 
             if (state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
                 BlockPos tempPos = new BlockPos(pos.getX(), pos.getY(), pos.getZ() - 1);
-                if (world.getBlockState(tempPos).getBlock() == ModBlocks.firebox) {
+                if (world.getBlockState(tempPos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(tempPos);
-                    if ((world.getBlockState(tempPos).getValue(Forge.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.NORTH)) {
+                    if ((world.getBlockState(tempPos).getValue(PrimalStates.ACTIVE) == true) && (world.getBlockState(tempPos).getValue(Forge.FACING) == EnumFacing.NORTH)) {
                         makeEmbers(world, tempPos, world.rand);
                     }
                 }

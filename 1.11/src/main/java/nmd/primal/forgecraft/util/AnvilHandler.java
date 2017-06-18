@@ -6,11 +6,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
@@ -28,7 +26,6 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
-import static sun.audio.AudioPlayer.player;
 
 /**
  * Created by mminaie on 6/10/17.
