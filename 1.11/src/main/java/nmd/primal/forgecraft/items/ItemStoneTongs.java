@@ -16,6 +16,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucible;
 import nmd.primal.forgecraft.blocks.CrucibleHot;
 import nmd.primal.forgecraft.blocks.IngotBall;
@@ -134,7 +135,7 @@ public class ItemStoneTongs extends Item {
             /*****
              Picks Up Hot Ingots from the Ground
              *****/
-            if (world.getBlockState(pos).getBlock() != ModBlocks.bloomery) {
+            if (world.getBlockState(pos).getBlock() instanceof BloomeryBase == false) {
                 if (world.getBlockState(pos).getBlock() instanceof IngotBall) {
                     if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE) == true) {
                         if (world.getBlockState(pos).getBlock() == ModBlocks.ironball) {
@@ -176,7 +177,7 @@ public class ItemStoneTongs extends Item {
 /*****
  Picks Up Hot Crucibles from the Ground
  *****/
-            if (world.getBlockState(pos).getBlock() != ModBlocks.bloomery) {
+            if (world.getBlockState(pos).getBlock() instanceof BloomeryBase == false) {
                 if(world.getBlockState(pos).getBlock() instanceof CrucibleHot) {
                     TileBaseCrucible tileCrucible = (TileBaseCrucible) world.getTileEntity(pos);
                     /***************************
@@ -398,8 +399,8 @@ public class ItemStoneTongs extends Item {
 /*****
  Pulls the crucible from the Bloomery
  *****/
-            if(itemstack.getTagCompound().getInteger("type") == 0){
-                if (world.getBlockState(pos).getBlock() == ModBlocks.bloomery) {
+            if (world.getBlockState(pos).getBlock() instanceof BloomeryBase) {
+                if (itemstack.getTagCompound().getInteger("type") == 0) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
                     if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.emptycruciblehot))) {
                         itemstack.getTagCompound().setInteger("type", 1);
@@ -458,7 +459,6 @@ public class ItemStoneTongs extends Item {
                         return EnumActionResult.SUCCESS;
                     }
                 }
-
             }
 
 /*****

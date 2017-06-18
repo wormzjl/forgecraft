@@ -108,7 +108,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 10);
             if(decrInt == 0) {
                 decrInt = 1;
             }
@@ -155,9 +155,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             if(stack.isEmpty()){
                 world.setBlockState(pos, state.withProperty(Forge.ACTIVE, false), 2);
             }
-            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL1){
-                if(this.getHeat() > 1210){
-                    this.setHeat(1200);
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_FAIR){
+                if(this.getHeat() > 1610){
+                    this.setHeat(1600);
                 }
             }
             if(this.getSlotStack(0).getItem() == Items.COAL && this.getSlotStack(0).getMetadata() == 1){
@@ -165,14 +165,14 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.setHeat(1200);
                 }
             }
-            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL2){
-                if(this.getHeat() > 1610){
-                    this.setHeat(1600);
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_GOOD){
+                if(this.getHeat() > 2110){
+                    this.setHeat(2100);
                 }
             }
-            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL3){
-                if(this.getHeat() > 3010){
-                    this.setHeat(3000);
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_HIGH){
+                if(this.getHeat() > 3510){
+                    this.setHeat(3500);
                 }
             }
         }
@@ -208,9 +208,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     return true;
                 }
             }
-            if(stack.getItem() == PrimalItems.CHARCOAL1
-                    || stack.getItem() == PrimalItems.CHARCOAL2
-                    || stack.getItem() == PrimalItems.CHARCOAL3){
+            if(stack.getItem() == PrimalItems.CHARCOAL_GOOD
+                    || stack.getItem() == PrimalItems.CHARCOAL_HIGH
+                    || stack.getItem() == PrimalItems.CHARCOAL_FAIR){
                 return true;
             }
         }
