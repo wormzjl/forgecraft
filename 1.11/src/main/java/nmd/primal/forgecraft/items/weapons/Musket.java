@@ -23,8 +23,7 @@ import javax.annotation.Nullable;
 public class Musket extends BaseItem{
 
     public Musket(String name) {
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
+        super(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();

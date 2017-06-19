@@ -20,6 +20,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.blocks.*;
+import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
+import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
+import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
+import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
+import nmd.primal.forgecraft.blocks.Crucibles.CrucibleHot;
 import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -33,6 +38,7 @@ public class ModBlocks {
     public static Block bloomery_brick;
     public static Block bloomery_adobe;
     public static Block blockbreaker;
+    public static Block castingform;
 
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
@@ -94,6 +100,7 @@ public class ModBlocks {
         bloomery_brick = new BloomeryBase(Material.ROCK, "bloomery_brick", 5000);
         bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 5000);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
+        castingform = new CastingForm(Material.WOOD, "castingform");
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
@@ -372,6 +379,7 @@ public class ModBlocks {
         registerBlock(bloomery_brick);
         registerBlock(bloomery_adobe);
         registerBlock(blockbreaker);
+        registerBlock(castingform);
 
         registerBlock(pistonbellowsoak);
         registerBlock(pistonbellowsjungle);
@@ -435,6 +443,7 @@ public class ModBlocks {
     public static void registerRenders() {
         registerRender(forge_brick);
         registerRender(forge_adobe);
+        registerRender(castingform);
 
         registerRender(blockbreaker);
         registerRender(pistonbellowsoak);

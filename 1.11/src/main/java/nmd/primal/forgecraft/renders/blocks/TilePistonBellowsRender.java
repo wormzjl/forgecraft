@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
@@ -44,43 +45,43 @@ public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePisto
             if (state.getValue(PistonBellows.FACING) == EnumFacing.NORTH) {
 
                 GL11.glRotated(0, 0.0F, 1.0F, 0.0F);
-                if (state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE) {
+                if (state.getValue(PrimalStates.ACTIVE) == Boolean.TRUE) {
                     //System.out.println(tile.getAnimation());
                     GL11.glTranslated(0.0D, 0, (double) tile.getAnimation() / 25);
                 }
-                ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
+                ItemStack stackToRender = new ItemStack(ModItems.bellowshandle, 1);
                 renderItem.renderItem(stackToRender, renderItem.getItemModelMesher().getItemModel(stackToRender));
             }
             if (state.getValue(PistonBellows.FACING) == EnumFacing.SOUTH) {
                 //GL11.glPushMatrix();
                 GL11.glRotated(180, 0.0F, 1.0F, 0.0F);
-                if (state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE) {
+                if (state.getValue(PrimalStates.ACTIVE) == Boolean.TRUE) {
                     //System.out.println(tile.getAnimation());
                     GL11.glTranslated(0.0D, 0, (double) tile.getAnimation() / 25);
                 }
-                ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
+                ItemStack stackToRender = new ItemStack(ModItems.bellowshandle, 1);
                 renderItem.renderItem(stackToRender, renderItem.getItemModelMesher().getItemModel(stackToRender));
                 //GL11.glPopMatrix();
             }
             if (state.getValue(PistonBellows.FACING) == EnumFacing.EAST) {
                 //GL11.glPushMatrix();
                 GL11.glRotated(270, 0.0F, 1.0F, 0.0F);
-                if (state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE) {
+                if (state.getValue(PrimalStates.ACTIVE) == Boolean.TRUE) {
                     //System.out.println(tile.getAnimation());
                     GL11.glTranslated(0.0D, 0, (double) tile.getAnimation() / 25);
                 }
-                ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
+                ItemStack stackToRender = new ItemStack(ModItems.bellowshandle, 1);
                 renderItem.renderItem(stackToRender, renderItem.getItemModelMesher().getItemModel(stackToRender));
                 //GL11.glPopMatrix();
             }
             if (state.getValue(PistonBellows.FACING) == EnumFacing.WEST) {
                 //GL11.glPushMatrix();
                 GL11.glRotated(90, 0.0F, 1.0F, 0.0F);
-                if (state.getValue(PistonBellows.ACTIVE) == Boolean.TRUE) {
+                if (state.getValue(PrimalStates.ACTIVE) == Boolean.TRUE) {
                     //System.out.println(tile.getAnimation());
                     GL11.glTranslated(0.0D, 0, (double) tile.getAnimation() / 25);
                 }
-                ItemStack stackToRender = new ItemStack(ModItems.pistonbellows, 1);
+                ItemStack stackToRender = new ItemStack(ModItems.bellowshandle, 1);
                 renderItem.renderItem(stackToRender, renderItem.getItemModelMesher().getItemModel(stackToRender));
                 //GL11.glPopMatrix();
             }

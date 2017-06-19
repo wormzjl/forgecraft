@@ -11,8 +11,7 @@ public class BaseMultiItem extends BaseItem {
     private int ID;
 
     public BaseMultiItem( String registryName, Item.ToolMaterial material, Integer ID) {
-        setUnlocalizedName(registryName);
-        setRegistryName(registryName);
+        super(registryName);
         mat = material;
         this.ID = ID;
 

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.Crucibles;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDynamicLiquid;

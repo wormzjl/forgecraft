@@ -14,9 +14,8 @@ import nmd.primal.forgecraft.ModInfo;
  */
 public class ItemForgingManual extends BaseItem {
 
-    public ItemForgingManual() {
-        setUnlocalizedName(ModInfo.ForgecraftItems.FORGINGMANUAL.getUnlocalizedName());
-        setRegistryName(ModInfo.ForgecraftItems.FORGINGMANUAL.getRegistryName());
+    public ItemForgingManual(String name) {
+        super(name);
     }
 
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)

@@ -6,10 +6,7 @@ package nmd.primal.forgecraft.items;
 public class ItemTest extends BaseItem {
 
     public ItemTest(String string) {
-        setUnlocalizedName(string);
-        setRegistryName(string);
-
-
+        super(string);
     }
 
 }

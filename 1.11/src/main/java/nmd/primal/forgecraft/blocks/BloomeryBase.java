@@ -41,9 +41,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     private int maxHeat;
 
     public BloomeryBase(Material material, String registryName, Integer maxHeat) {
-        super(material);
-        setUnlocalizedName(registryName);
-        setRegistryName(registryName);
+        super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);

@@ -16,6 +16,7 @@ public class ModTiles {
         registerTileEntity(TileBaseCrucible.class, "basecrucible");
         registerTileEntity(TileAnvil.class, "anvil");
         registerTileEntity(TileBreaker.class, "breaker");
+        registerTileEntity(TileCastingForm.class, "castingform");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {

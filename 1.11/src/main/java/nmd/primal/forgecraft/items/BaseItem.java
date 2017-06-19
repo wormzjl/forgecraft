@@ -8,8 +8,10 @@ import nmd.primal.forgecraft.ModInfo;
  */
 public class BaseItem extends Item
 {
-    public BaseItem()
+    public BaseItem(String registryName)
     {
+        this.setRegistryName(registryName);
+        this.setUnlocalizedName(registryName);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 

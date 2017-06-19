@@ -29,10 +29,11 @@ import nmd.primal.forgecraft.items.weapons.CustomSword;
 public class ModItems {
 
     //public static Item test;
-    public static Item pistonbellows;
+    public static Item bellowshandle;
     public static Item forgehammer;
     public static Item softcrucible;
     public static Item stonetongs;
+    public static Item castingmud;
 
     public static Item ironingotballhot;
     public static Item ironchunkhot;
@@ -64,7 +65,6 @@ public class ModItems {
     public static Item wootzaxehead;
     public static Item wootzshovelhead;
     public static Item wootzhoehead;
-
 
 
     public static Item ironpickaxe;
@@ -103,11 +103,14 @@ public class ModItems {
 
     public static void init() {
         //OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
-        pistonbellows = new ItemBellowsHandle();
-        softcrucible = new ItemSoftCrucible();
+        //pistonbellows = new ItemBellowsHandle("pistonbellows");
+        bellowshandle = new BaseItem("bellowshandle");
+        softcrucible = new ItemSoftCrucible("softcrucible");
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
+        castingmud = new BaseItem("castingmud");
         //matchlockmusket = new Musket("matchlock_musket");
+
 
         /**********
          TOOL PARTS
@@ -181,7 +184,8 @@ public class ModItems {
     }
 
     public static void register() {
-        GameRegistry.register(pistonbellows);
+        GameRegistry.register(castingmud);
+        GameRegistry.register(bellowshandle);
         GameRegistry.register(softcrucible);
         GameRegistry.register(stonetongs);
         GameRegistry.register(forgehammer);
@@ -253,7 +257,8 @@ public class ModItems {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
-        registerRender(pistonbellows);
+        registerRender(castingmud);
+        registerRender(bellowshandle);
         registerRender(softcrucible);
         registerRender(forgehammer);
         registerRender(ironingotballhot);

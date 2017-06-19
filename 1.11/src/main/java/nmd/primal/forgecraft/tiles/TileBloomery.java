@@ -13,7 +13,7 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
-import nmd.primal.forgecraft.blocks.Crucible;
+import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 

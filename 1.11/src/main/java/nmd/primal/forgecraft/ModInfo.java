@@ -27,53 +27,6 @@ public class ModInfo {
     //public static final String GUI_FACTORY  = "nmd.primal.forgecraft.gui.GuiFactory";
     //public static final String UPDATE_JSON  = "";
 
-    public enum ForgecraftItems {
-        TEST("test", "itemtest"),
-        BELLOWSHANDLE("bellowshandle", "bellowshandle"),
-        STONETONGS("stonetongs", "stonetongs"),
-        SOFTCRUCIBLE("softcrucible", "softcrucible"),
-        FORGINGMANUAL("forgingmanual","forgingmanual");
-
-        private String unlocalizedName;
-        private String registryName;
-
-        ForgecraftItems(String unlocalizedName, String registryName) {
-            this.unlocalizedName = unlocalizedName;
-            this.registryName = registryName;
-        }
-
-        public String getUnlocalizedName() {
-            return unlocalizedName;
-        }
-        public String getRegistryName() {
-            return registryName;
-        }
-
-    }
-
-    public enum ForgecraftBlocks {
-        FIREBOX("firebox", "firebox"),
-        PISTONBELLOWS("pistonbellows", "pistonbellows"),
-        BLOOMERY("bloomery", "bloomery"),
-        EMPTYCRUCIBLE("emptycrucible", "emptycrucible");
-
-        private String unlocalizedName;
-        private String registryName;
-
-        ForgecraftBlocks(String unlocalizedName, String registryName) {
-            this.unlocalizedName = unlocalizedName;
-            this.registryName = registryName;
-        }
-
-        public String getUnlocalizedName() {
-            return unlocalizedName;
-        }
-        public String getRegistryName() {
-            return registryName;
-        }
-
-    }
-
     /** Creative Tabs **/
     public static CreativeTabs TAB_FORGECRAFT = new CreativeTabs(MOD_ID)
     {

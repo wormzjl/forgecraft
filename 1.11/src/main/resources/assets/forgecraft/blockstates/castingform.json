@@ -1,0 +1,12 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "parent": "forgecraft:castingform"
+  },
+  "variants": {
+    "facing=north": { "model": "forgecraft:castingform" },
+    "facing=east":  { "model": "forgecraft:castingform", "y": 90 },
+    "facing=south": { "model": "forgecraft:castingform", "y": 180 },
+    "facing=west":  { "model": "forgecraft:castingform", "y": 270 }
+  }
+}

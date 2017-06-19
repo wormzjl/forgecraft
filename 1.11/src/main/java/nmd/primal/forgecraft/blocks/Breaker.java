@@ -29,9 +29,7 @@ import nmd.primal.forgecraft.util.BreakerHandler;
 public class Breaker extends CustomContainerFacing implements BreakerHandler {
 
     public Breaker(Material material, String registryName, Float hardness) {
-        super(material);
-        setUnlocalizedName(registryName);
-        setRegistryName(registryName);
+        super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, false));
         setHardness(hardness);

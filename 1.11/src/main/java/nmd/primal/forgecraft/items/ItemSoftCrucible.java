@@ -7,9 +7,8 @@ import nmd.primal.forgecraft.ModInfo;
  */
 public class ItemSoftCrucible extends BaseItem {
 
-    public ItemSoftCrucible() {
-        setUnlocalizedName(ModInfo.ForgecraftItems.SOFTCRUCIBLE.getUnlocalizedName());
-        setRegistryName(ModInfo.ForgecraftItems.SOFTCRUCIBLE.getRegistryName());
+    public ItemSoftCrucible(String name) {
+        super(name);
     }
 
 }

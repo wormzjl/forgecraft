@@ -14,46 +14,23 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.tiles.TileAnvil;
-import nmd.primal.forgecraft.util.AnvilHandler;
+import nmd.primal.forgecraft.tiles.TileCastingForm;
+
+import javax.annotation.Nullable;
 
 /**
- * Created by mminaie on 6/11/17.
+ * Created by mminaie on 6/19/17.
  */
-public abstract class AnvilBase extends CustomContainerFacing implements AnvilHandler{
+public class CastingForm extends CustomContainerFacing {
 
-    private boolean anvil;
-
-    public AnvilBase(Material material, String registryName, Float hardness, Boolean anvil) {
-        super(material);
-        setUnlocalizedName(registryName);
-        setRegistryName(registryName);
-        setCreativeTab(ModInfo.TAB_FORGECRAFT);
+    public CastingForm(Material material, String registryName) {
+        super(material, registryName);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
-        setHardness(hardness);
-        this.setIsAnvil(anvil);
-    }
-
-    public boolean isAnvil() {
-        return anvil;
-    }
-
-    public void setIsAnvil(boolean anvil) {
-        anvil = anvil;
     }
 
     @Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state)
-    {
-        AnvilHandler.doDrops(world, pos);
-        super.breakBlock(world, pos, state);
-    }
-
-    @Override
-    public TileEntity createNewTileEntity(World worldIn, int meta)
-    {
-        return new TileAnvil();
+    public TileEntity createNewTileEntity(World worldIn, int meta) {
+        return new TileCastingForm();
     }
 
     @Override
@@ -112,8 +89,6 @@ public abstract class AnvilBase extends CustomContainerFacing implements AnvilHa
         return new BlockStateContainer(this, new IProperty[] {FACING});
     }
 
-
-
     @Override
     public boolean isFullCube(IBlockState state)
     {
@@ -144,6 +119,5 @@ public abstract class AnvilBase extends CustomContainerFacing implements AnvilHa
     {
         return EnumBlockRenderType.MODEL;
     }
-
 
 }

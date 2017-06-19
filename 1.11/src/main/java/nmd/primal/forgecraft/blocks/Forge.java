@@ -51,9 +51,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     public Forge(Material material, String name, Integer maxHeat) {
-        super(material);
-        setUnlocalizedName(name);
-        setRegistryName(name);
+        super(material, name);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
