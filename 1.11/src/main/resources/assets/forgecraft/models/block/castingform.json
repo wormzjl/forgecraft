@@ -1,8 +1,8 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
-		"texture": "items/test"
+		"particle": "blocks/log_oak",
+		"texture": "blocks/log_oak"
 	},
 	"elements": [
 		{
