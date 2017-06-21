@@ -34,6 +34,7 @@ public class ClientProxy implements CommonProxy {
         ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TileBloomeryRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileAnvil.class, new TileAnvilRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileBreaker.class, new TileBreakerRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileCastingForm.class, new TileCastingformRender());
     }
 
     @Override

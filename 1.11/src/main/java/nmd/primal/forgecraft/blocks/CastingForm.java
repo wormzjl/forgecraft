@@ -42,7 +42,9 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
 
         if (!world.isRemote) {
             TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
-            doInventoryManager(player.getActiveItemStack(), world, tile, pos, hitx, hity, hitz, state, player);
+            ItemStack pItem = player.inventory.getCurrentItem();
+            doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
+            return true;
         }
         return false;
     }

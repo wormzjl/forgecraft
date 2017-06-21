@@ -34,8 +34,6 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
 
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
-    ;
-
     @Override
     public void renderTileEntityAt(TileAnvil tile, double x, double y, double z, float partialTicks, int destroyStage) {
 

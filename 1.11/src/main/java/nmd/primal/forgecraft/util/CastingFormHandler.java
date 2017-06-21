@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
@@ -47,14 +49,37 @@ public interface CastingFormHandler {
 
     default boolean doInventoryManager(ItemStack pItem, World world, TileCastingForm tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
 
+
             if (state.getValue(FACING) == EnumFacing.NORTH) {
                 int counter = 0;
                 for (int z = 0; z < 5; z++) {
                     for (int x = 0; x < 5; x++) {
                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-                                System.out.println("North Facing: " + tile.getSlotStack(counter));
-                                return true;
+
+                                if(player.isSneaking()) {
+                                    if (pItem.getItem() != ModItems.castingmud) {
+                                        System.out.println("Level 1 a");
+                                        if (!tile.getSlotStack(counter).isEmpty()) {
+                                            System.out.println("Level 1 b");
+                                            ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
+                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            return true;
+                                        }
+                                    }
+                                }
+
+                                if (pItem.getItem() == ModItems.castingmud) {
+                                    System.out.println("Level 2 a");
+                                    if (tile.getSlotStack(counter).isEmpty()) {
+                                        System.out.println("Level 2 b");
+                                        ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
+                                        pItem.shrink(1);
+                                        tile.setSlotStack(counter, castStack);
+                                        return true;
+                                    }
+                                }
                             }
                         }
                         counter++;
@@ -68,7 +93,29 @@ public interface CastingFormHandler {
                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
-                                return true;
+                                if(player.isSneaking()) {
+                                    if (pItem.getItem() != ModItems.castingmud) {
+                                        System.out.println("Level 1 a");
+                                        if (!tile.getSlotStack(counter).isEmpty()) {
+                                            System.out.println("Level 1 b");
+                                            ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
+                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            return true;
+                                        }
+                                    }
+                                }
+
+                                if (pItem.getItem() == ModItems.castingmud) {
+                                    System.out.println("Level 2 a");
+                                    if (tile.getSlotStack(counter).isEmpty()) {
+                                        System.out.println("Level 2 b");
+                                        ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
+                                        pItem.shrink(1);
+                                        tile.setSlotStack(counter, castStack);
+                                        return true;
+                                    }
+                                }
                             }
                         }
                         counter++;
@@ -82,7 +129,29 @@ public interface CastingFormHandler {
                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
 
-                                return true;
+                                if(player.isSneaking()) {
+                                    if (pItem.getItem() != ModItems.castingmud) {
+                                        System.out.println("Level 1 a");
+                                        if (!tile.getSlotStack(counter).isEmpty()) {
+                                            System.out.println("Level 1 b");
+                                            ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
+                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            return true;
+                                        }
+                                    }
+                                }
+
+                                if (pItem.getItem() == ModItems.castingmud) {
+                                    System.out.println("Level 2 a");
+                                    if (tile.getSlotStack(counter).isEmpty()) {
+                                        System.out.println("Level 2 b");
+                                        ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
+                                        pItem.shrink(1);
+                                        tile.setSlotStack(counter, castStack);
+                                        return true;
+                                    }
+                                }
                             }
                         }
                         counter++;
@@ -96,7 +165,29 @@ public interface CastingFormHandler {
                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
 
-                                return true;
+                                if(player.isSneaking()) {
+                                    if (pItem.getItem() != ModItems.castingmud) {
+                                        System.out.println("Level 1 a");
+                                        if (!tile.getSlotStack(counter).isEmpty()) {
+                                            System.out.println("Level 1 b");
+                                            ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
+                                            tile.setSlotStack(counter, ItemStack.EMPTY);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            return true;
+                                        }
+                                    }
+                                }
+
+                                if (pItem.getItem() == ModItems.castingmud) {
+                                    System.out.println("Level 2 a");
+                                    if (tile.getSlotStack(counter).isEmpty()) {
+                                        System.out.println("Level 2 b");
+                                        ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
+                                        pItem.shrink(1);
+                                        tile.setSlotStack(counter, castStack);
+                                        return true;
+                                    }
+                                }
                             }
                         }
                         counter++;
