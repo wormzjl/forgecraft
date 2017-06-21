@@ -19,13 +19,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
+import nmd.primal.forgecraft.util.CastingFormHandler;
 
 import javax.annotation.Nullable;
 
 /**
  * Created by mminaie on 6/19/17.
  */
-public class CastingForm extends CustomContainerFacing {
+public class CastingForm extends CustomContainerFacing implements CastingFormHandler{
 
     protected static AxisAlignedBB bound = new AxisAlignedBB(0/16D, 0.0D, 0/16D, 16/16D, 5/16D, 16/16D);
 
@@ -40,7 +41,8 @@ public class CastingForm extends CustomContainerFacing {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
         if (!world.isRemote) {
-
+            TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
+            doInventoryManager(player.getActiveItemStack(), world, tile, pos, hitx, hity, hitz, state, player);
         }
         return false;
     }

@@ -638,7 +638,7 @@ public interface AnvilHandler {
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
             }
-
+//TODO REFACTOR THIS CODE
             if (tile.getSlotStack(counter).getItem().equals(ModItems.pickaxehead)) {
                 if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {
                     CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));

@@ -33,19 +33,18 @@ public class TileForge extends TileBaseSlot implements ITickable {
 
     @Override
     public void update () {
-        if(!world.isRemote){
+        if(!world.isRemote) {
             World world = this.getWorld();
-            this.iteration ++;
+            this.iteration++;
             IBlockState state = world.getBlockState(this.pos);
-            BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
+            BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ());
             IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
+            if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
+                if (this.iteration == 300) {
+                    this.iteration = 0;
 
-            if(this.iteration == 300 ) {
-                this.iteration = 0;
 
-
-                if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
                         world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
                         this.markDirty();
@@ -54,14 +53,15 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     slotZeroManager(world);
                 }
                 this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+
+                craftingManager();
             }
-            craftingManager();
         }
     }
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 10);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
             if(decrInt == 0) {
                 decrInt = 1;
             }

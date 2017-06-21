@@ -49,6 +49,7 @@ public class AnvilStone extends AnvilBase {
                                 CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(PrimalItems.ROCK_STONE, 3));
                                 CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.ironball, 1));
                                 this.breakBlock(world, pos, state);
+                                return true;
                             }
                         }
                     }

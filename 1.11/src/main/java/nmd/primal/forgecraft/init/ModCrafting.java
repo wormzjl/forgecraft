@@ -86,7 +86,7 @@ public class ModCrafting {
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
                 "XC","Y ",
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
-                ('C'), new ItemStack(Items.COAL, 1, 1),
+                ('C'), new ItemStack(PrimalItems.CHARCOAL_HIGH),
                 ('Y'), ModBlocks.emptycrucible));
 
 

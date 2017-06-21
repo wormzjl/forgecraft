@@ -35,28 +35,25 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         World world = this.getWorld();
         if(!world.isRemote){
             IBlockState state = world.getBlockState(this.pos);
-            if(state.getValue(PrimalStates.ACTIVE) == true){
-                if(this.getHeat() < 100){
+            if(state.getValue(PrimalStates.ACTIVE) == true) {
+                if (this.getHeat() < 100) {
                     this.setHeat(100);
                 }
-            }
-            this.iteration ++;
-            if(this.iteration == 300 ) {
-                this.iteration = 0;
-
-                //IBlockState state = world.getBlockState(this.pos);
-                BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY()+1, this.getPos().getZ());
-                if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
-                    if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
-                        this.markDirty();
-                        world.notifyBlockUpdate(pos, state, state, 2);
-                    }
-                    slotZeroManager(world);
+                this.iteration++;
+                if (this.iteration == 300) {
+                    this.iteration = 0;
+                    //IBlockState state = world.getBlockState(this.pos);
+                    BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ());
+                        if (this.getSlotStack(0) == ItemStack.EMPTY) {
+                            world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
+                            this.markDirty();
+                            world.notifyBlockUpdate(pos, state, state, 2);
+                        }
+                    this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
                 }
-                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+                slotZeroManager(world);
+                slotOneManager();
             }
-            slotOneManager();
         }
     }
 
@@ -104,7 +101,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 10);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
             if(decrInt == 0) {
                 decrInt = 1;
             }
