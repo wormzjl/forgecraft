@@ -629,7 +629,7 @@ public class ModCrafting {
                         empty,empty,diamond,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 1, 2)),
+                new ItemStack(PrimalItems.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 2, 3)),
                 "null"
         );
 
@@ -675,7 +675,7 @@ public class ModCrafting {
                         empty,empty,emerald,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 1, 3)),
+                new ItemStack(PrimalItems.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 2, 3)),
                 "null"
         );
 
