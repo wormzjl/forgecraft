@@ -198,5 +198,9 @@ public interface CastingFormHandler {
         return false;
     }
 
+    default boolean doCraftingformCrafting(ItemStack pItem, String[] tempArray, World world, TileCastingForm tile, BlockPos pos, EntityPlayer player){
+
+        return false;
+    }
 
 }

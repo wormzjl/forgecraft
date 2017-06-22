@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
@@ -628,7 +629,7 @@ public class ModCrafting {
                         empty,empty,diamond,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.DIAMOND_KNAPP, 1),
+                new ItemStack(PrimalItems.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 1, 2)),
                 "null"
         );
 
@@ -674,7 +675,7 @@ public class ModCrafting {
                         empty,empty,emerald,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.EMERALD_KNAPP, 1),
+                new ItemStack(PrimalItems.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 1, 3)),
                 "null"
         );
 
