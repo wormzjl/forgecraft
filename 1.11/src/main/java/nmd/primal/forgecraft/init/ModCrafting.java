@@ -11,6 +11,7 @@ import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
+import nmd.primal.forgecraft.crafting.CastingformCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import java.util.Random;
@@ -321,6 +322,22 @@ public class ModCrafting {
 
         //TODO PLACE HOLDER FOR WOOTZ
 
+        /******************************************************************************
+         CASTING
+         ******************************************************************************/
+
+        String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
+        String muddd = ModItems.castingmud.getRegistryName().toString();
+
+        CastingformCrafting.addRecipe(
+                new String[] {
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        empty,muddd,muddd,muddd,empty,
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,muddd,muddd,muddd,muddd },
+                new ItemStack(Items.STICK, 1)
+        );
 
         /******************************************************************************
           FORGING
@@ -534,7 +551,7 @@ public class ModCrafting {
                ANVILING
          ******************************************************************************/
 
-        String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
+        //String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
         String hotChunk = ModItems.ironchunkhot.getRegistryName().toString();
         String hotCleanChunk = ModItems.ironcleanchunkhot.getRegistryName().toString();
         String hotSteelChunk = ModItems.steelchunkhot.getRegistryName().toString();

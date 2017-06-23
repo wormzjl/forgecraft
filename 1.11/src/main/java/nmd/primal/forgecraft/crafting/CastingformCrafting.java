@@ -20,7 +20,7 @@ public class CastingformCrafting {
 
     private ItemStack output;
 
-    public CastingformCrafting(String[] input, ItemStack output, String upgrade){
+    public CastingformCrafting(String[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
@@ -31,9 +31,9 @@ public class CastingformCrafting {
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(String[] input, ItemStack output, String upgrade)
+    public static void addRecipe(String[] input, ItemStack output)
     {
-        castingRecipes.add(new CastingformCrafting(input, output, upgrade));
+        castingRecipes.add(new CastingformCrafting(input, output));
     }
 
     public static boolean isRecipe(String[] array)

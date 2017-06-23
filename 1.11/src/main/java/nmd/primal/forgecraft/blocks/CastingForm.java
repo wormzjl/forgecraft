@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
@@ -24,6 +25,7 @@ import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 
 import javax.annotation.Nullable;
+import java.util.Random;
 
 /**
  * Created by mminaie on 6/19/17.
@@ -36,6 +38,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
         super(material, registryName);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
+        this.setTickRandomly(true);
     }
 
 
@@ -46,11 +49,6 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
             TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
-            String[] tempArray = new String[25];
-            for (int i = 0; i < 25; i++) {
-                tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
-            }
-            doCraftingformCrafting(pItem, tempArray, world, tile, pos, player);
 
             return false;
         }
@@ -58,7 +56,20 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
     }
 
 
-
+    @Override
+    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
+    {
+        if (!world.isRemote) {
+            if(CommonUtils.randomCheck(10)) {
+                TileCastingForm tile = (TileCastingForm) world.getTileEntity(pos);
+                String[] tempArray = new String[25];
+                for (int i = 0; i < 25; i++) {
+                    tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
+                }
+                doCraftingformCrafting(tempArray, world, tile, pos);
+            }
+        }
+    }
 
 
     @Override

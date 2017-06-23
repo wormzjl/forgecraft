@@ -7,6 +7,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.forgecraft.CommonUtils;
+import nmd.primal.forgecraft.crafting.CastingformCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 
@@ -198,9 +200,17 @@ public interface CastingFormHandler {
         return false;
     }
 
-    default boolean doCraftingformCrafting(ItemStack pItem, String[] tempArray, World world, TileCastingForm tile, BlockPos pos, EntityPlayer player){
-
-        return false;
+    default void doCraftingformCrafting(String[] tempArray, World world, TileCastingForm tile, BlockPos pos){
+        CastingformCrafting recipe = CastingformCrafting.getRecipe(tempArray);
+        if (recipe != null) {
+            CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
+        }
+        //world.playEvent(1031, pos, 0);
+        for (int i = 0; i < tile.getSlotListSize(); i++) {
+            if (!tile.getSlotStack(i).isEmpty()) {
+                tile.setSlotStack(i, ItemStack.EMPTY);
+            }
+        }
     }
 
 }
