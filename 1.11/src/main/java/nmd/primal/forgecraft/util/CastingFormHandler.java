@@ -61,9 +61,9 @@ public interface CastingFormHandler {
 
                                 if(player.isSneaking()) {
                                     if (pItem.getItem() != ModItems.castingmud) {
-                                        System.out.println("Level 1 a");
+
                                         if (!tile.getSlotStack(counter).isEmpty()) {
-                                            System.out.println("Level 1 b");
+
                                             ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
                                             tile.setSlotStack(counter, ItemStack.EMPTY);
                                             PlayerHelper.spawnItemOnGround(world, pos, dropStack);
@@ -73,9 +73,9 @@ public interface CastingFormHandler {
                                 }
 
                                 if (pItem.getItem() == ModItems.castingmud) {
-                                    System.out.println("Level 2 a");
+
                                     if (tile.getSlotStack(counter).isEmpty()) {
-                                        System.out.println("Level 2 b");
+
                                         ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
                                         pItem.shrink(1);
                                         tile.setSlotStack(counter, castStack);
@@ -97,9 +97,7 @@ public interface CastingFormHandler {
 
                                 if(player.isSneaking()) {
                                     if (pItem.getItem() != ModItems.castingmud) {
-                                        System.out.println("Level 1 a");
                                         if (!tile.getSlotStack(counter).isEmpty()) {
-                                            System.out.println("Level 1 b");
                                             ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
                                             tile.setSlotStack(counter, ItemStack.EMPTY);
                                             PlayerHelper.spawnItemOnGround(world, pos, dropStack);
@@ -109,9 +107,7 @@ public interface CastingFormHandler {
                                 }
 
                                 if (pItem.getItem() == ModItems.castingmud) {
-                                    System.out.println("Level 2 a");
                                     if (tile.getSlotStack(counter).isEmpty()) {
-                                        System.out.println("Level 2 b");
                                         ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
                                         pItem.shrink(1);
                                         tile.setSlotStack(counter, castStack);
@@ -133,9 +129,7 @@ public interface CastingFormHandler {
 
                                 if(player.isSneaking()) {
                                     if (pItem.getItem() != ModItems.castingmud) {
-                                        System.out.println("Level 1 a");
                                         if (!tile.getSlotStack(counter).isEmpty()) {
-                                            System.out.println("Level 1 b");
                                             ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
                                             tile.setSlotStack(counter, ItemStack.EMPTY);
                                             PlayerHelper.spawnItemOnGround(world, pos, dropStack);
@@ -145,9 +139,7 @@ public interface CastingFormHandler {
                                 }
 
                                 if (pItem.getItem() == ModItems.castingmud) {
-                                    System.out.println("Level 2 a");
                                     if (tile.getSlotStack(counter).isEmpty()) {
-                                        System.out.println("Level 2 b");
                                         ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
                                         pItem.shrink(1);
                                         tile.setSlotStack(counter, castStack);
@@ -169,9 +161,7 @@ public interface CastingFormHandler {
 
                                 if(player.isSneaking()) {
                                     if (pItem.getItem() != ModItems.castingmud) {
-                                        System.out.println("Level 1 a");
                                         if (!tile.getSlotStack(counter).isEmpty()) {
-                                            System.out.println("Level 1 b");
                                             ItemStack dropStack = new ItemStack(ModItems.castingmud, 1);
                                             tile.setSlotStack(counter, ItemStack.EMPTY);
                                             PlayerHelper.spawnItemOnGround(world, pos, dropStack);
@@ -181,9 +171,7 @@ public interface CastingFormHandler {
                                 }
 
                                 if (pItem.getItem() == ModItems.castingmud) {
-                                    System.out.println("Level 2 a");
                                     if (tile.getSlotStack(counter).isEmpty()) {
-                                        System.out.println("Level 2 b");
                                         ItemStack castStack = new ItemStack(ModItems.castingmud, 1);
                                         pItem.shrink(1);
                                         tile.setSlotStack(counter, castStack);

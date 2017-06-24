@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "forgecraft:castingblock"
+    },
+    "facing=east": {
+      "model": "forgecraft:castingblock",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "forgecraft:castingblock",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "forgecraft:castingblock",
+      "y": 270
+    }
+  }
+}

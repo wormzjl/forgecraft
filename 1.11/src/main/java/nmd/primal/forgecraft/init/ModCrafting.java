@@ -329,6 +329,7 @@ public class ModCrafting {
         String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
         String muddd = ModItems.castingmud.getRegistryName().toString();
 
+        //Casting Pickaxe
         CastingformCrafting.addRecipe(
                 new String[] {
                         muddd,muddd,muddd,muddd,muddd,
@@ -336,7 +337,51 @@ public class ModCrafting {
                         empty,muddd,muddd,muddd,empty,
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(Items.STICK, 1)
+                new ItemStack(ModItems.cast_pickaxe, 1)
+        );
+
+        //Casting Shovel
+        CastingformCrafting.addRecipe(
+                new String[] {
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,muddd,empty,muddd },
+                new ItemStack(ModItems.cast_shovel, 1)
+        );
+
+        //Casting Axe
+        CastingformCrafting.addRecipe(
+                new String[] {
+                        muddd,empty,empty,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,muddd,muddd,muddd,
+                        muddd,muddd,muddd,muddd,muddd },
+                new ItemStack(ModItems.cast_axe, 1)
+        );
+
+        //Casting Hoe
+        CastingformCrafting.addRecipe(
+                new String[] {
+                        muddd,muddd,muddd,empty,empty,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,empty,muddd,muddd,muddd,
+                        empty,muddd,muddd,muddd,muddd,
+                        muddd,muddd,muddd,muddd,muddd },
+                new ItemStack(ModItems.cast_hoe, 1)
+        );
+
+        //Casting Gladius
+        CastingformCrafting.addRecipe(
+                new String[] {
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,muddd,empty,muddd,muddd },
+                new ItemStack(ModItems.cast_gladius, 1)
         );
 
         /******************************************************************************

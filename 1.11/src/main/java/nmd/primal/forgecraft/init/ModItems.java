@@ -15,6 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalMaterials;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.*;
+import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
@@ -44,6 +45,12 @@ public class ModItems {
     public static Item wootzingotballhot;
     public static Item wootzchunkhot;
 
+
+    public static Item cast_axe;
+    public static Item cast_gladius;
+    public static Item cast_hoe;
+    public static Item cast_pickaxe;
+    public static Item cast_shovel;
 
 
     public static Item pickaxehead;
@@ -111,6 +118,14 @@ public class ModItems {
         castingmud = new BaseItem("castingmud");
         //matchlockmusket = new Musket("matchlock_musket");
 
+        /**********
+         CASTING PARTS
+         **********/
+        cast_axe = new CastingPart("cast_axe");
+        cast_gladius = new CastingPart("cast_gladius");
+        cast_hoe = new CastingPart("cast_hoe");
+        cast_pickaxe = new CastingPart("cast_pickaxe");
+        cast_shovel = new CastingPart("cast_shovel");
 
         /**********
          TOOL PARTS
@@ -200,6 +215,15 @@ public class ModItems {
         //GameRegistry.register(test);
 
         /**********
+         CASTING PARTS
+         **********/
+        GameRegistry.register(cast_axe);
+        GameRegistry.register(cast_gladius);
+        GameRegistry.register(cast_hoe);
+        GameRegistry.register(cast_pickaxe);
+        GameRegistry.register(cast_shovel);
+
+        /**********
          TOOL PARTS
          **********/
         GameRegistry.register(pickaxehead);
@@ -268,6 +292,15 @@ public class ModItems {
         registerRender(steelingotballhot);
         registerRender(steelchunkhot);
         //registerRender(test);
+
+        /**********
+         CASTING PARTS
+         **********/
+        registerRender(cast_axe);
+        registerRender(cast_gladius);
+        registerRender(cast_hoe);
+        registerRender(cast_pickaxe);
+        registerRender(cast_shovel);
 
         /**********
          TOOL PARTS

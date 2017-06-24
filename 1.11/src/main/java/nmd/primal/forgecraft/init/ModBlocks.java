@@ -39,6 +39,7 @@ public class ModBlocks {
     public static Block bloomery_adobe;
     public static Block blockbreaker;
     public static Block castingform;
+    public static Block castingblock;
 
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
@@ -101,6 +102,7 @@ public class ModBlocks {
         bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 5000);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
+        castingblock = new CastingBlock(Material.ROCK, "castingblock");
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
@@ -380,6 +382,7 @@ public class ModBlocks {
         registerBlock(bloomery_adobe);
         registerBlock(blockbreaker);
         registerBlock(castingform);
+        registerBlock(castingblock);
 
         registerBlock(pistonbellowsoak);
         registerBlock(pistonbellowsjungle);
@@ -444,6 +447,7 @@ public class ModBlocks {
         registerRender(forge_brick);
         registerRender(forge_adobe);
         registerRender(castingform);
+        registerRender(castingblock);
 
         registerRender(blockbreaker);
         registerRender(pistonbellowsoak);
