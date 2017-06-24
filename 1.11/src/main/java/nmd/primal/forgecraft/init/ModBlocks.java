@@ -53,6 +53,10 @@ public class ModBlocks {
     public static Block emptycruciblecracked;
     public static Block emptycruciblecrackedhot;
 
+    public static Block rawbronzecrucible;
+    public static Block hotbronzecrucible;
+    public static Block hotcookedbronzecrucible;
+
     public static Block rawironcrucible;
     public static Block hotironcrucible;
     public static Block hotcookedironcrucible;
@@ -115,6 +119,10 @@ public class ModBlocks {
         emptycruciblehot = new CrucibleHot(Material.ROCK, "emptycruciblehot");
         emptycruciblecracked = new Crucible(Material.ROCK, "emptycruciblecracked");
         emptycruciblecrackedhot = new CrucibleHot(Material.ROCK, "emptycruciblecrackedhot");
+
+        rawbronzecrucible = new Crucible(Material.ROCK, "rawbronzecrucible");
+        hotbronzecrucible = new CrucibleHot(Material.ROCK, "hotbronzecrucible");
+        hotcookedbronzecrucible = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible");
 
         rawironcrucible = new Crucible(Material.ROCK, "rawironcrucible");
         hotironcrucible = new CrucibleHot(Material.ROCK, "hotironcrucible");
@@ -396,6 +404,10 @@ public class ModBlocks {
         registerBlock(emptycruciblecracked);
         registerBlock(emptycruciblecrackedhot);
 
+        registerBlock(rawbronzecrucible);
+        registerBlock(hotbronzecrucible);
+        registerBlock(hotcookedbronzecrucible);
+
         registerBlock(rawironcrucible);
         registerBlock(hotironcrucible);
         registerBlock(hotcookedironcrucible);
@@ -464,6 +476,10 @@ public class ModBlocks {
         registerRender(emptycruciblehot);
         registerRender(emptycruciblecracked);
         registerRender(emptycruciblecrackedhot);
+
+        registerRender(rawbronzecrucible);
+        registerRender(hotbronzecrucible);
+        registerRender(hotcookedbronzecrucible);
 
         registerRender(rawironcrucible);
         registerRender(hotironcrucible);

@@ -12,6 +12,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
+import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
@@ -50,8 +51,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+                    slotZeroManager(world);
                 }
-                slotZeroManager(world);
+
                 slotOneManager();
             }
         }
@@ -115,8 +117,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-
-            makeSmoke(world, pos);
+            if(CommonUtils.randomCheck(20)) {
+                makeSmoke(world, pos);
+            }
         }
     }
 

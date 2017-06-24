@@ -295,8 +295,6 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
         }
-
-
     }
 
     @Override

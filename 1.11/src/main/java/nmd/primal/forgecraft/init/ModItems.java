@@ -393,7 +393,9 @@ public class ModItems {
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_pickaxe_hot"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_axe_hot"),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_shovel_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_hoe_hot")
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_hoe_hot"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze"),
+                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked")
                 );
         ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
 
@@ -489,6 +491,12 @@ public class ModItems {
                   }
                   else if (stack.getTagCompound().getInteger("type") == 29 ) {
                       return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steel_hoe_hot", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 39 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze", "inventory");
+                  }
+                  else if (stack.getTagCompound().getInteger("type") == 40 ) {
+                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked", "inventory");
                   }
                   else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
                 }

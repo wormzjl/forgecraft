@@ -70,10 +70,8 @@ public class ModCrafting {
         GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1),
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
-        /***Iron Crucible***/
+        /***RAW CRUCIBLES***/
 
-
-        //Regular Iron Ore
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),
                 "X","Y",
                 ('X'), "oreIron",
@@ -89,6 +87,11 @@ public class ModCrafting {
                 "XC","Y ",
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
                 ('C'), new ItemStack(PrimalItems.CHARCOAL_HIGH),
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "XCX"," X "," Y ",
+                ('X'), "nuggetCopper",
+                ('C'), "nuggetTin",
                 ('Y'), ModBlocks.emptycrucible));
 
 
@@ -318,6 +321,31 @@ public class ModCrafting {
                 1000,
                 0.2f,
                 0.25f
+        );
+        //Makes the Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawbronzecrucible, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Steel Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotbronzecrucible, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible, 1),
+                1100,
+                1100,
+                600,
+                0.5f,
+                0.5f
         );
 
         //TODO PLACE HOLDER FOR WOOTZ

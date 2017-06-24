@@ -124,6 +124,13 @@ public class ItemStoneTongs extends Item {
         36 | Hot Wootz Axe Head
         37 | Hot Wootz Shovel Head
         38 | Hot Wootz Hoe Head
+
+        ================================
+
+        39 | Hot Bronze Crucible
+        40 | Hot Cooked Bronze Crucible
+
+
          */
 
         if(!world.isRemote) {
@@ -258,6 +265,24 @@ public class ItemStoneTongs extends Item {
                         return EnumActionResult.SUCCESS;
                     }
                     /* TODO Wootz */
+
+
+                    /***************************
+                     *          Bronze          *
+                     ***************************/
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotbronzecrucible) {
+                        itemstack.getTagCompound().setInteger("type", 39);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.hotcookedbronzecrucible) {
+                        itemstack.getTagCompound().setInteger("type", 40);
+                        itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
+                        world.setBlockToAir(pos);
+                        return EnumActionResult.SUCCESS;
+                    }
+
                 }
 /*****
  Places the content from the Tongs to the World
@@ -391,6 +416,20 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
+                            case 39:
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible39 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible39.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
+                            case 40:
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible.getDefaultState(), 3);
+                                TileBaseCrucible tileCrucible40 = (TileBaseCrucible) world.getTileEntity(tempPos);
+                                tileCrucible40.countdown = itemstack.getTagCompound().getInteger("cooldown");
+                                itemstack.getTagCompound().setInteger("cooldown", 0);
+                                itemstack.getTagCompound().setInteger("type", 0);
+                                return EnumActionResult.SUCCESS;
                         }
                     }
                 }
@@ -454,6 +493,16 @@ public class ItemStoneTongs extends Item {
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.failedsteelcrucible))) {
                         itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 23);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotbronzecrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
+                        itemstack.getTagCompound().setInteger("type", 39);
+                        tile.setSlotStack(1, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotcookedbronzecrucible))) {
+                        itemstack.getTagCompound().setInteger("cooldown", 0);
+                        itemstack.getTagCompound().setInteger("type", 40);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     }

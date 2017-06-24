@@ -13,6 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
+import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
@@ -51,8 +52,9 @@ public class TileForge extends TileBaseSlot implements ITickable {
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
                     slotZeroManager(world);
+                    this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
                 }
-                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+
 
                 craftingManager();
             }
@@ -75,7 +77,9 @@ public class TileForge extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-            makeSmoke(world, pos);
+            if(CommonUtils.randomCheck(20)) {
+                makeSmoke(world, pos);
+            }
         }
     }
 
