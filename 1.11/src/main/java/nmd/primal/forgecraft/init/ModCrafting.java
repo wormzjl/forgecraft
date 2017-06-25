@@ -929,11 +929,12 @@ public class ModCrafting {
                         empty,empty,hotChunk,empty,empty,
                         empty,hotChunk,hotChunk,hotChunk,empty,
                         empty,empty,hotChunk,empty,empty },
-                new ItemStack(ModItems.ironsword, 1),
+                new ItemStack(ModItems.wroughtirongladius, 1),
                 "null"
         );
         /*** Temp Clean Iron Sword ***/
-        AnvilCrafting.addRecipe(
+        //TODO uncomment this
+        /*AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
                         empty,empty,hotCleanChunk,empty,empty,
@@ -942,9 +943,9 @@ public class ModCrafting {
                         empty,empty,hotCleanChunk,empty,empty },
                 new ItemStack(ModItems.cleanironsword, 1),
                 "null"
-        );
+        );*/
         /*** Temp Steel Sword ***/
-        AnvilCrafting.addRecipe(
+        /*AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
                         empty,empty,hotSteelChunk,empty,empty,
@@ -953,7 +954,7 @@ public class ModCrafting {
                         empty,empty,hotSteelChunk,empty,empty },
                 new ItemStack(ModItems.steelsword, 1),
                 "null"
-        );
+        );*/
 
         /*** Flaked emerald ***/
         AnvilCrafting.addRecipe(

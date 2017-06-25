@@ -103,10 +103,10 @@ public class ModItems {
     public static Item wootzhoe;
 
     public static Item bronzegladius;
-    public static Item ironsword;
-    public static Item cleanironsword;
-    public static Item steelsword;
-    public static Item wootzsword;
+    public static Item wroughtirongladius;
+    //public static Item cleanironsword;
+    //public static Item steelsword;
+    //public static Item wootzsword;
 
     public static Item wroughtironshield;
     //public static Item cleanironshield;
@@ -195,11 +195,11 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        bronzegladius = new CustomSword("bronzegladius", PrimalMaterials.TOOL_BRONZE);
-        ironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WROUGHT_IRON);
-        cleanironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_CLEAN_IRON);
-        steelsword = new CustomSword("ironsword", PrimalMaterials.TOOL_BASIC_STEEL);
-        wootzsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        bronzegladius = new CustomSword("bronzegladius", PrimalMaterials.TOOL_BRONZE, 5D, 1D);
+        wroughtirongladius = new CustomSword("wroughtirongladius", PrimalMaterials.TOOL_WROUGHT_IRON, 4.5D, 3D);
+        //cleanironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_CLEAN_IRON);
+        //steelsword = new CustomSword("ironsword", PrimalMaterials.TOOL_BASIC_STEEL);
+        //wootzsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WOOTZ_STEEL);
 
 
         wroughtironshield = new CustomShield("wroughtironshield", PrimalMaterials.TOOL_WROUGHT_IRON);
@@ -304,9 +304,9 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        GameRegistry.register(ironsword);
+        GameRegistry.register(wroughtirongladius);
         GameRegistry.register(bronzegladius);
-        GameRegistry.register(wroughtironshield);
+        //GameRegistry.register(wroughtironshield);
         //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
@@ -395,7 +395,7 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        registerRender(ironsword);
+        registerRender(wroughtirongladius);
         registerRender(wroughtironshield);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);

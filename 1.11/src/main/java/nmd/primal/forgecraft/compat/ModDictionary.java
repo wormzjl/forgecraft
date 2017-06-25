@@ -21,6 +21,10 @@ public class ModDictionary {/***************************************************
                 //OreDictionary.registerOre("clayball", Items.CLAY_BALL);
                 OreDictionary.registerOre("ingotIron", ModBlocks.ironball);
                 OreDictionary.registerOre("nuggetIron", ModBlocks.ironchunk);
+                OreDictionary.registerOre("ingotIron", ModBlocks.ironcleanball);
+                OreDictionary.registerOre("nuggetIron", ModBlocks.ironcleanchunk);
+                OreDictionary.registerOre("ingotSteel", ModBlocks.steelball);
+                OreDictionary.registerOre("nuggetSteel", ModBlocks.steelchunk);
 
 
 

@@ -6,7 +6,7 @@ To-Dos
 *** Current Feature ***
 - [x] BlockBreaker Support for copper dust and tin dust
 - [x] picking up raw bronze crucible returns some other shit
-- [ ] Tool breaking should return tool head
+- [x] Tool breaking should return tool head
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
