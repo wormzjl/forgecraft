@@ -57,6 +57,22 @@ public class ModBlocks {
     public static Block hotbronzecrucible;
     public static Block hotcookedbronzecrucible;
 
+    public static Block rawbronzecrucible_redstone;
+    public static Block hotbronzecrucible_redstone;
+    public static Block hotcookedbronzecrucible_redstone;
+
+    public static Block rawbronzecrucible_lapis;
+    public static Block hotbronzecrucible_lapis;
+    public static Block hotcookedbronzecrucible_lapis;
+
+    public static Block rawbronzecrucible_diamond;
+    public static Block hotbronzecrucible_diamond;
+    public static Block hotcookedbronzecrucible_diamond;
+
+    public static Block rawbronzecrucible_emerald;
+    public static Block hotbronzecrucible_emerald;
+    public static Block hotcookedbronzecrucible_emerald;
+
     public static Block rawironcrucible;
     public static Block hotironcrucible;
     public static Block hotcookedironcrucible;
@@ -123,6 +139,22 @@ public class ModBlocks {
         rawbronzecrucible = new Crucible(Material.ROCK, "rawbronzecrucible");
         hotbronzecrucible = new CrucibleHot(Material.ROCK, "hotbronzecrucible");
         hotcookedbronzecrucible = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible");
+
+        rawbronzecrucible_redstone = new Crucible(Material.ROCK, "rawbronzecrucible_redstone");
+        hotbronzecrucible_redstone = new CrucibleHot(Material.ROCK, "hotbronzecrucible_redstone");
+        hotcookedbronzecrucible_redstone = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible_redstone");
+
+        rawbronzecrucible_diamond = new Crucible(Material.ROCK, "rawbronzecrucible_diamond");
+        hotbronzecrucible_diamond = new CrucibleHot(Material.ROCK, "hotbronzecrucible_diamond");
+        hotcookedbronzecrucible_diamond = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible_diamond");
+
+        rawbronzecrucible_lapis = new Crucible(Material.ROCK, "rawbronzecrucible_lapis");
+        hotbronzecrucible_lapis = new CrucibleHot(Material.ROCK, "hotbronzecrucible_lapis");
+        hotcookedbronzecrucible_lapis = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible_lapis");
+
+        rawbronzecrucible_emerald = new Crucible(Material.ROCK, "rawbronzecrucible_emerald");
+        hotbronzecrucible_emerald = new CrucibleHot(Material.ROCK, "hotbronzecrucible_emerald");
+        hotcookedbronzecrucible_emerald = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible_emerald");
 
         rawironcrucible = new Crucible(Material.ROCK, "rawironcrucible");
         hotironcrucible = new CrucibleHot(Material.ROCK, "hotironcrucible");
@@ -408,6 +440,22 @@ public class ModBlocks {
         registerBlock(hotbronzecrucible);
         registerBlock(hotcookedbronzecrucible);
 
+        registerBlock(rawbronzecrucible_diamond);
+        registerBlock(hotbronzecrucible_diamond);
+        registerBlock(hotcookedbronzecrucible_diamond);
+
+        registerBlock(rawbronzecrucible_emerald);
+        registerBlock(hotbronzecrucible_emerald);
+        registerBlock(hotcookedbronzecrucible_emerald);
+
+        registerBlock(rawbronzecrucible_redstone);
+        registerBlock(hotbronzecrucible_redstone);
+        registerBlock(hotcookedbronzecrucible_redstone);
+
+        registerBlock(rawbronzecrucible_lapis);
+        registerBlock(hotbronzecrucible_lapis);
+        registerBlock(hotcookedbronzecrucible_lapis);
+
         registerBlock(rawironcrucible);
         registerBlock(hotironcrucible);
         registerBlock(hotcookedironcrucible);
@@ -480,6 +528,22 @@ public class ModBlocks {
         registerRender(rawbronzecrucible);
         registerRender(hotbronzecrucible);
         registerRender(hotcookedbronzecrucible);
+
+        registerRender(rawbronzecrucible_diamond);
+        registerRender(hotbronzecrucible_diamond);
+        registerRender(hotcookedbronzecrucible_diamond);
+
+        registerRender(rawbronzecrucible_emerald);
+        registerRender(hotbronzecrucible_emerald);
+        registerRender(hotcookedbronzecrucible_emerald);
+
+        registerRender(rawbronzecrucible_redstone);
+        registerRender(hotbronzecrucible_redstone);
+        registerRender(hotcookedbronzecrucible_redstone);
+
+        registerRender(rawbronzecrucible_lapis);
+        registerRender(hotbronzecrucible_lapis);
+        registerRender(hotcookedbronzecrucible_lapis);
 
         registerRender(rawironcrucible);
         registerRender(hotironcrucible);

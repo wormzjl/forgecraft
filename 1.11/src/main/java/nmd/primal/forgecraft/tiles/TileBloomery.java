@@ -51,9 +51,9 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
-                    slotZeroManager(world);
-                }
 
+                }
+                slotZeroManager(world);
                 slotOneManager();
             }
         }
@@ -103,7 +103,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 20);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 100);
             if(decrInt == 0) {
                 decrInt = 1;
             }
@@ -117,7 +117,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-            if(CommonUtils.randomCheck(20)) {
+            if(CommonUtils.randomCheck(200)) {
                 makeSmoke(world, pos);
             }
         }

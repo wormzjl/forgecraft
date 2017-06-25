@@ -1,0 +1,13 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/stone_slab",
+      "texture": "forgecraft:blocks/stone_slab",
+      "texture1": "forgecraft:items/raw_bronze"
+    }
+  },
+  "variants": {
+    "normal": { "model": "forgecraft:castingcrucible" }
+  }
+}

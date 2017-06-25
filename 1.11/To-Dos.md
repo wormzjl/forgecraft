@@ -4,7 +4,9 @@ To-Dos
 
 
 *** Current Feature ***
-
+- [ ] BlockBreaker Support for copper dust and tin dust
+- [x] picking up raw bronze crucible returns some other shit
+- [ ] Tool breaking should return tool head````
 
 *** Feature Musket ***
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -26,10 +28,7 @@ To-Dos
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 - [ ] WeaponHead recipes
-- [ ] Casting Table
-  - [ ] Block
-  - [ ] Gui
-  - [ ] Crafting recipes
+
 
 *** Tid-Bits ***
 sed -i -- 's/iron/steel/g' *
@@ -37,6 +36,10 @@ rm *.json--
 rename s/iron/steel/ iron*
 
 *** Completed ***
+- [x] Casting Table
+  - [x] Block
+  - [x] Gui
+  - [x] Crafting recipes
 - [x] StoneTongs for all tool heads
   - [x] ItemNBT
   - [x] ItemRender

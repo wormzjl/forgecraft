@@ -1,0 +1,16 @@
+{
+  "parent": "forgecraft:item/pickaxehead",
+  "textures": {
+    "particle": "forgecraft:items/finished_bronze",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/finished_bronze"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/pickaxehead/bronze/bronzepickaxehead_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/pickaxehead/bronze/bronzepickaxehead_1"},
+    {"predicate": {"type": 0.2},"model": "forgecraft:item/pickaxehead/bronze/bronzepickaxehead_2"},
+    {"predicate": {"type": 0.3},"model": "forgecraft:item/pickaxehead/bronze/bronzepickaxehead_3"},
+    {"predicate": {"type": 0.4},"model": "forgecraft:item/pickaxehead/bronze/bronzepickaxehead_4"}
+
+  ]
+}

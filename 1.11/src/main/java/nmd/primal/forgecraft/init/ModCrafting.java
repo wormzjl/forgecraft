@@ -90,9 +90,50 @@ public class ModCrafting {
                 ('Y'), ModBlocks.emptycrucible));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XCX"," X "," Y ",
-                ('X'), "nuggetCopper",
-                ('C'), "nuggetTin",
+                ('X'), "dustCopper",
+                ('C'), "dustTin",
                 ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "XXX"," X "," Y ",
+                ('X'), "nuggetBronze",
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "X","Y",
+                ('X'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "X","Y",
+                ('X'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "X","Y",
+                ('X'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "X","Y",
+                ('X'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
+                ('Y'), ModBlocks.emptycrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                "X","Y",
+                ('X'), new ItemStack(ModItems.bronzegladius, 1, OreDictionary.WILDCARD_VALUE),
+                ('Y'), ModBlocks.emptycrucible));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_redstone),
+                "R","Y",
+                ('R'), Items.REDSTONE,
+                ('Y'), ModBlocks.rawbronzecrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_diamond),
+                "D","Y",
+                ('D'), PrimalItems.DIAMOND_KNAPP,
+                ('Y'), ModBlocks.rawbronzecrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_lapis),
+                "L","Y",
+                ('L'), new ItemStack(Items.DYE, 1, 4),
+                ('Y'), ModBlocks.rawbronzecrucible));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_emerald),
+                "E","Y",
+                ('E'), PrimalItems.EMERALD_KNAPP,
+                ('Y'), ModBlocks.rawbronzecrucible));
 
 
 
@@ -335,12 +376,113 @@ public class ModCrafting {
                 0.0f
         );
 
-//Makes the Finished Hot Steel Crucible
+//Makes the Finished Hot Bronze Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.hotbronzecrucible, 1),
                 new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
                 new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
                 new ItemStack(ModBlocks.rawbronzecrucible, 1),
+                1100,
+                1100,
+                600,
+                0.5f,
+                0.5f
+        );
+
+        //Makes the Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_diamond, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
+                1100,
+                1100,
+                600,
+                0.5f,
+                0.5f
+        );
+        //Makes the Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_redstone, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
+                1100,
+                1100,
+                600,
+                0.5f,
+                0.5f
+        );
+//Makes the Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_emerald, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
+                1100,
+                1100,
+                600,
+                0.5f,
+                0.5f
+        );
+        //Makes the Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
+                800,
+                20,
+                500,
+                0.5f,
+                0.0f
+        );
+
+//Makes the Finished Hot Bronze Crucible
+        BloomeryCrafting.addRecipe(
+                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.hotcookedbronzecrucible_lapis, 1),
+                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
                 1100,
                 1100,
                 600,

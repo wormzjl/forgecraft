@@ -1,0 +1,13 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/stone_slab_hot",
+      "texture": "forgecraft:blocks/stone_slab_hot",
+      "texture1": "forgecraft:items/molten_bronze"
+    }
+  },
+  "variants": {
+    "normal": { "model": "forgecraft:castingcrucible" }
+  }
+}
