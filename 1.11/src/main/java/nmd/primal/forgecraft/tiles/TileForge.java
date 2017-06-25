@@ -63,21 +63,38 @@ public class TileForge extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 100);
+            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 5);
             if(decrInt == 0) {
                 decrInt = 1;
             }
+            Integer size = this.getSlotStack(0).getCount();
+            Integer burnModifier = 0;
+            if(size / 16 <= 1){
+                burnModifier = 1;
+            }
+            if(size / 16 > 1 && size / 16 <= 2){
+                burnModifier = 2;
+            }
+            if(size / 16 > 2 && size / 16 <= 3){
+                burnModifier = 3;
+            }
+            if(size / 16 > 3 && size / 16 <= 4){
+                burnModifier = 4;
+            }
             if (world.rand.nextInt(decrInt) == 0) {
-                this.decrStackSize(0, 1);
-                this.markDirty();
-                this.updateBlock();
+                if (world.rand.nextInt(burnModifier) == 0) {
+                    System.out.println("Fuel Burn" + this.getSlotStack(0));
+                    this.decrStackSize(0, 1);
+                    this.markDirty();
+                    this.updateBlock();
+                }
             }
             if (this.getSlotStack(0).getCount() == 1){
                 this.decrStackSize(0, 1);
                 this.markDirty();
                 this.updateBlock();
             }
-            if(CommonUtils.randomCheck(200)) {
+            if(CommonUtils.randomCheck(1000)) {
                 makeSmoke(world, pos);
             }
         }

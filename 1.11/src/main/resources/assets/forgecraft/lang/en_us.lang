@@ -1,23 +1,52 @@
 itemGroup.forgecraft=ForgeCraft
 
+
+tile.castingform.name=Casting Form
+tile.castingblock.name=Casting Block
 tile.bloomery_adobe.name=Adobe Bloomery
 tile.bloomery_brick.name=Brick Bloomery
-
 tile.forge_brick.name=Brick Forge
 tile.forge_adobe.name=Adobe Forge
-
 tile.blockbreaker.name= Block Breaker
-
 tile.stoneanvil.name=Stone Anvil
 tile.ironanvil.name=Iron Anvil
 
-tile.pistonbellows.name=Wooden Piston Bellows
+
+
+tile.pistonbellowsoak.name=Oak Piston Bellows
+tile.pistonbellowsjungle.name=Jungle Piston Bellows
+tile.pistonbellowsbirch.name=Birch Piston Bellows
+tile.pistonbellowsspruce.name=Spruce Piston Bellows
+tile.pistonbellowsdarkoak.name=Dark Oak Piston Bellows
+tile.pistonbellowsacacia.name=Acacia Piston Bellows
 
 tile.emptycruciblehot.name=Empty Hot Crucible
 tile.emptycrucible.name=Empty Crucible
 tile.emptycruciblehit.name=Hot Empty Crucible
 tile.emptycruciblecracked.name= Cracked Empty Crucible
 tile.emptycruciblecrackedhot.name=Cracked Hot Empty Crucible
+
+tile.rawbronzecrucible.name=Raw Bronze Crucible
+tile.hotbronzecrucible.name=Hot Bronze Crucible
+tile.hotcookedbronzecrucible.name=Finished Bronze Crucible
+
+tile.rawbronzecrucible_emerald.name=Raw Emerald Bronze Crucible
+tile.hotbronzecrucible_emerald.name=Hot Emerald Bronze Crucible
+tile.hotcookedbronzecrucible_emerald.name=Finished Emerald Bronze Crucible
+
+tile.rawbronzecrucible_diamond.name=Raw Diamond Bronze Crucible
+tile.hotbronzecrucible_diamond.name=Hot Diamond Bronze Crucible
+tile.hotcookedbronzecrucible_diamond.name=Finished Diamond Bronze Crucible
+
+tile.rawbronzecrucible_lapis.name=Raw Lapis Bronze Crucible
+tile.hotbronzecrucible_lapis.name=Hot Lapis Bronze Crucible
+tile.hotcookedbronzecrucible_lapis.name=Finished Lapis Bronze Crucible
+
+tile.rawbronzecrucible_redstone.name=Raw Redstone Bronze Crucible
+tile.hotbronzecrucible_redstone.name=Hot Redstone Bronze Crucible
+tile.hotcookedbronzecrucible_redstone.name=Finished Redstone Bronze Crucible
+
+
 
 tile.rawironcrucible.name=Filled Iron Crucible
 tile.hotironcrucible.name=Hot Iron Crucible
@@ -62,19 +91,33 @@ item.softcrucible.name=Soft Crucible
 item.stonetongs.name=Stone Tongs
 item.forgehammer.name=Forge Hammer
 
+item.cast_axe.name=Axe Cast
+item.cast_gladius.name=Gladius Cast
+item.cast_pickaxe.name=Pickaxe Cast
+item.cast_shovel.name=Shovel Cast
+item.cast_hoe.name=Hoe Cast
+item.bronzegladius.name=Bronze Gladius
 
-item.ironingothot.name=Iron Ingot Hot
-item.ironchunkhot.name=Iron Chunk Hot
+item.ironingothot.name=Hot Iron Ingot
+item.ironchunkhot.name=Hot Iron Chunk
 
-item.cleanironingothot.name=Clean Iron Ingot Hot
-item.cleanironchunkhot.name=Clean Iron Chunk Hot
+item.ironcleaningotballhot.name=Hot Clean Iron Ingot
+item.ironcleanchunkhot.name=Hot Clean Iron Chunk
 
-item.steelingothot.name=Steel Ingot Hot
-item.steelchunkhot.name=Steel Chunk Hot
+item.steelingotballhot.name=Hot Steel Ingot
+item.steelchunkhot.name=Hot Steel Chunk
 
-item.wootzingothot.name=Damascus Steel Ingot Hot
-item.wootzchunkhot.name=Damascus Steel Chunk Hot
+item.wootzingothot.name=Hot Damascus Steel Ingot
+item.wootzchunkhot.name=Hot Damascus Steel Chunk
 
+item.bronzepickaxehead.name=Bronze Pickaxe Head
+item.bronzeaxehead.name=Bronze Axe Head
+item.bronzeshovelhead.name=Bronze Shovel Head
+item.bronzehoehead.name=Bronze Hoe Head
+item.bronzepickaxe.name=Bronze Pickaxe
+item.bronzeaxe.name=Bronze Axe
+item.bronzeshovel.name=Bronze Shovel
+item.bronzehoe.name=Bronze Hoe
 
 item.ironpickaxehead.name=Iron Pickaxe Head
 item.ironaxehead.name=Iron Axe Head

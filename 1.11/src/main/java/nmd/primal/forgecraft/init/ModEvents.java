@@ -17,9 +17,4 @@ public class ModEvents {
 
     }
 
-    @SideOnly(Side.CLIENT)
-    public static void registerClientEvents() {
-        //MinecraftForge.EVENT_BUS.register(new ClientEvents());
-    }
-
 }

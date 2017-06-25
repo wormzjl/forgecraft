@@ -18,10 +18,7 @@ import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.CustomAxe;
-import nmd.primal.forgecraft.items.tools.CustomHoe;
-import nmd.primal.forgecraft.items.tools.CustomPickaxe;
-import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
 
@@ -79,6 +76,11 @@ public class ModItems {
     public static Item bronzeaxehead;
     public static Item bronzeshovelhead;
     public static Item bronzehoehead;
+
+    public static Item bronzepickaxe;
+    public static Item bronzeaxe;
+    public static Item bronzeshovel;
+    public static Item bronzehoe;
 
     public static Item ironpickaxe;
     public static Item ironaxe;
@@ -165,6 +167,11 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE);
+        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE);
+        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE);
+        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE);
+
         ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
         ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
         ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON);
@@ -269,6 +276,11 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        GameRegistry.register(bronzepickaxe);
+        GameRegistry.register(bronzeaxe);
+        GameRegistry.register(bronzeshovel);
+        GameRegistry.register(bronzehoe);
+
         GameRegistry.register(ironpickaxe);
         GameRegistry.register(ironaxe);
         GameRegistry.register(ironshovel);
@@ -355,6 +367,11 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        registerRender(bronzepickaxe);
+        registerRender(bronzeaxe);
+        registerRender(bronzeshovel);
+        registerRender(bronzehoe);
+
         registerRender(ironpickaxe);
         registerRender(ironaxe);
         registerRender(ironshovel);

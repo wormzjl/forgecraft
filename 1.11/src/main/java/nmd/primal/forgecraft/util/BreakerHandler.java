@@ -1,16 +1,24 @@
 package nmd.primal.forgecraft.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.oredict.OreDictionary;
+import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 
+import java.util.Arrays;
+
+import static net.minecraftforge.oredict.OreDictionary.getOreIDs;
 import static nmd.primal.core.common.helper.CommonUtils.randomCheck;
 
 //import nmd.primal.forgecraft.CommonUtils;
@@ -20,56 +28,55 @@ import static nmd.primal.core.common.helper.CommonUtils.randomCheck;
  */
 public interface BreakerHandler {
 
-    default void doBreaking (World world, IBlockState state, BlockPos pos, TileBreaker tile){
+    default boolean hasOreName(ItemStack itemStack, String oreName)
+    {
+        int[] oreIds = OreDictionary.getOreIDs(itemStack);
+        for(int oreId : oreIds)
+        {
+            String oreNameEntry = OreDictionary.getOreName(oreId);
+            if(oreName.equals(oreNameEntry))
+            {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        if (state.getValue(CustomContainerFacing.FACING) == EnumFacing.EAST) {
+    /*
+    int checkid = OreDictionary.getOreID(oreDictName);
+for (int id:OreDictionary.getOreIDs(stack))
+    if(id == checkid) return true;
+return false;
+     */
 
-            if(tile.getCharge() > getThreshold(world, pos.east())) {
-                if (world.getBlockState(pos.east()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.east());
-                    PlayerHelper.spawnItemOnGround(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
+// somewhere else
+//if(hasOreName(new ItemStack(Blocks.LOG), "logWood"))
+    // item is logWood
 
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+1);
+    default void doBreaking(World world, IBlockState state, BlockPos pos, TileBreaker tile){
+        for (EnumFacing face : EnumFacing.values()) {
+            if(world.getBlockState(pos).getValue(CustomContainerFacing.FACING) == face) {
+                if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
+                    Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
+                    ItemStack smashStack = new ItemStack(smashBlock, 1);
+                    System.out.println(smashStack.getItem());
+                    if (hasOreName(smashStack, "oreIron")) {
+                        world.setBlockToAir(pos.offset(face));
+                        PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
+                        tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                    }
+                    if (hasOreName(smashStack, "oreCopper")) {
+                        world.setBlockToAir(pos.offset(face));
+                        PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.COPPER_DUST, randomChanceReturn(9, 1, 2)));
+
+                        tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                    }
+                } else {
+                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 10);
                 }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+10);
             }
+            tile.setCharge(0.0f);
         }
-        if (state.getValue(CustomContainerFacing.FACING) == EnumFacing.WEST) {
-            if(tile.getCharge() > getThreshold(world, pos.west())) {
-                if (world.getBlockState(pos.west()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.west());
-                    PlayerHelper.spawnItemOnGround(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+1);
-                }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+10);
-            }
-        }
-        if (state.getValue(CustomContainerFacing.FACING) == EnumFacing.SOUTH) {
-            if(tile.getCharge() > getThreshold(world, pos.south())) {
-                if (world.getBlockState(pos.south()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.south());
-                    PlayerHelper.spawnItemOnGround(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+1);
-                }
-            } else {
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+10);
-            }
-        }
-        if (state.getValue(CustomContainerFacing.FACING) == EnumFacing.NORTH) {
-            if(tile.getCharge() > getThreshold(world, pos.north())) {
-                if (world.getBlockState(pos.north()).getBlock() == Blocks.IRON_ORE) {
-                    world.setBlockToAir(pos.north());
-                    PlayerHelper.spawnItemOnGround(world, pos.east(), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+1);
-                }
-            } else {
-                //tile.getSlotStack(0).damageItem(10, (EntityPlayer) null);
-                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage()+10);
-            }
-        }
-        tile.setCharge(0.0f);
     }
 
     default float getThreshold(World world, BlockPos pos){

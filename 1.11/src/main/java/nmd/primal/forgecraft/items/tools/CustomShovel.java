@@ -304,14 +304,13 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            System.out.println(world.getBlockState(pos).getBlock());
             if(itemstack.getItem() instanceof CustomShovel){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
                 if( getDiamondLevel(itemstack) > 0 ){
                     //itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
-                    itemstack.getItem().setHarvestLevel("pickaxe", 3);
+                    itemstack.getItem().setHarvestLevel("shovel", 3);
                 }
                 /*if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));

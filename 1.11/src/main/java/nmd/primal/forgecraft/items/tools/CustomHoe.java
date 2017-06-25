@@ -298,7 +298,7 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            System.out.println(world.getBlockState(pos).getBlock());
+
             if(itemstack.getItem() instanceof CustomHoe){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);

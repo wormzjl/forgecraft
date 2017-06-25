@@ -1,0 +1,16 @@
+{
+  "parent": "forgecraft:item/shovel",
+  "textures": {
+    "particle": "forgecraft:items/finished_bronze",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/finished_bronze"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/shovel/bronze/bronzeshovel_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/shovel/bronze/bronzeshovel_1"},
+    {"predicate": {"type": 0.2},"model": "forgecraft:item/shovel/bronze/bronzeshovel_2"},
+    {"predicate": {"type": 0.3},"model": "forgecraft:item/shovel/bronze/bronzeshovel_3"},
+    {"predicate": {"type": 0.4},"model": "forgecraft:item/shovel/bronze/bronzeshovel_4"}
+
+  ]
+}

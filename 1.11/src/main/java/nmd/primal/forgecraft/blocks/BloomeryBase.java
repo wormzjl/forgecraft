@@ -15,6 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
@@ -63,7 +65,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
         return new TileBloomery();
     }
 
-    @Override
+    /*@Override
     public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         this.updateTick(world, pos, state, random);
@@ -72,7 +74,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                 FireHelper.makeSmoke(world, pos, 50);
             }
         }
-    }
+    }*/
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
@@ -106,10 +108,13 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                                 stringRemainingTime = remainingTime.toString();
 
                             }
-
-                            ITextComponent itextcomponent = new TextComponentString("Current Temp: " + stringBloomeryHeat + " Ideal Temp: " + stringIdealTemp + " Ticks Remaining: " + stringRemainingTime);
-                            player.sendStatusMessage(itextcomponent, true);
-                            //System.out.println(pos);
+                            String display =
+                                    "Current Temp: " + stringBloomeryHeat + '\n'
+                                    + "Ideal Temp: " + stringIdealTemp  + '\n'
+                                    + "Ticks Remaining: " + stringRemainingTime + '\n'
+                                    + "Fuel Remaining: " + tile.getSlotStack(0).getCount() + '\n';
+                            ITextComponent itextcomponent = new TextComponentString(display);
+                            player.sendStatusMessage(itextcomponent, false);
                             return true;
                         }
                     }
