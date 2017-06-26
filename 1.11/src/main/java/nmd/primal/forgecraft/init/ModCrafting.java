@@ -7,7 +7,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import nmd.primal.core.api.PrimalBlocks;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -934,28 +933,88 @@ public class ModCrafting {
         );
         /*** Temp Clean Iron Sword ***/
         //TODO uncomment this
-        /*AnvilCrafting.addRecipe(
+        AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
                         empty,empty,hotCleanChunk,empty,empty,
                         empty,empty,hotCleanChunk,empty,empty,
                         empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
                         empty,empty,hotCleanChunk,empty,empty },
-                new ItemStack(ModItems.cleanironsword, 1),
+                new ItemStack(ModItems.cleanirongladius, 1),
                 "null"
-        );*/
+        );
         /*** Temp Steel Sword ***/
-        /*AnvilCrafting.addRecipe(
+        AnvilCrafting.addRecipe(
                 new String[] {
                         empty,empty,empty,empty,empty,
                         empty,empty,hotSteelChunk,empty,empty,
                         empty,empty,hotSteelChunk,empty,empty,
                         empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
                         empty,empty,hotSteelChunk,empty,empty },
-                new ItemStack(ModItems.steelsword, 1),
+                new ItemStack(ModItems.steelgladius, 1),
                 "null"
-        );*/
+        );
+        /*** Temp Clean Iron LongSword ***/
+        //TODO uncomment this
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,empty,hotCleanChunk,empty,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,empty,
+                        empty,empty,hotCleanChunk,empty,empty },
+                new ItemStack(ModItems.cleanironlongsword, 1),
+                "null"
+        );
+        /*** Temp Steel LongSword ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,empty,hotSteelChunk,empty,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,empty,
+                        empty,empty,hotSteelChunk,empty,empty },
+                new ItemStack(ModItems.steellongsword, 1),
+                "null"
+        );
 
+        /*** Temp WROUGHTIRON SLAYER ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,hotChunk,hotChunk,hotChunk,
+                        empty,empty,hotChunk,hotChunk,empty,
+                        empty,empty,hotChunk,hotChunk,empty,
+                        empty,hotChunk,hotChunk,hotChunk,hotChunk,
+                        empty,empty,hotChunk,hotChunk,empty },
+                new ItemStack(ModItems.wroughtironslayer, 1),
+                "null"
+        );
+        /*** Temp CLEANIRON SLAYER ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,
+                        empty,empty,hotCleanChunk,hotCleanChunk,empty,
+                        empty,empty,hotCleanChunk,hotCleanChunk,empty,
+                        empty,hotCleanChunk,hotCleanChunk,hotCleanChunk,hotCleanChunk,
+                        empty,empty,hotCleanChunk,hotCleanChunk,empty },
+                new ItemStack(ModItems.cleanironslayer, 1),
+                "null"
+        );
+        /*** Temp STEELSLAYER ***/
+        AnvilCrafting.addRecipe(
+                new String[] {
+                        empty,empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,
+                        empty,empty,hotSteelChunk,hotSteelChunk,empty,
+                        empty,empty,hotSteelChunk,hotSteelChunk,empty,
+                        empty,hotSteelChunk,hotSteelChunk,hotSteelChunk,hotSteelChunk,
+                        empty,empty,hotSteelChunk,hotSteelChunk,empty },
+                new ItemStack(ModItems.steelslayer, 1),
+                "null"
+        );
+        
+        
+        
+        
         /*** Flaked emerald ***/
         AnvilCrafting.addRecipe(
                 new String[] {

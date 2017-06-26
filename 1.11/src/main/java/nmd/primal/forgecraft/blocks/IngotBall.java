@@ -16,7 +16,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalStates;
-import nmd.primal.core.common.helper.PlayerHelper;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

@@ -21,6 +21,7 @@ import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
+import nmd.primal.forgecraft.items.weapons.SlayerSword;
 
 /**
  * Created by kitsu on 11/26/2016.
@@ -104,9 +105,15 @@ public class ModItems {
 
     public static Item bronzegladius;
     public static Item wroughtirongladius;
-    //public static Item cleanironsword;
-    //public static Item steelsword;
-    //public static Item wootzsword;
+    public static Item cleanirongladius;
+    public static Item steelgladius;
+
+    public static Item cleanironlongsword;
+    public static Item steellongsword;
+
+    public static Item wroughtironslayer;
+    public static Item cleanironslayer;
+    public static Item steelslayer;
 
     public static Item wroughtironshield;
     //public static Item cleanironshield;
@@ -195,12 +202,17 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        bronzegladius = new CustomSword("bronzegladius", PrimalMaterials.TOOL_BRONZE, 5D, 1D);
-        wroughtirongladius = new CustomSword("wroughtirongladius", PrimalMaterials.TOOL_WROUGHT_IRON, 4.5D, 3D);
-        //cleanironsword = new CustomSword("ironsword", PrimalMaterials.TOOL_CLEAN_IRON);
-        //steelsword = new CustomSword("ironsword", PrimalMaterials.TOOL_BASIC_STEEL);
-        //wootzsword = new CustomSword("ironsword", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        bronzegladius = new CustomSword("bronzegladius", PrimalMaterials.TOOL_BRONZE, 5D, 2D);
+        wroughtirongladius = new CustomSword("wroughtirongladius", PrimalMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
+        cleanirongladius = new CustomSword("cleanirongladius", PrimalMaterials.TOOL_CLEAN_IRON, 5D, -1.85D);
+        steelgladius = new CustomSword("steelgladius", PrimalMaterials.TOOL_BASIC_STEEL,6D, -1.85D);
 
+        cleanironlongsword = new CustomSword("cleanironlongsword", PrimalMaterials.TOOL_CLEAN_IRON, 7D, -2.5D);
+        steellongsword = new CustomSword("steellongsword", PrimalMaterials.TOOL_BASIC_STEEL,8D, -2.25D);
+
+        wroughtironslayer = new SlayerSword("wroughtironslayer", PrimalMaterials.TOOL_WROUGHT_IRON, 11.5D, -3.7D);
+        cleanironslayer = new SlayerSword("cleanironslayer", PrimalMaterials.TOOL_CLEAN_IRON, 10D, -3.5D);
+        steelslayer = new SlayerSword("steelslayer", PrimalMaterials.TOOL_BASIC_STEEL,11D, -3.3D);
 
         wroughtironshield = new CustomShield("wroughtironshield", PrimalMaterials.TOOL_WROUGHT_IRON);
 
@@ -306,7 +318,15 @@ public class ModItems {
          **********/
         GameRegistry.register(wroughtirongladius);
         GameRegistry.register(bronzegladius);
-        //GameRegistry.register(wroughtironshield);
+        GameRegistry.register(cleanirongladius);
+        GameRegistry.register(steelgladius);
+
+        GameRegistry.register(cleanironlongsword);
+        GameRegistry.register(steellongsword);
+
+        GameRegistry.register(wroughtironslayer);
+        GameRegistry.register(cleanironslayer);
+        GameRegistry.register(steelslayer);
         //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
@@ -342,7 +362,6 @@ public class ModItems {
         registerRender(bronzeaxehead);
         registerRender(bronzeshovelhead);
         registerRender(bronzehoehead);
-        registerRender(bronzegladius);
 
         registerRender(pickaxehead);
         registerRender(ironaxehead);
@@ -395,8 +414,20 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        registerRender(wroughtirongladius);
         registerRender(wroughtironshield);
+
+        registerRender(bronzegladius);
+        registerRender(wroughtirongladius);
+        registerRender(cleanirongladius);
+        registerRender(steelgladius);
+
+        registerRender(cleanironlongsword);
+        registerRender(steellongsword);
+
+        registerRender(wroughtironslayer);
+        registerRender(cleanironslayer);
+        registerRender(steelslayer);
+
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);
     }

@@ -4,8 +4,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalStates;
-import nmd.primal.forgecraft.blocks.PistonBellows;
 
 import static nmd.primal.core.api.PrimalStates.ACTIVE;
 

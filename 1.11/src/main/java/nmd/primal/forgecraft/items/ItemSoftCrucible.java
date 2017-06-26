@@ -1,7 +1,5 @@
 package nmd.primal.forgecraft.items;
 
-import nmd.primal.forgecraft.ModInfo;
-
 /**
  * Created by mminaie on 1/22/17.
  */

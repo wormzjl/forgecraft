@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.renders.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -8,20 +7,12 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import nmd.primal.core.api.PrimalItems;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.CastingForm;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
-import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import org.lwjgl.opengl.GL11;
 

@@ -18,13 +18,10 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.CommonUtils;
-import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 /**

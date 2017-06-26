@@ -15,8 +15,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
@@ -25,7 +23,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.crafting.FireSource;
-import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
@@ -109,12 +106,12 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
                             }
                             String display =
-                                    "Current Temp: " + stringBloomeryHeat + '\n'
-                                    + "Ideal Temp: " + stringIdealTemp  + '\n'
-                                    + "Ticks Remaining: " + stringRemainingTime + '\n'
-                                    + "Fuel Remaining: " + tile.getSlotStack(0).getCount() + '\n';
+                                    "Current Temp: " + stringBloomeryHeat
+                                    + "Ideal Temp: " + stringIdealTemp
+                                    + "Ticks Remaining: " + stringRemainingTime
+                                    + "Fuel Remaining: " + tile.getSlotStack(0).getCount();
                             ITextComponent itextcomponent = new TextComponentString(display);
-                            player.sendStatusMessage(itextcomponent, false);
+                            player.sendStatusMessage(itextcomponent, true);
                             return true;
                         }
                     }

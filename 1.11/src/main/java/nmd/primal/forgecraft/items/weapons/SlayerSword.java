@@ -2,24 +2,26 @@ package nmd.primal.forgecraft.items.weapons;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
 
 /**
- * Created by mminaie on 3/23/17.
+ * Created by mminaie on 6/25/17.
  */
-public class CustomSword extends ItemSword {
+public class SlayerSword extends ItemSword {
 
     private double attack, speed;
 
-    public CustomSword(String name, Item.ToolMaterial material, double attackDamage, double attackSpeed) {
+    public SlayerSword(String name, Item.ToolMaterial material, double attackDamage, double attackSpeed) {
         super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
@@ -29,6 +31,14 @@ public class CustomSword extends ItemSword {
         this.attack = attackDamage;
         this.speed = attackSpeed;
 
+    }
+
+    @Override
+    public void onUpdate(ItemStack item, World world, Entity playerin, int itemSlot, boolean isSelected) {
+
+        if(isSelected){
+            playerin.setSprinting(false);
+        }
     }
 
     @SideOnly(Side.CLIENT)

@@ -13,6 +13,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -25,9 +26,9 @@ import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.tiles.TileCastingBlock;
-import nmd.primal.forgecraft.tiles.TileCastingForm;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by mminaie on 6/24/17.
@@ -41,7 +42,31 @@ public class CastingBlock extends CustomContainerFacing {
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
+    private void makeEmbers(World world, BlockPos pos, Random rand){
+        double d0 = (double)pos.getX() + 0.5D;
+        double d1 = (double)pos.getY() + 0.2D;
+        double d2 = (double)pos.getZ() + 0.5D;
+        double d3 = 0.52D;
+        double d4 = ThreadLocalRandom.current().nextDouble(0.066, 0.33);
+        double ySpeed = ThreadLocalRandom.current().nextDouble(0.05, 0.20);
 
+        if(rand.nextInt(3) == 0){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, ySpeed, ySpeed, ySpeed, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, ySpeed, ySpeed, ySpeed, new int[0]);
+        }
+        if(rand.nextInt(3) == 1){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, ySpeed, ySpeed, ySpeed, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, ySpeed, ySpeed, ySpeed, new int[0]);
+        }
+        if(rand.nextInt(3) == 2){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, ySpeed, ySpeed, ySpeed, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, ySpeed, ySpeed, ySpeed, new int[0]);
+        }
+        if(rand.nextInt(3) == 3){
+            world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, ySpeed, ySpeed, ySpeed, new int[0]);
+            world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, ySpeed, ySpeed, ySpeed, new int[0]);
+        }
+    }
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
@@ -81,6 +106,7 @@ public class CastingBlock extends CustomContainerFacing {
                         if(CommonUtils.randomCheck(2)){
                             tile.setSlotStack(0, ItemStack.EMPTY);
                         }
+                        //makeEmbers(world, pos, world.rand);
                         return true;
                     }
                     if(tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe){

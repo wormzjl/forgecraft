@@ -96,8 +96,19 @@ item.cast_gladius.name=Gladius Cast
 item.cast_pickaxe.name=Pickaxe Cast
 item.cast_shovel.name=Shovel Cast
 item.cast_hoe.name=Hoe Cast
+item.castingmud.name=Casting Mud
+
 item.bronzegladius.name=Bronze Gladius
 item.wroughtirongladius.name=Wrought Iron Gladius
+item.cleanirongladius.name=Clean Iron Gladius
+item.steelgladius.name=Steel Gladius
+
+item.cleanironlongsword.name=Clean Iron Longsword
+item.steellongsword.name=Steel Longsword
+
+item.wroughtironslayer.name=Wrought Iron Slayer
+item.cleanironslayer.name=Wrought Iron Slayer
+item.steelslayer.name=Wrought Iron Slayer
 
 item.ironingothot.name=Hot Iron Ingot
 item.ironchunkhot.name=Hot Iron Chunk

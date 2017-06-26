@@ -7,7 +7,6 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.ForgeCraft;
-import nmd.primal.forgecraft.ModInfo;
 
 /**
  * Created by mminaie on 2/4/17.

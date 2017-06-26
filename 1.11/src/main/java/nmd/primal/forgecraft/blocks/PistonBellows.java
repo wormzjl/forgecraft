@@ -2,7 +2,6 @@ package nmd.primal.forgecraft.blocks;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +15,6 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.tiles.TileBloomery;
