@@ -19,7 +19,6 @@ import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
-import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -103,7 +102,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 5);
+            Integer decrInt = (int) Math.floor(CommonUtils.getVanillaItemBurnTime(this.getSlotStack(0)) / 5);
             if(decrInt == 0) {
                 decrInt = 1;
             }
