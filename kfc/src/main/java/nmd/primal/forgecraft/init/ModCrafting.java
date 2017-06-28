@@ -34,6 +34,12 @@ public class ModCrafting {
                 true, new Object[]{" S ", "S S", " S ",
                 ('S'), "logSplit"
         }));
+        /***CASTING MUD***/
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.castingmud, 4),
+                true, new Object[]{" C ", "CSC", " C ",
+                ('S'), Blocks.SAND,
+                ('C'), PrimalItems.MUD_CLUMP
+        }));
 
         /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_brick),

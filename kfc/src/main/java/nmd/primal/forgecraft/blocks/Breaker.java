@@ -54,8 +54,9 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
             }*/
 
             if(state.getValue(PrimalStates.ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
-                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, false));
                 doBreaking(world, state, pos, tile);
+                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, false));
+
                 tile.setCharge(0);
                 return true;
             }

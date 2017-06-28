@@ -46,48 +46,59 @@ return false;
 //if(hasOreName(new ItemStack(Blocks.LOG), "logWood"))
     // item is logWood
 
-    default void doBreaking(World world, IBlockState state, BlockPos pos, TileBreaker tile){
-        for (EnumFacing face : EnumFacing.values()) {
-            if(world.getBlockState(pos).getValue(CustomContainerFacing.FACING) == face) {
-                if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
-                    Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
-                    ItemStack smashStack = new ItemStack(smashBlock, 1);
-                    System.out.println(smashStack.getItem());
-                    if (hasOreName(smashStack, "oreIron")) {
+    default boolean doBreaking(World world, IBlockState state, BlockPos pos, TileBreaker tile) {
+        for (int i=0; i < EnumFacing.HORIZONTALS.length; i++) {
+            EnumFacing face = world.getBlockState(pos).getValue(CustomContainerFacing.FACING);
+            if(face.equals(world.getBlockState(pos).getValue(CustomContainerFacing.FACING))){
+                Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
+                ItemStack smashStack = new ItemStack(smashBlock);
+                if (hasOreName(smashStack, "oreIron")) {
+                    if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                         world.setBlockToAir(pos.offset(face));
                         PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
                         tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                        return true;
                     }
-                    if (hasOreName(smashStack, "oreCopper")) {
+                }
+                if (hasOreName(smashStack, "oreCopper")) {
+                    if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                         world.setBlockToAir(pos.offset(face));
                         PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.COPPER_DUST, randomChanceReturn(9, 1, 2)));
-
                         tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                        return true;
                     }
-                    if (hasOreName(smashStack, "oreTin")) {
+                }
+                if (hasOreName(smashStack, "oreTin")) {
+                    if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                         world.setBlockToAir(pos.offset(face));
                         PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.TIN_DUST, randomChanceReturn(9, 1, 2)));
-
                         tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                        return true;
                     }
-                    if (hasOreName(smashStack, "oreZinc")) {
+                }
+                if (hasOreName(smashStack, "oreZinc")) {
+                    if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                         world.setBlockToAir(pos.offset(face));
                         PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.ZINC_DUST, randomChanceReturn(9, 1, 2)));
-
                         tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                        return true;
                     }
-                    if (hasOreName(smashStack, "oreGold")) {
+                }
+                if (hasOreName(smashStack, "oreGold")) {
+                    if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                         world.setBlockToAir(pos.offset(face));
                         PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.GOLD_DUST, randomChanceReturn(9, 1, 2)));
-
                         tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                        return true;
                     }
-                } else {
-                    tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 10);
                 }
+            } else {
+                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 10);
+                return true;
             }
-            tile.setCharge(0.0f);
+        i++;
         }
+        return false;
     }
 
     default float getThreshold(World world, BlockPos pos){
