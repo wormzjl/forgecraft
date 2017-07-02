@@ -121,6 +121,8 @@ public class ModItems {
     //public static Item wootzshield;
 
     public static Item matchlockmusket;
+    public static Item unstrunglongbow;
+    public static Item longbow;
 
     //public static Item forgingmanual;
 
@@ -132,7 +134,10 @@ public class ModItems {
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
+
+        unstrunglongbow = new BaseItem("unstrunglongbow");
         //matchlockmusket = new Musket("matchlock_musket");
+
 
         /**********
          CASTING PARTS
@@ -327,6 +332,8 @@ public class ModItems {
         GameRegistry.register(wroughtironslayer);
         GameRegistry.register(cleanironslayer);
         GameRegistry.register(steelslayer);
+
+        GameRegistry.register(unstrunglongbow);
         //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);

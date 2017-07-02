@@ -1,0 +1,8 @@
+{
+	"forge_marker":1,
+	"textures": {
+		"particle": "primal:blocks/log_stripped_yew_side",
+		"texture": "primal:blocks/log_stripped_yew_side"
+	},
+	"parent": "forgecraft:block/yewstave"
+}
