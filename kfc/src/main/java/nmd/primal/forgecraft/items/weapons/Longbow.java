@@ -110,6 +110,7 @@ public class Longbow extends BaseItem {
         if (entityLiving instanceof EntityPlayer)
         {
             EntityPlayer entityplayer = (EntityPlayer)entityLiving;
+            worldIn.playSound(null, entityplayer.getPosition(), ModSounds.BOW_TWANG, SoundCategory.BLOCKS, 1.0F, 1.0F);
             boolean flag = entityplayer.capabilities.isCreativeMode || EnchantmentHelper.getEnchantmentLevel(Enchantments.INFINITY, stack) > 0;
             ItemStack itemstack = this.findAmmo(entityplayer);
 
@@ -149,7 +150,7 @@ public class Longbow extends BaseItem {
                     }
 
                     //worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
-                    worldIn.playSound(null, entityplayer.getPosition(), ModSounds.BOW_TWANG, SoundCategory.BLOCKS, 0.25F, 0.8F);
+
 
                     if (!flag1 && !entityplayer.capabilities.isCreativeMode)
                     {
