@@ -122,6 +122,7 @@ public class ModItems {
     //public static Item wootzshield;
 
     public static Item matchlockmusket;
+    public static Item rawlongbow;
     public static Item unstrunglongbow;
     public static Item longbow;
 
@@ -136,6 +137,7 @@ public class ModItems {
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
 
+        rawlongbow = new BaseItem("rawlongbow");
         unstrunglongbow = new BaseItem("unstrunglongbow");
         longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
@@ -335,6 +337,7 @@ public class ModItems {
         GameRegistry.register(cleanironslayer);
         GameRegistry.register(steelslayer);
 
+        GameRegistry.register(rawlongbow);
         GameRegistry.register(unstrunglongbow);
         GameRegistry.register(longbow);
         //GameRegistry.register(matchlockmusket);
@@ -438,6 +441,7 @@ public class ModItems {
         registerRender(cleanironslayer);
         registerRender(steelslayer);
 
+        registerRender(rawlongbow);
         registerRender(unstrunglongbow);
         registerRender(longbow);
         //registerRender(forgingmanual);

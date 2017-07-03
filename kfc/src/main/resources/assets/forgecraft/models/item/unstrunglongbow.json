@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "primal:blocks/log_stripped_yew_side",
-		"texture": "primal:blocks/log_stripped_yew_side",
-		"texture1": "primal:blocks/log_stripped_yew_side"
+		"particle": "forgecraft:items/unstrunglongbow",
+		"texture": "forgecraft:items/unstrunglongbow",
+		"texture1": "forgecraft:items/unstrunglongbow"
 	},
 	"elements": [
 		{

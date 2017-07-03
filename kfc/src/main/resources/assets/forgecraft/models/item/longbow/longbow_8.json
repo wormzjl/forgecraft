@@ -1,10 +1,10 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "primal:blocks/log_stripped_yew_side",
-		"texture": "primal:blocks/log_stripped_yew_side",
+		"particle": "forgecraft:items/unstrunglongbow",
+		"texture": "forgecraft:items/unstrunglongbow",
 		"texture1": "forgecraft:items/bowstring",
-		"arrow": "blocks/e_texture"
+		"arrow": "forgecraft:items/arrow"
 	},
 	"elements": [
 		{
@@ -376,12 +376,12 @@
 			"from": [ 7.5, 8, 6 ],
 			"to": [ 8, 8.5, 26 ],
 			"faces": {
-				"down": { "uv": [ 7.5, 0, 8, 16 ], "texture": "#arrow" },
-				"up": { "uv": [ 7.5, 0, 8, 16 ], "texture": "#arrow" },
-				"north": { "uv": [ 8, 7.5, 8.5, 8 ], "texture": "#arrow" },
+				"down": { "uv": [ 7.5, 0, 8, 12.5 ], "texture": "#arrow", "rotation": 180 },
+				"up": { "uv": [ 7.5, 0, 8, 12.5 ], "texture": "#arrow" },
+				"north": { "uv": [ 7, 0, 7.5, 0.5 ], "texture": "#arrow" },
 				"south": { "uv": [ 7.5, 7.5, 8, 8 ], "texture": "#arrow" },
-				"west": { "uv": [ 0, 7.5, 16, 8 ], "texture": "#arrow" },
-				"east": { "uv": [ 0, 7.5, 16, 8 ], "texture": "#arrow" }
+				"west": { "uv": [ 7.5, 0, 8, 12.5 ], "texture": "#arrow", "rotation": 270 },
+				"east": { "uv": [ 7.5, 0, 8, 12.5 ], "texture": "#arrow", "rotation": 90 }
 			}
 		},
 		{

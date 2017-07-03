@@ -51,7 +51,7 @@ public class YewStave extends BlockCustomBase {
                 //world.playSound(player, player.posX, player.posY, player.posZ, PrimalSounds.TOOL_BLADE_SCRAPE, SoundCategory.PLAYERS, 1.0F, 1F);
                 world.playSound(null, pos, PrimalSounds.TOOL_BLADE_SCRAPE, SoundCategory.PLAYERS, 1.0F, 1.0F);
                 if(CommonUtils.randomCheck(3) ) {
-                    PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(ModItems.unstrunglongbow, 1));
+                    PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(ModItems.rawlongbow, 1));
                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                     world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);
                     return true;

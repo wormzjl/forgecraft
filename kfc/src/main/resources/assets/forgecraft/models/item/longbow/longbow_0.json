@@ -1,9 +1,9 @@
 {
   "parent": "forgecraft:item/longbow_default",
   "textures": {
-    "particle": "primal:blocks/log_stripped_yew_side",
-    "texture": "primal:blocks/log_stripped_yew_side",
+    "particle": "forgecraft:items/unstrunglongbow",
+    "texture": "forgecraft:items/unstrunglongbow",
     "texture1": "forgecraft:items/bowstring",
-    "arrow": "blocks/e_texture"
+    "arrow": "forgecraft:items/arrow"
   }
 }

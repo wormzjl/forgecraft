@@ -10,7 +10,7 @@ tile.forge_adobe.name=Adobe Forge
 tile.blockbreaker.name= Block Breaker
 tile.stoneanvil.name=Stone Anvil
 tile.ironanvil.name=Iron Anvil
-
+tile.yewstave.name=Yew Stave
 
 
 tile.pistonbellowsoak.name=Oak Piston Bellows
@@ -85,6 +85,10 @@ tile.steelball.name=Steel Ingot
 tile.steelchunk.name=Steel Chunk
 tile.wootzball.name=Damascus Steel Ingot
 tile.wootzchunk.name=Damascus Steel Chunk
+
+item.unstrunglongbow.name=Unstrung Longbow
+item.longbow.name=Longbow
+item.rawlongbow.name=Raw Longbow
 
 item.bellowshandle.name=Bellows Handle
 item.softcrucible.name=Soft Crucible

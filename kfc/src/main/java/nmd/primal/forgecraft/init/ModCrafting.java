@@ -40,6 +40,24 @@ public class ModCrafting {
                 ('S'), Blocks.SAND,
                 ('C'), PrimalItems.MUD_CLUMP
         }));
+        /***YEW STAVE***/
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.yewstave, 2),
+                true, new Object[]{"C", "C",
+                ('C'), PrimalItems.LOGS_SPLIT_YEW
+        }));
+        /***Unstrung Longbow***/
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.unstrunglongbow, 1),
+                true, new Object[]{"C", "A",
+                ('C'), PrimalItems.BEAR_FAT,
+                ('A'), ModItems.rawlongbow
+        }));
+        /***Longbow***/
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.longbow, 1),
+                true, new Object[]{"C ","CA","C ",
+                ('C'), PrimalItems.SILK_CORDAGE,
+                ('A'), ModItems.unstrunglongbow
+        }));
+
 
         /***Forge***/
         GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_brick),

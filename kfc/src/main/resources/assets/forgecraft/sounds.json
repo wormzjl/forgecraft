@@ -8,5 +8,10 @@
     "category": "block",
     "subtitle": "forgecraft.subtitle.musket_shot",
     "sounds": [ "forgecraft:musket_shot" ]
-  }
+  },
+  "bow_twang": {
+  "category": "block",
+  "subtitle": "forgecraft.subtitle.bow_twang",
+  "sounds": [ "forgecraft:bow_twang" ]
+}
 }

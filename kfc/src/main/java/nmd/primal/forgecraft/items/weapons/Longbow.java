@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.BaseItem;
 
 import javax.annotation.Nullable;
@@ -133,43 +134,22 @@ public class Longbow extends BaseItem {
                     {
                         ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
                         EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 3.0F, 1.0F);
+                        entityarrow.setAim(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 6.0F, 1.0F);
 
-                        if (f == 1.0F)
+                        if (f >= 1.0F)
                         {
                             entityarrow.setIsCritical(true);
                         }
 
-                        int j = EnchantmentHelper.getEnchantmentLevel(Enchantments.POWER, stack);
-
-                        if (j > 0)
-                        {
-                            entityarrow.setDamage(entityarrow.getDamage() + (double)j * 0.5D + 0.5D);
-                        }
-
-                        int k = EnchantmentHelper.getEnchantmentLevel(Enchantments.PUNCH, stack);
-
-                        if (k > 0)
-                        {
-                            entityarrow.setKnockbackStrength(k);
-                        }
-
-                        if (EnchantmentHelper.getEnchantmentLevel(Enchantments.FLAME, stack) > 0)
-                        {
-                            entityarrow.setFire(100);
-                        }
-
                         stack.damageItem(1, entityplayer);
 
-                        if (flag1 || entityplayer.capabilities.isCreativeMode && (itemstack.getItem() == Items.SPECTRAL_ARROW || itemstack.getItem() == Items.TIPPED_ARROW))
-                        {
-                            entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
-                        }
+                        entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
 
                         worldIn.spawnEntity(entityarrow);
                     }
 
-                    worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    //worldIn.playSound((EntityPlayer)null, entityplayer.posX, entityplayer.posY, entityplayer.posZ, SoundEvents.ENTITY_ARROW_SHOOT, SoundCategory.PLAYERS, 1.0F, 1.0F / (itemRand.nextFloat() * 0.4F + 1.2F) + f * 0.5F);
+                    worldIn.playSound(null, entityplayer.getPosition(), ModSounds.BOW_TWANG, SoundCategory.BLOCKS, 0.25F, 0.8F);
 
                     if (!flag1 && !entityplayer.capabilities.isCreativeMode)
                     {
@@ -184,14 +164,6 @@ public class Longbow extends BaseItem {
                     entityplayer.addStat(StatList.getObjectUseStats(this));
                 }
             }
-            //entityLiving.stopActiveHand();
-            if(!worldIn.isRemote){
-                entityLiving.resetActiveHand();
-            }
-            if(worldIn.isRemote){
-                entityLiving.resetActiveHand();
-            }
-
         }
     }
 
@@ -201,8 +173,8 @@ public class Longbow extends BaseItem {
 
     public static float getArrowVelocity(int charge)
     {
-        float f = (float)charge / 20.0F;
-        f = (f * f + f * 2.0F) / 3.0F;
+        float f = (float)charge / 5.0F;
+        f = (f * f + f * 2.0F);
 
         if (f > 1.0F)
         {
