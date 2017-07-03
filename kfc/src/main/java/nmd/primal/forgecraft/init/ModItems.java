@@ -21,6 +21,7 @@ import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
+import nmd.primal.forgecraft.items.weapons.Longbow;
 import nmd.primal.forgecraft.items.weapons.SlayerSword;
 
 /**
@@ -136,6 +137,7 @@ public class ModItems {
         castingmud = new BaseItem("castingmud");
 
         unstrunglongbow = new BaseItem("unstrunglongbow");
+        longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
 
 
@@ -334,6 +336,7 @@ public class ModItems {
         GameRegistry.register(steelslayer);
 
         GameRegistry.register(unstrunglongbow);
+        GameRegistry.register(longbow);
         //GameRegistry.register(matchlockmusket);
 
         //GameRegistry.register(forgingmanual);
@@ -435,6 +438,8 @@ public class ModItems {
         registerRender(cleanironslayer);
         registerRender(steelslayer);
 
+        registerRender(unstrunglongbow);
+        registerRender(longbow);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);
     }

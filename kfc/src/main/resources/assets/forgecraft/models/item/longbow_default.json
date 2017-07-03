@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
-		"texture": "blocks/log_stripped_yew_side",
-		"texture1": "blocks/e_texture"
+		"particle": "primal:blocks/log_stripped_yew_side",
+		"texture": "primal:blocks/log_stripped_yew_side",
+		"texture1": "forgecraft:items/bowstring"
 	},
 	"elements": [
 		{

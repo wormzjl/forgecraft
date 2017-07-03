@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
-		"texture": "blocks/log_stripped_yew_side",
-		"texture1": "blocks/e_texture",
+		"particle": "primal:blocks/log_stripped_yew_side",
+		"texture": "primal:blocks/log_stripped_yew_side",
+		"texture1": "forgecraft:items/bowstring",
 		"arrow": "blocks/e_texture"
 	},
 	"elements": [
@@ -308,8 +308,8 @@
 		},
 		{
 			"__comment": "Box39",
-			"from": [ 7.5, 21, 15.5 ],
-			"to": [ 8.5, 21.5, 16.5 ],
+			"from": [ 7.5, 21, 15 ],
+			"to": [ 8.5, 21.5, 16 ],
 			"faces": {
 				"down": { "uv": [ 7.5, 5, 8.5, 6 ], "texture": "#texture" },
 				"up": { "uv": [ 7.5, 10, 8.5, 11 ], "texture": "#texture" },
@@ -321,8 +321,8 @@
 		},
 		{
 			"__comment": "Box39",
-			"from": [ 7.5, 21.5, 16.5 ],
-			"to": [ 8.5, 22, 18 ],
+			"from": [ 7.5, 22, 16.5 ],
+			"to": [ 8.5, 22.5, 18 ],
 			"faces": {
 				"down": { "uv": [ 7.5, 5, 8.5, 6 ], "texture": "#texture" },
 				"up": { "uv": [ 7.5, 10, 8.5, 11 ], "texture": "#texture" },
@@ -360,8 +360,8 @@
 		},
 		{
 			"__comment": "Box39",
-			"from": [ 7.5, -6, 16.5 ],
-			"to": [ 8.5, -5.5, 18 ],
+			"from": [ 7.5, -6.5, 16.5 ],
+			"to": [ 8.5, -6, 18 ],
 			"faces": {
 				"down": { "uv": [ 7.5, 4, 8.5, 5 ], "texture": "#texture" },
 				"up": { "uv": [ 7.5, 11, 8.5, 12 ], "texture": "#texture" },
@@ -386,8 +386,8 @@
 		},
 		{
 			"__comment": "Box39",
-			"from": [ 7.5, -5.5, 15.5 ],
-			"to": [ 8.5, -5, 16.5 ],
+			"from": [ 7.5, -5.5, 15 ],
+			"to": [ 8.5, -5, 16 ],
 			"faces": {
 				"down": { "uv": [ 7.5, 4, 8.5, 5 ], "texture": "#texture" },
 				"up": { "uv": [ 7.5, 11, 8.5, 12 ], "texture": "#texture" },
@@ -727,6 +727,32 @@
 			"faces": {
 				"west": { "uv": [ 2, 5, 2.5, 8 ], "texture": "#texture1" },
 				"east": { "uv": [ 13.5, 5, 14, 8 ], "texture": "#texture1" }
+			}
+		},
+		{
+			"__comment": "Box39",
+			"from": [ 7.5, -6, 16 ],
+			"to": [ 8.5, -5.5, 17 ],
+			"faces": {
+				"down": { "uv": [ 7.5, 4, 8.5, 5 ], "texture": "#texture" },
+				"up": { "uv": [ 7.5, 11, 8.5, 12 ], "texture": "#texture" },
+				"north": { "uv": [ 7.5, 14, 8.5, 15 ], "texture": "#texture" },
+				"south": { "uv": [ 7.5, 14, 8.5, 15 ], "texture": "#texture" },
+				"west": { "uv": [ 11, 14, 12, 15 ], "texture": "#texture" },
+				"east": { "uv": [ 4, 14, 5, 15 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box39",
+			"from": [ 7.5, 21.5, 16 ],
+			"to": [ 8.5, 22, 17 ],
+			"faces": {
+				"down": { "uv": [ 7.5, 5, 8.5, 6 ], "texture": "#texture" },
+				"up": { "uv": [ 7.5, 10, 8.5, 11 ], "texture": "#texture" },
+				"north": { "uv": [ 7.5, 5, 8.5, 6 ], "texture": "#texture" },
+				"south": { "uv": [ 7.5, 5, 8.5, 6 ], "texture": "#texture" },
+				"west": { "uv": [ 10, 5, 11, 6 ], "texture": "#texture" },
+				"east": { "uv": [ 5, 5, 6, 6 ], "texture": "#texture" }
 			}
 		}
 	],
