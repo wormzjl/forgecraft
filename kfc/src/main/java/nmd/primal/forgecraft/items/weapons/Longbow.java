@@ -36,7 +36,6 @@ public class Longbow extends BaseItem {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase player) {
                 int time = item.getMaxItemUseDuration() - player.getItemInUseCount();
-                System.out.println(time);
                 if(time < 1*mod){
                     return 0.0F;
                 }
