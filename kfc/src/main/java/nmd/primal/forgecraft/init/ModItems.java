@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalMaterials;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.*;
+import nmd.primal.forgecraft.items.armor.CustomLeggings;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -125,6 +127,9 @@ public class ModItems {
     public static Item rawlongbow;
     public static Item unstrunglongbow;
     public static Item longbow;
+
+
+    //public static Item testleggings;
 
     //public static Item forgingmanual;
 
@@ -239,6 +244,13 @@ public class ModItems {
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
+
+
+        /**********
+         ARMOR
+         **********/
+        //testleggings=new CustomLeggings(PrimalMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
+        //registerItem(312, "diamond_leggings", (new ItemArmor(ItemArmor.ArmorMaterial.DIAMOND, 3, EntityEquipmentSlot.LEGS)).setUnlocalizedName("leggingsDiamond"));
     }
 
     public static void register() {
@@ -341,6 +353,13 @@ public class ModItems {
         GameRegistry.register(unstrunglongbow);
         GameRegistry.register(longbow);
         //GameRegistry.register(matchlockmusket);
+
+        /**********
+         ARMOR
+         **********/
+        //GameRegistry.register(testleggings);
+
+
 
         //GameRegistry.register(forgingmanual);
     }
@@ -446,6 +465,13 @@ public class ModItems {
         registerRender(longbow);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);
+
+
+        /**********
+         ARMOR
+         **********/
+        //registerRender(testleggings);
+
     }
 
     @SideOnly(Side.CLIENT)

@@ -1,19 +1,23 @@
 package nmd.primal.forgecraft.items.weapons;
 
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.BaseItem;
 
@@ -25,6 +29,7 @@ import javax.annotation.Nullable;
 public class Longbow extends BaseItem {
 
     int mod=5;
+    int time=0;
 
     public Longbow(String name) {
         super(name);
@@ -35,65 +40,66 @@ public class Longbow extends BaseItem {
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             @SideOnly(Side.CLIENT)
-            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase player) {
-                int time = item.getMaxItemUseDuration() - player.getItemInUseCount();
-                if(time < 1*mod){
-                    return 0.0F;
-                }
-                if(time>=1*mod && time<2*mod){
-                    return 0.1F;
-                }
-                if(time>=2*mod && time<3*mod){
-                    return 0.2F;
-                }
-                if(time>=3*mod && time<4*mod){
-                    return 0.3F;
-                }
-                if(time>=4*mod && time<5*mod){
-                    return 0.4F;
-                }
-                if(time>=5*mod && time<6*mod){
-                    return 0.5F;
-                }
-                if(time>=6*mod && time<7*mod){
-                    return 0.6F;
-                }
-                if(time>=7*mod && time<8*mod){
-                    return 0.7F;
-                }
-                if(time>=8*mod && time<72000 ){
-                    return 0.8F;
-                }
+            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase playerin) {
+
+                    if (time < 1 * mod) {
+                        return 0.0F;
+                    }
+                    if (time >= 1 * mod && time < 2 * mod) {
+                        return 0.1F;
+                    }
+                    if (time >= 2 * mod && time < 3 * mod) {
+                        return 0.2F;
+                    }
+                    if (time >= 3 * mod && time < 4 * mod) {
+                        return 0.3F;
+                    }
+                    if (time >= 4 * mod && time < 5 * mod) {
+                        return 0.4F;
+                    }
+                    if (time >= 5 * mod && time < 6 * mod) {
+                        return 0.5F;
+                    }
+                    if (time >= 6 * mod && time < 7 * mod) {
+                        return 0.6F;
+                    }
+                    if (time >= 7 * mod && time < 8 * mod) {
+                        return 0.7F;
+                    }
+                    if (time >= 8 * mod && time < 72000) {
+                        return 0.8F;
+                    }
+
                 return 0.0f;
             }
         });
     }
 
+    @Override
+    public void onUpdate(ItemStack item, World world, Entity playerin, int itemSlot, boolean isSelected) {
+
+        EntityPlayer player = (EntityPlayer) playerin;
+        if(player.inventory.getCurrentItem().getItem() == ModItems.longbow) {
+            time = item.getMaxItemUseDuration() - player.getItemInUseCount();
+        }
+
+    }
 
     private ItemStack findAmmo(EntityPlayer player)
     {
-        if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))
+
+        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
         {
-            return player.getHeldItem(EnumHand.OFF_HAND);
-        }
-        else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND)))
-        {
-            return player.getHeldItem(EnumHand.MAIN_HAND);
-        }
-        else
-        {
-            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+            ItemStack itemstack = player.inventory.getStackInSlot(i);
+
+            if (this.isArrow(itemstack))
             {
-                ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-                if (this.isArrow(itemstack))
-                {
-                    return itemstack;
-                }
+                return itemstack;
             }
-
-            return ItemStack.EMPTY;
         }
+
+        return ItemStack.EMPTY;
+
     }
 
     protected boolean isArrow(ItemStack stack)
@@ -144,7 +150,7 @@ public class Longbow extends BaseItem {
 
                         stack.damageItem(1, entityplayer);
 
-                        entityarrow.pickupStatus = EntityArrow.PickupStatus.CREATIVE_ONLY;
+                        entityarrow.pickupStatus = EntityArrow.PickupStatus.ALLOWED;
 
                         worldIn.spawnEntity(entityarrow);
                     }

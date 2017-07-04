@@ -48,7 +48,7 @@ public class ModCrafting {
         /***Unstrung Longbow***/
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.unstrunglongbow, 1),
                 true, new Object[]{"C", "A",
-                ('C'), PrimalItems.BEAR_FAT,
+                ('C'), "fatAnimal",
                 ('A'), ModItems.rawlongbow
         }));
         /***Longbow***/

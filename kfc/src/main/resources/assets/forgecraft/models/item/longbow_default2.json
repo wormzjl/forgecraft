@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "primal:blocks/log_stripped_yew_side",
-		"texture": "primal:blocks/log_stripped_yew_side",
-		"texture1": "forgecraft:items/bowstring"
+		"particle": "blocks/log_stripped_yew_side",
+		"texture": "blocks/log_stripped_yew_side",
+		"texture1": "items/bowstring"
 	},
 	"elements": [
 		{
@@ -559,8 +559,8 @@
 			"scale":  [ 0.5, 0.875, 0.75 ]
 		},
 		"firstperson_righthand": {
-			"rotation":  [ 10, 3, 5 ],
-			"translation":  [ -2, 0, 0 ],
+			"rotation":  [ 10, 15, 0 ],
+			"translation":  [ -5, 0, 0 ],
 			"scale":  [ 0.5, 0.875, 0.75 ]
 		},
 		"firstperson_lefthand": {
