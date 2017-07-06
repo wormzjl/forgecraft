@@ -202,22 +202,22 @@ public class ModCrafting {
          ***************************************************************/
 
         /***Pickaxe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
@@ -228,27 +228,22 @@ public class ModCrafting {
         //TODO wootz placeholder
 
         /***Axe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe), "T", "C", "S",
-                ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelaxehead,1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
@@ -258,22 +253,22 @@ public class ModCrafting {
                 ('S'), Items.STICK));
 
         /***Shovel Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeshovel), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovel), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovel), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
@@ -283,22 +278,22 @@ public class ModCrafting {
                 ('S'), Items.STICK));
 
         /***Hoe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzehoe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoe), "T", "C", "S",
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
                 ('C'), "cordageGeneral"));
