@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomAxe extends ItemAxe implements ToolNBT {
 
-    private Item damageDrop;
+    Item drop;
 
     public CustomAxe(String name, Item.ToolMaterial material, Item damageDrop) {
         super(material, 6, -3.1f);
@@ -40,7 +40,7 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-        damageDrop = damageDrop;
+        this.drop = damageDrop;
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
@@ -232,6 +232,7 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
     public void onCreated(ItemStack item, World world, EntityPlayer playerIn) {
 
         if(!world.isRemote) {
+            item.setItemDamage(item.getMaxDamage()-5);
             if (!item.hasTagCompound()) {
                 item.setTagCompound(new NBTTagCompound());
                 NBTTagCompound tags = new NBTTagCompound();
@@ -254,6 +255,7 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if(!world.isRemote) {
+
             if (!item.hasTagCompound()) {
                 item.setTagCompound(new NBTTagCompound());
                 NBTTagCompound tags = new NBTTagCompound();
@@ -305,7 +307,6 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            //System.out.println(world.getBlockState(pos).getBlock());
             if(itemstack.getItem() instanceof CustomAxe){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
@@ -334,13 +335,22 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(damageDrop, 1);
+            ItemStack dropStack = new ItemStack(drop, 1);
+            dropStack.setItemDamage(stack.getItemDamage());
+            dropStack.setTagCompound(new NBTTagCompound());
+            NBTTagCompound copyNBT;
+            copyNBT = stack.getSubCompound("tags").copy();
+            dropStack.setTagCompound(copyNBT);
+
             EntityPlayer player = (EntityPlayer) attacker;
             World world = attacker.getEntityWorld();
-            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-            attacker.renderBrokenItemStack(stack);
-            stack.shrink(1);
-            return true;
+            if(!world.isRemote) {
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                attacker.renderBrokenItemStack(stack);
+                stack.shrink(1);
+                return true;
+            }
+            return false;
         }
     }
 
@@ -357,7 +367,11 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
                     }
                 } else stack.damageItem(1, entityLiving);
             } else {
-                ItemStack dropStack = new ItemStack(damageDrop, 1);
+                ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);

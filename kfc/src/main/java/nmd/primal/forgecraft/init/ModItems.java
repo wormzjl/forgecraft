@@ -194,30 +194,30 @@ public class ModItems {
         /**********
          TOOLS
          **********/
-        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE);
-        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE);
-        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE);
-        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE);
+        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE, bronzepickaxehead);
+        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE, bronzeaxehead);
+        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE, bronzeshovelhead);
+        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE, bronzehoehead);
 
-        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON, brokenwroughtirontool);
-        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON, brokenwroughtirontool);
-        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON, brokenwroughtirontool);
-        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON, brokenwroughtirontool);
+        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON, pickaxehead);
+        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON, ironaxehead);
+        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
+        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON, ironhoehead);
 
-        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON, brokencleanirontool);
-        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON, brokencleanirontool);
-        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON, brokencleanirontool);
-        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON, brokencleanirontool);
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
+        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironaxehead);
+        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
+        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
 
-        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL, brokensteeltool);
-        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL, brokensteeltool);
-        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL, brokensteeltool);
-        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL, brokensteeltool);
+        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
+        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelaxehead);
+        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL, steelshovelhead);
+        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL, steelhoehead);
 
-        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, brokenwootztool);
-        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, brokenwootztool);
-        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL, brokenwootztool);
-        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL, brokenwootztool);
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
+        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzaxehead);
+        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
+        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
 
         /**********
          WEAPONS

@@ -31,7 +31,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
-    private Item damageDrop;
+    private Item drop;
 
     public CustomPickaxe(String name, Item.ToolMaterial material, Item damageDrop) {
         super(material);
@@ -40,7 +40,7 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-        this.damageDrop=damageDrop;
+        this.drop=damageDrop;
         //this.toolClass = "pickaxe";
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
@@ -335,13 +335,22 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(damageDrop, 1);
+            ItemStack dropStack = new ItemStack(drop, 1);
+            dropStack.setItemDamage(stack.getItemDamage());
+            dropStack.setTagCompound(new NBTTagCompound());
+            NBTTagCompound copyNBT;
+            copyNBT = stack.getSubCompound("tags").copy();
+            dropStack.setTagCompound(copyNBT);
+
             EntityPlayer player = (EntityPlayer) attacker;
             World world = attacker.getEntityWorld();
-            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-            attacker.renderBrokenItemStack(stack);
-            stack.shrink(1);
-            return true;
+            if(!world.isRemote) {
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                attacker.renderBrokenItemStack(stack);
+                stack.shrink(1);
+                return true;
+            }
+            return false;
         }
     }
 
@@ -350,21 +359,26 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     {
         if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
         {
-            if(stack.getMaxDamage() - stack.getItemDamage() > 1 ) {
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
                 stack.getTagCompound().removeTag("ench");
-                if (getDiamondLevel(stack) > 0) {
-                    if (ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                if(getDiamondLevel(stack) > 0) {
+                    if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
                         stack.damageItem(1, entityLiving);
                     }
                 } else stack.damageItem(1, entityLiving);
             } else {
-                ItemStack dropStack = new ItemStack(damageDrop, 1);
+                ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);
                 stack.shrink(1);
             }
         }
+
         return true;
     }
 

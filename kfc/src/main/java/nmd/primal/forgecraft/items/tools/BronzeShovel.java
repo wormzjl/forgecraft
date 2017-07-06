@@ -35,15 +35,16 @@ import java.util.concurrent.ThreadLocalRandom;
 public class BronzeShovel extends ItemSpade implements ToolNBT {
 
     private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(new Block[] {Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH});
+Item drop;
 
-    public BronzeShovel(String name, ToolMaterial material) {
+    public BronzeShovel(String name, ToolMaterial material, Item damageDrop) {
         super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-
+        this.drop=damageDrop;
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
@@ -190,33 +191,45 @@ public class BronzeShovel extends ItemSpade implements ToolNBT {
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+            ItemStack dropStack = new ItemStack(drop, 1);
+            dropStack.setItemDamage(stack.getItemDamage());
+            dropStack.setTagCompound(new NBTTagCompound());
+            NBTTagCompound copyNBT;
+            copyNBT = stack.getSubCompound("tags").copy();
+            dropStack.setTagCompound(copyNBT);
+
             EntityPlayer player = (EntityPlayer) attacker;
             World world = attacker.getEntityWorld();
-            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-            attacker.renderBrokenItemStack(stack);
-            stack.shrink(1);
-            return true;
+            if(!world.isRemote) {
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                attacker.renderBrokenItemStack(stack);
+                stack.shrink(1);
+                return true;
+            }
+            return false;
         }
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
     {
-        if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
+        if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
         {
             if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
                 stack.getTagCompound().removeTag("ench");
-                //System.out.println(stack.getTagCompound());
                 if(getDiamondLevel(stack) > 0) {
                     if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
                         stack.damageItem(1, entityLiving);
                     }
                 } else stack.damageItem(1, entityLiving);
             } else {
-                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
-                PlayerHelper.spawnItemOnPlayer(worldIn, player, dropStack);
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);
                 stack.shrink(1);
             }

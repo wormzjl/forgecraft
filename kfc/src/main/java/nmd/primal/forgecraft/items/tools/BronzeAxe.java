@@ -31,14 +31,16 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class BronzeAxe extends ItemAxe implements ToolNBT {
 
-    public BronzeAxe(String name, Item.ToolMaterial material) {
+    Item drop;
+
+    public BronzeAxe(String name, Item.ToolMaterial material, Item damageDrop) {
         super(material, 5, -2f);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-
+        this.drop=damageDrop;
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
@@ -189,13 +191,22 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+            ItemStack dropStack = new ItemStack(drop, 1);
+            dropStack.setItemDamage(stack.getItemDamage());
+            dropStack.setTagCompound(new NBTTagCompound());
+            NBTTagCompound copyNBT;
+            copyNBT = stack.getSubCompound("tags").copy();
+            dropStack.setTagCompound(copyNBT);
+
             EntityPlayer player = (EntityPlayer) attacker;
             World world = attacker.getEntityWorld();
-            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-            attacker.renderBrokenItemStack(stack);
-            stack.shrink(1);
-            return true;
+            if(!world.isRemote) {
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                attacker.renderBrokenItemStack(stack);
+                stack.shrink(1);
+                return true;
+            }
+            return false;
         }
     }
 
@@ -212,7 +223,11 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
                     }
                 } else stack.damageItem(1, entityLiving);
             } else {
-                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);

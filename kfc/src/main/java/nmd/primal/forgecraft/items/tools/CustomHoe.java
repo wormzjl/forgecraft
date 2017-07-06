@@ -32,7 +32,7 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomHoe extends ItemHoe  implements ToolNBT {
 
-    private Item damageDrop;
+    private Item drop;
 
     public CustomHoe(String name, Item.ToolMaterial material, Item damageDrop) {
         super(material);
@@ -41,7 +41,7 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-        this.damageDrop = damageDrop;
+        this.drop = damageDrop;
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
@@ -327,23 +327,6 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
     }
 
     @Override
-    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
-    {
-        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
-            stack.damageItem(1, attacker);
-            return true;
-        } else {
-            ItemStack dropStack = new ItemStack(damageDrop, 1);
-            EntityPlayer player = (EntityPlayer) attacker;
-            World world = attacker.getEntityWorld();
-            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-            attacker.renderBrokenItemStack(stack);
-            stack.shrink(1);
-            return true;
-        }
-    }
-
-    @Override
     protected void setBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state)
     {
         worldIn.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
@@ -354,7 +337,12 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
             if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
                 stack.damageItem(1, player);
             } else {
-                ItemStack dropStack = new ItemStack(damageDrop, 1);
+                ItemStack dropStack = new ItemStack(drop, 1);
+                dropStack.setItemDamage(stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
                 PlayerHelper.spawnItemOnPlayer(worldIn, player, dropStack);
                 player.renderBrokenItemStack(stack);
                 stack.shrink(1);
@@ -363,18 +351,54 @@ public class CustomHoe extends ItemHoe  implements ToolNBT {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
     {
-        if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
-        {
+        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+            stack.damageItem(1, attacker);
+            return true;
+        } else {
+            ItemStack dropStack = new ItemStack(drop, 1);
+            dropStack.setItemDamage(stack.getItemDamage());
+            dropStack.setTagCompound(new NBTTagCompound());
+            NBTTagCompound copyNBT;
+            copyNBT = stack.getSubCompound("tags").copy();
+            dropStack.setTagCompound(copyNBT);
 
-            stack.getTagCompound().removeTag("ench");
-            //System.out.println(stack.getTagCompound());
-            if(getDiamondLevel(stack) > 0) {
-                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
-                    stack.damageItem(1, entityLiving);
-                }
-            } else stack.damageItem(1, entityLiving);
+            EntityPlayer player = (EntityPlayer) attacker;
+            World world = attacker.getEntityWorld();
+            if(!world.isRemote) {
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                attacker.renderBrokenItemStack(stack);
+                stack.shrink(1);
+                return true;
+            }
+            return false;
+        }
+    }
+
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
+        {
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+                stack.getTagCompound().removeTag("ench");
+                if(getDiamondLevel(stack) > 0) {
+                    if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                        stack.damageItem(1, entityLiving);
+                    }
+                } else stack.damageItem(1, entityLiving);
+            } else {
+                ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+                dropStack.setTagCompound(new NBTTagCompound());
+                NBTTagCompound copyNBT;
+                copyNBT = stack.getSubCompound("tags").copy();
+                dropStack.setTagCompound(copyNBT);
+                EntityPlayer player = (EntityPlayer) entityLiving;
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                entityLiving.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
         }
 
         return true;
