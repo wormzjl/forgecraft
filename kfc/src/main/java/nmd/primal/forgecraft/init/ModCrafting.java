@@ -169,6 +169,34 @@ public class ModCrafting {
                 ('E'), PrimalItems.EMERALD_KNAPP,
                 ('Y'), ModBlocks.rawbronzecrucible));
 
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible, 1),
+                "T", "Y",
+                ('T'), new ItemStack(ModItems.brokenbronzetool, 1),
+                ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
+                ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
+                "T", "Y",
+                ('T'), new ItemStack(ModItems.brokenwroughtirontool, 1),
+                ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
+        ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible, 1),
+                "T", "Y",
+                ('T'), new ItemStack(ModItems.brokencleanirontool, 1),
+                ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
+        ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible, 1),
+                "T", "Y",
+                ('T'), new ItemStack(ModItems.brokensteeltool, 1),
+                ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
+        ));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawwootzcrucible, 1),
+                "T", "Y",
+                ('T'), new ItemStack(ModItems.brokenwootztool, 1),
+                ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
+        ));
+
+
         /***************************************************************
          * TOOL CRAFTING RECIPES
          ***************************************************************/

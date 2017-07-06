@@ -17,7 +17,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -29,14 +31,16 @@ import java.util.concurrent.ThreadLocalRandom;
  */
 public class CustomAxe extends ItemAxe implements ToolNBT {
 
-    public CustomAxe(String name, Item.ToolMaterial material) {
+    private Item damageDrop;
+
+    public CustomAxe(String name, Item.ToolMaterial material, Item damageDrop) {
         super(material, 6, -3.1f);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-
+        damageDrop = damageDrop;
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
@@ -263,9 +267,6 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
             }
-            if( this.getMaxDamage(item) - this.getDamage(item) < 5 ){
-
-            }
         }
     }
 
@@ -327,18 +328,41 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
     {
-        if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
-        {
+        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+            stack.damageItem(1, attacker);
+            return true;
+        } else {
+            ItemStack dropStack = new ItemStack(damageDrop, 1);
+            EntityPlayer player = (EntityPlayer) attacker;
+            World world = attacker.getEntityWorld();
+            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+            attacker.renderBrokenItemStack(stack);
+            stack.shrink(1);
+            return true;
+        }
+    }
 
-            stack.getTagCompound().removeTag("ench");
-            //System.out.println(stack.getTagCompound());
-            if(getDiamondLevel(stack) > 0) {
-                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
-                    stack.damageItem(1, entityLiving);
-                }
-            } else stack.damageItem(1, entityLiving);
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
+        {
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+                stack.getTagCompound().removeTag("ench");
+                if(getDiamondLevel(stack) > 0) {
+                    if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                        stack.damageItem(1, entityLiving);
+                    }
+                } else stack.damageItem(1, entityLiving);
+            } else {
+                ItemStack dropStack = new ItemStack(damageDrop, 1);
+                EntityPlayer player = (EntityPlayer) entityLiving;
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                entityLiving.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
         }
 
         return true;

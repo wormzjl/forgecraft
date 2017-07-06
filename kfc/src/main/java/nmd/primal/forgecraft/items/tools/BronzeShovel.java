@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -183,18 +184,42 @@ public class BronzeShovel extends ItemSpade implements ToolNBT {
     }
 
     @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    {
+        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+            stack.damageItem(1, attacker);
+            return true;
+        } else {
+            ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+            EntityPlayer player = (EntityPlayer) attacker;
+            World world = attacker.getEntityWorld();
+            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+            attacker.renderBrokenItemStack(stack);
+            stack.shrink(1);
+            return true;
+        }
+    }
+
+    @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
     {
         if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
         {
-
-            stack.getTagCompound().removeTag("ench");
-            //System.out.println(stack.getTagCompound());
-            if(getDiamondLevel(stack) > 0) {
-                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
-                    stack.damageItem(1, entityLiving);
-                }
-            } else stack.damageItem(1, entityLiving);
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+                stack.getTagCompound().removeTag("ench");
+                //System.out.println(stack.getTagCompound());
+                if(getDiamondLevel(stack) > 0) {
+                    if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                        stack.damageItem(1, entityLiving);
+                    }
+                } else stack.damageItem(1, entityLiving);
+            } else {
+                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                EntityPlayer player = (EntityPlayer) entityLiving;
+                PlayerHelper.spawnItemOnPlayer(worldIn, player, dropStack);
+                entityLiving.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
         }
 
         return true;

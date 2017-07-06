@@ -6,11 +6,13 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -185,11 +187,47 @@ public class BronzeHoe extends ItemHoe  implements ToolNBT {
     }
 
     @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
+    {
+        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+            stack.damageItem(1, attacker);
+            return true;
+        } else {
+            ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+            EntityPlayer player = (EntityPlayer) attacker;
+            World world = attacker.getEntityWorld();
+            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+            attacker.renderBrokenItemStack(stack);
+            stack.shrink(1);
+            return true;
+        }
+    }
+
+    @Override
+    protected void setBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state)
+    {
+        worldIn.playSound(player, pos, SoundEvents.ITEM_HOE_TILL, SoundCategory.BLOCKS, 1.0F, 1.0F);
+
+        if (!worldIn.isRemote)
+        {
+            worldIn.setBlockState(pos, state, 11);
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+                stack.damageItem(1, player);
+            } else {
+                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                PlayerHelper.spawnItemOnPlayer(worldIn, player, dropStack);
+                player.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
+        }
+    }
+
+    @Override
     public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
     {
         if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
         {
-
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
             stack.getTagCompound().removeTag("ench");
             //System.out.println(stack.getTagCompound());
             if(getDiamondLevel(stack) > 0) {
@@ -197,6 +235,13 @@ public class BronzeHoe extends ItemHoe  implements ToolNBT {
                     stack.damageItem(1, entityLiving);
                 }
             } else stack.damageItem(1, entityLiving);
+            } else {
+                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                EntityPlayer player = (EntityPlayer) entityLiving;
+                PlayerHelper.spawnItemOnPlayer(worldIn, player, dropStack);
+                entityLiving.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
         }
 
         return true;

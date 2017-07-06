@@ -183,18 +183,41 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
     {
-        if (!worldIn.isRemote && (double)state.getBlockHardness(worldIn, pos) != 0.0D)
-        {
+        if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+            stack.damageItem(1, attacker);
+            return true;
+        } else {
+            ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+            EntityPlayer player = (EntityPlayer) attacker;
+            World world = attacker.getEntityWorld();
+            PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+            attacker.renderBrokenItemStack(stack);
+            stack.shrink(1);
+            return true;
+        }
+    }
 
-            stack.getTagCompound().removeTag("ench");
-            //System.out.println(stack.getTagCompound());
-            if(getDiamondLevel(stack) > 0) {
-                if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
-                    stack.damageItem(1, entityLiving);
-                }
-            } else stack.damageItem(1, entityLiving);
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, IBlockState state, BlockPos pos, EntityLivingBase entityLiving)
+    {
+        if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
+        {
+            if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
+                stack.getTagCompound().removeTag("ench");
+                if(getDiamondLevel(stack) > 0) {
+                    if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
+                        stack.damageItem(1, entityLiving);
+                    }
+                } else stack.damageItem(1, entityLiving);
+            } else {
+                ItemStack dropStack = new ItemStack(ModItems.brokenbronzetool, 1);
+                EntityPlayer player = (EntityPlayer) entityLiving;
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                entityLiving.renderBrokenItemStack(stack);
+                stack.shrink(1);
+            }
         }
 
         return true;
