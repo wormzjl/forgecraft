@@ -485,7 +485,7 @@ public class ModCrafting {
                 new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
                 new ItemStack(ModBlocks.rawbronzecrucible, 1),
                 1100,
-                1100,
+                800,
                 600,
                 0.5f,
                 0.5f
@@ -498,10 +498,10 @@ public class ModCrafting {
                 new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
                 new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
                 800,
-                20,
+                800,
                 500,
                 0.5f,
-                0.0f
+                0.5f
         );
 
 //Makes the Finished Hot Bronze Crucible
