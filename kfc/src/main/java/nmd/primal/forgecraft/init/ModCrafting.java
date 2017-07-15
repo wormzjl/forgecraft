@@ -759,7 +759,7 @@ public class ModCrafting {
         ForgeCrafting.addRecipe(
                 ModItems.steelpickaxehead,
                 new ItemStack(ModItems.steelpickaxehead, 1 ),
-                800,
+                1000,
                 160,
                 400,
                 1.0f,

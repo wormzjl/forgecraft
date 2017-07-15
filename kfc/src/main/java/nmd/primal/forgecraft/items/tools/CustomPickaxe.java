@@ -237,14 +237,14 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
                 item.getTagCompound().setTag("tags", tags);
 
-                /*setHot(item, false);
+                setHot(item, false);
 
                 setHot(item, false);
                 setEmerald(item, false);
                 setDiamondLevel(item, 0);
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
-                setModifiers(item, 0);*/
+                setModifiers(item, 0);
             }
         }
 
@@ -253,6 +253,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if(!world.isRemote) {
+            //item.setItemDamage(item.getMaxDamage()-2);
+
             if (!item.hasTagCompound()) {
                 item.setTagCompound(new NBTTagCompound());
                 NBTTagCompound tags = new NBTTagCompound();
@@ -268,9 +270,6 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
             }
         }
-        /*if(){
-
-        }*/
     }
 
     //public void onItemTooltip(ItemTooltipEvent event){
@@ -335,11 +334,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(drop, 1);
-            dropStack.setItemDamage(stack.getItemDamage());
-            dropStack.setTagCompound(new NBTTagCompound());
-            NBTTagCompound copyNBT;
-            copyNBT = stack.getSubCompound("tags").copy();
+            ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+            NBTTagCompound copyNBT = stack.getTagCompound();
             dropStack.setTagCompound(copyNBT);
 
             EntityPlayer player = (EntityPlayer) attacker;
@@ -368,14 +364,14 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                 } else stack.damageItem(1, entityLiving);
             } else {
                 ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
-                dropStack.setTagCompound(new NBTTagCompound());
-                NBTTagCompound copyNBT;
-                copyNBT = stack.getSubCompound("tags").copy();
+                NBTTagCompound copyNBT = stack.getTagCompound();
                 dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);
                 stack.shrink(1);
+                player.inventory.markDirty();
+                player.inventory.inventoryChanged = true;
             }
         }
 

@@ -252,6 +252,7 @@ public class ToolPart extends Item implements ToolNBT{
 
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
+        //System.out.println(item.getTagCompound());
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
             NBTTagCompound tags = new NBTTagCompound();

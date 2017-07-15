@@ -191,11 +191,8 @@ Item drop;
             stack.damageItem(1, attacker);
             return true;
         } else {
-            ItemStack dropStack = new ItemStack(drop, 1);
-            dropStack.setItemDamage(stack.getItemDamage());
-            dropStack.setTagCompound(new NBTTagCompound());
-            NBTTagCompound copyNBT;
-            copyNBT = stack.getSubCompound("tags").copy();
+            ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
+            NBTTagCompound copyNBT = stack.getTagCompound();
             dropStack.setTagCompound(copyNBT);
 
             EntityPlayer player = (EntityPlayer) attacker;
@@ -224,9 +221,7 @@ Item drop;
                 } else stack.damageItem(1, entityLiving);
             } else {
                 ItemStack dropStack = new ItemStack(drop, 1, stack.getItemDamage());
-                dropStack.setTagCompound(new NBTTagCompound());
-                NBTTagCompound copyNBT;
-                copyNBT = stack.getSubCompound("tags").copy();
+                NBTTagCompound copyNBT = stack.getTagCompound();
                 dropStack.setTagCompound(copyNBT);
                 EntityPlayer player = (EntityPlayer) entityLiving;
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);

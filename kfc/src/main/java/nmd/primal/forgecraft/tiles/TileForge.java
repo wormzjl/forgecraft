@@ -14,9 +14,11 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
+import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.util.ToolNBT;
 
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
@@ -24,7 +26,7 @@ import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 /**
  * Created by mminaie on 11/30/16.
  */
-public class TileForge extends TileBaseSlot implements ITickable {
+public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
 
     private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
     //private ItemStack[] inventory = new ItemStack [0];
@@ -84,7 +86,7 @@ public class TileForge extends TileBaseSlot implements ITickable {
             }
             if (world.rand.nextInt(decrInt) == 0) {
                 if (world.rand.nextInt(burnModifier) == 0) {
-                    System.out.println("Fuel Burn" + this.getSlotStack(0));
+                    //System.out.println("Fuel Burn" + this.getSlotStack(0));
                     this.decrStackSize(0, 1);
                     this.markDirty();
                     this.updateBlock();
@@ -111,7 +113,8 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
                 }
             }
-            if(stack.isEmpty()){
+            if(stack.isEmpty() || RecipeHelper.getBurnTime(stack) <=0){
+                System.out.println(stack);
                 world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
             }
             if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_FAIR){
@@ -199,12 +202,14 @@ public class TileForge extends TileBaseSlot implements ITickable {
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
                         if(this.getSlotStack(i).hasTagCompound()){
-                            if( this.getSlotStack(i).getSubCompound("tags").getBoolean("hot") == false) {
-                                this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
-                                //System.out.println(this.getSlotStack(i).getSubCompound("tags"));
-                                //System.out.println("its hot now");
-                                cookCounter4 = 0;
-                            }
+                            //System.out.println(this.getSlotStack(i).getTagCompound());
+                                if (!getHot(this.getSlotStack(i))) {
+                                    this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+                                    //System.out.println(this.getSlotStack(i).getSubCompound("tags"));
+                                    //System.out.println("its hot now");
+                                    cookCounter4 = 0;
+                                }
+
                         } else this.setSlotStack(i, recipe.getOutput());
                         cookCounter4 = 0;
                     }
