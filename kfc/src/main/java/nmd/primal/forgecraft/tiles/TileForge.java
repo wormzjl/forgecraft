@@ -15,6 +15,7 @@ import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.FireHelper;
+import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
@@ -161,8 +162,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
     private void craftingManager() {
 
         for (int i = 2; i < this.getSlotListSize(); i++) {
-            Item itemTest = this.getSlotStack(i).getItem();
-            ForgeCrafting recipe = ForgeCrafting.getRecipe(itemTest);
+            ItemStack stack = this.getSlotStack(i);
+            ForgeCrafting recipe = ForgeCrafting.getRecipe(stack.getItem());
             if (recipe != null) {
 
                 if(i == 2){
@@ -173,9 +174,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter2--;
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
-                        if(this.getSlotStack(i).hasTagCompound()){
-                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+
+                        if (NBTHelper.hasTag(stack, "tags")) {
+                            NBTHelper.setBoolean(stack, "hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
+
                         cookCounter2 = 0;
                     }
                 }
@@ -187,9 +190,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter3--;
                     }
                     if (cookCounter3 >= recipe.getIdealTime()) {
-                        if(this.getSlotStack(i).hasTagCompound()){
-                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+
+                        if (NBTHelper.hasTag(stack, "tags")) {
+                            NBTHelper.setBoolean(stack, "hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
+
                         cookCounter3 = 0;
                     }
                 }
@@ -201,16 +206,12 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter4--;
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
-                        if(this.getSlotStack(i).hasTagCompound()){
-                            //System.out.println(this.getSlotStack(i).getTagCompound());
-                                if (!getHot(this.getSlotStack(i))) {
-                                    this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
-                                    //System.out.println(this.getSlotStack(i).getSubCompound("tags"));
-                                    //System.out.println("its hot now");
-                                    cookCounter4 = 0;
-                                }
 
+                        if (NBTHelper.hasTag(stack, "tags")) {
+                            NBTHelper.setBoolean(stack, "hot", true);
+                            cookCounter4 = 0;
                         } else this.setSlotStack(i, recipe.getOutput());
+
                         cookCounter4 = 0;
                     }
                 }
@@ -222,9 +223,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter5--;
                     }
                     if (cookCounter5 >= recipe.getIdealTime()) {
-                        if(this.getSlotStack(i).hasTagCompound()){
-                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+
+                        if (NBTHelper.hasTag(stack, "tags")) {
+                            NBTHelper.setBoolean(stack, "hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
+
                         cookCounter5 = 0;
                     }
                 }
@@ -236,9 +239,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter6--;
                     }
                     if (cookCounter6 >= recipe.getIdealTime()) {
-                        if(this.getSlotStack(i).hasTagCompound()){
-                            this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", true);
+
+                        if (NBTHelper.hasTag(stack, "tags")) {
+                            NBTHelper.setBoolean(stack, "hot", true);
                         } else this.setSlotStack(i, recipe.getOutput());
+
                         cookCounter6 = 0;
                     }
                 }
@@ -252,7 +257,6 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             }
         }
     }
-
 
     public int getHeat(){
         return this.heat;
