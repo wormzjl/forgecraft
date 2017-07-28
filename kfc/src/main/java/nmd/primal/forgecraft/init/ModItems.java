@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,12 +16,14 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalMaterials;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.*;
+import nmd.primal.forgecraft.items.armor.CustomLeggings;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
+import nmd.primal.forgecraft.items.weapons.Longbow;
 import nmd.primal.forgecraft.items.weapons.SlayerSword;
 
 /**
@@ -115,12 +118,24 @@ public class ModItems {
     public static Item cleanironslayer;
     public static Item steelslayer;
 
+    public static Item brokenbronzetool;
+    public static Item brokenwroughtirontool;
+    public static Item brokencleanirontool;
+    public static Item brokensteeltool;
+    public static Item brokenwootztool;
+
     public static Item wroughtironshield;
     //public static Item cleanironshield;
     //public static Item steelshield;
     //public static Item wootzshield;
 
     public static Item matchlockmusket;
+    public static Item rawlongbow;
+    public static Item unstrunglongbow;
+    public static Item longbow;
+
+
+    //public static Item testleggings;
 
     //public static Item forgingmanual;
 
@@ -132,7 +147,12 @@ public class ModItems {
         stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
+
+        rawlongbow = new BaseItem("rawlongbow");
+        unstrunglongbow = new BaseItem("unstrunglongbow");
+        longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
+
 
         /**********
          CASTING PARTS
@@ -174,30 +194,30 @@ public class ModItems {
         /**********
          TOOLS
          **********/
-        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE);
-        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE);
-        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE);
-        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE);
+        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE, bronzepickaxehead);
+        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE, bronzeaxehead);
+        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE, bronzeshovelhead);
+        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE, bronzehoehead);
 
-        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON);
-        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON);
+        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON, pickaxehead);
+        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON, ironaxehead);
+        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
+        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON, ironhoehead);
 
-        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON);
-        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON);
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
+        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironaxehead);
+        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
+        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
 
-        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL);
-        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL);
+        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
+        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelaxehead);
+        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL, steelshovelhead);
+        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL, steelhoehead);
 
-        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL);
-        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL);
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
+        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzaxehead);
+        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
+        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
 
         /**********
          WEAPONS
@@ -230,6 +250,18 @@ public class ModItems {
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
+
+        brokenbronzetool = new BaseItem("brokenbronzetool");
+        brokenwroughtirontool = new BaseItem("brokenwroughtirontool");
+        brokencleanirontool = new BaseItem("brokencleanirontool");
+        brokensteeltool = new BaseItem("brokensteeltool");
+        brokenwootztool = new BaseItem("brokenwootztool");
+
+        /**********
+         ARMOR
+         **********/
+        //testleggings=new CustomLeggings(PrimalMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
+        //registerItem(312, "diamond_leggings", (new ItemArmor(ItemArmor.ArmorMaterial.DIAMOND, 3, EntityEquipmentSlot.LEGS)).setUnlocalizedName("leggingsDiamond"));
     }
 
     public static void register() {
@@ -327,7 +359,24 @@ public class ModItems {
         GameRegistry.register(wroughtironslayer);
         GameRegistry.register(cleanironslayer);
         GameRegistry.register(steelslayer);
+
+        GameRegistry.register(rawlongbow);
+        GameRegistry.register(unstrunglongbow);
+        GameRegistry.register(longbow);
         //GameRegistry.register(matchlockmusket);
+
+        GameRegistry.register(brokenbronzetool);
+        GameRegistry.register(brokenwroughtirontool);
+        GameRegistry.register(brokencleanirontool);
+        GameRegistry.register(brokensteeltool);
+        GameRegistry.register(brokenwootztool);
+
+        /**********
+         ARMOR
+         **********/
+        //GameRegistry.register(testleggings);
+
+
 
         //GameRegistry.register(forgingmanual);
     }
@@ -428,8 +477,25 @@ public class ModItems {
         registerRender(cleanironslayer);
         registerRender(steelslayer);
 
+        registerRender(rawlongbow);
+        registerRender(unstrunglongbow);
+        registerRender(longbow);
         //registerRender(forgingmanual);
         //registerRender(matchlockmusket);
+
+
+        registerRender(brokenbronzetool);
+        registerRender(brokenwroughtirontool);
+        registerRender(brokencleanirontool);
+        registerRender(brokensteeltool);
+        registerRender(brokenwootztool);
+
+
+        /**********
+         ARMOR
+         **********/
+        //registerRender(testleggings);
+
     }
 
     @SideOnly(Side.CLIENT)

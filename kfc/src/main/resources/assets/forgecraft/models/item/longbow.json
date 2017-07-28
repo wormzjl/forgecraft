@@ -1,0 +1,25 @@
+{
+  "parent": "forgecraft:item/longbow_default",
+  "textures": {
+    "particle": "primal:blocks/log_stripped_yew_side",
+    "texture": "primal:blocks/log_stripped_yew_side",
+    "texture1": "forgecraft:items/bowstring",
+    "arrow": "blocks/e_texture"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/longbow/longbow_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/longbow/longbow_1"},
+    {"predicate": {"type": 0.2},"model": "forgecraft:item/longbow/longbow_2"},
+    {"predicate": {"type": 0.3},"model": "forgecraft:item/longbow/longbow_3"},
+    {"predicate": {"type": 0.4},"model": "forgecraft:item/longbow/longbow_4"},
+    {"predicate": {"type": 0.5},"model": "forgecraft:item/longbow/longbow_5"},
+    {"predicate": {"type": 0.6},"model": "forgecraft:item/longbow/longbow_6"},
+    {"predicate": {"type": 0.7},"model": "forgecraft:item/longbow/longbow_7"},
+    {"predicate": {"type": 0.8},"model": "forgecraft:item/longbow/longbow_8"}
+
+  ]
+}
+
+
+
+

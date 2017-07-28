@@ -371,46 +371,46 @@ public class ItemStoneTongs extends Item {
                             case 0:
                                 break;
                             case 1:
-                                world.setBlockState(tempPos, ModBlocks.emptycruciblehot.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.emptycruciblehot.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible1 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible1.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 2:
-                                world.setBlockState(tempPos, ModBlocks.emptycruciblecrackedhot.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.emptycruciblecrackedhot.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible2 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible2.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 3:
-                                world.setBlockState(tempPos, ModBlocks.hotironcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible3 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible3.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 4:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedironcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible4 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible4.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 5:
-                                world.setBlockState(tempPos, ModBlocks.failedironcruciblehot.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.failedironcruciblehot.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible5 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible5.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 6:
-                                world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 7:
-                                world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 8:
@@ -422,7 +422,7 @@ public class ItemStoneTongs extends Item {
                             case 11:
                                 return EnumActionResult.FAIL;
                             case 12:
-                                world.setBlockState(tempPos, ModBlocks.hotcleanironcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcleanironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible12 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible12.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
@@ -436,18 +436,18 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 14:
-                                world.setBlockState(tempPos, ModBlocks.failedcleanironcruciblehot.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.failedcleanironcruciblehot.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible14 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible14.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 15:
-                                world.setBlockState(tempPos, ModBlocks.ironcleanball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.ironcleanball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 16:
-                                world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 17:
@@ -459,43 +459,43 @@ public class ItemStoneTongs extends Item {
                             case 20:
                                 return EnumActionResult.FAIL;
                             case 21:
-                                world.setBlockState(tempPos, ModBlocks.hotsteelcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotsteelcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible21 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible21.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 22:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedsteelcrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedsteelcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible22 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible22.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 23:
-                                world.setBlockState(tempPos, ModBlocks.failedsteelcruciblehot.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.failedsteelcruciblehot.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible23 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible23.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 24:
-                                world.setBlockState(tempPos, ModBlocks.steelball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.steelball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 25:
-                                world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 3);
+                                world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
-                            case 39:
-                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible.getDefaultState(), 3);
+                            case 29:
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible39 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible39.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 40:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible40 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible40.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
@@ -514,56 +514,56 @@ public class ItemStoneTongs extends Item {
                              52 | Hot Cooked Bronze Crucible Lapis
                              ***************************/
                             case 45:
-                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_emerald.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_emerald.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible45 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible45.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 46:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_emerald.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_emerald.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible46 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible46.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 47:
-                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_diamond.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_diamond.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible47 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible47.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 48:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_diamond.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_diamond.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible48 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible48.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 49:
-                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_redstone.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_redstone.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible49 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible49.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 50:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_redstone.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_redstone.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible50 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible50.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 51:
-                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_lapis.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_lapis.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible51 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible51.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 52:
-                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_lapis.getDefaultState(), 3);
+                                world.setBlockState(tempPos, ModBlocks.hotcookedbronzecrucible_lapis.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible52 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible52.countdown = itemstack.getTagCompound().getInteger("cooldown");
                                 itemstack.getTagCompound().setInteger("cooldown", 0);

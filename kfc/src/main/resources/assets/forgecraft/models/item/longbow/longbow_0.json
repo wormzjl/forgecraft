@@ -1,0 +1,9 @@
+{
+  "parent": "forgecraft:item/longbow_default",
+  "textures": {
+    "particle": "forgecraft:items/unstrunglongbow",
+    "texture": "forgecraft:items/unstrunglongbow",
+    "texture1": "forgecraft:items/bowstring",
+    "arrow": "forgecraft:items/arrow"
+  }
+}

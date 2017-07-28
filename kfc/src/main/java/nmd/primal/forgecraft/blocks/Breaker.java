@@ -12,6 +12,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -28,11 +29,19 @@ import nmd.primal.forgecraft.util.BreakerHandler;
  */
 public class Breaker extends CustomContainerFacing implements BreakerHandler {
 
+    public AxisAlignedBB AABB = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 6/16D, 1.0D);
+
     public Breaker(Material material, String registryName, Float hardness) {
         super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, false));
         setHardness(hardness);
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return AABB;
     }
 
     @Override
@@ -42,20 +51,10 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
             TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
 
-            /*if(tile.getCharge() < 5 ){
-                if(pItem == ItemStack.EMPTY){
-                    if(player.isSneaking()){
-                        ItemStack tempStack = tile.getSlotStack(0).copy();
-                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                        tile.setSlotStack(0, ItemStack.EMPTY);
-                        return true;
-                    }
-                }
-            }*/
-
             if(state.getValue(PrimalStates.ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
-                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, false));
                 doBreaking(world, state, pos, tile);
+                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, false));
+
                 tile.setCharge(0);
                 return true;
             }
@@ -214,11 +213,6 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
         return false;
     }
 
-    @Override
-    public boolean isFullyOpaque(IBlockState state)
-    {
-        return false;
-    }
 
     @Override
     public boolean isOpaqueCube(IBlockState state)

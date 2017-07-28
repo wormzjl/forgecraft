@@ -113,6 +113,8 @@ public class ModBlocks {
     public static Block stoneanvil;
     public static Block ironanvil;
 
+    public static Block yewstave;
+
 
     public static void init() {
 
@@ -411,6 +413,7 @@ public class ModBlocks {
         ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
         //ironballitemcool = new ItemBlockIngotBall(ironball);
         //ironballitemhot = new ItemBlockIngotBall(ironball);
+        yewstave = new YewStave(Material.WOOD, "yewstave", 3.0F);
 
     }
 
@@ -500,6 +503,8 @@ public class ModBlocks {
 
         registerBlock(stoneanvil);
         registerBlock(ironanvil);
+
+        registerBlock(yewstave);
     }
 
     @SideOnly(Side.CLIENT)
@@ -589,6 +594,8 @@ public class ModBlocks {
 
         registerRender(stoneanvil);
         registerRender(ironanvil);
+
+        registerRender(yewstave);
 
     }
 

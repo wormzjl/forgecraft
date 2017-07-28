@@ -13,13 +13,13 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
-import static nmd.primal.forgecraft.CommonUtils.getVanillaItemBurnTime;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -103,7 +103,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(getVanillaItemBurnTime(this.getSlotStack(0)) / 5);
+            Integer decrInt = (int) Math.floor(RecipeHelper.getBurnTime(this.getSlotStack(0)) / 5);
             if(decrInt == 0) {
                 decrInt = 1;
             }
@@ -123,7 +123,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             }
             if (world.rand.nextInt(decrInt) == 0) {
                 if (world.rand.nextInt(burnModifier) == 0) {
-                    System.out.println("Fuel Burn" + this.getSlotStack(0));
+                    //System.out.println("Fuel Burn" + this.getSlotStack(0));
                     this.decrStackSize(0, 1);
                     this.markDirty();
                     this.updateBlock();

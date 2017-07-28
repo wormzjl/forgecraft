@@ -12,11 +12,13 @@ public class ModSounds {
 
     public static SoundEvent PISTON_BELLOWS;
     public static SoundEvent MUSKET_SHOT;
+    public static SoundEvent BOW_TWANG;
 
     public static void registerSounds()
     {
         PISTON_BELLOWS = registerSound("piston_bellows");
         MUSKET_SHOT = registerSound("musket_shot");
+        BOW_TWANG = registerSound("bow_twang");
     }
 
     private static SoundEvent registerSound(String name)
