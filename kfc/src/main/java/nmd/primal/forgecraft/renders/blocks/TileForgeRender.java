@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.tiles.TileForge;
 import org.lwjgl.opengl.GL11;
 
@@ -24,8 +25,8 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileForge tile, double x, double y, double z, float partialTicks, int destroyStage) {
-
+    public void render(TileForge tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof Forge) {

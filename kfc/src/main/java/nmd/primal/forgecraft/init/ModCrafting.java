@@ -8,6 +8,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.common.crafting.RecipeHandler;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
@@ -25,176 +26,178 @@ public class ModCrafting {
 
         Random rand = new Random();
 
+        //RecipeHandler.addShapedOreRecipe();
+        
         /***CASTING BLOCK***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.castingblock),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
                 " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalItems.ADOBEBRICK_DRY);
 
         /***CASTING FORM***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
                 true, new Object[]{" S ", "S S", " S ",
                 ('S'), "logSplit"
-        }));
+        });
         /***CASTING MUD***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.castingmud, 4),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.castingmud, 4),
                 true, new Object[]{" C ", "CSC", " C ",
                 ('S'), Blocks.SAND,
                 ('C'), PrimalItems.MUD_CLUMP
-        }));
+        });
         /***YEW STAVE***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.yewstave, 2),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.yewstave, 2),
                 true, new Object[]{"C", "C",
                 ('C'), PrimalItems.LOGS_SPLIT_YEW
-        }));
+        });
         /***Unstrung Longbow***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.unstrunglongbow, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.unstrunglongbow, 1),
                 true, new Object[]{"C", "A",
                 ('C'), "fatAnimal",
                 ('A'), ModItems.rawlongbow
-        }));
+        });
         /***Longbow***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.longbow, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.longbow, 1),
                 true, new Object[]{"C ","CA","C ",
                 ('C'), PrimalItems.SILK_CORDAGE,
                 ('A'), ModItems.unstrunglongbow
-        }));
+        });
 
 
         /***Forge***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_brick),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_brick),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.forge_adobe),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_adobe),
                 "X X", "XYX", "X X", 'X', PrimalItems.ADOBEBRICK_DRY, 'Y', Blocks.FURNACE);
         /***Bloomery***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery_brick),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_brick),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
 
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.bloomery_adobe),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_adobe),
                 "X X", "X X", "XXX", 'X', PrimalItems.ADOBEBRICK_DRY);
 /***Block Breaker***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.blockbreaker),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.blockbreaker),
                 "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalItems.SILK_CORDAGE_COILED);
 
         /*** Soft Crucible ***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.softcrucible),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.softcrucible),
                 "X X", "X X", "XXX", 'X', Items.CLAY_BALL);
 
         /*** Soft Crucible ***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.softcrucible),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.softcrucible),
                 "X X", "X X", "XXX", 'X', PrimalItems.MUD_CLUMP);
 
         /***Wooden PistonBellows***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsoak), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsoak), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 0), 'Y', ModItems.bellowshandle);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsspruce), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsspruce), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 1), 'Y', ModItems.bellowshandle);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsbirch), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsbirch), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 2), 'Y', ModItems.bellowshandle);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsjungle), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsjungle), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 3), 'Y', ModItems.bellowshandle);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsacacia), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsacacia), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 4), 'Y', ModItems.bellowshandle);
-        GameRegistry.addShapedRecipe(new ItemStack(ModBlocks.pistonbellowsdarkoak), "XXX", "X Y", "XXX",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsdarkoak), "XXX", "X Y", "XXX",
                 'X', new ItemStack(Blocks.PLANKS, 1, 5), 'Y', ModItems.bellowshandle);
 
         /***Bellows Handle***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.bellowshandle),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bellowshandle),
                 "X X", "X X", " X ", 'X', Items.STICK);
 
         /***Tongs***/
-        GameRegistry.addShapedRecipe(new ItemStack(ModItems.stonetongs, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.stonetongs, 1),
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***RAW CRUCIBLES***/
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),
                 "X","Y",
                 ('X'), "oreIron",
-                ('Y'), ModBlocks.emptycrucible));
+                ('Y'), ModBlocks.emptycrucible);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
                 "XL","Y ",
                 ('X'), "dustIron",
                 ('L'), PrimalItems.CARBONATE_SLACK,
-                ('Y'), ModBlocks.emptycrucible));
+                ('Y'), ModBlocks.emptycrucible);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
                 "XC","Y ",
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
                 ('C'), new ItemStack(PrimalItems.CHARCOAL_HIGH),
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XCX"," X "," Y ",
                 ('X'), "dustCopper",
                 ('C'), "dustTin",
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XXX"," X "," Y ",
                 ('X'), "nuggetBronze",
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "X","Y",
                 ('X'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "X","Y",
                 ('X'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "X","Y",
                 ('X'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "X","Y",
                 ('X'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('Y'), ModBlocks.emptycrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
+                ('Y'), ModBlocks.emptycrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "X","Y",
                 ('X'), new ItemStack(ModItems.bronzegladius, 1, OreDictionary.WILDCARD_VALUE),
-                ('Y'), ModBlocks.emptycrucible));
+                ('Y'), ModBlocks.emptycrucible);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_redstone),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_redstone),
                 "R","Y",
                 ('R'), Items.REDSTONE,
-                ('Y'), ModBlocks.rawbronzecrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_diamond),
+                ('Y'), ModBlocks.rawbronzecrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_diamond),
                 "D","Y",
                 ('D'), PrimalItems.DIAMOND_KNAPP,
-                ('Y'), ModBlocks.rawbronzecrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_lapis),
+                ('Y'), ModBlocks.rawbronzecrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_lapis),
                 "L","Y",
                 ('L'), new ItemStack(Items.DYE, 1, 4),
-                ('Y'), ModBlocks.rawbronzecrucible));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_emerald),
+                ('Y'), ModBlocks.rawbronzecrucible);
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_emerald),
                 "E","Y",
                 ('E'), PrimalItems.EMERALD_KNAPP,
-                ('Y'), ModBlocks.rawbronzecrucible));
+                ('Y'), ModBlocks.rawbronzecrucible);
 
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenbronzetool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
-                ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
+                );
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenwroughtirontool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible, 1),
+        );
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokencleanirontool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible, 1),
+        );
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokensteeltool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
-        ));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModBlocks.rawwootzcrucible, 1),
+        );
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawwootzcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenwootztool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
-        ));
+        );
 
 
         /***************************************************************
@@ -202,163 +205,163 @@ public class ModCrafting {
          ***************************************************************/
 
         /***Pickaxe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_PICKAXE), "T", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_PICKAXE), "T", "S",
                 ('T'), ModItems.pickaxehead,
-                ('S'), Items.STICK));
+                ('S'), Items.STICK);
         //TODO wootz placeholder
 
         /***Axe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelaxehead,1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
         //TODO wootz placeholder
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_AXE), "T", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_AXE), "T", "S",
                 ('T'), ModItems.ironaxehead,
-                ('S'), Items.STICK));
+                ('S'), Items.STICK);
 
         /***Shovel Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
         //TODO placed holder for wootz
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_SHOVEL), "T", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_SHOVEL), "T", "S",
                 ('T'), ModItems.ironshovelhead,
-                ('S'), Items.STICK));
+                ('S'), Items.STICK);
 
         /***Hoe Crafting***/
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'), PrimalItems.LACQUER_STICK,
-                ('C'), "cordageGeneral"));
+                ('C'), "cordageGeneral");
         //TODO PLACE HOLDER FOR WOOTZ STEEL
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.IRON_HOE), "T", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_HOE), "T", "S",
                 ('T'), ModItems.ironhoehead,
-                ('S'), Items.STICK));
+                ('S'), Items.STICK);
 
 
         /***************************************************************
          * TOOL DISASSEMBLY RECIPES
          ***************************************************************/
-        //GameRegistry.addShapedRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+        //RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
         //        "   ", " X ", "   ", 'X', ModItems.ironaxe);
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE)));
-
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE)));
-
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE));
 
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE));
 
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE));
 
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                true, "X", ('X'), new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE)));
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE));
+
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE));
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE));
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE));
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
+                true, "X", ('X'), new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE));
 
         /***************************************************************/
 

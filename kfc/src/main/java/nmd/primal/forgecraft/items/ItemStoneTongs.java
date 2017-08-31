@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -27,6 +28,7 @@ import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import nmd.primal.forgecraft.tiles.TileForge;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 /**
@@ -888,7 +890,7 @@ public class ItemStoneTongs extends Item {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn)
     {
         //tooltip.add(ChatFormatting.BLUE + "NBT: " + item.getSubCompound("tags"));
         //tooltip.add(ChatFormatting.RED + "NBT: " + item.getTagCompound().getInteger("type"));

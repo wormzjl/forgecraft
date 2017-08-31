@@ -10,6 +10,7 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.Breaker;
+import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 import org.lwjgl.opengl.GL11;
 
@@ -21,8 +22,8 @@ public class TileBreakerRender extends TileEntitySpecialRenderer<TileBreaker>
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileBreaker tile, double x, double y, double z, float partialTicks, int destroyStage) {
-
+    public void render(TileBreaker tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof Breaker) {

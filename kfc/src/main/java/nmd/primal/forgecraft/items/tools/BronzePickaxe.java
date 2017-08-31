@@ -3,6 +3,7 @@ package nmd.primal.forgecraft.items.tools;
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -136,27 +137,25 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(player.getEntityWorld().isRemote) {
-                //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
-            if(item.hasTagCompound()) {
-
-                tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (1 - getModifiers(item)) );
-                if (getEmerald(item) == true) {
-                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
-                }
-                if (getDiamondLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
-                }
-                if (getRedstoneLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + 1 );
-                }
-                if (getLapisLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + 5 );
-                }
-                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+        //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
+        if(item.hasTagCompound())
+        {
+            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (1 - getModifiers(item)) );
+            if (getEmerald(item) == true) {
+                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
+            if (getDiamondLevel(item) > 0) {
+                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+            }
+            if (getRedstoneLevel(item) > 0) {
+                tooltip.add(ChatFormatting.RED + "Redstone Level: " + 1 );
+            }
+            if (getLapisLevel(item) > 0) {
+                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + 5 );
+            }
+            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
         }
     }
 

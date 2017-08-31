@@ -25,18 +25,13 @@ import org.lwjgl.opengl.GL11;
 /**
  * Created by mminaie on 3/5/17.
  */
-
-
-
 public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
 {
-
-
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileAnvil tile, double x, double y, double z, float partialTicks, int destroyStage) {
-
+    public void render(TileAnvil tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof AnvilBase) {

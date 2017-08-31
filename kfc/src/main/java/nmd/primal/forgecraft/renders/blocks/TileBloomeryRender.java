@@ -10,6 +10,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
+import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 import org.lwjgl.opengl.GL11;
 
@@ -21,8 +22,8 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileBloomery tile, double x, double y, double z, float partialTicks, int destroyStage) {
-
+    public void render(TileBloomery tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof BloomeryBase) {

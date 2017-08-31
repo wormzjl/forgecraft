@@ -12,20 +12,20 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mminaie on 1/7/17.
  */
-public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePistonBellows> {
-
+public class TilePistonBellowsRender extends TileEntitySpecialRenderer<TilePistonBellows>
+{
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TilePistonBellows tile, double x, double y, double z, float partialTicks, int destroyStage)
+    public void render(TilePistonBellows tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
     {
-
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof PistonBellows) {

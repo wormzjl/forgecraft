@@ -13,19 +13,20 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.CastingForm;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.tiles.TileCastingBlock;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import org.lwjgl.opengl.GL11;
 
 /**
  * Created by mminaie on 6/21/17.
  */
-public class TileCastingformRender extends TileEntitySpecialRenderer <TileCastingForm> {
-
+public class TileCastingformRender extends TileEntitySpecialRenderer <TileCastingForm>
+{
     private RenderItem renderItem = Minecraft.getMinecraft().getRenderItem();
 
     @Override
-    public void renderTileEntityAt(TileCastingForm tile, double x, double y, double z, float partialTicks, int destroyStage) {
-
+    public void render(TileCastingForm tile, double x, double y, double z, float partialTicks, int destroyStage, float alpha)
+    {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
         if (state.getBlock() instanceof CastingForm) {

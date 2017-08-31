@@ -10,6 +10,7 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -265,120 +266,120 @@ public class ModItems {
     }
 
     public static void register() {
-        GameRegistry.register(castingmud);
-        GameRegistry.register(bellowshandle);
-        GameRegistry.register(softcrucible);
-        GameRegistry.register(stonetongs);
-        GameRegistry.register(forgehammer);
-        GameRegistry.register(ironingotballhot);
-        GameRegistry.register(ironchunkhot);
-        GameRegistry.register(ironcleaningotballhot);
-        GameRegistry.register(ironcleanchunkhot);
-        GameRegistry.register(steelingotballhot);
-        GameRegistry.register(steelchunkhot);
-        GameRegistry.register(wootzingotballhot);
-        GameRegistry.register(wootzchunkhot);
-        //GameRegistry.register(test);
+        ForgeRegistries.ITEMS.register(castingmud);
+        ForgeRegistries.ITEMS.register(bellowshandle);
+        ForgeRegistries.ITEMS.register(softcrucible);
+        ForgeRegistries.ITEMS.register(stonetongs);
+        ForgeRegistries.ITEMS.register(forgehammer);
+        ForgeRegistries.ITEMS.register(ironingotballhot);
+        ForgeRegistries.ITEMS.register(ironchunkhot);
+        ForgeRegistries.ITEMS.register(ironcleaningotballhot);
+        ForgeRegistries.ITEMS.register(ironcleanchunkhot);
+        ForgeRegistries.ITEMS.register(steelingotballhot);
+        ForgeRegistries.ITEMS.register(steelchunkhot);
+        ForgeRegistries.ITEMS.register(wootzingotballhot);
+        ForgeRegistries.ITEMS.register(wootzchunkhot);
+        //ForgeRegistries.ITEMS.register(test);
 
         /**********
          CASTING PARTS
          **********/
-        GameRegistry.register(cast_axe);
-        GameRegistry.register(cast_gladius);
-        GameRegistry.register(cast_hoe);
-        GameRegistry.register(cast_pickaxe);
-        GameRegistry.register(cast_shovel);
+        ForgeRegistries.ITEMS.register(cast_axe);
+        ForgeRegistries.ITEMS.register(cast_gladius);
+        ForgeRegistries.ITEMS.register(cast_hoe);
+        ForgeRegistries.ITEMS.register(cast_pickaxe);
+        ForgeRegistries.ITEMS.register(cast_shovel);
 
         /**********
          TOOL PARTS
          **********/
-        GameRegistry.register(bronzepickaxehead);
-        GameRegistry.register(bronzeaxehead);
-        GameRegistry.register(bronzeshovelhead);
-        GameRegistry.register(bronzehoehead);
+        ForgeRegistries.ITEMS.register(bronzepickaxehead);
+        ForgeRegistries.ITEMS.register(bronzeaxehead);
+        ForgeRegistries.ITEMS.register(bronzeshovelhead);
+        ForgeRegistries.ITEMS.register(bronzehoehead);
 
-        GameRegistry.register(pickaxehead);
-        GameRegistry.register(ironaxehead);
-        GameRegistry.register(ironshovelhead);
-        GameRegistry.register(ironhoehead);
+        ForgeRegistries.ITEMS.register(pickaxehead);
+        ForgeRegistries.ITEMS.register(ironaxehead);
+        ForgeRegistries.ITEMS.register(ironshovelhead);
+        ForgeRegistries.ITEMS.register(ironhoehead);
 
-        GameRegistry.register(cleanironpickaxehead);
-        GameRegistry.register(cleanironaxehead);
-        GameRegistry.register(cleanironshovelhead);
-        GameRegistry.register(cleanironhoehead);
+        ForgeRegistries.ITEMS.register(cleanironpickaxehead);
+        ForgeRegistries.ITEMS.register(cleanironaxehead);
+        ForgeRegistries.ITEMS.register(cleanironshovelhead);
+        ForgeRegistries.ITEMS.register(cleanironhoehead);
 
-        GameRegistry.register(steelpickaxehead);
-        GameRegistry.register(steelaxehead);
-        GameRegistry.register(steelshovelhead);
-        GameRegistry.register(steelhoehead);
+        ForgeRegistries.ITEMS.register(steelpickaxehead);
+        ForgeRegistries.ITEMS.register(steelaxehead);
+        ForgeRegistries.ITEMS.register(steelshovelhead);
+        ForgeRegistries.ITEMS.register(steelhoehead);
 
-        GameRegistry.register(wootzpickaxehead);
-        GameRegistry.register(wootzaxehead);
-        GameRegistry.register(wootzshovelhead);
-        GameRegistry.register(wootzhoehead);
+        ForgeRegistries.ITEMS.register(wootzpickaxehead);
+        ForgeRegistries.ITEMS.register(wootzaxehead);
+        ForgeRegistries.ITEMS.register(wootzshovelhead);
+        ForgeRegistries.ITEMS.register(wootzhoehead);
 
         /**********
          TOOLS
          **********/
-        GameRegistry.register(bronzepickaxe);
-        GameRegistry.register(bronzeaxe);
-        GameRegistry.register(bronzeshovel);
-        GameRegistry.register(bronzehoe);
+        ForgeRegistries.ITEMS.register(bronzepickaxe);
+        ForgeRegistries.ITEMS.register(bronzeaxe);
+        ForgeRegistries.ITEMS.register(bronzeshovel);
+        ForgeRegistries.ITEMS.register(bronzehoe);
 
-        GameRegistry.register(ironpickaxe);
-        GameRegistry.register(ironaxe);
-        GameRegistry.register(ironshovel);
-        GameRegistry.register(ironhoe);
+        ForgeRegistries.ITEMS.register(ironpickaxe);
+        ForgeRegistries.ITEMS.register(ironaxe);
+        ForgeRegistries.ITEMS.register(ironshovel);
+        ForgeRegistries.ITEMS.register(ironhoe);
 
-        GameRegistry.register(cleanironpickaxe);
-        GameRegistry.register(cleanironaxe);
-        GameRegistry.register(cleanironshovel);
-        GameRegistry.register(cleanironhoe);
+        ForgeRegistries.ITEMS.register(cleanironpickaxe);
+        ForgeRegistries.ITEMS.register(cleanironaxe);
+        ForgeRegistries.ITEMS.register(cleanironshovel);
+        ForgeRegistries.ITEMS.register(cleanironhoe);
 
-        GameRegistry.register(steelpickaxe);
-        GameRegistry.register(steelaxe);
-        GameRegistry.register(steelshovel);
-        GameRegistry.register(steelhoe);
+        ForgeRegistries.ITEMS.register(steelpickaxe);
+        ForgeRegistries.ITEMS.register(steelaxe);
+        ForgeRegistries.ITEMS.register(steelshovel);
+        ForgeRegistries.ITEMS.register(steelhoe);
 
-        GameRegistry.register(wootzpickaxe);
-        GameRegistry.register(wootzaxe);
-        GameRegistry.register(wootzshovel);
-        GameRegistry.register(wootzhoe);
+        ForgeRegistries.ITEMS.register(wootzpickaxe);
+        ForgeRegistries.ITEMS.register(wootzaxe);
+        ForgeRegistries.ITEMS.register(wootzshovel);
+        ForgeRegistries.ITEMS.register(wootzhoe);
 
         /**********
          WEAPONS
          **********/
-        GameRegistry.register(wroughtirongladius);
-        GameRegistry.register(bronzegladius);
-        GameRegistry.register(cleanirongladius);
-        GameRegistry.register(steelgladius);
+        ForgeRegistries.ITEMS.register(wroughtirongladius);
+        ForgeRegistries.ITEMS.register(bronzegladius);
+        ForgeRegistries.ITEMS.register(cleanirongladius);
+        ForgeRegistries.ITEMS.register(steelgladius);
 
-        GameRegistry.register(cleanironlongsword);
-        GameRegistry.register(steellongsword);
+        ForgeRegistries.ITEMS.register(cleanironlongsword);
+        ForgeRegistries.ITEMS.register(steellongsword);
 
-        GameRegistry.register(wroughtironslayer);
-        GameRegistry.register(cleanironslayer);
-        GameRegistry.register(steelslayer);
+        ForgeRegistries.ITEMS.register(wroughtironslayer);
+        ForgeRegistries.ITEMS.register(cleanironslayer);
+        ForgeRegistries.ITEMS.register(steelslayer);
 
-        GameRegistry.register(rawlongbow);
-        GameRegistry.register(unstrunglongbow);
-        GameRegistry.register(longbow);
-        //GameRegistry.register(matchlockmusket);
+        ForgeRegistries.ITEMS.register(rawlongbow);
+        ForgeRegistries.ITEMS.register(unstrunglongbow);
+        ForgeRegistries.ITEMS.register(longbow);
+        //ForgeRegistries.ITEMS.register(matchlockmusket);
 
-        GameRegistry.register(brokenbronzetool);
-        GameRegistry.register(brokenwroughtirontool);
-        GameRegistry.register(brokencleanirontool);
-        GameRegistry.register(brokensteeltool);
-        GameRegistry.register(brokenwootztool);
+        ForgeRegistries.ITEMS.register(brokenbronzetool);
+        ForgeRegistries.ITEMS.register(brokenwroughtirontool);
+        ForgeRegistries.ITEMS.register(brokencleanirontool);
+        ForgeRegistries.ITEMS.register(brokensteeltool);
+        ForgeRegistries.ITEMS.register(brokenwootztool);
 
         /**********
          ARMOR
          **********/
-        //GameRegistry.register(testleggings);
+        //ForgeRegistries.ITEMS.register(testleggings);
 
 
 
-        //GameRegistry.register(forgingmanual);
+        //ForgeRegistries.ITEMS.register(forgingmanual);
     }
 
     @SideOnly(Side.CLIENT)

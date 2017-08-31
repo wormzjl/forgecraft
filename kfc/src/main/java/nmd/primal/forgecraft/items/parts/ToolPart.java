@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -271,30 +272,23 @@ public class ToolPart extends Item implements ToolNBT{
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, EntityPlayer player, List<String> tooltip, boolean advanced)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(player.getEntityWorld().isRemote) {
-
-            if(item.hasTagCompound()) {
-
-                tooltip.add(ChatFormatting.GRAY + "Upgrades");
-                if  (getEmerald(item) == true) {
-                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
-                }
-                if (getDiamondLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
-                }
-                if (getRedstoneLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item));
-                }
-                if (getLapisLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item));
-                }
+        if(item.hasTagCompound())
+        {
+            tooltip.add(ChatFormatting.GRAY + "Upgrades");
+            if  (getEmerald(item) == true) {
+                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+            }
+            if (getDiamondLevel(item) > 0) {
+                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+            }
+            if (getRedstoneLevel(item) > 0) {
+                tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item));
+            }
+            if (getLapisLevel(item) > 0) {
+                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item));
             }
         }
     }
-
-
-
-
 }

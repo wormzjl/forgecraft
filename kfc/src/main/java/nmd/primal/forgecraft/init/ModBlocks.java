@@ -15,6 +15,7 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -599,25 +600,36 @@ public class ModBlocks {
 
     }
 
-    private static void registerBlock(Block block) {
-        GameRegistry.register(block);
+    private static void registerBlock(Block block)
+    {
+        ForgeRegistries.BLOCKS.register(block);
+        //GameRegistry.register(block);
+
         ItemBlock item = new ItemBlock(block);
         item.setRegistryName(block.getRegistryName());
-        GameRegistry.register(item);
+
+        ForgeRegistries.ITEMS.register(item);
+        //GameRegistry.register(item);
     }
 
-    private static void registerBlockSubType(Block block, ItemBlock itemBlock, String registryName){
-        GameRegistry.register(block);
-        ItemBlock item = itemBlock;
+    private static void registerBlockSubType(Block block, ItemBlock item, String registryName)
+    {
+        ForgeRegistries.BLOCKS.register(block);
+        //GameRegistry.register(block);
+
         item.setRegistryName(registryName);
-        GameRegistry.register(item);
+
+        ForgeRegistries.ITEMS.register(item);
+        //GameRegistry.register(item);
     }
 
-    private static void registerRender(Block block) {
+    private static void registerRender(Block block)
+    {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
     }
 
-    private static void registerRenderCustom(ItemBlock item, Integer meta, ModelResourceLocation model){
+    private static void registerRenderCustom(ItemBlock item, Integer meta, ModelResourceLocation model)
+    {
         ModelLoader.setCustomModelResourceLocation(item, meta, model);
     }
 
