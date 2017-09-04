@@ -10,6 +10,7 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.core.api.PrimalItems;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
@@ -41,6 +42,18 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.setHeat(100);
                 }
                 this.iteration++;
+                if (this.iteration == 100) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
+                if (this.iteration == 200) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
                 if (this.iteration == 300) {
                     this.iteration = 0;
                     //IBlockState state = world.getBlockState(this.pos);
@@ -51,9 +64,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                             world.notifyBlockUpdate(pos, state, state, 2);
                         }
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
-
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
                 }
-                slotZeroManager(world);
                 slotOneManager();
             }
         }
@@ -103,10 +118,15 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotZeroManager(World world){
         if(this.getSlotStack(0) != ItemStack.EMPTY) {
-            Integer decrInt = (int) Math.floor(RecipeHelper.getBurnTime(this.getSlotStack(0)) / 5);
+            Integer decrInt = Math.round(RecipeHelper.getBurnTime(this.getSlotStack(0)) / 5);
             if(decrInt == 0) {
                 decrInt = 1;
             }
+            //System.out.println(GameRegistry.getFuelValue(this.getSlotStack(0)));
+            //System.out.println( "Burn Time: " + RecipeHelper.getBurnTime(this.getSlotStack(0)));
+            //System.out.println("Burn Time / 5 :" + RecipeHelper.getBurnTime(this.getSlotStack(0))/5);
+            //System.out.println("Burn Time rounded: " + Math.round(RecipeHelper.getBurnTime(this.getSlotStack(0)) / 5));
+            //System.out.println(decrInt);
             Integer size = this.getSlotStack(0).getCount();
             Integer burnModifier = 0;
             if(size / 16 <= 1){

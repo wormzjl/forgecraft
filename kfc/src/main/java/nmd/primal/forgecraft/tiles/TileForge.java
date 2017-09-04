@@ -46,6 +46,20 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
             if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
+
+                if (this.iteration == 100) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
+                if (this.iteration == 200) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
+
                 if (this.iteration == 300) {
                     this.iteration = 0;
 
@@ -55,11 +69,14 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
-
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
                 }
 
-                slotZeroManager(world);
+                //slotZeroManager(world);
                 craftingManager();
             }
         }

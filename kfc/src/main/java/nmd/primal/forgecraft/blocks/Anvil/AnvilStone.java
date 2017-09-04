@@ -42,7 +42,7 @@ public class AnvilStone extends AnvilBase {
                     for (int i = 0; i < 25; i++) {
                         tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
                     }
-                    for (int i = 0; i < 25; i++) {
+                    /*for (int i = 0; i < 25; i++) {
                         if (tile.getSlotStack(i).getItem() instanceof BaseMultiItem) {
                             if (((BaseMultiItem) tile.getSlotStack(i).getItem()).getMaterial(tile.getSlotStack(i).getItem()) != PrimalMaterials.TOOL_WROUGHT_IRON) {
                                 world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
@@ -52,7 +52,7 @@ public class AnvilStone extends AnvilBase {
                                 return true;
                             }
                         }
-                    }
+                    }*/
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
