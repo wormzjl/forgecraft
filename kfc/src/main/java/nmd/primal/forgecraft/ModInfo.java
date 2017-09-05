@@ -17,7 +17,7 @@ public class ModInfo {
     public static final String MOD_CONFIG = "primal/" + MOD_ID;
     //public static final String MOD_PREFIX = MOD_ID + ":";
     public static final String MOD_CHANNEL = MOD_ID;
-    public static final String MOD_VERSION = "1.3.2";
+    public static final String MOD_VERSION = "1.3.21";
     public static final String MC_VERSIONS = "[1.12.0, 1.13.0)";
     public static final String DEPENDENCIES = "required-after:forge@[14.21.0,2344,);" + "required-after:primal@[0.5,);";
 

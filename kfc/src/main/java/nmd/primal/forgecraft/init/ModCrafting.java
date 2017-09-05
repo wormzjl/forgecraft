@@ -739,7 +739,7 @@ public class ModCrafting {
         /***Makes a Hot Iron PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.pickaxehead,
-                new ItemStack(ModItems.pickaxehead, 1 ),
+                new ItemStack(ModItems.pickaxehead, 1),
                 800,
                 160,
                 400,
@@ -750,7 +750,7 @@ public class ModCrafting {
         /***Makes a Hot Clean Iron PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironpickaxehead,
-                new ItemStack(ModItems.cleanironpickaxehead, 1 ),
+                new ItemStack(ModItems.cleanironpickaxehead, 1),
                 800,
                 160,
                 400,
@@ -761,7 +761,7 @@ public class ModCrafting {
         /***Makes a Hot Steel PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelpickaxehead,
-                new ItemStack(ModItems.steelpickaxehead, 1 ),
+                new ItemStack(ModItems.steelpickaxehead, 1),
                 1000,
                 160,
                 400,
@@ -774,7 +774,7 @@ public class ModCrafting {
         /***Makes a Hot Iron AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironaxehead,
-                new ItemStack(ModItems.ironaxehead, 1 ),
+                new ItemStack(ModItems.ironaxehead, 1),
                 800,
                 160,
                 400,
@@ -784,7 +784,7 @@ public class ModCrafting {
         /***Makes a Hot Clean Iron AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironaxehead,
-                new ItemStack(ModItems.cleanironaxehead, 1 ),
+                new ItemStack(ModItems.cleanironaxehead, 1),
                 800,
                 160,
                 400,
@@ -794,7 +794,7 @@ public class ModCrafting {
         /***Makes a Hot Steel AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelaxehead,
-                new ItemStack(ModItems.steelaxehead, 1 ),
+                new ItemStack(ModItems.steelaxehead, 1),
                 800,
                 160,
                 400,
@@ -806,7 +806,7 @@ public class ModCrafting {
         /***Makes a Hot Iron ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironshovelhead,
-                new ItemStack(ModItems.ironshovelhead, 1 ),
+                new ItemStack(ModItems.ironshovelhead, 1),
                 800,
                 160,
                 400,
@@ -816,7 +816,7 @@ public class ModCrafting {
         /***Makes a Hot Clean Iron ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironshovelhead,
-                new ItemStack(ModItems.cleanironshovelhead, 1 ),
+                new ItemStack(ModItems.cleanironshovelhead, 1),
                 800,
                 160,
                 400,
@@ -826,7 +826,7 @@ public class ModCrafting {
         /***Makes a Hot Steel ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelshovelhead,
-                new ItemStack(ModItems.steelshovelhead, 1 ),
+                new ItemStack(ModItems.steelshovelhead, 1),
                 800,
                 160,
                 400,
@@ -838,7 +838,7 @@ public class ModCrafting {
         /***Makes a Hot Iron HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironhoehead,
-                new ItemStack(ModItems.ironhoehead, 1 ),
+                new ItemStack(ModItems.ironhoehead, 1),
                 800,
                 160,
                 400,
@@ -848,7 +848,7 @@ public class ModCrafting {
         /***Makes a Hot Clean Iron HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironhoehead,
-                new ItemStack(ModItems.cleanironhoehead, 1 ),
+                new ItemStack(ModItems.cleanironhoehead, 1),
                 800,
                 160,
                 400,
@@ -858,7 +858,7 @@ public class ModCrafting {
         /***Makes a Hot Steel HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelhoehead,
-                new ItemStack(ModItems.steelhoehead, 1 ),
+                new ItemStack(ModItems.steelhoehead, 1),
                 800,
                 160,
                 400,
