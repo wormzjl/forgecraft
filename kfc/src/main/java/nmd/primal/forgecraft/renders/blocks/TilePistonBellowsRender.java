@@ -12,7 +12,6 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalStates;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;
 import org.lwjgl.opengl.GL11;
 
