@@ -19,6 +19,7 @@ import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
@@ -46,6 +47,18 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
             if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
+                if (this.iteration == 100) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
+                if (this.iteration == 200) {
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
+                }
                 if (this.iteration == 300) {
                     this.iteration = 0;
 
@@ -57,9 +70,13 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
 
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    if(CommonUtils.randomCheck(1000)) {
+                        makeSmoke(world, pos);
+                    }
                 }
 
-                slotZeroManager(world);
+                //slotZeroManager(world);
                 craftingManager();
             }
         }
@@ -165,7 +182,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             ItemStack stack = this.getSlotStack(i);
             ForgeCrafting recipe = ForgeCrafting.getRecipe(stack.getItem());
             if (recipe != null) {
-
+                NBTTagCompound stackCompound = null;
+                if(stack.hasTagCompound()){
+                    stackCompound=stack.getTagCompound().copy();
+                }
                 if(i == 2){
                     if (this.getHeat() >= recipe.getHeatThreshold()) {
                         cookCounter2++;
@@ -174,11 +194,14 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter2--;
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
+                        ItemStack outputStack = recipe.getOutput();
+                        outputStack.setItemDamage(stack.getItemDamage());
+                        if(outputStack.getItem() instanceof ToolPart) {
+                            outputStack.setTagCompound(stackCompound);
 
-                        if (NBTHelper.hasTag(stack, "tags")) {
-                            NBTHelper.setBoolean(stack, "hot", true);
-                        } else this.setSlotStack(i, recipe.getOutput());
-
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
+                        this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
                 }
