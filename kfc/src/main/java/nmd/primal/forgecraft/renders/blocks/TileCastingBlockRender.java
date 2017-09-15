@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.CastingBlock;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.items.casting.CastingPart;
-import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileCastingBlock;
 import org.lwjgl.opengl.GL11;
 

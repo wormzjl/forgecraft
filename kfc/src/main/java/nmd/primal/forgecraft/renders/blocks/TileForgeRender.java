@@ -13,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.tiles.TileForge;
 import org.lwjgl.opengl.GL11;
 

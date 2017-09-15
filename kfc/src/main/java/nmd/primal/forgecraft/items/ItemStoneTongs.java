@@ -15,7 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalStates;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
@@ -159,7 +159,7 @@ public class ItemStoneTongs extends Item {
              *****/
             if (world.getBlockState(pos).getBlock() instanceof BloomeryBase == false) {
                 if (world.getBlockState(pos).getBlock() instanceof IngotBall) {
-                    if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE) == true) {
+                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true) {
                         if (world.getBlockState(pos).getBlock() == ModBlocks.ironball) {
                             itemstack.getTagCompound().setInteger("type", 6);
                             world.setBlockToAir(pos);
@@ -408,11 +408,11 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 6:
-                                world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.ironball.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 7:
-                                world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 8:
@@ -445,11 +445,11 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 15:
-                                world.setBlockState(tempPos, ModBlocks.ironcleanball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.ironcleanball.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 16:
-                                world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 17:
@@ -482,11 +482,11 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 24:
-                                world.setBlockState(tempPos, ModBlocks.steelball.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.steelball.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 25:
-                                world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalStates.ACTIVE, true), 2);
+                                world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                             case 29:
