@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -8,15 +7,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.oredict.OreDictionary;
-import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 
 import static nmd.primal.core.common.helper.CommonUtils.randomChanceReturn;
-import static nmd.primal.core.common.helper.CommonUtils.randomCheck;
 
 //import nmd.primal.forgecraft.CommonUtils;
 
@@ -50,7 +47,7 @@ public interface BreakerHandler {
                     if (RecipeHelper.isOreName(smashStack, "oreIron")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
-                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.IRON_DUST, randomChanceReturn(9, 1, 2)));
+                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalAPI.Items.IRON_DUST, randomChanceReturn(9, 1, 2)));
                             tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
                             return true;
                         }
@@ -58,7 +55,7 @@ public interface BreakerHandler {
                     if (RecipeHelper.isOreName(smashStack, "oreCopper")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
-                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.COPPER_DUST, randomChanceReturn(9, 1, 2)));
+                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalAPI.Items.COPPER_DUST, randomChanceReturn(9, 1, 2)));
                             tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
                             return true;
                         }
@@ -66,7 +63,7 @@ public interface BreakerHandler {
                     if (RecipeHelper.isOreName(smashStack, "oreTin")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
-                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.TIN_DUST, randomChanceReturn(9, 1, 2)));
+                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalAPI.Items.TIN_DUST, randomChanceReturn(9, 1, 2)));
                             tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
                             return true;
                         }
@@ -74,7 +71,7 @@ public interface BreakerHandler {
                     if (RecipeHelper.isOreName(smashStack, "oreZinc")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
-                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.ZINC_DUST, randomChanceReturn(9, 1, 2)));
+                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalAPI.Items.ZINC_DUST, randomChanceReturn(9, 1, 2)));
                             tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
                             return true;
                         }
@@ -82,7 +79,7 @@ public interface BreakerHandler {
                     if (RecipeHelper.isOreName(smashStack, "oreGold")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
-                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalItems.GOLD_DUST, randomChanceReturn(9, 1, 2)));
+                            PlayerHelper.spawnItemOnGround(world, pos.offset(face), new ItemStack(PrimalAPI.Items.GOLD_DUST, randomChanceReturn(9, 1, 2)));
                             tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
                             return true;
                         }

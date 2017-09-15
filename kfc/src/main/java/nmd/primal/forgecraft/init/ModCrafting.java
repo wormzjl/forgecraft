@@ -4,10 +4,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.ShapedOreRecipe;
-import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.crafting.RecipeHandler;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -30,7 +28,7 @@ public class ModCrafting {
         
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
-                " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalItems.ADOBEBRICK_DRY);
+                " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalAPI.Items.ADOBEBRICK_DRY);
 
         /***CASTING FORM***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
@@ -41,12 +39,12 @@ public class ModCrafting {
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.castingmud, 4),
                 true, new Object[]{" C ", "CSC", " C ",
                 ('S'), Blocks.SAND,
-                ('C'), PrimalItems.MUD_CLUMP
+                ('C'), PrimalAPI.Items.MUD_CLUMP
         });
         /***YEW STAVE***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.yewstave, 2),
                 true, new Object[]{"C", "C",
-                ('C'), PrimalItems.LOGS_SPLIT_YEW
+                ('C'), PrimalAPI.Items.LOGS_SPLIT_YEW
         });
         /***Unstrung Longbow***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.unstrunglongbow, 1),
@@ -57,7 +55,7 @@ public class ModCrafting {
         /***Longbow***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.longbow, 1),
                 true, new Object[]{"C ","CA","C ",
-                ('C'), PrimalItems.SILK_CORDAGE,
+                ('C'), PrimalAPI.Items.SILK_CORDAGE,
                 ('A'), ModItems.unstrunglongbow
         });
 
@@ -66,16 +64,16 @@ public class ModCrafting {
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_brick),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_adobe),
-                "X X", "XYX", "X X", 'X', PrimalItems.ADOBEBRICK_DRY, 'Y', Blocks.FURNACE);
+                "X X", "XYX", "X X", 'X', PrimalAPI.Items.ADOBEBRICK_DRY, 'Y', Blocks.FURNACE);
         /***Bloomery***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_brick),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_adobe),
-                "X X", "X X", "XXX", 'X', PrimalItems.ADOBEBRICK_DRY);
+                "X X", "X X", "XXX", 'X', PrimalAPI.Items.ADOBEBRICK_DRY);
 /***Block Breaker***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.blockbreaker),
-                "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalItems.SILK_CORDAGE_COILED);
+                "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalAPI.Items.SILK_CORDAGE_COILED);
 
         /*** Soft Crucible ***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.softcrucible),
@@ -83,7 +81,7 @@ public class ModCrafting {
 
         /*** Soft Crucible ***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.softcrucible),
-                "X X", "X X", "XXX", 'X', PrimalItems.MUD_CLUMP);
+                "X X", "X X", "XXX", 'X', PrimalAPI.Items.MUD_CLUMP);
 
         /***Wooden PistonBellows***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.pistonbellowsoak), "XXX", "X Y", "XXX",
@@ -117,13 +115,13 @@ public class ModCrafting {
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
                 "XL","Y ",
                 ('X'), "dustIron",
-                ('L'), PrimalItems.CARBONATE_SLACK,
+                ('L'), PrimalAPI.Items.CARBONATE_SLACK,
                 ('Y'), ModBlocks.emptycrucible);
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
                 "XC","Y ",
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
-                ('C'), new ItemStack(PrimalItems.CHARCOAL_HIGH),
+                ('C'), new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH),
                 ('Y'), ModBlocks.emptycrucible);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XCX"," X "," Y ",
@@ -161,7 +159,7 @@ public class ModCrafting {
                 ('Y'), ModBlocks.rawbronzecrucible);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_diamond),
                 "D","Y",
-                ('D'), PrimalItems.DIAMOND_KNAPP,
+                ('D'), PrimalAPI.Items.DIAMOND_KNAPP,
                 ('Y'), ModBlocks.rawbronzecrucible);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_lapis),
                 "L","Y",
@@ -169,7 +167,7 @@ public class ModCrafting {
                 ('Y'), ModBlocks.rawbronzecrucible);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible_emerald),
                 "E","Y",
-                ('E'), PrimalItems.EMERALD_KNAPP,
+                ('E'), PrimalAPI.Items.EMERALD_KNAPP,
                 ('Y'), ModBlocks.rawbronzecrucible);
 
 
@@ -207,22 +205,22 @@ public class ModCrafting {
         /***Pickaxe Crafting***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_PICKAXE), "T", "S",
@@ -233,22 +231,22 @@ public class ModCrafting {
         /***Axe Crafting***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelaxehead,1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
         //TODO wootz placeholder
         RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_AXE), "T", "S",
@@ -258,22 +256,22 @@ public class ModCrafting {
         /***Shovel Crafting***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
         //TODO placed holder for wootz
         RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_SHOVEL), "T", "S",
@@ -283,22 +281,22 @@ public class ModCrafting {
         /***Hoe Crafting***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
-                ('S'), PrimalItems.LACQUER_STICK,
+                ('S'), PrimalAPI.Items.LACQUER_STICK,
                 ('C'), "cordageGeneral");
         //TODO PLACE HOLDER FOR WOOTZ STEEL
         RecipeHandler.addShapedOreRecipe(new ItemStack(Items.IRON_HOE), "T", "S",
@@ -879,8 +877,8 @@ public class ModCrafting {
         String diamond = Items.DIAMOND.getRegistryName().toString();
         String emerald = Items.EMERALD.getRegistryName().toString();
 
-        String emeraldShard = PrimalItems.EMERALD_KNAPP.getRegistryName().toString();
-        String diamondShard = PrimalItems.DIAMOND_KNAPP.getRegistryName().toString();
+        String emeraldShard = PrimalAPI.Items.EMERALD_KNAPP.getRegistryName().toString();
+        String diamondShard = PrimalAPI.Items.DIAMOND_KNAPP.getRegistryName().toString();
         String redstone = Items.REDSTONE.getRegistryName().toString();
         String lapis = Items.DYE.getRegistryName().toString();
 
@@ -942,7 +940,7 @@ public class ModCrafting {
                         empty,hotChunk,hotChunk,empty,empty,
                         empty,hotChunk,hotChunk,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.IRON_PLATE, 1),
+                new ItemStack(PrimalAPI.Items.IRON_PLATE, 1),
                 "null"
         );
 
@@ -954,7 +952,7 @@ public class ModCrafting {
                         hotChunk,empty,hotChunk,empty,hotChunk,
                         hotChunk,hotChunk,hotChunk,hotChunk,hotChunk,
                         hotChunk,empty,hotChunk,empty,hotChunk, },
-                new ItemStack(PrimalItems.IRON_PLATE, 1),
+                new ItemStack(PrimalAPI.Items.IRON_PLATE, 1),
                 "null"
         );
 
@@ -966,7 +964,7 @@ public class ModCrafting {
                         empty,empty,diamond,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 2, 3)),
+                new ItemStack(PrimalAPI.Items.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 2, 3)),
                 "null"
         );
 
@@ -1073,7 +1071,7 @@ public class ModCrafting {
                         empty,empty,emerald,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalItems.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 2, 3)),
+                new ItemStack(PrimalAPI.Items.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 2, 3)),
                 "null"
         );
 

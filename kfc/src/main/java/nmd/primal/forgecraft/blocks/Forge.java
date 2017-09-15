@@ -24,7 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalStates;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.crafting.FireSource;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
@@ -46,14 +46,14 @@ import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 public class Forge extends CustomContainerFacing implements ITileEntityProvider{
 
     private int maxHeat;
-    //public static final PropertyBool PrimalStates.ACTIVE =  PropertyBool.create("PrimalStates.ACTIVE");
+    //public static final PropertyBool PrimalAPI.States.ACTIVE =  PropertyBool.create("PrimalAPI.States.ACTIVE");
     protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
     public Forge(Material material, String name, Integer maxHeat) {
         super(material, name);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
+        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
         setResistance(5.0f);
         this.maxHeat=maxHeat;
@@ -114,7 +114,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                 }
                 if(pItem.isEmpty()) {
                     if(!player.isSneaking()){
-                        if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE) == true){
+                        if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true){
                             Integer tempInt = tile.getHeat();
                             String tempString = tempInt.toString();
                             ITextComponent itextcomponent = new TextComponentString(tempString);
@@ -125,7 +125,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                     }
                 }
                 if((FireSource.useSource(world, pos, player, pItem, hand, facing, hitX, hitY, hitZ))) {
-                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, true), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();
                     tile.updateBlock();
@@ -233,7 +233,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     {
         //if (!world.isRemote){
             if(ent instanceof EntityPlayer){
-                if(state.getValue(PrimalStates.ACTIVE) == true){
+                if(state.getValue(PrimalAPI.States.ACTIVE) == true){
                     ent.setFire(1);
                 }
             }
@@ -247,7 +247,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
-        if(state.getValue(PrimalStates.ACTIVE) == true){
+        if(state.getValue(PrimalAPI.States.ACTIVE) == true){
             return 15;
         }
         return 0;
@@ -271,7 +271,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
             if(!world.isRemote){
                 TileForge tile = (TileForge) world.getTileEntity(pos);
                 if(tile.getSlotStack(0) != ItemStack.EMPTY){
-                    if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE)==true){
+                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE)==true){
                         return true;
                     }
                 }
@@ -312,14 +312,14 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     /*@Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false));
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false));
     }*/
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         if(!worldIn.isRemote) {
-            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)), 2);
+            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
         }
     }
 
@@ -327,35 +327,35 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalAPI.States.ACTIVE) == false){
             i = 0;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalAPI.States.ACTIVE) == false){
             i = 1;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalAPI.States.ACTIVE) == false){
             i = 2;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalAPI.States.ACTIVE) == false){
             i = 3;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalAPI.States.ACTIVE) == true){
             i = 4;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalAPI.States.ACTIVE) == true){
             i = 5;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalAPI.States.ACTIVE) == true){
             i = 6;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalAPI.States.ACTIVE) == true){
             i = 7;
             return i;
         }
@@ -406,12 +406,12 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                 active = false;
         }
 
-        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(active));
+        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(active));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalStates.ACTIVE});
+        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalAPI.States.ACTIVE});
     }
 
     @Override
@@ -444,7 +444,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     {
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
-            if(state.getValue(PrimalStates.ACTIVE) == true) {
+            if(state.getValue(PrimalAPI.States.ACTIVE) == true) {
                 makeSmoke(world, pos);
             }
         }
@@ -454,7 +454,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if(state.getValue(PrimalStates.ACTIVE) == true)
+        if(state.getValue(PrimalAPI.States.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY() + 0.96D;
