@@ -22,7 +22,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.crafting.FireSource;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
@@ -44,7 +44,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public BloomeryBase(Material material, String registryName, Integer maxHeat) {
         super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
+        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
         setResistance(5.0f);
         this.maxHeat=maxHeat;
@@ -75,7 +75,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     {
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
-            if(state.getValue(PrimalAPI.States.ACTIVE) == true) {
+            if(state.getValue(PrimalStates.ACTIVE) == true) {
                 FireHelper.makeSmoke(world, pos, 50);
             }
         }
@@ -98,7 +98,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
             if(pItem.isEmpty()) {
 
                 if(!player.isSneaking()){
-                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true){
+                    if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE) == true){
 
                         Integer bloomeryHeat = tile.getHeat();
                         String display =  "\n" + "Current Temp: " + bloomeryHeat.toString() +
@@ -128,7 +128,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
             if(tile.getSlotStack(0) != ItemStack.EMPTY) {
                 if((FireSource.useSource(world, pos, player, pItem, hand, facing, hitX, hitY, hitZ))) {
-                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();
                     tile.updateBlock();
@@ -194,7 +194,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         int lightState =0;
-        if(state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if(state.getValue(PrimalStates.ACTIVE) == true){
             lightState = 10;
         }
         return lightState;
@@ -214,7 +214,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
     {
         if(!world.isRemote){
-            if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE)==true){
+            if(world.getBlockState(pos).getValue(PrimalStates.ACTIVE)==true){
                 return true;
             }
         }
@@ -225,7 +225,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
     {
         if(ent instanceof EntityPlayer){
-            if(state.getValue(PrimalAPI.States.ACTIVE) == true){
+            if(state.getValue(PrimalStates.ACTIVE) == true){
                 ent.setFire(1);
             }
         }
@@ -263,7 +263,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         if(!worldIn.isRemote) {
-            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+            worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)), 2);
         }
     }
 
@@ -271,35 +271,35 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 0;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 1;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 2;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == false){
             i = 3;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.EAST) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 4;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.WEST) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 5;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.SOUTH) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 6;
             return i;
         }
-        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if( (state.getValue(FACING) == EnumFacing.NORTH) && state.getValue(PrimalStates.ACTIVE) == true){
             i = 7;
             return i;
         }
@@ -350,12 +350,12 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                 active = false;
         }
 
-        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(active));
+        return this.getDefaultState().withProperty(FACING, enumfacing).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(active));
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalAPI.States.ACTIVE});
+        return new BlockStateContainer(this, new IProperty[] {FACING, PrimalStates.ACTIVE});
     }
 
     @Override
@@ -388,7 +388,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
     {
-        if(state.getValue(PrimalAPI.States.ACTIVE) == true)
+        if(state.getValue(PrimalStates.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
             double d1 = (double)pos.getY() + 0.2D;

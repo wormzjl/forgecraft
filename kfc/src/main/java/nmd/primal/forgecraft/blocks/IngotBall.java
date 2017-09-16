@@ -15,7 +15,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.PrimalStates;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
@@ -51,7 +51,7 @@ public class IngotBall extends BlockCustomBase {
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         //System.out.println(stack.getItemDamage());
-        worldIn.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+        worldIn.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)), 2);
         //System.out.println(state.getValue(ACTIVE));
     }
 
@@ -59,10 +59,10 @@ public class IngotBall extends BlockCustomBase {
     {
 
         if(!world.isRemote){
-            if(state.getValue(PrimalAPI.States.ACTIVE)){
+            if(state.getValue(PrimalStates.ACTIVE)){
                 world.setBlockState(pos, Blocks.FLOWING_LAVA.getDefaultState().withProperty(BlockDynamicLiquid.LEVEL, 1), 3);
             }
-            if(!state.getValue(PrimalAPI.States.ACTIVE)){
+            if(!state.getValue(PrimalStates.ACTIVE)){
                 //PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(this, 1));
             }
         }
@@ -72,11 +72,11 @@ public class IngotBall extends BlockCustomBase {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if(  state.getValue(PrimalAPI.States.ACTIVE) == false) {
+        if(  state.getValue(PrimalStates.ACTIVE) == false) {
             i = 0;
             return i;
         }
-        if(  state.getValue(PrimalAPI.States.ACTIVE) == true) {
+        if(  state.getValue(PrimalStates.ACTIVE) == true) {
             i = 1;
             return i;
         }
@@ -89,17 +89,17 @@ public class IngotBall extends BlockCustomBase {
         IBlockState iblockstate = this.getDefaultState();
 
         if (meta == 0){
-            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false));
+            iblockstate = iblockstate.withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false));
         }
         if (meta == 1) {
-            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(true));
+            iblockstate = iblockstate.withProperty(PrimalStates.ACTIVE, Boolean.valueOf(true));
         }
         return iblockstate;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE});
+        return new BlockStateContainer(this, new IProperty[] {PrimalStates.ACTIVE});
     }
 
     @Override
@@ -108,8 +108,8 @@ public class IngotBall extends BlockCustomBase {
         this.updateTick(world, pos, state, random);
         if(!world.isRemote){
             if ( ThreadLocalRandom.current().nextInt(0,4) == 0) {
-                if(state.getValue(PrimalAPI.States.ACTIVE) == true) {
-                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+                if(state.getValue(PrimalStates.ACTIVE) == true) {
+                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false)), 2);
                     world.playSound((EntityPlayer) null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 1.0F, world.rand.nextFloat() * 0.4F + 0.8F);
                 }
             }

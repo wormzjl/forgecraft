@@ -4,7 +4,8 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.PrimalStates;
+
 
 /**
  * Created by mminaie on 1/5/17.
@@ -19,7 +20,7 @@ public class TilePistonBellows extends BaseTile implements ITickable{
         if (!world.isRemote) {
             World world = this.getWorld();
             IBlockState state = world.getBlockState(this.pos);
-            if (world.getBlockState(this.getPos()).getValue(PrimalAPI.States.ACTIVE)) {
+            if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
                 iteration++;
                 if(iteration <= 15){
                     animateIteration++;
@@ -35,7 +36,7 @@ public class TilePistonBellows extends BaseTile implements ITickable{
                 if(iteration > 31){
                     iteration = 0;
                     animateIteration = 0;
-                    world.setBlockState(this.getPos(), state.withProperty(PrimalAPI.States.ACTIVE, false), 3);
+                    world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 3);
                 }
 
                 //System.out.println("Iterating");

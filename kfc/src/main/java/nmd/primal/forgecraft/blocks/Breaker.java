@@ -18,7 +18,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBreaker;
@@ -34,7 +34,7 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
     public Breaker(Material material, String registryName, Float hardness) {
         super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, false));
+        setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, false));
         setHardness(hardness);
     }
 
@@ -51,19 +51,19 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
             TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
 
-            if(state.getValue(PrimalAPI.States.ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
+            if(state.getValue(PrimalStates.ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
                 doBreaking(world, state, pos, tile);
-                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, false));
+                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, false));
 
                 tile.setCharge(0);
                 return true;
             }
             if(!player.isSneaking() && pItem.isEmpty()) {
-                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                if (!state.getValue(PrimalStates.ACTIVE)) {
+                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalStates.ACTIVE, true), 2);
                     return true;
                 }
-                if(state.getValue(PrimalAPI.States.ACTIVE)) {
+                if(state.getValue(PrimalStates.ACTIVE)) {
                     if (tile.getCharge() < 181) {
                         tile.setCharge(tile.getCharge() + 2.0f);
                         tile.updateBlock();
@@ -122,7 +122,7 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         //if(!worldIn.isRemote) {
-        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, false), 2);
+        worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, false), 2);
         //}
     }
 
@@ -130,7 +130,7 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if(state.getValue(PrimalAPI.States.ACTIVE ) == false) {
+        if(state.getValue(PrimalStates.ACTIVE ) == false) {
             if (state.getValue(FACING) == EnumFacing.EAST) {
                 i = 0;
                 return i;
@@ -149,7 +149,7 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
             }
         }
 
-        if(state.getValue(PrimalAPI.States.ACTIVE)) {
+        if(state.getValue(PrimalStates.ACTIVE)) {
             if (state.getValue(FACING) == EnumFacing.EAST) {
                 i = 4;
                 return i;
@@ -176,35 +176,35 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
         IBlockState iblockstate = this.getDefaultState();
 
         if (meta == 0){
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalAPI.States.ACTIVE, false);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, false);
         }
         if (meta == 1) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalAPI.States.ACTIVE, false);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, false);
         }
         if (meta == 2) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalAPI.States.ACTIVE, false);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, false);
         }
         if (meta == 3) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, false);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, false);
         }
         if (meta == 4){
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalAPI.States.ACTIVE, true);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalStates.ACTIVE, true);
         }
         if (meta == 5) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalAPI.States.ACTIVE, true);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalStates.ACTIVE, true);
         }
         if (meta == 6) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalAPI.States.ACTIVE, true);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalStates.ACTIVE, true);
         }
         if (meta == 7) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, true);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalStates.ACTIVE, true);
         }
         return iblockstate;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE, FACING});
+        return new BlockStateContainer(this, new IProperty[] {PrimalStates.ACTIVE, FACING});
     }
 
     @Override

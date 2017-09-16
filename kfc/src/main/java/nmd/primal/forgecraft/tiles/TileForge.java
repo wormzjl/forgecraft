@@ -10,7 +10,8 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalStates;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.Forge;
@@ -41,7 +42,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             BlockPos abovePos = new BlockPos(this.getPos().getX(), this.getPos().getY() + 1, this.getPos().getZ());
             IBlockState aboveState = world.getBlockState(abovePos);
             Block block = world.getBlockState(abovePos).getBlock();
-            if (world.getBlockState(this.getPos()).getValue(PrimalAPI.States.ACTIVE)) {
+            if (world.getBlockState(this.getPos()).getValue(PrimalStates.ACTIVE)) {
 
                 if (this.iteration == 100) {
                     RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
@@ -61,7 +62,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
 
 
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
-                        world.setBlockState(this.getPos(), state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
+                        world.setBlockState(this.getPos(), state.withProperty(PrimalStates.ACTIVE, false), 2);
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
@@ -118,20 +119,20 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
     }
 
     private void heatManager(Integer h, IBlockState state, ItemStack stack, World world, BlockPos pos){
-        if(state.getValue(PrimalAPI.States.ACTIVE) == true){
+        if(state.getValue(PrimalStates.ACTIVE) == true){
             if(!stack.isEmpty()) {
                 if(h > 0) {
                     this.setHeat(h - 25);
                 }
                 if(h < 10 ){
-                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
                 }
             }
             if(stack.isEmpty() || RecipeHelper.getBurnTime(stack) <=0){
                 System.out.println(stack);
-                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
+                world.setBlockState(pos, state.withProperty(PrimalStates.ACTIVE, false), 2);
             }
-            if(this.getSlotStack(0).getItem() == PrimalAPI.Items.CHARCOAL_FAIR){
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_FAIR){
                 if(this.getHeat() > 1610){
                     this.setHeat(1600);
                 }
@@ -141,18 +142,18 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     this.setHeat(1200);
                 }
             }
-            if(this.getSlotStack(0).getItem() == PrimalAPI.Items.CHARCOAL_GOOD){
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_GOOD){
                 if(this.getHeat() > 2110){
                     this.setHeat(2100);
                 }
             }
-            if(this.getSlotStack(0).getItem() == PrimalAPI.Items.CHARCOAL_HIGH){
+            if(this.getSlotStack(0).getItem() == PrimalItems.CHARCOAL_HIGH){
                 if(this.getHeat() > 3510){
                     this.setHeat(3500);
                 }
             }
         }
-        if(state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if(state.getValue(PrimalStates.ACTIVE) == false){
             if(h > 50){
                 this.setHeat(h - 50);
             }
@@ -304,9 +305,9 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     return true;
                 }
             }
-            if(stack.getItem() == PrimalAPI.Items.CHARCOAL_GOOD
-                    || stack.getItem() == PrimalAPI.Items.CHARCOAL_HIGH
-                    || stack.getItem() == PrimalAPI.Items.CHARCOAL_FAIR){
+            if(stack.getItem() == PrimalItems.CHARCOAL_GOOD
+                    || stack.getItem() == PrimalItems.CHARCOAL_HIGH
+                    || stack.getItem() == PrimalItems.CHARCOAL_FAIR){
                 return true;
             }
         }
