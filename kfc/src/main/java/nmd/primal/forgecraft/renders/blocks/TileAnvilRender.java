@@ -13,7 +13,8 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import nmd.primal.core.api.PrimalItems;
+
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.IngotBall;
@@ -89,8 +90,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             Item item = tile.getSlotStack(counter).getItem();
                             if (item.equals(Items.REDSTONE) ||
                                     (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.EMERALD_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.DIAMOND_KNAPP) ||
                                     item.equals(Items.DIAMOND) ||
                                     item.equals(Items.EMERALD)
                                     ) {
@@ -185,8 +186,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             Item item = tile.getSlotStack(counter).getItem();
                             if (item.equals(Items.REDSTONE) ||
                                     (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.EMERALD_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.DIAMOND_KNAPP) ||
                                     item.equals(Items.DIAMOND) ||
                                     item.equals(Items.EMERALD)
                                     ) {
@@ -278,8 +279,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             Item item = tile.getSlotStack(counter).getItem();
                             if (item.equals(Items.REDSTONE) ||
                                     (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.EMERALD_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.DIAMOND_KNAPP) ||
                                     item.equals(Items.DIAMOND) ||
                                     item.equals(Items.EMERALD)
                                     ) {
@@ -368,8 +369,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             Item item = tile.getSlotStack(counter).getItem();
                             if (item.equals(Items.REDSTONE) ||
                                     (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                                    item.equals(PrimalItems.EMERALD_KNAPP) ||
-                                    item.equals(PrimalItems.DIAMOND_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.EMERALD_KNAPP) ||
+                                    item.equals(PrimalAPI.Items.DIAMOND_KNAPP) ||
                                     item.equals(Items.DIAMOND) ||
                                     item.equals(Items.EMERALD)
                                     ) {
@@ -461,8 +462,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
         Item item = tile.getSlotStack(counter).getItem();
         if(item.equals(Items.REDSTONE) ||
                 (item.equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) ||
-                item.equals(PrimalItems.EMERALD_KNAPP) ||
-                item.equals(PrimalItems.DIAMOND_KNAPP)
+                item.equals(PrimalAPI.Items.EMERALD_KNAPP) ||
+                item.equals(PrimalAPI.Items.DIAMOND_KNAPP)
                 ){
             GL11.glPushMatrix();
 

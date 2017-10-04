@@ -12,7 +12,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalMaterials;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.casting.CastingPart;
@@ -164,87 +164,87 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalMaterials.TOOL_BRONZE, 41);
-        bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalMaterials.TOOL_BRONZE, 42);
-        bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalMaterials.TOOL_BRONZE, 43);
-        bronzehoehead = new BronzeToolPart("bronzehoehead", PrimalMaterials.TOOL_BRONZE, 44);
+        bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 41);
+        bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 42);
+        bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 43);
+        bronzehoehead = new BronzeToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 44);
 
-        pickaxehead = new ToolPart("ironpickaxehead", PrimalMaterials.TOOL_WROUGHT_IRON, 8);
-        ironaxehead = new ToolPart("ironaxehead", PrimalMaterials.TOOL_WROUGHT_IRON, 9);
-        ironshovelhead = new ToolPart("ironshovelhead", PrimalMaterials.TOOL_WROUGHT_IRON, 10);
-        ironhoehead = new ToolPart("ironhoehead", PrimalMaterials.TOOL_WROUGHT_IRON, 11);
+        pickaxehead = new ToolPart("ironpickaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 8);
+        ironaxehead = new ToolPart("ironaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 9);
+        ironshovelhead = new ToolPart("ironshovelhead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 10);
+        ironhoehead = new ToolPart("ironhoehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 11);
 
-        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalMaterials.TOOL_CLEAN_IRON, 17);
-        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalMaterials.TOOL_CLEAN_IRON, 18);
-        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalMaterials.TOOL_CLEAN_IRON, 19);
-        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalMaterials.TOOL_CLEAN_IRON, 20);
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 17);
+        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 18);
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 19);
+        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 20);
 
-        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalMaterials.TOOL_BASIC_STEEL, 26);
-        steelaxehead = new ToolPart("steelaxehead", PrimalMaterials.TOOL_BASIC_STEEL, 27);
-        steelshovelhead = new ToolPart("steelshovelhead", PrimalMaterials.TOOL_BASIC_STEEL, 28);
-        steelhoehead = new ToolPart("steelhoehead", PrimalMaterials.TOOL_BASIC_STEEL, 29);
+        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 26);
+        steelaxehead = new ToolPart("steelaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 27);
+        steelshovelhead = new ToolPart("steelshovelhead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 28);
+        steelhoehead = new ToolPart("steelhoehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 29);
 
-        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 35);
-        wootzaxehead = new ToolPart("wootzaxehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 36);
-        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalMaterials.TOOL_WOOTZ_STEEL, 37);
-        wootzhoehead = new ToolPart("wootzhoehead", PrimalMaterials.TOOL_WOOTZ_STEEL, 38);
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 35);
+        wootzaxehead = new ToolPart("wootzaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 36);
+        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 37);
+        wootzhoehead = new ToolPart("wootzhoehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 38);
 
         /**********
          TOOLS
          **********/
-        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalMaterials.TOOL_BRONZE, bronzepickaxehead);
-        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalMaterials.TOOL_BRONZE, bronzeaxehead);
-        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalMaterials.TOOL_BRONZE, bronzeshovelhead);
-        bronzehoe = new BronzeHoe("bronzehoe", PrimalMaterials.TOOL_BRONZE, bronzehoehead);
+        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzepickaxehead);
+        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead);
+        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeshovelhead);
+        bronzehoe = new BronzeHoe("bronzehoe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzehoehead);
 
-        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalMaterials.TOOL_WROUGHT_IRON, pickaxehead);
-        ironaxe = new CustomAxe("ironaxe", PrimalMaterials.TOOL_WROUGHT_IRON, ironaxehead);
-        ironshovel = new CustomShovel("ironshovel", PrimalMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
-        ironhoe = new CustomHoe("ironhoe", PrimalMaterials.TOOL_WROUGHT_IRON, ironhoehead);
+        ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, pickaxehead);
+        ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead);
+        ironshovel = new CustomShovel("ironshovel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
+        ironhoe = new CustomHoe("ironhoe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironhoehead);
 
-        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
-        cleanironaxe = new CustomAxe("cleanironaxe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironaxehead);
-        cleanironshovel = new CustomShovel("cleanironshovel", PrimalMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
-        cleanironhoe = new CustomHoe("cleanironhoe", PrimalMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
+        cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
+        cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead);
+        cleanironshovel = new CustomShovel("cleanironshovel", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
+        cleanironhoe = new CustomHoe("cleanironhoe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
 
-        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
-        steelaxe = new CustomAxe("steelaxe", PrimalMaterials.TOOL_BASIC_STEEL, steelaxehead);
-        steelshovel = new CustomShovel("steelshovel", PrimalMaterials.TOOL_BASIC_STEEL, steelshovelhead);
-        steelhoe = new CustomHoe("steelhoe", PrimalMaterials.TOOL_BASIC_STEEL, steelhoehead);
+        steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
+        steelaxe = new CustomAxe("steelaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelaxehead);
+        steelshovel = new CustomShovel("steelshovel", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelshovelhead);
+        steelhoe = new CustomHoe("steelhoe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelhoehead);
 
-        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
-        wootzaxe = new CustomAxe("wootzaxe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzaxehead);
-        wootzshovel = new CustomShovel("wootzshovel", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
-        wootzhoe = new CustomHoe("wootzhoe", PrimalMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
+        wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
+        wootzaxe = new CustomAxe("wootzaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzaxehead);
+        wootzshovel = new CustomShovel("wootzshovel", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
+        wootzhoe = new CustomHoe("wootzhoe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
 
         /**********
          WEAPONS
          **********/
-        bronzegladius = new CustomSword("bronzegladius", PrimalMaterials.TOOL_BRONZE, 5D, 2D);
-        wroughtirongladius = new CustomSword("wroughtirongladius", PrimalMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
-        cleanirongladius = new CustomSword("cleanirongladius", PrimalMaterials.TOOL_CLEAN_IRON, 5D, -1.85D);
-        steelgladius = new CustomSword("steelgladius", PrimalMaterials.TOOL_BASIC_STEEL,6D, -1.85D);
+        bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5D, 2D);
+        wroughtirongladius = new CustomSword("wroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
+        cleanirongladius = new CustomSword("cleanirongladius", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 5D, -1.85D);
+        steelgladius = new CustomSword("steelgladius", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,6D, -1.85D);
 
-        cleanironlongsword = new CustomSword("cleanironlongsword", PrimalMaterials.TOOL_CLEAN_IRON, 7D, -2.5D);
-        steellongsword = new CustomSword("steellongsword", PrimalMaterials.TOOL_BASIC_STEEL,8D, -2.25D);
+        cleanironlongsword = new CustomSword("cleanironlongsword", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 7D, -2.5D);
+        steellongsword = new CustomSword("steellongsword", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,8D, -2.25D);
 
-        wroughtironslayer = new SlayerSword("wroughtironslayer", PrimalMaterials.TOOL_WROUGHT_IRON, 11.5D, -3.7D);
-        cleanironslayer = new SlayerSword("cleanironslayer", PrimalMaterials.TOOL_CLEAN_IRON, 10D, -3.5D);
-        steelslayer = new SlayerSword("steelslayer", PrimalMaterials.TOOL_BASIC_STEEL,11D, -3.3D);
+        wroughtironslayer = new SlayerSword("wroughtironslayer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 11.5D, -3.7D);
+        cleanironslayer = new SlayerSword("cleanironslayer", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 10D, -3.5D);
+        steelslayer = new SlayerSword("steelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.3D);
 
-        wroughtironshield = new CustomShield("wroughtironshield", PrimalMaterials.TOOL_WROUGHT_IRON);
+        wroughtironshield = new CustomShield("wroughtironshield", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
         /**********
          INGOTS AND CHUNKS
          **********/
-        ironingotballhot = new BaseMultiItem("ironingothot", PrimalMaterials.TOOL_WROUGHT_IRON, 6);
-        ironchunkhot = new BaseMultiItem("ironchunkhot", PrimalMaterials.TOOL_WROUGHT_IRON, 7);
-        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", PrimalMaterials.TOOL_CLEAN_IRON, 15);
-        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", PrimalMaterials.TOOL_CLEAN_IRON, 16);
-        steelingotballhot= new BaseMultiItem("steelingotballhot", PrimalMaterials.TOOL_BASIC_STEEL, 24);
-        steelchunkhot= new BaseMultiItem("steelchunkhot", PrimalMaterials.TOOL_BASIC_STEEL, 25);
-        wootzingotballhot= new BaseMultiItem("wootzingotballhot", PrimalMaterials.TOOL_WOOTZ_STEEL, 33);
-        wootzchunkhot= new BaseMultiItem("wootzchunkhot", PrimalMaterials.TOOL_WOOTZ_STEEL, 34);
+        ironingotballhot = new BaseMultiItem("ironingothot", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 6);
+        ironchunkhot = new BaseMultiItem("ironchunkhot", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 7);
+        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 15);
+        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 16);
+        steelingotballhot= new BaseMultiItem("steelingotballhot", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 24);
+        steelchunkhot= new BaseMultiItem("steelchunkhot", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 25);
+        wootzingotballhot= new BaseMultiItem("wootzingotballhot", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 33);
+        wootzchunkhot= new BaseMultiItem("wootzchunkhot", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 34);
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
@@ -258,7 +258,7 @@ public class ModItems {
         /**********
          ARMOR
          **********/
-        //testleggings=new CustomLeggings(PrimalMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
+        //testleggings=new CustomLeggings(PrimalAPI.ToolMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
         //registerItem(312, "diamond_leggings", (new ItemArmor(ItemArmor.ArmorMaterial.DIAMOND, 3, EntityEquipmentSlot.LEGS)).setUnlocalizedName("leggingsDiamond"));
     }
 

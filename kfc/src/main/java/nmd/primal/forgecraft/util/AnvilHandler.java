@@ -11,7 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.items.PrimalItem;
 import nmd.primal.core.common.items.tools.WorkMallet;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.IngotBall;
@@ -606,7 +607,7 @@ public interface AnvilHandler {
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
             }
-            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
                 CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
@@ -616,7 +617,7 @@ public interface AnvilHandler {
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
             }
-            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
                 CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
@@ -687,7 +688,7 @@ public interface AnvilHandler {
             }
         }
 
-        if (pItem.getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+        if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
             if (tile.getSlotStack(counter).isEmpty()) {
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);
@@ -695,7 +696,7 @@ public interface AnvilHandler {
             }
         }
 
-        if (pItem.getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+        if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
             if (tile.getSlotStack(counter).isEmpty()) {
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);
