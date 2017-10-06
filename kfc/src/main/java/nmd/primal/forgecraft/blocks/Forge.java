@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.crafting.FireSource;
+import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.parts.ToolPart;

@@ -6,7 +6,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.crafting.RecipeHandler;
+import nmd.primal.core.common.recipes.RecipeHandler;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
