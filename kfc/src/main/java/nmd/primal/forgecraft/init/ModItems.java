@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.*;
+import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -132,7 +134,7 @@ public class ModItems {
     public static Item unstrunglongbow;
     public static Item longbow;
 
-
+    public static Item leatherhelmet;
     //public static Item testleggings;
 
     //public static Item forgingmanual;
@@ -258,7 +260,8 @@ public class ModItems {
         /**********
          ARMOR
          **********/
-        //testleggings=new CustomLeggings(PrimalAPI.ToolMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
+        leatherhelmet=new CustomHelmet(PrimalAPI.ArmorMaterials.ARMOR_HIDE, 0, EntityEquipmentSlot.HEAD, "leatherhelmet");
+        //testleggings=new CustomHelmet(PrimalAPI.ToolMaterials.ARMOR_ADAMANT, 3, EntityEquipmentSlot.LEGS, "testleggings");
         //registerItem(312, "diamond_leggings", (new ItemArmor(ItemArmor.ArmorMaterial.DIAMOND, 3, EntityEquipmentSlot.LEGS)).setUnlocalizedName("leggingsDiamond"));
     }
 
@@ -372,6 +375,7 @@ public class ModItems {
         /**********
          ARMOR
          **********/
+        ForgeRegistries.ITEMS.register(leatherhelmet);
         //ForgeRegistries.ITEMS.register(testleggings);
 
 
@@ -492,7 +496,7 @@ public class ModItems {
         /**********
          ARMOR
          **********/
-        //registerRender(testleggings);
+        registerRender(leatherhelmet);
 
     }
 
