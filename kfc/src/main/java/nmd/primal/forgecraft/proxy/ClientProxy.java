@@ -32,6 +32,7 @@ public class ClientProxy implements CommonProxy {
         ModBlocks.registerRenders();
         //this.registerModelBakeryStuff();
         this.registerTileRendering();
+        this.registerModels();
     }
 
     //@Override
