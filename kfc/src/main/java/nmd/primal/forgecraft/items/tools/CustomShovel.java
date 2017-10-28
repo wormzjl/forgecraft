@@ -374,14 +374,14 @@ public class CustomShovel extends ItemSpade implements ToolNBT {
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         for (String type : getToolClasses(stack))
         {
             if (state.getBlock().isToolEffective(type, state))
-                return efficiencyOnProperMaterial;
+                return efficiency;
         }
-        return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiencyOnProperMaterial * ( (this.getRedstoneLevel(stack) * 2 ) + 1)) : 1.0F;
+        return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1)) : 1.0F;
     }
 
     @SideOnly(Side.CLIENT)

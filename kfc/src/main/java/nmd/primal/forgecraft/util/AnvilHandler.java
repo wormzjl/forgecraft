@@ -13,7 +13,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.items.PrimalItem;
-import nmd.primal.core.common.items.tools.WorkMallet;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -60,7 +60,7 @@ public interface AnvilHandler {
     default boolean doAnvilRecipe(ItemStack pItem, String[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
-            if (pItem.getItem() instanceof WorkMallet) {
+            if (pItem.getItem() instanceof Gallagher) {
                 pItem.damageItem(15, player);
             }
             if (pItem.getItem() instanceof ForgeHammer) {
@@ -175,7 +175,7 @@ public interface AnvilHandler {
      *****************************************************************************/
 
     default boolean doAnvilInventoryManager(ItemStack pItem, World world, TileAnvil tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
-        if ( (!(pItem.getItem() instanceof WorkMallet)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
+        if ( (!(pItem.getItem() instanceof Gallagher)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
             if(Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
                 return false;
             }

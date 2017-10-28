@@ -43,13 +43,13 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             if (world.getBlockState(this.getPos()).getValue(PrimalAPI.States.ACTIVE)) {
 
                 if (this.iteration == 100) {
-                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
                     if(CommonUtils.randomCheck(1000)) {
                         makeSmoke(world, pos);
                     }
                 }
                 if (this.iteration == 200) {
-                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
                     if(CommonUtils.randomCheck(1000)) {
                         makeSmoke(world, pos);
                     }
@@ -64,7 +64,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         this.markDirty();
                         world.notifyBlockUpdate(pos, state, state, 2);
                     }
-                    RecipeHelper.fuelManger(world, this, this.getSlotStack(0));
+                    RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
                     if(CommonUtils.randomCheck(1000)) {
                         makeSmoke(world, pos);
                     }
