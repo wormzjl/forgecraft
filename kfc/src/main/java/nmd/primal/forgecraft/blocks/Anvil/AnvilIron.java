@@ -8,7 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nmd.primal.core.common.items.tools.WorkMallet;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.util.AnvilHandler;
@@ -33,7 +33,7 @@ public class AnvilIron extends AnvilBase implements AnvilHandler {
             ItemStack pItem = player.inventory.getCurrentItem();
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
             if (tile != null) {
-                if ((pItem.getItem() instanceof WorkMallet) || (pItem.getItem() == ModItems.forgehammer)) {
+                if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
                     String[] tempArray = new String[25];
                     for (int i = 0; i < 25; i++) {
                         tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();

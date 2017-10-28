@@ -18,7 +18,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.common.items.tools.WorkMallet;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
@@ -194,7 +194,7 @@ public class ModBlocks {
                     Item pItem = player.getHeldItem(hand).getItem();
                     BlockPos belowPos = pos.down();
                     //System.out.println("Activating");
-                    if (pItem instanceof WorkMallet && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
+                    if (pItem instanceof Gallagher && world.getBlockState(belowPos).getBlock().equals(Blocks.STONE)) {
                         player.swingArm(hand);
                         world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                         world.setBlockState(belowPos, ModBlocks.stoneanvil.getDefaultState().withProperty(AnvilStone.FACING, player.getHorizontalFacing()), 2);
@@ -210,7 +210,7 @@ public class ModBlocks {
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }*/
-                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                    if (pItem instanceof Gallagher || pItem.equals(ModItems.forgehammer)) {
                         if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
@@ -263,7 +263,7 @@ public class ModBlocks {
                         //System.out.println("Activating");
                         return true;
                     }
-                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                    if (pItem instanceof Gallagher || pItem.equals(ModItems.forgehammer)) {
                         if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
@@ -315,7 +315,7 @@ public class ModBlocks {
                         //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                         return true;
                     }
-                    if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                    if (pItem instanceof Gallagher || pItem.equals(ModItems.forgehammer)) {
                         if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                             TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);
@@ -367,7 +367,7 @@ public class ModBlocks {
                     //CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.stoneanvil, 1));
                     return true;
                 }
-                if (pItem instanceof WorkMallet || pItem.equals(ModItems.forgehammer)) {
+                if (pItem instanceof Gallagher || pItem.equals(ModItems.forgehammer)) {
                     if(world.getBlockState(belowPos).getBlock() instanceof AnvilBase) {
 
                         TileAnvil tile = (TileAnvil) world.getTileEntity(belowPos);

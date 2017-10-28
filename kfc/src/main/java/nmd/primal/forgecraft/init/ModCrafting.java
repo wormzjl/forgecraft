@@ -28,7 +28,7 @@ public class ModCrafting {
         
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
-                " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalAPI.Items.ADOBEBRICK_DRY);
+                " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalAPI.Items.ADOBE_BRICK_DRY);
 
         /***CASTING FORM***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
@@ -64,13 +64,13 @@ public class ModCrafting {
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_brick),
                 "X X", "XYX", "X X", 'X', Items.BRICK, 'Y', Blocks.FURNACE);
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_adobe),
-                "X X", "XYX", "X X", 'X', PrimalAPI.Items.ADOBEBRICK_DRY, 'Y', Blocks.FURNACE);
+                "X X", "XYX", "X X", 'X', PrimalAPI.Items.ADOBE_BRICK_DRY, 'Y', Blocks.FURNACE);
         /***Bloomery***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_brick),
                 "X X", "X X", "XXX", 'X', Items.BRICK);
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_adobe),
-                "X X", "X X", "XXX", 'X', PrimalAPI.Items.ADOBEBRICK_DRY);
+                "X X", "X X", "XXX", 'X', PrimalAPI.Items.ADOBE_BRICK_DRY);
 /***Block Breaker***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.blockbreaker),
                 "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalAPI.Items.SILK_CORDAGE_COILED);

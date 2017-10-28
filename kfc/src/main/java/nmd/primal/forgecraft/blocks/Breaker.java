@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.PrimalAPI.States;
-import nmd.primal.core.common.items.tools.WorkMallet;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 import nmd.primal.forgecraft.util.BreakerHandler;
@@ -74,7 +74,7 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
                 }
             }
 
-            if(pItem.getItem() instanceof WorkMallet){
+            if(pItem.getItem() instanceof Gallagher){
                 tile.setSlotStack(0, player.inventory.getCurrentItem());
                 player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
                 return true;
