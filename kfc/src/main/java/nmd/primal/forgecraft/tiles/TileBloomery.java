@@ -10,7 +10,6 @@ import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.RecipeHelper;

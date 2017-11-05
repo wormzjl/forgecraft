@@ -6,8 +6,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.recipes.RecipeHandler;
 import nmd.primal.core.common.helper.CommonUtils;
+import nmd.primal.core.common.recipes.RecipeHandler;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.CastingformCrafting;
@@ -58,7 +58,6 @@ public class ModCrafting {
                 ('C'), PrimalAPI.Items.SILK_CORDAGE,
                 ('A'), ModItems.unstrunglongbow
         });
-
 
         /***Forge***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.forge_brick),
@@ -907,6 +906,8 @@ public class ModCrafting {
         hotChunk = 1
         diamond = 2
          */
+
+
 
         /*** ForgeHammer ***/
         AnvilCrafting.addRecipe(

@@ -12,7 +12,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.items.PrimalItem;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.IngotBall;

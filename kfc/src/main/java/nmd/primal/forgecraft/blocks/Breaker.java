@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.api.PrimalAPI.States;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBreaker;

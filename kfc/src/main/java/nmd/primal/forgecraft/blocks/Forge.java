@@ -25,8 +25,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
@@ -95,21 +95,15 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                 ItemStack fuelItem = tile.getSlotStack(0);
                 //System.out.println(pItem.getItem().getRegistryName().toString());
 
-
-
-
                 /***********************
                 FUEL SLOT CODE
                  ***********************/
-
-                if (player.isSneaking()) {
-                    if (!tile.getSlotStack(0).isEmpty()) {
-                        if(player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
-                            ItemStack returnStack = tile.getSlotStack(0).copy();
-                            PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
-                            tile.clearSlot(0);
-                            return true;
-                        }
+                if (!tile.getSlotStack(0).isEmpty()) {
+                    if(player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
+                        ItemStack returnStack = tile.getSlotStack(0).copy();
+                        PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
+                        tile.clearSlot(0);
+                        return true;
                     }
                 }
                 if(pItem.isEmpty()) {

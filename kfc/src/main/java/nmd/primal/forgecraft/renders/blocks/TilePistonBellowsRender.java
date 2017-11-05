@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.api.PrimalAPI.States;
 import nmd.primal.forgecraft.blocks.PistonBellows;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TilePistonBellows;

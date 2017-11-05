@@ -7,8 +7,10 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import nmd.primal.forgecraft.commands.CommandShowWiki;
 import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.*;
@@ -76,6 +78,12 @@ public class ForgeCraft
     public void postInit(FMLPostInitializationEvent event)
     {
         //this.proxy.postInit(event);
+    }
+
+    @EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandShowWiki());
     }
 
 }

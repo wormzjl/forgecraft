@@ -60,4 +60,6 @@ public class ClientProxy implements CommonProxy {
         //        new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"));
     }
 
+
+
 }

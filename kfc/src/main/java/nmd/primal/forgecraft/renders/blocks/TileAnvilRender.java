@@ -13,7 +13,6 @@ import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
@@ -168,7 +167,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.50D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.55D, tile.getNormalZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -261,7 +260,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getReverseX(a), -0.44D, tile.getReverseZ(i));
+                                GL11.glTranslated(tile.getReverseX(a), -0.55D, tile.getReverseZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -352,7 +351,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.44D, tile.getReverseZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), -0.55D, tile.getReverseZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -443,7 +442,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
-                                GL11.glTranslated(tile.getReverseX(a), -0.455D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getReverseX(a), -0.55D, tile.getNormalZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
