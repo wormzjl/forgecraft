@@ -4,28 +4,35 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.recipes.RecipeHandler;
-import nmd.primal.forgecraft.crafting.AnvilCrafting;
-import nmd.primal.forgecraft.crafting.BloomeryCrafting;
-import nmd.primal.forgecraft.crafting.CastingformCrafting;
-import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.crafting.*;
 
+import nmd.primal.forgecraft.crafting.CrucibleHandler;
 import java.util.Random;
 
 /**
  * Created by kitsu on 11/30/2016.
  */
-public class ModCrafting {
+public class ModCrafting{
 
     public static void register() {
 
         Random rand = new Random();
 
-        //RecipeHandler.addShapedOreRecipe();
-        
+
+        CrucibleHandler.setCrucibleIngredients(new OreIngredient("oreIron"));
+        CrucibleHandler.setCrucibleIngredients(new OreIngredient("dustIron"));
+        CrucibleHandler.setCrucibleIngredients(new OreIngredient("dustTin"));
+        CrucibleHandler.setCrucibleIngredients(new OreIngredient("dustCopper"));
+        //CrucibleHandler.setCrucibleIngredients();
+        //.fromItems(PrimalAPI.Items.CARBONATE_SLACK, PrimalAPI.Items.CHARCOAL_HIGH));
+
+
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
                 " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalAPI.Items.ADOBE_BRICK_DRY);
@@ -70,7 +77,7 @@ public class ModCrafting {
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.bloomery_adobe),
                 "X X", "X X", "XXX", 'X', PrimalAPI.Items.ADOBE_BRICK_DRY);
-/***Block Breaker***/
+        /***Block Breaker***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.blockbreaker),
                 "L  ", "BSB", "BBB", 'L', Blocks.LEVER, 'B', new ItemStack(Blocks.PLANKS, 1, OreDictionary.WILDCARD_VALUE), 'S', PrimalAPI.Items.SILK_CORDAGE_COILED);
 

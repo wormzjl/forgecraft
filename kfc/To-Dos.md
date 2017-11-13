@@ -1,14 +1,18 @@
-To-Dos
+# To-Dos
 
-*** Bugs ***
+## Bugs
 
 
-*** Current Feature ***
-- [x] BlockBreaker Support for copper dust and tin dust
-- [x] picking up raw bronze crucible returns some other shit
-- [x] Tool breaking should return tool head
+## Current Feature
+ - [ ] Steel Plate Recipe
+ - [ ] NBT Crucible
+ - [ ] NBT Crucible Recipes
+ - [ ] Slotted Tongs
+ - [ ] Item Crucible
+ - [ ] NBTCrucible to ItemCrucible transformer
+ - [ ] StoneTongs ItemCrucible to NBTCrucible transformer
 
-*** Feature Musket ***
+## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
 - [ ] Create musket round item (lead or iron nugget)
 - [ ] Create wadding item (paper)
@@ -19,7 +23,7 @@ To-Dos
 - [ ] Create stock item
 - [ ] Create lock assembly item
 
-*** Backlog ***
+## Backlog
 - [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
@@ -30,12 +34,17 @@ To-Dos
 - [ ] WeaponHead recipes
 
 
-*** Tid-Bits ***
+### Tid-Bits
+```
 sed -i -- 's/iron/steel/g' *
 rm *.json--
 rename s/iron/steel/ iron*
+```
 
-*** Completed ***
+### Completed
+- [x] BlockBreaker Support for copper dust and tin dust
+- [x] picking up raw bronze crucible returns some other shit
+- [x] Tool breaking should return tool head
 - [x] Casting Table
   - [x] Block
   - [x] Gui

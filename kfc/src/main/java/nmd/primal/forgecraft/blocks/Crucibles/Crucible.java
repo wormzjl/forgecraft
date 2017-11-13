@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.crafting.CrucibleHandler;
 import nmd.primal.forgecraft.init.ModBlocks;
 import org.apache.commons.lang3.StringUtils;
 
@@ -50,6 +51,9 @@ public class Crucible extends Block {
 
         if (!world.isRemote) {
             ItemStack pItem = player.inventory.getCurrentItem();
+            if(CrucibleHandler.getCrucibleIngredients().apply(pItem)){
+                System.out.println("true");
+            }
             if(pItem.isEmpty()){
                 CommonUtils.spawnItemEntity(world, player, new ItemStack(this, 1));
                 world.setBlockToAir(pos);

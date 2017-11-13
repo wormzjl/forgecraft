@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.crafting;
 
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 
 import java.util.ArrayList;
 
@@ -18,12 +19,15 @@ public class BloomeryCrafting {
     private ItemStack output_failed;
     private ItemStack cool_output;
 
+
     private int heat_threshold;
     private int ideal_time;
     private int cooldown;
 
     private float heat_variance;
     private float time_variance;
+
+
 
     public BloomeryCrafting(ItemStack input, ItemStack output, ItemStack output_failed, ItemStack cool_output, int heat_threshold, int ideal_time, int cooldown,float heat_variance, float time_variance)
     {
