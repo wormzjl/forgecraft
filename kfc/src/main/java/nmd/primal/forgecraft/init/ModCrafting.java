@@ -4,8 +4,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraftforge.advancements.critereon.OredictItemPredicate;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
@@ -13,7 +11,6 @@ import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.recipes.RecipeHandler;
 import nmd.primal.forgecraft.crafting.*;
 
-import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import java.util.Random;
 
 /**
@@ -25,7 +22,8 @@ public class ModCrafting{
 
         Random rand = new Random();
 
-        CrucibleCrafting.addRecipe(new OreIngredient("oreIron"), null, null, null, null);
+        CrucibleCrafting.addRecipe(new OreIngredient("oreIron"), null, null, null, null,
+                new ItemStack(ModBlocks.ironball, 1));
 
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
