@@ -19,7 +19,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.crafting.CrucibleHandler;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
@@ -50,9 +49,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
         if (!world.isRemote) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
-            if(CrucibleHandler.getCrucibleIngredients().apply(pItem)){
-                System.out.println("true");
-            }
+
         }
         return false;
     }

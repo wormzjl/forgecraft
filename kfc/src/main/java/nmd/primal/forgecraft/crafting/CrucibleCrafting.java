@@ -3,8 +3,8 @@ package nmd.primal.forgecraft.crafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.annotation.Nullable;
+import java.util.*;
 
 /**
  * Created by mminaie on 11/11/17.
@@ -23,7 +23,122 @@ public class CrucibleCrafting {
     private Ingredient ing3;
     private Ingredient ing4;
 
-    private List<Ingredient> ingredientList;
+    private List<Ingredient> ingredientList = new List<Ingredient>() {
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean contains(Object o) {
+            return false;
+        }
+
+        @Override
+        public Iterator<Ingredient> iterator() {
+            return null;
+        }
+
+        @Override
+        public Object[] toArray() {
+            return new Object[0];
+        }
+
+        @Override
+        public <T> T[] toArray(T[] a) {
+            return null;
+        }
+
+        @Override
+        public boolean add(Ingredient ingredient) {
+            return false;
+        }
+
+        @Override
+        public boolean remove(Object o) {
+            return false;
+        }
+
+        @Override
+        public boolean containsAll(Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(Collection<? extends Ingredient> c) {
+            return false;
+        }
+
+        @Override
+        public boolean addAll(int index, Collection<? extends Ingredient> c) {
+            return false;
+        }
+
+        @Override
+        public boolean removeAll(Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public boolean retainAll(Collection<?> c) {
+            return false;
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Ingredient get(int index) {
+            return null;
+        }
+
+        @Override
+        public Ingredient set(int index, Ingredient element) {
+            return null;
+        }
+
+        @Override
+        public void add(int index, Ingredient element) {
+
+        }
+
+        @Override
+        public Ingredient remove(int index) {
+            return null;
+        }
+
+        @Override
+        public int indexOf(Object o) {
+            return 0;
+        }
+
+        @Override
+        public int lastIndexOf(Object o) {
+            return 0;
+        }
+
+        @Override
+        public ListIterator<Ingredient> listIterator() {
+            return null;
+        }
+
+        @Override
+        public ListIterator<Ingredient> listIterator(int index) {
+            return null;
+        }
+
+        @Override
+        public List<Ingredient> subList(int fromIndex, int toIndex) {
+            return null;
+        }
+    };
 
     private ItemStack drops;
 
@@ -64,6 +179,19 @@ public class CrucibleCrafting {
             }
         }
         return null;
+    }
+
+    public static boolean isValidIngredient(ItemStack checkStack){
+        for(CrucibleCrafting recipe : crucibleCrafting) {
+            if (recipe.ing0.apply(checkStack) ||
+                    recipe.ing1.apply(checkStack) ||
+                    recipe.ing2.apply(checkStack) ||
+                    recipe.ing3.apply(checkStack) ||
+                    recipe.ing4.apply(checkStack)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 }

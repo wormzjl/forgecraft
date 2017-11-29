@@ -4,6 +4,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
@@ -22,7 +23,12 @@ public class ModCrafting{
 
         Random rand = new Random();
 
-        CrucibleCrafting.addRecipe(new OreIngredient("oreIron"), null, null, null, null,
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreIron"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
                 new ItemStack(ModBlocks.ironball, 1));
 
         /***CASTING BLOCK***/
