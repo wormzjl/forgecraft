@@ -20,6 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -128,6 +129,9 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
 
+            }
+            if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.bronzepickaxehead, 1));
             }
         }
     }
