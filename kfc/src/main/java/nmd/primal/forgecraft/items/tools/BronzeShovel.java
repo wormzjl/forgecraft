@@ -133,7 +133,8 @@ Item drop;
 
             }
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.bronzeshovelhead, 1));
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenbronzetool, 1));
+                ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
     }

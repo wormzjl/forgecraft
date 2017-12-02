@@ -18,8 +18,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -268,6 +270,20 @@ public class CustomAxe extends ItemAxe implements ToolNBT {
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
+            }
+
+            if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
+
+                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
+                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenwroughtirontool, 1));
+                }
+                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
+                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokencleanirontool, 1));
+                }
+                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
+                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokensteeltool, 1));
+                }
+                ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
     }

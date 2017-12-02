@@ -86,6 +86,12 @@ tile.steelchunk.name=Steel Chunk
 tile.wootzball.name=Damascus Steel Ingot
 tile.wootzchunk.name=Damascus Steel Chunk
 
+item.brokenbronzetool.name=Broken Bronze Tool
+item.brokenwroughtirontool.name=Broken Wrought Iron Tool
+item.brokencleanirontool.name=Broken Clean Iron Tool
+item.brokensteeltool.name=Broken Steel Tool
+item.brokenwootztool.name=Broken Damascus Tool
+
 item.unstrunglongbow.name=Unstrung Longbow
 item.longbow.name=Longbow
 item.rawlongbow.name=Raw Longbow

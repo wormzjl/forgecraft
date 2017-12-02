@@ -131,7 +131,8 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
 
             }
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.bronzepickaxehead, 1));
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenbronzetool, 1));
+                ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
     }

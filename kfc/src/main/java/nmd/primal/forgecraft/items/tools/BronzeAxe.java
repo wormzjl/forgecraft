@@ -127,8 +127,10 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
             }
+            //this.setDamage(item, this.getMaxDamage(item) -2);
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.bronzeaxehead, 1));
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenbronzetool, 1));
+                ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
     }
