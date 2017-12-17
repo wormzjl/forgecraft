@@ -22,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.WorldHelper;
 import nmd.primal.forgecraft.ModInfo;
@@ -52,6 +53,12 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
     }
 
     @Override
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    {
+        return  NBTHelper.getStackBlockNBT(world, pos, state, super.getItem(world, pos, state));
+    }
+
+    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
@@ -60,13 +67,8 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
-                    ItemStack tempStack = new ItemStack(ModItems.itemcrucible, 1);
-                    tempStack.setTagCompound(new NBTTagCompound());
-                    NBTTagCompound recipe = new NBTTagCompound();
-                    recipe.setTag("Items", recipe);
-                    ItemStackHelper.saveAllItems(recipe, tile.ingList);
-                    //tempStack.writeToNBT(tempNBT);
-                    PlayerHelper.spawnItemOnPlayer(world, player, tempStack);
+
+                    PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
                     world.setBlockToAir(pos);
                 }
             }
@@ -98,10 +100,10 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
         return false;
     }
 
-    @Override
+    /*@Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {
-        if (!world.isRemote) {
+        /*if (!world.isRemote) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             for (int i = 0; i < tile.ingList.size(); i++) {
                 if (!tile.ingList.get(i).isEmpty()) {
@@ -111,7 +113,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
             }
         }
         world.removeTileEntity(pos);
-    }
+    }*/
 
     /*@Override
     public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)

@@ -33,32 +33,7 @@ public class ItemCrucible extends Item {
         this.setNoRepair();
     }
 
-    @Override
-    public void onCreated(ItemStack item, World world, EntityPlayer playerIn) {
-
-        if(!world.isRemote) {
-            if (!item.hasTagCompound()) {
-                item.setTagCompound(new NBTTagCompound());
-                NBTTagCompound recipe = new NBTTagCompound();
-                recipe.setTag("Items", recipe);
-                //item.getTagCompound().setTag("recipe", recipe);
-            }
-        }
-
-    }
-
-    @Override
-    public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
-        if(!world.isRemote) {
-            if (!item.hasTagCompound()) {
-                item.setTagCompound(new NBTTagCompound());
-                NBTTagCompound recipe = new NBTTagCompound();
-                recipe.setTag("Items", recipe);
-            }
-        }
-    }
-
-    @Override
+    /*@Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
@@ -84,9 +59,9 @@ public class ItemCrucible extends Item {
                 if (getLapisLevel(item) > 0) {
                     tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
                 }
-                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );*/
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
         }
-    }
+    }*/
 
 }
