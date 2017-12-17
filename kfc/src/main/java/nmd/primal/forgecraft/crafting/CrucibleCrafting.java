@@ -17,11 +17,18 @@ public class CrucibleCrafting {
 
     private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
 
+    private int cookTemp;
+    private int cookTime;
+    private int coolTime;
+
     private Ingredient ing0;
     private Ingredient ing1;
     private Ingredient ing2;
     private Ingredient ing3;
     private Ingredient ing4;
+
+    private ItemStack dropsCooked;
+    private ItemStack dropsRaw;
 
     private List<Ingredient> ingredientList = new List<Ingredient>() {
         @Override
@@ -140,10 +147,12 @@ public class CrucibleCrafting {
         }
     };
 
-    private ItemStack drops;
 
 
-    public CrucibleCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4, ItemStack output){
+
+    public CrucibleCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
+                            ItemStack outputRaw, ItemStack outputCooked,
+                            Integer temp, Integer cookTime, Integer coolTime){
 
         this.ing0 = i0;
         this.ing1 = i1;
@@ -155,12 +164,18 @@ public class CrucibleCrafting {
         this.ingredientList.add(2, i2);
         this.ingredientList.add(3, i3);
         this.ingredientList.add(4, i4);
-        this.drops = output;
+        this.dropsRaw = outputRaw;
+        this.dropsCooked = outputCooked;
+        this.cookTemp = temp;
+        this.cookTime = cookTime;
+        this.coolTime = coolTime;
     }
 
-    public static void addRecipe(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4, ItemStack drop)
+    public static void addRecipe(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
+                                 ItemStack outputRaw, ItemStack outputCooked,
+                                 Integer temp, Integer cookTime, Integer coolTime)
     {
-        crucibleCrafting.add(new CrucibleCrafting(i0, i1, i2, i3, i4, drop));
+        crucibleCrafting.add(new CrucibleCrafting(i0, i1, i2, i3, i4, outputRaw, outputCooked, temp, cookTime, coolTime));
     }
 
     public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){

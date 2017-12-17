@@ -32,6 +32,7 @@ import nmd.primal.forgecraft.items.weapons.SlayerSword;
 public class ModItems {
 
     //public static Item test;
+    public static Item itemcrucible;
     public static Item bellowshandle;
     public static Item forgehammer;
     public static Item softcrucible;
@@ -142,6 +143,7 @@ public class ModItems {
     public static void init() {
         //OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
         //pistonbellows = new ItemBellowsHandle("pistonbellows");
+        itemcrucible = new ItemCrucible("itemcrucible");
         bellowshandle = new BaseItem("bellowshandle");
         softcrucible = new ItemSoftCrucible("softcrucible");
         stonetongs = new ItemStoneTongs("stonetongs");
@@ -266,6 +268,7 @@ public class ModItems {
     }
 
     public static void register() {
+        ForgeRegistries.ITEMS.register(itemcrucible);
         ForgeRegistries.ITEMS.register(castingmud);
         ForgeRegistries.ITEMS.register(bellowshandle);
         ForgeRegistries.ITEMS.register(softcrucible);
@@ -385,6 +388,7 @@ public class ModItems {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+        registerRender(itemcrucible);
         registerRender(castingmud);
         registerRender(bellowshandle);
         registerRender(softcrucible);

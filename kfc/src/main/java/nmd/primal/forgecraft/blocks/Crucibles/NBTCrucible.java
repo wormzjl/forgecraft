@@ -1,13 +1,16 @@
 package nmd.primal.forgecraft.blocks.Crucibles;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -18,7 +21,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.helper.WorldHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.ItemCrucible;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
@@ -40,7 +48,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
         setRegistryName(registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setHardness(3.0f);
-        crucibleIngredients.apply(new ItemStack(Blocks.IRON_ORE, 1));
+        //crucibleIngredients.apply(new ItemStack(Blocks.IRON_ORE, 1));
     }
 
     @Override
@@ -49,28 +57,86 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
         if (!world.isRemote) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
-
+            ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
+            if(pItem.isEmpty()){
+                if(!player.isSneaking()) {
+                    ItemStack tempStack = new ItemStack(ModItems.itemcrucible, 1);
+                    tempStack.setTagCompound(new NBTTagCompound());
+                    NBTTagCompound recipe = new NBTTagCompound();
+                    recipe.setTag("Items", recipe);
+                    ItemStackHelper.saveAllItems(recipe, tile.ingList);
+                    //tempStack.writeToNBT(tempNBT);
+                    PlayerHelper.spawnItemOnPlayer(world, player, tempStack);
+                    world.setBlockToAir(pos);
+                }
+            }
+            /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
+            if(!player.isSneaking()) {
+                if(!pItem.isEmpty()) {
+                    for (int i = 0; i < tile.ingList.size(); i++) {
+                        if (tile.ingList.get(i).isEmpty()) {
+                            tile.ingList.set(i, pItem1);
+                            pItem.shrink(1);
+                            tile.update();
+                            return true;
+                        }
+                    }
+                }
+            }
+            /**CLEARS THE INVENTORY**/
+            if(player.isSneaking()){
+                for(int i=0; i<tile.ingList.size(); i++){
+                    if(!tile.ingList.get(i).isEmpty()) {
+                        PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
+                        tile.ingList.set(i, ItemStack.EMPTY);
+                    }
+                }
+                tile.update();
+                return true;
+            }
         }
         return false;
     }
 
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        if (!world.isRemote) {
+            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+            for (int i = 0; i < tile.ingList.size(); i++) {
+                if (!tile.ingList.get(i).isEmpty()) {
+                    PlayerHelper.spawnItemOnGround(world, pos, tile.ingList.get(i));
+                    tile.ingList.set(i, ItemStack.EMPTY);
+                }
+            }
+        }
+        world.removeTileEntity(pos);
+    }
 
-
+    /*@Override
     public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
     {
-
-    }
+        if (!world.isRemote) {
+            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+            for (int i = 0; i < tile.ingList.size(); i++) {
+                if (!tile.ingList.get(i).isEmpty()) {
+                    PlayerHelper.spawnItemOnGround(world, pos, tile.ingList.get(i));
+                    tile.ingList.set(i, ItemStack.EMPTY);
+                }
+            }
+        }
+    }*/
 
     @Override
     public int quantityDropped(Random random)
     {
-        return 0;
+        return 1;
     }
 
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileBaseCrucible();
+        return new TileNBTCrucible();
     }
 
     @Override

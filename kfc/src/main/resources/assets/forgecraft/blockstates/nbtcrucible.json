@@ -1,0 +1,12 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:blocks/stone_slab",
+      "texture": "forgecraft:blocks/stone_slab"
+    }
+  },
+  "variants": {
+    "normal": { "model": "forgecraft:crucibleshut" }
+  }
+}

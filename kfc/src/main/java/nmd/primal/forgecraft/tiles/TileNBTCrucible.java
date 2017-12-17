@@ -1,9 +1,12 @@
 package nmd.primal.forgecraft.tiles;
 
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
+import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
 
 /**
@@ -15,6 +18,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     private int heat;
     private boolean hot;
     private String mod0, mod1, mod2;
+    public NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
 
     @Override
     public void update () {
@@ -45,9 +49,8 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     public NBTTagCompound readNBT(NBTTagCompound nbt)
     {
         super.readNBT(nbt);
-        this.mod0 = nbt.getString("mod0");
-        this.mod1 = nbt.getString("mod1");
-        this.mod2 = nbt.getString("mod2");
+        this.ingList = NonNullList.<ItemStack>withSize(this.ingList.size(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.ingList);
         this.heat = nbt.getInteger("heat");
         this.hot = nbt.getBoolean("hot");
         return nbt;
@@ -56,13 +59,18 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     @Override
     public NBTTagCompound writeNBT(NBTTagCompound nbt)
     {
+        ItemStackHelper.saveAllItems(nbt, this.ingList);
         nbt.setInteger("heat", this.heat);
-        nbt.setString("mod0", this.mod0);
-        nbt.setString("mod1", this.mod1);
-        nbt.setString("mod2", this.mod2);
         nbt.setBoolean("hot", this.hot);
         super.writeNBT(nbt);
         return nbt;
     }
 
 }
+
+/*
+
+this.slotList = NonNullList.<ItemStack>withSize(this.getSlotListSize(), ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, this.slotList);
+
+ */

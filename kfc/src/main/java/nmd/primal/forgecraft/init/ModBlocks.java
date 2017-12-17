@@ -25,6 +25,7 @@ import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.blocks.Crucibles.CrucibleHot;
+import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -33,6 +34,7 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
  */
 public class ModBlocks {
 
+    public static Block nbtCrucible;
     public static Block forge_brick;
     public static Block forge_adobe;
     public static Block bloomery_brick;
@@ -118,6 +120,7 @@ public class ModBlocks {
 
     public static void init() {
 
+        nbtCrucible = new NBTCrucible(Material.ROCK, "nbtCrucible");
         forge_brick = new Forge(Material.ROCK, "forge_brick", 5000);
         forge_adobe = new Forge(Material.ROCK, "forge_adobe", 5000);
         bloomery_brick = new BloomeryBase(Material.ROCK, "bloomery_brick", 5000);
@@ -419,6 +422,7 @@ public class ModBlocks {
 
 
     public static void register() {
+        registerBlock(nbtCrucible);
         registerBlock(forge_brick);
         registerBlock(forge_adobe);
         registerBlock(bloomery_brick);
@@ -509,6 +513,7 @@ public class ModBlocks {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+        registerRender(nbtCrucible);
         registerRender(forge_brick);
         registerRender(forge_adobe);
         registerRender(castingform);
