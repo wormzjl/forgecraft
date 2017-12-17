@@ -67,9 +67,10 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
-
                     PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
-                    world.setBlockToAir(pos);
+                    //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
+                    return true;
+
                 }
             }
             /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
@@ -88,10 +89,10 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
             /**CLEARS THE INVENTORY**/
             if(player.isSneaking()){
                 for(int i=0; i<tile.ingList.size(); i++){
-                    if(!tile.ingList.get(i).isEmpty()) {
+                    //if(!tile.ingList.get(i).isEmpty()) {
                         PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
                         tile.ingList.set(i, ItemStack.EMPTY);
-                    }
+                    //}
                 }
                 tile.update();
                 return true;
