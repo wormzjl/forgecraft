@@ -5,9 +5,11 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
@@ -15,6 +17,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -22,9 +25,11 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.api.interfaces.IPickup;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.WorldHelper;
+import nmd.primal.core.common.tiles.machines.TileStorageCrate;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.ItemCrucible;
@@ -37,7 +42,7 @@ import java.util.Random;
 /**
  * Created by mminaie on 11/11/17.
  */
-public class NBTCrucible extends Block implements ITileEntityProvider {
+public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
 
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
 
@@ -59,7 +64,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
@@ -67,9 +72,9 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
-                    PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
                     //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
-                    return true;
+                    //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
+                    return takeBlock(world, pos, state, face, player);
 
                 }
             }
@@ -101,34 +106,47 @@ public class NBTCrucible extends Block implements ITileEntityProvider {
         return false;
     }
 
-    /*@Override
-    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        /*if (!world.isRemote) {
-            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-            for (int i = 0; i < tile.ingList.size(); i++) {
-                if (!tile.ingList.get(i).isEmpty()) {
-                    PlayerHelper.spawnItemOnGround(world, pos, tile.ingList.get(i));
-                    tile.ingList.set(i, ItemStack.EMPTY);
-                }
-            }
-        }
-        world.removeTileEntity(pos);
-    }*/
+        this.onBlockHarvested(world, pos, state, player);
+        return this.takeBlock(world, pos, state, EnumFacing.UP, player);
+    }
 
-    /*@Override
-    public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
+    @Override
+    public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
     {
-        if (!world.isRemote) {
-            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-            for (int i = 0; i < tile.ingList.size(); i++) {
-                if (!tile.ingList.get(i).isEmpty()) {
-                    PlayerHelper.spawnItemOnGround(world, pos, tile.ingList.get(i));
-                    tile.ingList.set(i, ItemStack.EMPTY);
-                }
-            }
+        if (world.isRemote)
+            return true;
+
+        TileEntity tile = world.getTileEntity(pos);
+        if (tile instanceof TileNBTCrucible) {
+
+            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
+
+            world.updateComparatorOutputLevel(pos, state.getBlock());
+            return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
         }
-    }*/
+
+        return false;
+    }
+
+    @Override
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        // Spawn the dropped daub repair_item here to avoid collision with the remaining block,
+        //  otherwise the repair_item entities was getting thrown off in random directions well beyond pickup range
+        //if (!world.isRemote)
+        //    CommonUtils.spawnItemOnPlayer(world, player, this.getItem(world, pos, state));
+    }
+
+    @Override
+    public Item getItemDropped(IBlockState state, Random rand, int fortune)
+    {
+        // see above onBlockHarvested
+        return null;
+    }
+
 
     @Override
     public int quantityDropped(Random random)
