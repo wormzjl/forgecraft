@@ -17,7 +17,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     private Item drops;
     private int heat;
     private boolean hot;
-    private String mod0, mod1, mod2;
+    private boolean status;
     public NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
 
     @Override
@@ -25,20 +25,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         if (!world.isRemote) {
             World world = this.getWorld();
             IBlockState state = world.getBlockState(this.pos);
-            /*iteration++;
-            //System.out.println(iteration);
-            if(iteration == 100 ){
-                iteration = 0;
-                countdown += 100;
-                //System.out.println(countdown);
-                BloomeryCrafting recipe = BloomeryCrafting.getRecipeFromOutput(new ItemStack(state.getBlock(), 1));
-                if(recipe != null){
-                    if (countdown > recipe.getCooldown()){
-                        world.setBlockState(this.pos, Block.getBlockFromItem(recipe.getCoolOutput().getItem()).getDefaultState(), 3);
-                        countdown = 0;
-                    }
-                }
-            }*/
+
         }
     }
 
@@ -53,6 +40,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         ItemStackHelper.loadAllItems(nbt, this.ingList);
         this.heat = nbt.getInteger("heat");
         this.hot = nbt.getBoolean("hot");
+        this.status = nbt.getBoolean("status");
         return nbt;
     }
 
@@ -62,6 +50,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         ItemStackHelper.saveAllItems(nbt, this.ingList);
         nbt.setInteger("heat", this.heat);
         nbt.setBoolean("hot", this.hot);
+        nbt.setBoolean("status", this.status);
         super.writeNBT(nbt);
         return nbt;
     }

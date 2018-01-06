@@ -6,6 +6,7 @@ import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.inventory.ItemStackHelper;
@@ -42,7 +43,7 @@ import java.util.Random;
 /**
  * Created by mminaie on 11/11/17.
  */
-public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
+public class NBTCrucible extends BlockContainer implements ITileEntityProvider, IPickup {
 
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
 
@@ -58,12 +59,6 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
     }
 
     @Override
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
-    {
-        return  NBTHelper.getStackBlockNBT(world, pos, state, super.getItem(world, pos, state));
-    }
-
-    @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
@@ -72,10 +67,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
-                    //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
-                    //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
                     return takeBlock(world, pos, state, face, player);
-
                 }
             }
             /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
@@ -86,6 +78,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
                             tile.ingList.set(i, pItem1);
                             pItem.shrink(1);
                             tile.update();
+                            tile.markDirty();
                             return true;
                         }
                     }
@@ -100,6 +93,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
                     //}
                 }
                 tile.update();
+                tile.markDirty();
                 return true;
             }
         }
@@ -114,6 +108,12 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
     }
 
     @Override
+    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    {
+        return  NBTHelper.getStackBlockNBT(world, pos, state, super.getItem(world, pos, state));
+    }
+
+    @Override
     public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
     {
         if (world.isRemote)
@@ -124,7 +124,7 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
 
             PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
 
-            world.updateComparatorOutputLevel(pos, state.getBlock());
+            //world.updateComparatorOutputLevel(pos, state.getBlock());
             return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
         }
 
@@ -145,6 +145,20 @@ public class NBTCrucible extends Block implements ITileEntityProvider, IPickup {
     {
         // see above onBlockHarvested
         return null;
+    }
+
+    @Override
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    {
+        if (stack.hasDisplayName())
+        {
+            TileEntity tileentity = world.getTileEntity(pos);
+
+            if (tileentity instanceof TileNBTCrucible)
+            {
+                //((TileStorageCrate)tileentity).setCustomName(stack.getDisplayName());
+            }
+        }
     }
 
 

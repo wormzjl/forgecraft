@@ -1,0 +1,8 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "forgecraft:blocks/stone_slab",
+    "texture": "forgecraft:blocks/stone_slab"
+  },
+  "parent": "forgecraft:block/crucibleshut"
+}

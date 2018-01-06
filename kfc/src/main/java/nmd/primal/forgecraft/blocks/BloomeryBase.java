@@ -168,8 +168,10 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                     return false;
                 }
                 if(tileItem1.isEmpty()){
-                    ItemStack tempItem = new ItemStack(pItem.getItem(), 1);
-                    tile.setSlotStack(1, tempItem);
+
+                    ItemStack place_stack = pItem.copy();
+                    //if (tile.putStack(slot, place_stack))
+                    tile.setSlotStack(1, place_stack);
                     pItem.shrink(1);
                     return true;
                 }
