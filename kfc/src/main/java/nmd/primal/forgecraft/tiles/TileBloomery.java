@@ -41,7 +41,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 }
                 this.iteration++;
                 if (this.iteration == 100) {
-                    RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
+                    RecipeHelper.fuelManager(world,this, this.getSlotStack(0));
                     if(CommonUtils.randomCheck(1000)) {
                         makeSmoke(world, pos);
                     }

@@ -142,7 +142,7 @@ public class Crucible extends Block {
         } else if (name.equals("tile.coolwootzcrucible")){
             return Item.getItemFromBlock(ModBlocks.wootzball);
         } else if (name.equals("tile.rawcleanironcrucible")){
-            return PrimalAPI.Items.GOLDEN_STICK;
+            return PrimalAPI.Items.IRON_DUST;
         }else if (name.equals("tile.emptycruciblecracked")){
             return Items.CLAY_BALL;
         }

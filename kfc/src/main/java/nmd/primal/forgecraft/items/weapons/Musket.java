@@ -60,9 +60,6 @@ public class Musket extends BaseItem{
         stack.getTagCompound().setBoolean("use", false);
 
         //}
-
-
-
     }
 /*
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)

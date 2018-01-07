@@ -46,7 +46,7 @@ import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 public class Forge extends CustomContainerFacing implements ITileEntityProvider{
 
     private int maxHeat;
-    //public static final PropertyBool PrimalStates.ACTIVE =  PropertyBool.create("PrimalStates.ACTIVE");
+    //public static final PropertyBool PrimalAPI.States.ACTIVE =  PropertyBool.create("PrimalAPI.States.ACTIVE");
     protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 
@@ -306,7 +306,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     /*@Override
     public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
         IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalStates.ACTIVE, Boolean.valueOf(false));
+        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false));
     }*/
 
     @Override
