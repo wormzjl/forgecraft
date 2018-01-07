@@ -34,6 +34,7 @@ import nmd.primal.core.common.tiles.machines.TileStorageCrate;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.ItemCrucible;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
@@ -73,13 +74,17 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
             if(!player.isSneaking()) {
                 if(!pItem.isEmpty()) {
-                    for (int i = 0; i < tile.ingList.size(); i++) {
-                        if (tile.ingList.get(i).isEmpty()) {
-                            tile.ingList.set(i, pItem1);
-                            pItem.shrink(1);
-                            tile.update();
-                            tile.markDirty();
-                            return true;
+                    if(pItem.getItem() instanceof SlottedTongs) {
+                        return false;
+                    } else {
+                        for (int i = 0; i < tile.ingList.size(); i++) {
+                            if (tile.ingList.get(i).isEmpty()) {
+                                tile.ingList.set(i, pItem1);
+                                pItem.shrink(1);
+                                tile.update();
+                                tile.markDirty();
+                                return true;
+                            }
                         }
                     }
                 }

@@ -18,6 +18,47 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     private int heat;
     private boolean hot;
     private boolean status;
+
+    public Item getDrops() {
+        return drops;
+    }
+
+    public void setDrops(Item drops) {
+        this.drops = drops;
+    }
+
+    public int getHeat() {
+        return heat;
+    }
+
+    public void setHeat(int heat) {
+        this.heat = heat;
+    }
+
+    public boolean getHot() {
+        return hot;
+    }
+
+    public void setHot(boolean hot) {
+        this.hot = hot;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public NonNullList<ItemStack> getIngList() {
+        return ingList;
+    }
+
+    public void setIngList(NonNullList<ItemStack> ingList) {
+        this.ingList = ingList;
+    }
+
     public NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
 
     @Override

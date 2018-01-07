@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -27,6 +28,8 @@ import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
 import java.util.Random;
@@ -174,6 +177,41 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                     tile.setSlotStack(1, place_stack);
                     pItem.shrink(1);
                     return true;
+                }
+            }
+
+            /***SLOTTED TONGS CODE TO PLACE THE ITEMS***/
+            if(pItem.getItem() instanceof SlottedTongs) {
+                SlottedTongs temp = (SlottedTongs) pItem.getItem();
+                if (!pItem.isEmpty() && tile.isItemValidForSlot(1, temp.slotList.get(0))) {
+                    if (!tileItem1.isEmpty()) {
+                        return false;
+                    }
+                    if(tileItem1.isEmpty()){
+
+                        ItemStack place_stack = temp.slotList.get(0).copy();
+                        //if (tile.putStack(slot, place_stack))
+                        tile.setSlotStack(1, place_stack);
+                        temp.slotList.set(0, ItemStack.EMPTY);
+                        return true;
+                    }
+                }
+            }
+            /***SLOTTED TONGS CODE TO REMOVE THE ITEMS***/
+            if(pItem.getItem() instanceof SlottedTongs) {
+                SlottedTongs temp = (SlottedTongs) pItem.getItem();
+                if (!pItem.isEmpty() && temp.slotList.get(0).isEmpty()) {
+                    if (tileItem1.isEmpty()) {
+                        return false;
+                    }
+                    if(!tileItem1.isEmpty()){
+                        ItemStack place_stack = tileItem1.copy();
+                        if(temp.slotList.get(0).isEmpty()){
+                            temp.slotList.set(0, place_stack);
+                            tile.setSlotStack(1, ItemStack.EMPTY);
+                            return true;
+                        }
+                    }
                 }
             }
 

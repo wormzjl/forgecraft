@@ -35,6 +35,8 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private int heat;
     private int cookCounter;
 
+
+
     @Override
     public void update () {
         World world = this.getWorld();
@@ -80,32 +82,34 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
     private void slotOneManager(){
         NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
         NBTTagCompound tag = this.getSlotStack(1).getSubCompound("BlockEntityTag");
-        ItemStackHelper.loadAllItems(tag, ingList);
-        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
-        if(recipe != null){
-            if(this.getHeat() >= recipe.getCookTemp() &&
-                    !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")){
-                cookCounter++;
-                this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
-                this.updateBlock();
-                this.markDirty();
-            }
-            if(cookCounter >= recipe.getCookTime() &&
-                    !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")){
+        if(tag != null) {
+            ItemStackHelper.loadAllItems(tag, ingList);
+            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+            if (recipe != null) {
+                if (this.getHeat() >= recipe.getCookTemp() &&
+                        !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
+                    cookCounter++;
+                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
+                    this.updateBlock();
+                    this.markDirty();
+                }
+                if (cookCounter >= recipe.getCookTime() &&
+                        !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
 
-                this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
-                cookCounter = 0;
-                this.updateBlock();
-                this.markDirty();
+                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
+                    cookCounter = 0;
+                    this.updateBlock();
+                    this.markDirty();
+                }
+                if (this.getSlotStack(1).isEmpty()) {
+                    this.cookCounter = 0;
+                }
+                System.out.println(recipe.getCookTemp());
+                System.out.println(recipe.getCookTime());
+                System.out.println(recipe.getCoolTime());
+                System.out.println(recipe.getDropsCooked());
+                System.out.println(recipe.getDropsRaw());
             }
-            if (this.getSlotStack(1).isEmpty()){
-                this.cookCounter=0;
-            }
-            System.out.println(recipe.getCookTemp());
-            System.out.println(recipe.getCookTime());
-            System.out.println(recipe.getCoolTime());
-            System.out.println(recipe.getDropsCooked());
-            System.out.println(recipe.getDropsRaw());
         }
         //}
     }
