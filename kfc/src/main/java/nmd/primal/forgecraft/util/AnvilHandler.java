@@ -11,8 +11,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import nmd.primal.core.api.PrimalItems;
-import nmd.primal.core.common.items.tools.WorkMallet;
+import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -59,7 +59,7 @@ public interface AnvilHandler {
     default boolean doAnvilRecipe(ItemStack pItem, String[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
-            if (pItem.getItem() instanceof WorkMallet) {
+            if (pItem.getItem() instanceof Gallagher) {
                 pItem.damageItem(15, player);
             }
             if (pItem.getItem() instanceof ForgeHammer) {
@@ -174,7 +174,7 @@ public interface AnvilHandler {
      *****************************************************************************/
 
     default boolean doAnvilInventoryManager(ItemStack pItem, World world, TileAnvil tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
-        if ( (!(pItem.getItem() instanceof WorkMallet)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
+        if ( (!(pItem.getItem() instanceof Gallagher)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
             if(Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
                 return false;
             }
@@ -606,7 +606,7 @@ public interface AnvilHandler {
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
             }
-            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
                 CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
@@ -616,7 +616,7 @@ public interface AnvilHandler {
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
             }
-            if (tile.getSlotStack(counter).getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
                 CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
                 tile.setSlotStack(counter, ItemStack.EMPTY);
                 return true;
@@ -687,7 +687,7 @@ public interface AnvilHandler {
             }
         }
 
-        if (pItem.getItem().equals(PrimalItems.EMERALD_KNAPP)) {
+        if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
             if (tile.getSlotStack(counter).isEmpty()) {
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);
@@ -695,7 +695,7 @@ public interface AnvilHandler {
             }
         }
 
-        if (pItem.getItem().equals(PrimalItems.DIAMOND_KNAPP)) {
+        if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
             if (tile.getSlotStack(counter).isEmpty()) {
                 tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
                 pItem.shrink(1);

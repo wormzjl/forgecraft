@@ -395,15 +395,15 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         Material material = state.getMaterial();
         //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
 
         if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
-            return  super.getStrVsBlock(stack, state);
+            return  super.getDestroySpeed(stack, state);
         } else {
-            return this.efficiencyOnProperMaterial * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
+            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
         }
 
     }

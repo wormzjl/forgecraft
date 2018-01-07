@@ -233,14 +233,14 @@ Item drop;
     }
 
     @Override
-    public float getStrVsBlock(ItemStack stack, IBlockState state)
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
         for (String type : getToolClasses(stack))
         {
             if (state.getBlock().isToolEffective(type, state))
-                return efficiencyOnProperMaterial;
+                return efficiency;
         }
-        return this.efficiencyOnProperMaterial + 1;
+        return this.efficiency + 1;
     }
 
     @SideOnly(Side.CLIENT)

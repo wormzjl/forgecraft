@@ -10,7 +10,7 @@ import net.minecraft.util.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.common.entities.projectiles.EntityMuckBall;
+import nmd.primal.core.common.entities.projectiles.EntityMuck;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.BaseItem;
@@ -51,8 +51,8 @@ public class Musket extends BaseItem{
 
             //if(player.getItemInUseCount() > 5) {
         world.playSound( null, player.posX, player.posY, player.posZ, ModSounds.MUSKET_SHOT, SoundCategory.BLOCKS, 0.5F, 0.3F / (itemRand.nextFloat() * 0.4F + 0.8F));
-        EntityMuckBall entity = new EntityMuckBall(world, player);
-        entity.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 7.0F, 0.5F);
+        EntityMuck entity = new EntityMuck(world, player);
+        entity.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 7.0F, 0.5F);
         world.spawnEntity(entity);
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
@@ -60,9 +60,6 @@ public class Musket extends BaseItem{
         stack.getTagCompound().setBoolean("use", false);
 
         //}
-
-
-
     }
 /*
     public ItemStack onItemUseFinish(ItemStack stack, World world, EntityLivingBase entityLiving)

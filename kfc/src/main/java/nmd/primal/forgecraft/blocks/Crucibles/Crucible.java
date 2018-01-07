@@ -17,7 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalItems;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModBlocks;
@@ -134,7 +134,7 @@ public class Crucible extends Block {
         } else if (name.equals("tile.coolcleanironcrucible")){
             return Item.getItemFromBlock(ModBlocks.ironcleanball);
         } else if (name.equals("tile.rawcleanironcrucible")){
-            return PrimalItems.IRON_DUST;
+            return PrimalAPI.Items.IRON_DUST;
         } else if (name.equals("tile.coolsteelcrucible")){
             return Item.getItemFromBlock(ModBlocks.steelball);
         } else if (name.equals("tile.rawsteelcrucible")){
@@ -142,7 +142,7 @@ public class Crucible extends Block {
         } else if (name.equals("tile.coolwootzcrucible")){
             return Item.getItemFromBlock(ModBlocks.wootzball);
         } else if (name.equals("tile.rawcleanironcrucible")){
-            return PrimalItems.GOLDEN_STICK;
+            return PrimalAPI.Items.IRON_DUST;
         }else if (name.equals("tile.emptycruciblecracked")){
             return Items.CLAY_BALL;
         }
