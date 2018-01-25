@@ -32,6 +32,7 @@ import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.WorldHelper;
 import nmd.primal.core.common.tiles.machines.TileStorageCrate;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.ItemCrucible;
 import nmd.primal.forgecraft.items.SlottedTongs;
@@ -66,8 +67,13 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
+            /**PICKS UP THE CRUCIBLE**/
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
+                    CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
+                    if(recipe != null){
+                        tile.setDrops(recipe.getDropsRaw());
+                    }
                     return takeBlock(world, pos, state, face, player);
                 }
             }
@@ -128,7 +134,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         if (tile instanceof TileNBTCrucible) {
 
             PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
-
             //world.updateComparatorOutputLevel(pos, state.getBlock());
             return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
         }
@@ -139,10 +144,16 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
     @Override
     public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        // Spawn the dropped daub repair_item here to avoid collision with the remaining block,
-        //  otherwise the repair_item entities was getting thrown off in random directions well beyond pickup range
-        //if (!world.isRemote)
-        //    CommonUtils.spawnItemOnPlayer(world, player, this.getItem(world, pos, state));
+        if (!world.isRemote) {
+            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+            ItemStack pItem = player.inventory.getCurrentItem();
+            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
+            System.out.println("Harvested" + tile.getStatus() + " | " + tile.getHot());
+            if(recipe != null && tile.getStatus() && !tile.getHot()){
+                PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
+                System.out.println("Drop stuff");
+            }
+        }
     }
 
     @Override

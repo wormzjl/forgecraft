@@ -81,9 +81,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
 
     private void slotOneManager(){
         NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+        NonNullList<ItemStack> dropList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
         NBTTagCompound tag = this.getSlotStack(1).getSubCompound("BlockEntityTag");
         if(tag != null) {
             ItemStackHelper.loadAllItems(tag, ingList);
+            ItemStackHelper.loadAllItems(tag, dropList);
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
             if (recipe != null) {
                 if (this.getHeat() >= recipe.getCookTemp() &&
@@ -93,11 +95,10 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.updateBlock();
                     this.markDirty();
                 }
-                if (cookCounter >= recipe.getCookTime() &&
-                        !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
-
+                if (cookCounter >= recipe.getCookTime() && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
                     this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
                     cookCounter = 0;
+                    //dropList.set(0, recipe.getDropsCooked());
                     this.updateBlock();
                     this.markDirty();
                 }
