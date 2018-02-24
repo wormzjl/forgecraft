@@ -127,7 +127,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
             }
 
             if(tile.getSlotStack(0) != ItemStack.EMPTY) {
-                if((FireSource.useSource(world, pos, player, pItem, hand, facing, hitX, hitY, hitZ))) {
+                if((FireSource.useSource(world, pos, facing, player, hand, pItem, hitX, hitY, hitZ))) {
                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
                     tile.setHeat(100);
                     tile.markDirty();
