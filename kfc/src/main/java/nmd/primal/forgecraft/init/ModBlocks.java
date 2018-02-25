@@ -423,92 +423,92 @@ public class ModBlocks {
 
     public static void register() {
         registerBlock(nbtCrucible);
-        registerBlock(forge_brick);
-        registerBlock(forge_adobe);
-        registerBlock(bloomery_brick);
-        registerBlock(bloomery_adobe);
-        registerBlock(blockbreaker);
-        registerBlock(castingform);
-        registerBlock(castingblock);
+        registerBlockWithItem(forge_brick);
+        registerBlockWithItem(forge_adobe);
+        registerBlockWithItem(bloomery_brick);
+        registerBlockWithItem(bloomery_adobe);
+        registerBlockWithItem(blockbreaker);
+        registerBlockWithItem(castingform);
+        registerBlockWithItem(castingblock);
 
-        registerBlock(pistonbellowsoak);
-        registerBlock(pistonbellowsjungle);
-        registerBlock(pistonbellowsbirch);
-        registerBlock(pistonbellowsspruce);
-        registerBlock(pistonbellowsdarkoak);
-        registerBlock(pistonbellowsacacia);
+        registerBlockWithItem(pistonbellowsoak);
+        registerBlockWithItem(pistonbellowsjungle);
+        registerBlockWithItem(pistonbellowsbirch);
+        registerBlockWithItem(pistonbellowsspruce);
+        registerBlockWithItem(pistonbellowsdarkoak);
+        registerBlockWithItem(pistonbellowsacacia);
 
-        registerBlock(emptycrucible);
-        registerBlock(emptycruciblehot);
-        registerBlock(emptycruciblecracked);
-        registerBlock(emptycruciblecrackedhot);
+        registerBlockWithItem(emptycrucible);
+        registerBlockWithItem(emptycruciblehot);
+        registerBlockWithItem(emptycruciblecracked);
+        registerBlockWithItem(emptycruciblecrackedhot);
 
-        registerBlock(rawbronzecrucible);
-        registerBlock(hotbronzecrucible);
-        registerBlock(hotcookedbronzecrucible);
+        registerBlockWithItem(rawbronzecrucible);
+        registerBlockWithItem(hotbronzecrucible);
+        registerBlockWithItem(hotcookedbronzecrucible);
 
-        registerBlock(rawbronzecrucible_diamond);
-        registerBlock(hotbronzecrucible_diamond);
-        registerBlock(hotcookedbronzecrucible_diamond);
+        registerBlockWithItem(rawbronzecrucible_diamond);
+        registerBlockWithItem(hotbronzecrucible_diamond);
+        registerBlockWithItem(hotcookedbronzecrucible_diamond);
 
-        registerBlock(rawbronzecrucible_emerald);
-        registerBlock(hotbronzecrucible_emerald);
-        registerBlock(hotcookedbronzecrucible_emerald);
+        registerBlockWithItem(rawbronzecrucible_emerald);
+        registerBlockWithItem(hotbronzecrucible_emerald);
+        registerBlockWithItem(hotcookedbronzecrucible_emerald);
 
-        registerBlock(rawbronzecrucible_redstone);
-        registerBlock(hotbronzecrucible_redstone);
-        registerBlock(hotcookedbronzecrucible_redstone);
+        registerBlockWithItem(rawbronzecrucible_redstone);
+        registerBlockWithItem(hotbronzecrucible_redstone);
+        registerBlockWithItem(hotcookedbronzecrucible_redstone);
 
-        registerBlock(rawbronzecrucible_lapis);
-        registerBlock(hotbronzecrucible_lapis);
-        registerBlock(hotcookedbronzecrucible_lapis);
+        registerBlockWithItem(rawbronzecrucible_lapis);
+        registerBlockWithItem(hotbronzecrucible_lapis);
+        registerBlockWithItem(hotcookedbronzecrucible_lapis);
 
-        registerBlock(rawironcrucible);
-        registerBlock(hotironcrucible);
-        registerBlock(hotcookedironcrucible);
-        registerBlock(coolironcrucible);
-        registerBlock(failedironcrucible);
-        registerBlock(failedironcruciblehot);
+        registerBlockWithItem(rawironcrucible);
+        registerBlockWithItem(hotironcrucible);
+        registerBlockWithItem(hotcookedironcrucible);
+        registerBlockWithItem(coolironcrucible);
+        registerBlockWithItem(failedironcrucible);
+        registerBlockWithItem(failedironcruciblehot);
 
-        registerBlock(rawcleanironcrucible);
-        registerBlock(hotcleanironcrucible);
-        registerBlock(hotcookedcleanironcrucible);
-        registerBlock(coolcleanironcrucible);
-        registerBlock(failedcleanironcrucible);
-        registerBlock(failedcleanironcruciblehot);
+        registerBlockWithItem(rawcleanironcrucible);
+        registerBlockWithItem(hotcleanironcrucible);
+        registerBlockWithItem(hotcookedcleanironcrucible);
+        registerBlockWithItem(coolcleanironcrucible);
+        registerBlockWithItem(failedcleanironcrucible);
+        registerBlockWithItem(failedcleanironcruciblehot);
 
-        registerBlock(rawsteelcrucible);
-        registerBlock(hotsteelcrucible);
-        registerBlock(hotcookedsteelcrucible);
-        registerBlock(coolsteelcrucible);
-        registerBlock(failedsteelcrucible);
-        registerBlock(failedsteelcruciblehot);
+        registerBlockWithItem(rawsteelcrucible);
+        registerBlockWithItem(hotsteelcrucible);
+        registerBlockWithItem(hotcookedsteelcrucible);
+        registerBlockWithItem(coolsteelcrucible);
+        registerBlockWithItem(failedsteelcrucible);
+        registerBlockWithItem(failedsteelcruciblehot);
 
-        registerBlock(rawwootzcrucible);
-        registerBlock(hotwootzcrucible);
-        registerBlock(hotcookedwootzcrucible);
-        registerBlock(coolwootzcrucible);
-        registerBlock(failedwootzcrucible);
-        registerBlock(failedwootzcruciblehot);
+        registerBlockWithItem(rawwootzcrucible);
+        registerBlockWithItem(hotwootzcrucible);
+        registerBlockWithItem(hotcookedwootzcrucible);
+        registerBlockWithItem(coolwootzcrucible);
+        registerBlockWithItem(failedwootzcrucible);
+        registerBlockWithItem(failedwootzcruciblehot);
 
-        registerBlock(ironball);
-        registerBlock(ironchunk);
+        registerBlockWithItem(ironball);
+        registerBlockWithItem(ironchunk);
 
-        registerBlock(ironcleanball);
-        registerBlock(ironcleanchunk);
+        registerBlockWithItem(ironcleanball);
+        registerBlockWithItem(ironcleanchunk);
 
-        registerBlock(steelball);
-        registerBlock(steelchunk);
+        registerBlockWithItem(steelball);
+        registerBlockWithItem(steelchunk);
 
-        registerBlock(wootzball);
-        registerBlock(wootzchunk);
-        //registerBlockSubType(ironball, ironballitemcool, "ironcool");
-        //registerBlockSubType(ironball, ironballitemhot, "ironhot");
+        registerBlockWithItem(wootzball);
+        registerBlockWithItem(wootzchunk);
+        //registerBlockWithItemSubType(ironball, ironballitemcool, "ironcool");
+        //registerBlockWithItemSubType(ironball, ironballitemhot, "ironhot");
 
-        registerBlock(stoneanvil);
-        registerBlock(ironanvil);
+        registerBlockWithItem(stoneanvil);
+        registerBlockWithItem(ironanvil);
 
-        registerBlock(yewstave);
+        registerBlockWithItem(yewstave);
     }
 
     @SideOnly(Side.CLIENT)
@@ -604,7 +604,7 @@ public class ModBlocks {
 
     }
 
-    private static void registerBlock(Block block)
+    private static void registerBlockWithItem(Block block)
     {
         ForgeRegistries.BLOCKS.register(block);
         //GameRegistry.register(block);
@@ -613,6 +613,18 @@ public class ModBlocks {
         item.setRegistryName(block.getRegistryName());
 
         ForgeRegistries.ITEMS.register(item);
+        //GameRegistry.register(item);
+    }
+
+    private static void registerBlock(Block block)
+    {
+        ForgeRegistries.BLOCKS.register(block);
+        //GameRegistry.register(block);
+
+        //ItemBlock item = new ItemBlock(block);
+        //item.setRegistryName(block.getRegistryName());
+
+        //ForgeRegistries.ITEMS.register(item);
         //GameRegistry.register(item);
     }
 

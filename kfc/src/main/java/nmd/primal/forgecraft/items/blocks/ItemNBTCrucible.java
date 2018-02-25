@@ -27,7 +27,7 @@ public class ItemNBTCrucible extends AbstractItemBlock {
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
 
-        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
+        /*this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
@@ -39,8 +39,14 @@ public class ItemNBTCrucible extends AbstractItemBlock {
                     }
                 }
                 return 0.0F;
+
             }
         });
+        "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/nbtcrucible/nbtcrucible_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/nbtcrucible/nbtcrucible_1"}
+  ]
+        */
     }
 
     public boolean getStatus(ItemStack stack) {
