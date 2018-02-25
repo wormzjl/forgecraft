@@ -1,44 +1,29 @@
 package nmd.primal.forgecraft.blocks.Crucibles;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.interfaces.IPickup;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.core.common.helper.WorldHelper;
-import nmd.primal.core.common.tiles.machines.TileStorageCrate;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.ItemCrucible;
 import nmd.primal.forgecraft.items.SlottedTongs;
-import nmd.primal.forgecraft.tiles.TileBaseCrucible;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
 import java.util.Random;
@@ -126,7 +111,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         return  NBTHelper.getStackBlockNBT(world, pos, state, super.getItem(world, pos, state));
     }
 
-    @Override
     public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
     {
         if (world.isRemote)
@@ -134,8 +118,9 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
 
         TileEntity tile = world.getTileEntity(pos);
         if (tile instanceof TileNBTCrucible) {
+//World world, BlockPos pos, EnumFacing face, EntityPlayer player, EnumHand hand, ItemStack stack
+            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
 
-            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, this.getItem(world, pos, state));
             //world.updateComparatorOutputLevel(pos, state.getBlock());
             return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
         }

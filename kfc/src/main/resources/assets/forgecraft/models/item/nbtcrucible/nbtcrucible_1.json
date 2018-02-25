@@ -1,0 +1,7 @@
+{
+  "parent": "forgecraft:block/crucibleshut",
+  "textures": {
+    "particle": "forgecraft:blocks/stone_slab_hot",
+    "texture": "forgecraft:blocks/stone_slab_hot"
+  }
+}

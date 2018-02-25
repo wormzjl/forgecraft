@@ -36,7 +36,7 @@ public class ModItems {
     //public static Item test;
     public static Item itemnbtcrucible;
     public static Item slottedtongs;
-    public static Item itemcrucible;
+   // public static Item itemcrucible;
     public static Item bellowshandle;
     public static Item forgehammer;
     public static Item softcrucible;
@@ -149,7 +149,7 @@ public class ModItems {
         //pistonbellows = new ItemBellowsHandle("pistonbellows");
         itemnbtcrucible = new ItemNBTCrucible("itemnbtcrucible", ModBlocks.nbtCrucible);
         slottedtongs = new SlottedTongs("slottedtongs");
-        itemcrucible = new ItemCrucible("itemcrucible");
+        //itemcrucible = new ItemCrucible("itemcrucible");
         bellowshandle = new BaseItem("bellowshandle");
         softcrucible = new ItemSoftCrucible("softcrucible");
         stonetongs = new ItemStoneTongs("stonetongs");
@@ -276,7 +276,7 @@ public class ModItems {
     public static void register() {
         ForgeRegistries.ITEMS.register(itemnbtcrucible);
         ForgeRegistries.ITEMS.register(slottedtongs);
-        ForgeRegistries.ITEMS.register(itemcrucible);
+        //ForgeRegistries.ITEMS.register(itemcrucible);
         ForgeRegistries.ITEMS.register(castingmud);
         ForgeRegistries.ITEMS.register(bellowshandle);
         ForgeRegistries.ITEMS.register(softcrucible);
@@ -397,7 +397,7 @@ public class ModItems {
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(itemnbtcrucible);
-        registerRender(itemcrucible);
+        //registerRender(itemcrucible);
         registerRender(castingmud);
         registerRender(bellowshandle);
         registerRender(softcrucible);

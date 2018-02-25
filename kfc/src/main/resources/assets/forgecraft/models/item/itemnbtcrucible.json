@@ -1,0 +1,7 @@
+{
+  "parent": "forgecraft:block/crucibleshut",
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/nbtcrucible/nbtcrucible_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/nbtcrucible/nbtcrucible_1"}
+  ]
+}
