@@ -16,18 +16,21 @@ buildscript {
 }
 repositories {
     maven {
-        name = "jei"
-        url "http://dvs1.progwml6.com/files/maven"
-    }
-    maven {
-        name = "mobius"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven {
         name = "primal"
         url "https://maven.nmd.so"
     }
+
+    maven {
+        name = "jei"
+        url "http://dvs1.progwml6.com/files/maven"
+    }
+
+    maven {
+        name "CraftTweaker"
+        url "http://maven.blamejared.com/"
+    }
 }
+
 apply plugin: 'net.minecraftforge.gradle.forge'
 apply plugin: 'java'
 compileJava {
@@ -42,22 +45,26 @@ minecraft {
     version = "${mc_version}" + "-" + "${forge_version}"
     runDir = "run"
     mappings = "${mcp_mappings}"
+
     // JEI
-    //useDepAts = true
+    useDepAts = true
+
     // Replace
     replace "@VERSION@", project.mod_version
 }
+
 dependencies {
-
- //compile against the JEI API
-    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
-//runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    // PrimalCore
     deobfCompile "nmd.primal.core:PrimalCore:${mc_version}-${primal_version}:dev"
-//runtime "nmd.primal.core:PrimalCore:${primal_version}"
 
+    // JEI
+    //runtime "mezz.jei:jei_${mc_version}:${jei_version}"
+    deobfCompile "mezz.jei:jei_${mc_version}:${jei_version}:api"
+
+    // CraftTweaker
+    //compile "CraftTweaker2:CraftTweaker2-MC1120-Main:${craftweaker_version}"
+    compile "CraftTweaker2:CraftTweaker2-API:${craftweaker_version}"
 }
-
-
 
 processResources {
     // this will ensure that this task is redone when the versions change.
