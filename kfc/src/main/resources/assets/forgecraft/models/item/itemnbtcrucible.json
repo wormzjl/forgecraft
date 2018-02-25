@@ -1,8 +1,13 @@
 {
-  "forge_marker":1,
+  "parent": "forgecraft:block/crucibleshut",
   "textures": {
     "particle": "forgecraft:blocks/stone_slab",
     "texture": "forgecraft:blocks/stone_slab"
   },
-  "parent": "forgecraft:block/crucibleshut"
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/nbtcrucible/nbtcrucible_0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/nbtcrucible/nbtcrucible_1"}
+  ]
 }
+
+

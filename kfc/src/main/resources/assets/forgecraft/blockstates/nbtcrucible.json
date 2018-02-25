@@ -7,7 +7,6 @@
     }
   },
   "variants": {
-    "normal": { "model": "forgecraft:crucibleshut" },
-    "inventory": { "model": "forgecraft:item/itemnbtcrucible" }
+    "normal": { "model": "forgecraft:crucibleshut" }
   }
 }

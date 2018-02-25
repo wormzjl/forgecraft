@@ -5,6 +5,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -20,14 +22,15 @@ import javax.annotation.Nullable;
 /**
  * Created by mminaie on 2/7/18.
  */
-public class ItemNBTCrucible extends AbstractItemBlock {
+public class ItemNBTCrucible extends ItemBlock {
     public ItemNBTCrucible(String name, Block block) {
         super(block);
+        //super();
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
 
-        /*this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
+        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
@@ -37,24 +40,23 @@ public class ItemNBTCrucible extends AbstractItemBlock {
                     if (getStatus(item)){
                         return 0.1f;
                     }
+                } else if (item.hasTagCompound()) {
+                    if (!getStatus(item)){
+                        return 0.0f;
+                    }
+                }
+                else {
+                    return 0.0F;
                 }
                 return 0.0F;
-
             }
         });
-        "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/nbtcrucible/nbtcrucible_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/nbtcrucible/nbtcrucible_1"}
-  ]
-        */
     }
 
     public boolean getStatus(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
-                if (stack.getSubCompound("tags") != null) {
-                     return stack.getSubCompound("BlockEntityTag").getBoolean("status");
-                }
+                return stack.getSubCompound("BlockEntityTag").getBoolean("hot");
             }
         }
         return false;
@@ -63,13 +65,13 @@ public class ItemNBTCrucible extends AbstractItemBlock {
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if(!world.isRemote) {
-            System.out.println("We doin it?");
-            if (!item.hasTagCompound()) {
+            //System.out.println("We doin it?");
+            if (item.hasTagCompound()) {
                 //item.setTagCompound(new NBTTagCompound());
                 NBTTagCompound tag = item.getSubCompound("BlockEntityTag");
 
                 //item.getTagCompound().setTag("BlockEntityTag", tags);
-                System.out.println(tag);
+                System.out.println(tag.getBoolean("hot"));
 
 
             }

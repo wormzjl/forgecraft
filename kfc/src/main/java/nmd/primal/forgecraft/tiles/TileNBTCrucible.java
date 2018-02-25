@@ -84,6 +84,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
                 this.setHot(false);
                 CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                 this.setDrops(recipe.getDropsCooked());
+                this.setStatus(false);
                 System.out.println("Ready to harvest: " + this.getDrops());
             }
             //CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
