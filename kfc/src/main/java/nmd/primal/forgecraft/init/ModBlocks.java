@@ -119,7 +119,7 @@ public class ModBlocks {
 
 
     public static void init() {
-
+    //FISH_TRAP                   = RegistryHelper.addBlock("fish_trap", new FishTrap(), ItemFishTraps::new, "fishtrap");
         nbtCrucible = new NBTCrucible(Material.ROCK, "nbtCrucible");
         forge_brick = new Forge(Material.ROCK, "forge_brick", 5000);
         forge_adobe = new Forge(Material.ROCK, "forge_adobe", 5000);

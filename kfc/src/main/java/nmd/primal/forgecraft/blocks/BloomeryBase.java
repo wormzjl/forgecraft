@@ -10,9 +10,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -28,6 +30,7 @@ import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.BloomeryCrafting;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBloomery;
@@ -108,19 +111,28 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                                 " Fuel Remaining: " + tileItem.getCount();
                         ITextComponent itextcomponent = new TextComponentString(display);
                         player.sendStatusMessage(itextcomponent, false);
-
-                        BloomeryCrafting recipe = BloomeryCrafting.getRecipe(tile.getSlotStack(1));
+                        NBTTagCompound tag = tile.getSlotStack(1).getSubCompound("BlockEntityTag");
+                        NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                        NonNullList<ItemStack> dropList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+                        ItemStackHelper.loadAllItems(tag, ingList);
+                        ItemStackHelper.loadAllItems(tag, dropList);
+                        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                         if(recipe != null) {
-                            Integer minTemp = recipe.getHeatThreshold();
+                            Integer minTemp = recipe.getCookTemp();
                             Integer cookCounter = tile.getCookCounter();
-                            Integer idealTime = recipe.getIdealTime();
+                            Integer idealTime = recipe.getCookTime();
                             Integer remainingTime = idealTime - cookCounter;
 
                             String display1 =
                                     "Cooking: " + tileItem1.getDisplayName() +
                                             " Target Temp: " + minTemp.toString() +
                                             " Time Left: " + remainingTime.toString();
-                            ITextComponent itextcomponent1 = new TextComponentString(display1);
+                            String display2 = tileItem1.getDisplayName() + "finished.";
+                            ITextComponent itextcomponent1 = null;
+                            if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
+                                itextcomponent1 = new TextComponentString(display2);
+                            } else itextcomponent1 = new TextComponentString(display1);
+
                             player.sendStatusMessage(itextcomponent1, false);
 
                         }

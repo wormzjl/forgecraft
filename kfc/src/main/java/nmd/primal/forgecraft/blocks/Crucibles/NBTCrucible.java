@@ -4,6 +4,8 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -49,7 +51,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
 
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
 
-    private  Ingredient crucibleIngredients;
+    //private  Ingredient crucibleIngredients;
 
     public NBTCrucible(Material material, String registryName) {
         super(material);
@@ -57,7 +59,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         setRegistryName(registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setHardness(3.0f);
-        //crucibleIngredients.apply(new ItemStack(Blocks.IRON_ORE, 1));
+        //setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
     }
 
     @Override
@@ -169,7 +171,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         if (stack.hasDisplayName())
         {
             TileEntity tileentity = world.getTileEntity(pos);
-
+            //world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
             if (tileentity instanceof TileNBTCrucible)
             {
                 //((TileStorageCrate)tileentity).setCustomName(stack.getDisplayName());
@@ -177,6 +179,45 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         }
     }
 
+    /*@Override
+    public int getMetaFromState(IBlockState state) {
+        int i = 0;
+
+        if( (state.getValue(PrimalAPI.States.ACTIVE) == false)) {
+            i = 0;
+            return i;
+        }
+        if ( (state.getValue(PrimalAPI.States.ACTIVE) == true)) {
+            i = 14;
+            return i;
+        }
+
+        return i;
+    }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+        EnumFacing enumfacing;
+        Boolean active;
+        switch (meta & 7)
+        {
+            case 0:
+                active = false;
+                break;
+            case 1:
+                active = true;
+                break;
+            default:
+                active = false;
+        }
+
+        return this.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(active));
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE});
+    }*/
 
     @Override
     public int quantityDropped(Random random)

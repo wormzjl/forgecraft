@@ -73,7 +73,9 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     }
 
     private void coolManager() {
+        System.out.println(this.getHeat() + " " + this.getStatus() + " " + this.getDrops());
         if(this.getHot()){
+            System.out.println("Still Hot");
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
                 System.out.println(this.getHeat());
@@ -82,6 +84,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
                 this.setHot(false);
                 CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                 this.setDrops(recipe.getDropsCooked());
+                System.out.println("Ready to harvest: " + this.getDrops());
             }
             //CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
         }

@@ -15,8 +15,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
+import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -32,6 +34,7 @@ import nmd.primal.forgecraft.items.weapons.SlayerSword;
 public class ModItems {
 
     //public static Item test;
+    public static Item itemnbtcrucible;
     public static Item slottedtongs;
     public static Item itemcrucible;
     public static Item bellowshandle;
@@ -144,6 +147,7 @@ public class ModItems {
     public static void init() {
         //OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
         //pistonbellows = new ItemBellowsHandle("pistonbellows");
+        itemnbtcrucible = new ItemNBTCrucible("itemnbtcrucible", ModBlocks.nbtCrucible);
         slottedtongs = new SlottedTongs("slottedtongs");
         itemcrucible = new ItemCrucible("itemcrucible");
         bellowshandle = new BaseItem("bellowshandle");
@@ -270,6 +274,7 @@ public class ModItems {
     }
 
     public static void register() {
+        ForgeRegistries.ITEMS.register(itemnbtcrucible);
         ForgeRegistries.ITEMS.register(slottedtongs);
         ForgeRegistries.ITEMS.register(itemcrucible);
         ForgeRegistries.ITEMS.register(castingmud);
@@ -391,6 +396,7 @@ public class ModItems {
 
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
+        registerRender(itemnbtcrucible);
         registerRender(itemcrucible);
         registerRender(castingmud);
         registerRender(bellowshandle);
