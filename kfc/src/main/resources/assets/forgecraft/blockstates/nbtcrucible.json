@@ -1,20 +1,21 @@
 {
   "forge_marker":1,
   "variants": {
-    "active": {
-      "true": {
-        "textures": {
-          "particle": "forgecraft:blocks/stone_slab_hot",
-          "texture": "forgecraft:blocks/stone_slab_hot"
+    "normal": {
+      "model": "forgecraft:crucibleshut",
+      "active": {
+        "true": {
+          "textures": {
+            "particle": "forgecraft:blocks/stone_slab_hot",
+            "texture": "forgecraft:blocks/stone_slab_hot"
+          }
         },
-        "model": "forgecraft:crucibleshut"
-      },
-      "false": {
-        "textures": {
-          "particle": "forgecraft:blocks/stone_slab",
-          "texture": "forgecraft:blocks/stone_slab"
-        },
-        "model": "forgecraft:crucibleshut"
+        "false": {
+          "textures": {
+            "particle": "forgecraft:blocks/stone_slab",
+            "texture": "forgecraft:blocks/stone_slab"
+          }
+        }
       }
     }
   }
