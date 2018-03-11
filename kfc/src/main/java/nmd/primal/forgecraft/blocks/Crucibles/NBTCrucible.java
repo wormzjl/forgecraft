@@ -9,6 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -159,10 +160,12 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity tileentity = world.getTileEntity(pos);
-        //world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
         if (tileentity instanceof TileNBTCrucible)
         {
-            getActualState(state, world, pos);
+            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+            NBTTagCompound tag = stack.getSubCompound("BlockEntityTag").copy();
+            //tile.writeNBT(tag);
+            tile.setHot(tag.getBoolean("hot"));
         }
     }
 
@@ -173,10 +176,12 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         if (tile != null && tile instanceof TileNBTCrucible) {
             System.out.println("Hot:" + tile.getHot() + " Status: " + tile.getStatus());
             if(tile.getHot()){
+                System.out.println("Should Be Red");
                 return state.withProperty(PrimalAPI.States.ACTIVE, true);
             }
             if(!tile.getHot()){
-                return state.withProperty(PrimalAPI.States.ACTIVE, true);
+                System.out.println("Should Be Brown");
+                return state.withProperty(PrimalAPI.States.ACTIVE, false);
             }
         }
         return state;
