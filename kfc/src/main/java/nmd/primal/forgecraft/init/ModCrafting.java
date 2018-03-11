@@ -32,8 +32,8 @@ public class ModCrafting{
                 new ItemStack(Blocks.IRON_ORE, 1),
                 new ItemStack(ModBlocks.ironball, 1),
                 100,
-                200,
-                100);
+                100,
+                1000);
 
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),

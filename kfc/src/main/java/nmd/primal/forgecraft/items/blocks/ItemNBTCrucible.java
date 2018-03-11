@@ -37,23 +37,23 @@ public class ItemNBTCrucible extends ItemBlock {
             {
                 //TODO get the item name
                 if (item.hasTagCompound()) {
-                    if (getStatus(item)){
+                    if (getHot(item)){
+                        //System.out.println("Should be Red");
                         return 0.1f;
                     }
-                } else if (item.hasTagCompound()) {
-                    if (!getStatus(item)){
+                }
+                if (item.hasTagCompound()) {
+                    if (!getHot(item)){
+                        //System.out.println("Should be Brown");
                         return 0.0f;
                     }
-                }
-                else {
-                    return 0.0F;
                 }
                 return 0.0F;
             }
         });
     }
 
-    public boolean getStatus(ItemStack stack) {
+    public boolean getHot(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 return stack.getSubCompound("BlockEntityTag").getBoolean("hot");
@@ -71,11 +71,13 @@ public class ItemNBTCrucible extends ItemBlock {
                 NBTTagCompound tag = item.getSubCompound("BlockEntityTag");
 
                 //item.getTagCompound().setTag("BlockEntityTag", tags);
-                System.out.println(tag.getBoolean("hot"));
+                //System.out.println(tag.getBoolean("hot"));
 
 
             }
         }
     }
+
+
 
 }

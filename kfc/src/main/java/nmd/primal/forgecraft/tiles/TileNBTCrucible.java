@@ -66,16 +66,17 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     @Override
     public void update () {
         if (!world.isRemote) {
-            World world = this.getWorld();
-            IBlockState state = world.getBlockState(this.pos);
+            //World world = this.getWorld();
+            //IBlockState state = world.getBlockState(this.pos);
+
             coolManager();
         }
     }
 
     private void coolManager() {
-        System.out.println(this.getHeat() + " " + this.getStatus() + " " + this.getDrops());
+        System.out.println(this.getHeat() + " " + this.getHot() + " " + this.getDrops());
         if(this.getHot()){
-            System.out.println("Still Hot");
+            //System.out.println("Still Hot");
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
                 System.out.println(this.getHeat());

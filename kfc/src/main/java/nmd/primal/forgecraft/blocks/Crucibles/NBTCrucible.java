@@ -3,6 +3,7 @@ package nmd.primal.forgecraft.blocks.Crucibles;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,7 +19,10 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.interfaces.IPickup;
+import nmd.primal.core.api.interfaces.types.ITypeNBT;
+import nmd.primal.core.api.interfaces.types.ITypeWood;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
@@ -54,6 +58,18 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
+            /**CLEARS THE INVENTORY**/
+            if(player.isSneaking()){
+                for(int i=0; i<tile.ingList.size(); i++){
+                    //if(!tile.ingList.get(i).isEmpty()) {
+                    PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
+                    tile.ingList.set(i, ItemStack.EMPTY);
+                    //}
+                }
+                tile.update();
+                tile.markDirty();
+                return true;
+            }
             /**PICKS UP THE CRUCIBLE**/
             if(pItem.isEmpty()){
                 if(!player.isSneaking()) {
@@ -82,18 +98,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
                     }
                 }
             }
-            /**CLEARS THE INVENTORY**/
-            if(player.isSneaking()){
-                for(int i=0; i<tile.ingList.size(); i++){
-                    //if(!tile.ingList.get(i).isEmpty()) {
-                        PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
-                        tile.ingList.set(i, ItemStack.EMPTY);
-                    //}
-                }
-                tile.update();
-                tile.markDirty();
-                return true;
-            }
+
         }
         return false;
     }
@@ -153,56 +158,29 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        if (stack.hasDisplayName())
+        TileEntity tileentity = world.getTileEntity(pos);
+        //world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+        if (tileentity instanceof TileNBTCrucible)
         {
-            TileEntity tileentity = world.getTileEntity(pos);
-            //world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-            if (tileentity instanceof TileNBTCrucible)
-            {
-                //((TileStorageCrate)tileentity).setCustomName(stack.getDisplayName());
+            getActualState(state, world, pos);
+        }
+    }
+
+    @Override
+    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
+    {
+        TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+        if (tile != null && tile instanceof TileNBTCrucible) {
+            System.out.println("Hot:" + tile.getHot() + " Status: " + tile.getStatus());
+            if(tile.getHot()){
+                return state.withProperty(PrimalAPI.States.ACTIVE, true);
+            }
+            if(!tile.getHot()){
+                return state.withProperty(PrimalAPI.States.ACTIVE, true);
             }
         }
+        return state;
     }
-
-    /*@Override
-    public int getMetaFromState(IBlockState state) {
-        int i = 0;
-
-        if( (state.getValue(PrimalAPI.States.ACTIVE) == false)) {
-            i = 0;
-            return i;
-        }
-        if ( (state.getValue(PrimalAPI.States.ACTIVE) == true)) {
-            i = 14;
-            return i;
-        }
-
-        return i;
-    }
-
-    @Override
-    public IBlockState getStateFromMeta(int meta) {
-        EnumFacing enumfacing;
-        Boolean active;
-        switch (meta & 7)
-        {
-            case 0:
-                active = false;
-                break;
-            case 1:
-                active = true;
-                break;
-            default:
-                active = false;
-        }
-
-        return this.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(active));
-    }
-
-    @Override
-    protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE});
-    }*/
 
     @Override
     public int quantityDropped(Random random)

@@ -4,6 +4,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
@@ -68,7 +69,8 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
             if (!stack1.isEmpty()) {
                 GL11.glPushMatrix();
                 GL11.glTranslated(0, 0.50D, 0);
-                renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+                //renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+                renderItem.renderItem(stack1, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
             }
 
