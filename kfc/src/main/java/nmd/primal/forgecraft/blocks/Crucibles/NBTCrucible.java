@@ -166,6 +166,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             NBTTagCompound tag = stack.getSubCompound("BlockEntityTag").copy();
             //tile.writeNBT(tag);
             tile.setHot(tag.getBoolean("hot"));
+            tile.markDirty();
+            tile.updateBlock();
         }
     }
 
