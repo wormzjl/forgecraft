@@ -3,10 +3,12 @@ package nmd.primal.forgecraft.blocks.Crucibles;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -37,7 +39,7 @@ import java.util.Random;
 /**
  * Created by mminaie on 11/11/17.
  */
-public class NBTCrucible extends BlockContainer implements ITileEntityProvider, IPickup {
+public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
 
     protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
 
@@ -49,7 +51,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
         setRegistryName(registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setHardness(3.0f);
-        //setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
+        setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
     }
 
     @Override
@@ -59,30 +61,9 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
-            /**CLEARS THE INVENTORY**/
-            if(player.isSneaking()){
-                for(int i=0; i<tile.ingList.size(); i++){
-                    //if(!tile.ingList.get(i).isEmpty()) {
-                    PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
-                    tile.ingList.set(i, ItemStack.EMPTY);
-                    //}
-                }
-                tile.update();
-                tile.markDirty();
-                return true;
-            }
-            /**PICKS UP THE CRUCIBLE**/
-            if(pItem.isEmpty()){
-                if(!player.isSneaking()) {
-                    CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
-                    if(recipe != null){
-                        tile.setDrops(recipe.getDropsRaw());
-                    }
-                    return takeBlock(world, pos, state, face, player);
-                }
-            }
+
             /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
-            if(!player.isSneaking()) {
+            if(player.isSneaking() == false) {
                 if(!pItem.isEmpty()) {
                     if(pItem.getItem() instanceof SlottedTongs) {
                         return false;
@@ -99,14 +80,46 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
                     }
                 }
             }
+            /**CLEARS THE INVENTORY**/
+            if (player.isSneaking() == true) {
+                if(pItem.isEmpty()) {
+                    for (int i = 0; i < tile.ingList.size(); i++) {
+                        if (!tile.ingList.get(i).isEmpty()) {
+                            PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
+                            tile.ingList.set(i, ItemStack.EMPTY);
+                        }
+                    }
+                    tile.update();
+                    tile.markDirty();
+                    return true;
+                }
+            }
+            /**PICKS UP THE CRUCIBLE**/
+            if(player.isSneaking() == false) {
 
+                if(pItem.isEmpty()){
+                    CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
+                    if(recipe != null){
+                        tile.setDrops(recipe.getDropsRaw());
+                    }
+                    PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
+                    world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                    return true;
+                }
+            }
         }
         return false;
+    }
+
+    private IBlockState getReplacementBlock(World world, BlockPos pos, IBlockState state)
+    {
+        return Blocks.AIR.getDefaultState();
     }
 
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
+        System.out.println("Removed by player");
         this.onBlockHarvested(world, pos, state, player);
         return this.takeBlock(world, pos, state, EnumFacing.UP, player);
     }
@@ -119,18 +132,13 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
 
     public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
     {
-        if (world.isRemote)
-            return true;
-
-        TileEntity tile = world.getTileEntity(pos);
-        if (tile instanceof TileNBTCrucible) {
-//World world, BlockPos pos, EnumFacing face, EntityPlayer player, EnumHand hand, ItemStack stack
-            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
-
-            //world.updateComparatorOutputLevel(pos, state.getBlock());
-            return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+        if (!world.isRemote) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileNBTCrucible) {
+                PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
+                return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+            }
         }
-
         return false;
     }
 
@@ -141,10 +149,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
-            System.out.println("Harvested" + tile.getStatus() + " | " + tile.getHot());
             if(recipe != null && tile.getStatus() && !tile.getHot()){
                 PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
-                System.out.println("Drop stuff");
             }
         }
     }
@@ -160,34 +166,53 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider, 
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         TileEntity tileentity = world.getTileEntity(pos);
-        if (tileentity instanceof TileNBTCrucible)
-        {
+        if (tileentity instanceof TileNBTCrucible) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-            NBTTagCompound tag = stack.getSubCompound("BlockEntityTag").copy();
-            //tile.writeNBT(tag);
-            tile.setHot(tag.getBoolean("hot"));
-            tile.markDirty();
-            tile.updateBlock();
+            if(NBTHelper.hasNBT(stack)){
+                NBTTagCompound tag = stack.getSubCompound("BlockEntityTag").copy();
+                if(tag.getBoolean("hot")){
+                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                }
+            }
         }
     }
 
     @Override
-    public IBlockState getActualState(IBlockState state, IBlockAccess world, BlockPos pos)
-    {
-        TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-        if (tile != null && tile instanceof TileNBTCrucible) {
-            System.out.println("Hot:" + tile.getHot() + " Status: " + tile.getStatus());
-            if(tile.getHot()){
-                System.out.println("Should Be Red");
-                return state.withProperty(PrimalAPI.States.ACTIVE, true);
-            }
-            if(!tile.getHot()){
-                System.out.println("Should Be Brown");
-                return state.withProperty(PrimalAPI.States.ACTIVE, false);
-            }
+    public int getMetaFromState(IBlockState state) {
+        int i = 0;
+
+        if( state.getValue(PrimalAPI.States.ACTIVE) == false){
+            i = 0;
+            return i;
         }
-        return state;
+
+        if( state.getValue(PrimalAPI.States.ACTIVE) == true) {
+            i = 1;
+            return i;
+        }
+
+        return i;
     }
+
+    @Override
+    public IBlockState getStateFromMeta(int meta) {
+
+        IBlockState iblockstate = this.getDefaultState();
+
+        if (meta == 0){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, false);
+        }
+        if (meta == 1){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, true);
+        }
+        return iblockstate;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE});
+    }
+
 
     @Override
     public int quantityDropped(Random random)

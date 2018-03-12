@@ -7,7 +7,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 
 /**
@@ -66,22 +68,20 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
     @Override
     public void update () {
         if (!world.isRemote) {
-            //World world = this.getWorld();
-            //IBlockState state = world.getBlockState(this.pos);
+            World world = this.getWorld();
+            IBlockState state = world.getBlockState(this.pos);
 
-            coolManager();
+            coolManager(this.pos, world, state);
         }
     }
 
-    private void coolManager() {
-        System.out.println(this.getHeat() + " " + this.getHot() + " " + this.getDrops());
+    private void coolManager(BlockPos pos, World world, IBlockState state) {
+        //System.out.println(this.getHeat() + " " + this.getHot() + " " + this.getDrops());
         if(this.getHot()){
             //System.out.println("Still Hot");
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
-                System.out.println(this.getHeat());
-                //this.updateBlock();
-                //this.markDirty();
+                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
             }
             if(this.getHeat() == 0){
                 this.setHot(false);
@@ -89,8 +89,10 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
                 this.setDrops(recipe.getDropsCooked());
                 this.setStatus(false);
                 System.out.println("Ready to harvest: " + this.getDrops());
+                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
                 this.updateBlock();
                 this.markDirty();
+
             }
             //CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
         }
