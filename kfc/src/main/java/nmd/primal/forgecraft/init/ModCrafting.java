@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.init;
 
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -30,7 +31,7 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new ItemStack(Blocks.IRON_ORE, 1),
-                new ItemStack(ModBlocks.ironball, 1),
+                new ItemStack(ModItems.ironingotball, 1),
                 100,
                 100,
                 1000);
@@ -114,7 +115,7 @@ public class ModCrafting{
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***RAW CRUCIBLES***/
-
+/*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),
                 "X","Y",
                 ('X'), "oreIron",
@@ -131,6 +132,9 @@ public class ModCrafting{
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
                 ('C'), new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH),
                 ('Y'), ModBlocks.emptycrucible);
+
+
+        */
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XCX"," X "," Y ",
                 ('X'), "dustCopper",
@@ -184,6 +188,7 @@ public class ModCrafting{
                 ('T'), new ItemStack(ModItems.brokenbronzetool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
                 );
+/*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenwroughtirontool, 1),
@@ -204,7 +209,7 @@ public class ModCrafting{
                 ('T'), new ItemStack(ModItems.brokenwootztool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
         );
-
+*/
 
         /***************************************************************
          * TOOL CRAFTING RECIPES
@@ -397,6 +402,7 @@ public class ModCrafting{
                 0.0f,
                 0.0f);
 
+        /*
 //Makes the Hot Iron Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.rawironcrucible, 1),
@@ -474,6 +480,7 @@ public class ModCrafting{
                 0.2f,
                 0.25f
         );
+        */
         //Makes the Hot Bronze Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.rawbronzecrucible, 1),
@@ -671,18 +678,19 @@ public class ModCrafting{
 
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.ironball),
-                new ItemStack(ModItems.ironingotballhot, 1),
-                800,
-                200,
+                ModItems.ironingotball,
+                //800, 200
+                new ItemStack(ModItems.ironingotball, 1),
+                100,
+                100,
                 500,
                 1.0f,
                 1.0f
         );
 //Makes a Hot Clean Iron Ingot
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.ironcleanball),
-                new ItemStack(ModItems.ironcleaningotballhot, 1),
+                ModItems.ironcleaningotball,
+                new ItemStack(ModItems.ironcleaningotball, 1),
                 900,
                 250,
                 500,
@@ -691,8 +699,18 @@ public class ModCrafting{
         );
 //Makes a Hot Steel Ingot
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.steelball),
-                new ItemStack(ModItems.steelingotballhot, 1),
+                ModItems.steelingotball,
+                new ItemStack(ModItems.steelingotball, 1),
+                1000,
+                300,
+                500,
+                1.0f,
+                1.0f
+        );
+        //Makes a Hot Wootz Ingot
+        ForgeCrafting.addRecipe(
+                ModItems.wootzingotball,
+                new ItemStack(ModItems.wootzingotball, 1),
                 1000,
                 300,
                 500,
@@ -703,7 +721,7 @@ public class ModCrafting{
 // Converts a Vanilla Ingot into ForgeCraft Ingot Ball
         ForgeCrafting.addRecipe(
                 Items.IRON_INGOT,
-                new ItemStack(ModItems.ironingotballhot, 1),
+                new ItemStack(ModItems.ironingotball, 1),
                 800,
                 200,
                 500,
@@ -713,8 +731,8 @@ public class ModCrafting{
 
 //Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.ironchunk),
-                new ItemStack(ModItems.ironchunkhot,1),
+                ModItems.ironchunk,
+                new ItemStack(ModItems.ironchunk,1),
                 800,
                 160,
                 400,
@@ -723,8 +741,8 @@ public class ModCrafting{
         );
 //Makes a Hot Clean Iron Chunk
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.ironcleanchunk),
-                new ItemStack(ModItems.ironcleanchunkhot,1),
+                ModItems.ironcleanchunk,
+                new ItemStack(ModItems.ironcleanchunk,1),
                 900,
                 250,
                 500,
@@ -733,8 +751,19 @@ public class ModCrafting{
         );
 //Makes a Hot Steel Chunk
         ForgeCrafting.addRecipe(
-                Item.getItemFromBlock(ModBlocks.steelchunk),
-                new ItemStack(ModItems.steelchunkhot,1),
+                ModItems.steelchunk,
+                new ItemStack(ModItems.steelchunk,1),
+                1000,
+                300,
+                500,
+                1.0f,
+                1.0f
+        );
+
+        //Makes a Hot Wootz Chunk
+        ForgeCrafting.addRecipe(
+                ModItems.wootzchunk,
+                new ItemStack(ModItems.wootzchunk,1),
                 1000,
                 300,
                 500,
@@ -878,9 +907,10 @@ public class ModCrafting{
          ******************************************************************************/
 
         //String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
-        String hotChunk = ModItems.ironchunkhot.getRegistryName().toString();
-        String hotCleanChunk = ModItems.ironcleanchunkhot.getRegistryName().toString();
-        String hotSteelChunk = ModItems.steelchunkhot.getRegistryName().toString();
+        String hotChunk = ModItems.ironchunk.getRegistryName().toString();
+        String hotCleanChunk = ModItems.ironcleanchunk.getRegistryName().toString();
+        String hotSteelChunk = ModItems.steelchunk.getRegistryName().toString();
+        String hotWootzChunk = ModItems.wootzchunk.getRegistryName().toString();
 
         String diamond = Items.DIAMOND.getRegistryName().toString();
         String emerald = Items.EMERALD.getRegistryName().toString();

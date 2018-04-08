@@ -23,9 +23,9 @@ import java.util.List;
  */
 public class BronzeToolPart extends Item implements ToolNBT{
 
-    private int ID;
+    private String toolType;
 
-    public BronzeToolPart(String name, ToolMaterial material, Integer ID) {
+    public BronzeToolPart(String name, ToolMaterial material, String type) {
         this.setMaxDamage(material.getMaxUses());
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
@@ -33,7 +33,7 @@ public class BronzeToolPart extends Item implements ToolNBT{
         this.setMaxStackSize(1);
         this.setNoRepair();
 
-        this.ID = ID;
+        this.toolType = type;
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {
@@ -83,8 +83,8 @@ public class BronzeToolPart extends Item implements ToolNBT{
         return false;
     }
 
-    public int getID() {
-        return ID;
+    public String getID() {
+        return toolType;
     }
 
     @Override

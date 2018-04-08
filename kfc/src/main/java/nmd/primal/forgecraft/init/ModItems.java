@@ -43,15 +43,15 @@ public class ModItems {
     public static Item stonetongs;
     public static Item castingmud;
 
-    public static Item ironingotballhot;
-    public static Item ironchunkhot;
-    public static Item ironcleaningotballhot;
-    public static Item ironcleanchunkhot;
-    public static Item steelingotballhot;
-    public static Item steelchunkhot;
-    public static Item wootzingotballhot;
-    public static Item wootzchunkhot;
 
+    public static Item ironingotball;
+    public static Item ironchunk;
+    public static Item ironcleaningotball;
+    public static Item ironcleanchunk;
+    public static Item steelingotball;
+    public static Item steelchunk;
+    public static Item wootzingotball;
+    public static Item wootzchunk;
 
     public static Item cast_axe;
     public static Item cast_gladius;
@@ -174,30 +174,30 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 41);
-        bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 42);
-        bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 43);
-        bronzehoehead = new BronzeToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, 44);
+        bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
+        bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
+        bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
+        bronzehoehead = new BronzeToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "hoe");
 
-        pickaxehead = new ToolPart("ironpickaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 8);
-        ironaxehead = new ToolPart("ironaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 9);
-        ironshovelhead = new ToolPart("ironshovelhead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 10);
-        ironhoehead = new ToolPart("ironhoehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 11);
+        pickaxehead = new ToolPart("ironpickaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "pickaxe");
+        ironaxehead = new ToolPart("ironaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "axe");
+        ironshovelhead = new ToolPart("ironshovelhead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "shovel");
+        ironhoehead = new ToolPart("ironhoehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "hoe");
 
-        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 17);
-        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 18);
-        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 19);
-        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 20);
+        cleanironpickaxehead = new ToolPart("cleanironpickaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, "pickaxe");
+        cleanironaxehead = new ToolPart("cleanironaxehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, "axe");
+        cleanironshovelhead = new ToolPart("cleanironshovelhead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, "shovel");
+        cleanironhoehead = new ToolPart("cleanironhoehead", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, "hoe");
 
-        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 26);
-        steelaxehead = new ToolPart("steelaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 27);
-        steelshovelhead = new ToolPart("steelshovelhead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 28);
-        steelhoehead = new ToolPart("steelhoehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 29);
+        steelpickaxehead = new ToolPart("steelpickaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, "pickaxe");
+        steelaxehead = new ToolPart("steelaxehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, "axe");
+        steelshovelhead = new ToolPart("steelshovelhead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, "shovel");
+        steelhoehead = new ToolPart("steelhoehead", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, "hoe");
 
-        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 35);
-        wootzaxehead = new ToolPart("wootzaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 36);
-        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 37);
-        wootzhoehead = new ToolPart("wootzhoehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 38);
+        wootzpickaxehead = new ToolPart("wootzpickaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, "pickaxe");
+        wootzaxehead = new ToolPart("wootzaxehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, "axe");
+        wootzshovelhead = new ToolPart("wootzshovelhead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, "shovel");
+        wootzhoehead = new ToolPart("wootzhoehead", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, "hoe");
 
         /**********
          TOOLS
@@ -247,14 +247,16 @@ public class ModItems {
         /**********
          INGOTS AND CHUNKS
          **********/
-        ironingotballhot = new BaseMultiItem("ironingothot", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 6);
-        ironchunkhot = new BaseMultiItem("ironchunkhot", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 7);
-        ironcleaningotballhot= new BaseMultiItem("ironcleaningotballhot", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 15);
-        ironcleanchunkhot= new BaseMultiItem("ironcleanchunkhot", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 16);
-        steelingotballhot= new BaseMultiItem("steelingotballhot", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 24);
-        steelchunkhot= new BaseMultiItem("steelchunkhot", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 25);
-        wootzingotballhot= new BaseMultiItem("wootzingotballhot", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 33);
-        wootzchunkhot= new BaseMultiItem("wootzchunkhot", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 34);
+
+        ironingotball = new BaseMultiItem("ironingotball", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        ironchunk = new BaseMultiItem("ironchunk", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        ironcleaningotball= new BaseMultiItem("ironcleaningotball", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        ironcleanchunk= new BaseMultiItem("ironcleanchunk", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        steelingotball= new BaseMultiItem("steelingotball", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        steelchunk= new BaseMultiItem("steelchunk", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        wootzingotball= new BaseMultiItem("wootzingotball", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
+        wootzchunk= new BaseMultiItem("wootzchunk", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
+
 
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
@@ -282,14 +284,16 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(softcrucible);
         ForgeRegistries.ITEMS.register(stonetongs);
         ForgeRegistries.ITEMS.register(forgehammer);
-        ForgeRegistries.ITEMS.register(ironingotballhot);
-        ForgeRegistries.ITEMS.register(ironchunkhot);
-        ForgeRegistries.ITEMS.register(ironcleaningotballhot);
-        ForgeRegistries.ITEMS.register(ironcleanchunkhot);
-        ForgeRegistries.ITEMS.register(steelingotballhot);
-        ForgeRegistries.ITEMS.register(steelchunkhot);
-        ForgeRegistries.ITEMS.register(wootzingotballhot);
-        ForgeRegistries.ITEMS.register(wootzchunkhot);
+
+        ForgeRegistries.ITEMS.register(ironingotball);
+        ForgeRegistries.ITEMS.register(ironchunk);
+        ForgeRegistries.ITEMS.register(ironcleaningotball);
+        ForgeRegistries.ITEMS.register(ironcleanchunk);
+        ForgeRegistries.ITEMS.register(steelingotball);
+        ForgeRegistries.ITEMS.register(steelchunk);
+        ForgeRegistries.ITEMS.register(wootzingotball);
+        ForgeRegistries.ITEMS.register(wootzchunk);
+
         //ForgeRegistries.ITEMS.register(test);
 
         /**********
@@ -397,17 +401,20 @@ public class ModItems {
     @SideOnly(Side.CLIENT)
     public static void registerRenders() {
         registerRender(itemnbtcrucible);
-        //registerRender(itemcrucible);
+        registerRender(slottedtongs);
         registerRender(castingmud);
         registerRender(bellowshandle);
         registerRender(softcrucible);
         registerRender(forgehammer);
-        registerRender(ironingotballhot);
-        registerRender(ironchunkhot);
-        registerRender(ironcleaningotballhot);
-        registerRender(ironcleanchunkhot);
-        registerRender(steelingotballhot);
-        registerRender(steelchunkhot);
+
+
+        registerRender(ironingotball);
+        registerRender(ironchunk);
+        registerRender(ironcleaningotball);
+        registerRender(ironcleanchunk);
+        registerRender(steelingotball);
+        registerRender(steelchunk);
+
         //registerRender(test);
 
         /**********

@@ -129,19 +129,24 @@ public class Crucible extends Block {
 
     private Item getItemFromName(String name){
         if(name.equals("tile.coolironcrucible")){
-            return Item.getItemFromBlock(ModBlocks.ironball);
+            //return Item.getItemFromBlock(ModBlocks.ironball);
+            return null;
         } else if (name.equals("tile.rawironcrucible")){
             return Item.getItemFromBlock(Blocks.IRON_ORE);
         } else if (name.equals("tile.coolcleanironcrucible")){
-            return Item.getItemFromBlock(ModBlocks.ironcleanball);
+            //return Item.getItemFromBlock(ModBlocks.ironcleanball);
+            return null;
         } else if (name.equals("tile.rawcleanironcrucible")){
             return PrimalAPI.Items.IRON_DUST;
         } else if (name.equals("tile.coolsteelcrucible")){
-            return Item.getItemFromBlock(ModBlocks.steelball);
+            //return Item.getItemFromBlock(ModBlocks.steelball);
+            return null;
         } else if (name.equals("tile.rawsteelcrucible")){
-            return Item.getItemFromBlock(ModBlocks.ironcleanball);
+            //return Item.getItemFromBlock(ModBlocks.ironcleanball);
+            return null;
         } else if (name.equals("tile.coolwootzcrucible")){
-            return Item.getItemFromBlock(ModBlocks.wootzball);
+            //return Item.getItemFromBlock(ModBlocks.wootzball);
+            return null;
         } else if (name.equals("tile.rawcleanironcrucible")){
             return PrimalAPI.Items.IRON_DUST;
         }else if (name.equals("tile.emptycruciblecracked")){

@@ -1,10 +1,12 @@
 package nmd.primal.forgecraft.tiles;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.parts.ToolPart;
@@ -49,9 +51,13 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
         if (!world.isRemote) {
             IBlockState state = world.getBlockState(this.pos);
 
-            if ( ThreadLocalRandom.current().nextInt(0,10000) == 0 ) {
+
+            /***
+             Cooling Code
+             */
+            /*if ( ThreadLocalRandom.current().nextInt(0,10000) == 0 ) {
                 for(int i=0; i<this.getSlotListSize(); i++){
-                    if(this.getSlotStack(i).getItem() == ModItems.ironchunkhot){
+                    if(this.getSlotStack(i).getItem() == tempironball){
                         if(ThreadLocalRandom.current().nextInt(0,1000) == 1){
                             this.setSlotStack(i, new ItemStack(ModBlocks.ironchunk, 1));
                             this.updateBlock();
@@ -74,6 +80,7 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
                     }
                 }
             }
+            */
 
         }
     }

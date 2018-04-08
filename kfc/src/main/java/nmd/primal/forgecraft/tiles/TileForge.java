@@ -14,6 +14,7 @@ import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
 
@@ -196,6 +197,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                             outputStack.setTagCompound(stackCompound);
                             outputStack.getSubCompound("tags").setBoolean("hot", true);
                         }
+                        if(outputStack.getItem() instanceof BaseMultiItem) {
+                            //System.out.println(stack.getTagCompound());
+                            stackCompound.setBoolean("hot", true);
+                            outputStack.setTagCompound(stackCompound);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
@@ -213,6 +219,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         if(outputStack.getItem() instanceof ToolPart) {
                             outputStack.setTagCompound(stackCompound);
                             outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
+                        if(outputStack.getItem() instanceof BaseMultiItem) {
+                            stackCompound.setBoolean("hot", true);
+                            outputStack.setTagCompound(stackCompound);
                         }
                         this.setSlotStack(i, outputStack);
 
@@ -234,6 +244,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                             outputStack.setTagCompound(stackCompound);
                             outputStack.getSubCompound("tags").setBoolean("hot", true);
                         }
+                        if(outputStack.getItem() instanceof BaseMultiItem) {
+                            stackCompound.setBoolean("hot", true);
+                            outputStack.setTagCompound(stackCompound);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter4 = 0;
                     }
@@ -252,6 +266,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                             outputStack.setTagCompound(stackCompound);
                             outputStack.getSubCompound("tags").setBoolean("hot", true);
                         }
+                        if(outputStack.getItem() instanceof BaseMultiItem) {
+                            stackCompound.setBoolean("hot", true);
+                            outputStack.setTagCompound(stackCompound);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
                     }
@@ -269,6 +287,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         if(outputStack.getItem() instanceof ToolPart) {
                             outputStack.setTagCompound(stackCompound);
                             outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
+                        if(outputStack.getItem() instanceof BaseMultiItem) {
+                            outputStack.setTagCompound(stackCompound);
+                            outputStack.getTagCompound().setBoolean("hot", true);
                         }
                         this.setSlotStack(i, outputStack);
                         cookCounter6 = 0;

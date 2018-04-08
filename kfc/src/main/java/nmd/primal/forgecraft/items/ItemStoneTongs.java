@@ -157,6 +157,7 @@ public class ItemStoneTongs extends Item {
             /*****
              Picks Up Hot Ingots from the Ground
              *****/
+            /*
             if (world.getBlockState(pos).getBlock() instanceof BloomeryBase == false) {
                 if (world.getBlockState(pos).getBlock() instanceof IngotBall) {
                     if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true) {
@@ -190,10 +191,10 @@ public class ItemStoneTongs extends Item {
                             world.setBlockToAir(pos);
                             return EnumActionResult.SUCCESS;
                         }
-                        /* TODO Wootz */
+                        // TODO Wootz
                     }
                 }
-            }
+            }*/
 
 
 /*****
@@ -220,6 +221,7 @@ public class ItemStoneTongs extends Item {
                     /***************************
                      *           Iron          *
                      ***************************/
+                    /*
                     if (world.getBlockState(pos).getBlock() == ModBlocks.hotironcrucible) {
                         itemstack.getTagCompound().setInteger("type", 3);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -238,9 +240,11 @@ public class ItemStoneTongs extends Item {
                         world.setBlockToAir(pos);
                         return EnumActionResult.SUCCESS;
                     }
+                    */
                     /***************************
                      *         Clean Iron      *
                      ***************************/
+                    /*
                     if (world.getBlockState(pos).getBlock() == ModBlocks.hotcleanironcrucible) {
                         itemstack.getTagCompound().setInteger("type", 12);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -259,9 +263,11 @@ public class ItemStoneTongs extends Item {
                         world.setBlockToAir(pos);
                         return EnumActionResult.SUCCESS;
                     }
+                    */
                     /***************************
                      *          Steel          *
                      ***************************/
+                    /*
                     if (world.getBlockState(pos).getBlock() == ModBlocks.hotsteelcrucible) {
                         itemstack.getTagCompound().setInteger("type", 21);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -280,6 +286,7 @@ public class ItemStoneTongs extends Item {
                         world.setBlockToAir(pos);
                         return EnumActionResult.SUCCESS;
                     }
+                    */
                     /* TODO Wootz */
 
 
@@ -386,7 +393,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("cooldown", 0);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
-                            case 3:
+                            /*case 3:
                                 world.setBlockState(tempPos, ModBlocks.hotironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible3 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible3.countdown = itemstack.getTagCompound().getInteger("cooldown");
@@ -415,6 +422,7 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.ironchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
+                                */
                             case 8:
                                 return EnumActionResult.FAIL;
                             case 9:
@@ -423,7 +431,7 @@ public class ItemStoneTongs extends Item {
                                 return EnumActionResult.FAIL;
                             case 11:
                                 return EnumActionResult.FAIL;
-                            case 12:
+                            /*case 12:
                                 world.setBlockState(tempPos, ModBlocks.hotcleanironcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible12 = (TileBaseCrucible) world.getTileEntity(tempPos);
                                 tileCrucible12.countdown = itemstack.getTagCompound().getInteger("cooldown");
@@ -452,6 +460,7 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.ironcleanchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
+                                */
                             case 17:
                                 return EnumActionResult.FAIL;
                             case 18:
@@ -460,6 +469,7 @@ public class ItemStoneTongs extends Item {
                                 return EnumActionResult.FAIL;
                             case 20:
                                 return EnumActionResult.FAIL;
+                                /*
                             case 21:
                                 world.setBlockState(tempPos, ModBlocks.hotsteelcrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible21 = (TileBaseCrucible) world.getTileEntity(tempPos);
@@ -489,6 +499,7 @@ public class ItemStoneTongs extends Item {
                                 world.setBlockState(tempPos, ModBlocks.steelchunk.getDefaultState().withProperty(PrimalAPI.States.ACTIVE, true), 2);
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
+                                */
                             case 29:
                                 world.setBlockState(tempPos, ModBlocks.hotbronzecrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible39 = (TileBaseCrucible) world.getTileEntity(tempPos);
@@ -591,6 +602,7 @@ public class ItemStoneTongs extends Item {
                         itemstack.getTagCompound().setInteger("type", 2);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
+                    /*
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotironcrucible))) {
                         itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 3);
@@ -636,6 +648,7 @@ public class ItemStoneTongs extends Item {
                         itemstack.getTagCompound().setInteger("type", 23);
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
+                        */
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotbronzecrucible))) {
                         itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 39);
@@ -706,7 +719,7 @@ public class ItemStoneTongs extends Item {
 /*****
  Pulls the Tool Parts from the Forge
  *****/
-            if(itemstack.getTagCompound().getInteger("type") == 0){
+            /*if(itemstack.getTagCompound().getInteger("type") == 0){
                 if (world.getBlockState(pos).getBlock() instanceof Forge) {
                     TileForge tile = (TileForge) world.getTileEntity(pos);
                     for (int i = 2; i < tile.getSlotListSize(); i++) {
@@ -876,7 +889,7 @@ public class ItemStoneTongs extends Item {
                         }
                     }
                 }
-            }
+            }*/
 
 
 

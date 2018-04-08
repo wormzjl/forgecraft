@@ -1,0 +1,39 @@
+{
+  "parent": "forgecraft:item/stonetongs",
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:blocks/stone_slab"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/slottedtongs/slottedtongs_0"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/slottedtongs/slottedtongs_1"},
+    {"predicate": {"type": 0.02},"model": "forgecraft:item/slottedtongs/slottedtongs_2"},
+    {"predicate": {"type": 0.03},"model": "forgecraft:item/slottedtongs/slottedtongs_3"},
+    {"predicate": {"type": 0.04},"model": "forgecraft:item/slottedtongs/slottedtongs_4"},
+    {"predicate": {"type": 0.05},"model": "forgecraft:item/slottedtongs/slottedtongs_5"},
+    {"predicate": {"type": 0.06},"model": "forgecraft:item/slottedtongs/slottedtongs_6"},
+    {"predicate": {"type": 0.07},"model": "forgecraft:item/slottedtongs/slottedtongs_7"},
+    {"predicate": {"type": 0.08},"model": "forgecraft:item/slottedtongs/slottedtongs_8"},
+    {"predicate": {"type": 0.09},"model": "forgecraft:item/slottedtongs/slottedtongs_9"},
+    {"predicate": {"type": 0.10},"model": "forgecraft:item/slottedtongs/slottedtongs_10"},
+    {"predicate": {"type": 0.11},"model": "forgecraft:item/slottedtongs/slottedtongs_11"},
+    {"predicate": {"type": 0.12},"model": "forgecraft:item/slottedtongs/slottedtongs_12"},
+    {"predicate": {"type": 0.13},"model": "forgecraft:item/slottedtongs/slottedtongs_13"},
+    {"predicate": {"type": 0.14},"model": "forgecraft:item/slottedtongs/slottedtongs_14"},
+    {"predicate": {"type": 0.15},"model": "forgecraft:item/slottedtongs/slottedtongs_15"},
+    {"predicate": {"type": 0.16},"model": "forgecraft:item/slottedtongs/slottedtongs_16"},
+    {"predicate": {"type": 0.17},"model": "forgecraft:item/slottedtongs/slottedtongs_17"},
+    {"predicate": {"type": 0.18},"model": "forgecraft:item/slottedtongs/slottedtongs_18"},
+    {"predicate": {"type": 0.19},"model": "forgecraft:item/slottedtongs/slottedtongs_19"},
+    {"predicate": {"type": 0.20},"model": "forgecraft:item/slottedtongs/slottedtongs_20"},
+    {"predicate": {"type": 0.21},"model": "forgecraft:item/slottedtongs/slottedtongs_21"},
+    {"predicate": {"type": 0.22},"model": "forgecraft:item/slottedtongs/slottedtongs_22"},
+    {"predicate": {"type": 0.23},"model": "forgecraft:item/slottedtongs/slottedtongs_23"},
+    {"predicate": {"type": 0.24},"model": "forgecraft:item/slottedtongs/slottedtongs_24"},
+    {"predicate": {"type": 0.25},"model": "forgecraft:item/slottedtongs/slottedtongs_25"},
+    {"predicate": {"type": 0.26},"model": "forgecraft:item/slottedtongs/slottedtongs_26"}
+  ]
+}
+
+

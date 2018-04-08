@@ -263,7 +263,7 @@ public interface AnvilHandler {
                     (pItem.getTagCompound().getInteger("type") == 0)) {
                 //System.out.println("Level 1");
 
-                if (!tile.getSlotStack(counter).isEmpty()) {
+                /*if (!tile.getSlotStack(counter).isEmpty()) {
                     if (pItem.getTagCompound().getInteger("type") == 0) {
                         if (tile.getSlotStack(counter).getItem().equals(ModItems.ironingotballhot)) {
                             pItem.getTagCompound().setInteger("type", 6);
@@ -297,38 +297,12 @@ public interface AnvilHandler {
                             tile.setSlotStack(counter, ItemStack.EMPTY);
                             return true;
                         }
-                        if(tile.getSlotStack(counter).getItem() instanceof ToolPart){
-                            ToolPart item = (ToolPart) tile.getSlotStack(counter).getItem();
-                            if(item.getHot(tile.getSlotStack(counter))) {
-                                switch (item.getID()) {
-                                    case 8:
-                                    case 9:
-                                    case 10:
-                                    case 11:
-                                    case 17:
-                                    case 18:
-                                    case 19:
-                                    case 20:
-                                    case 26:
-                                    case 27:
-                                    case 28:
-                                    case 29:
-                                    case 35:
-                                    case 36:
-                                    case 37:
-                                    case 38:
-                                        pItem.getTagCompound().setInteger("type", item.getID());
-                                        tile.setSlotStack(counter, ItemStack.EMPTY);
-                                        return true;
-                                }
-                            }
-                        }
                     }
-                }
+                }*/
 
                 if (tile.getSlotStack(counter).isEmpty()) {
                     //System.out.println("Activating");
-                    if (pItem.getTagCompound().getInteger("type") == 6) {
+                    /*if (pItem.getTagCompound().getInteger("type") == 6) {
                         //System.out.println("Tongs meta = 6");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironingotballhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
@@ -341,7 +315,7 @@ public interface AnvilHandler {
                         ///System.out.println(counter);
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
-                    }
+                    }*/
                     if (pItem.getTagCompound().getInteger("type") == 8) {
                         ItemStack tempStack = new ItemStack(ModItems.pickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -418,7 +392,7 @@ public interface AnvilHandler {
                     /*********************************
                      *            Clean Iron         *
                      *********************************/
-                    if (pItem.getTagCompound().getInteger("type") == 15) {
+                    /*if (pItem.getTagCompound().getInteger("type") == 15) {
                         //System.out.println("Tongs meta = 6");
                         tile.setSlotStack((counter), new ItemStack(ModItems.ironcleaningotballhot, 1));
                         pItem.getTagCompound().setInteger("type", 0);
@@ -431,7 +405,7 @@ public interface AnvilHandler {
                         ///System.out.println(counter);
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
-                    }
+                    }*/
                     if (pItem.getTagCompound().getInteger("type") == 17) {
                         ItemStack tempStack = new ItemStack(ModItems.cleanironpickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -508,6 +482,7 @@ public interface AnvilHandler {
                     /*********************************
                      *              Steel            *
                      *********************************/
+                    /*
                     if (pItem.getTagCompound().getInteger("type") == 24) {
                         //System.out.println("Tongs meta = 6");
                         tile.setSlotStack((counter), new ItemStack(ModItems.steelingotballhot, 1));
@@ -522,6 +497,7 @@ public interface AnvilHandler {
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
                     }
+                    */
                     if (pItem.getTagCompound().getInteger("type") == 26) {
                         ItemStack tempStack = new ItemStack(ModItems.steelpickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -734,7 +710,7 @@ public interface AnvilHandler {
                         ItemStack dropStack = null;
                         if (stack.getItem() instanceof BaseMultiItem) {
                             BaseMultiItem item = (BaseMultiItem) stack.getItem();
-
+/*
                             switch (item.getID()) {
                                 case 6:
                                     dropStack = new ItemStack(ModBlocks.ironball, 1);
@@ -808,7 +784,7 @@ public interface AnvilHandler {
                                 case 38:
                                     dropStack = new ItemStack(ModItems.wootzhoehead, 1);
                                     break;
-                            }
+                            }*/
 
                         } else {
                             dropStack = stack;

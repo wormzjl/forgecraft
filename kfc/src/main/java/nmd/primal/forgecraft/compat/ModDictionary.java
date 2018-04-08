@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.compat;
 
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
 
 /**
  * Created by mminaie on 2/7/17.
@@ -19,12 +20,12 @@ public class ModDictionary {/***************************************************
         {
             //if (ModConfig.COMPATIBILITY_DICTIONARY_MAGMACREAM_AS_SLIME)
                 //OreDictionary.registerOre("clayball", Items.CLAY_BALL);
-                OreDictionary.registerOre("ingotIron", ModBlocks.ironball);
-                OreDictionary.registerOre("nuggetIron", ModBlocks.ironchunk);
-                OreDictionary.registerOre("ingotIron", ModBlocks.ironcleanball);
-                OreDictionary.registerOre("nuggetIron", ModBlocks.ironcleanchunk);
-                OreDictionary.registerOre("ingotSteel", ModBlocks.steelball);
-                OreDictionary.registerOre("nuggetSteel", ModBlocks.steelchunk);
+                OreDictionary.registerOre("ingotIron", ModItems.ironingotball);
+                OreDictionary.registerOre("nuggetIron", ModItems.ironchunk);
+                OreDictionary.registerOre("ingotIron", ModItems.ironcleaningotball);
+                OreDictionary.registerOre("nuggetIron", ModItems.ironcleanchunk);
+                OreDictionary.registerOre("ingotSteel", ModItems.steelingotball);
+                OreDictionary.registerOre("nuggetSteel", ModItems.steelchunk);
 
 
 

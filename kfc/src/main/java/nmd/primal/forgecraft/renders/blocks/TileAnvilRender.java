@@ -17,6 +17,7 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.IngotBall;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -507,7 +508,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
             GL11.glPopMatrix();
         }
-        if(item == ModItems.ironingotballhot ){
+        //ModItems.ironingotballhot
+        if(item == ModItems.ironingotball){
             GL11.glPushMatrix();
             double scale = 1.0D;
             GL11.glScaled(scale, scale, scale);
@@ -515,7 +517,8 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
             GL11.glPopMatrix();
         }
-        if(item == ModItems.ironchunkhot){
+        //ModItems.ironchunkhot
+        if(item == ModItems.ironchunk){
             GL11.glPushMatrix();
             double scale = 1.0D;
             GL11.glScaled(scale, scale, scale);

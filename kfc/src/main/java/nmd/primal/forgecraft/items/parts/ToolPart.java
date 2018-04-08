@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,27 +14,31 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.StringJoiner;
 
 /**
  * Created by mminaie on 3/9/17.
  */
 public class ToolPart extends Item implements ToolNBT{
 
-    private int ID;
+    private String toolType;
+    private ToolMaterial toolMaterial;
 
-    public ToolPart(String name, Item.ToolMaterial material, Integer ID) {
+    public ToolPart(String name, Item.ToolMaterial material, String type) {
         this.setMaxDamage(material.getMaxUses());
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
-        //this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
+        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
 
-        this.ID = ID;
+        this.toolType = type;
+        this.toolMaterial = material;
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
         {
@@ -228,9 +233,10 @@ public class ToolPart extends Item implements ToolNBT{
         return false;
     }
 
-    public int getID() {
-        return ID;
+    public String getID() {
+        return toolType;
     }
+    public ToolMaterial getMaterial() {return toolMaterial;}
 
     @Override
     public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {

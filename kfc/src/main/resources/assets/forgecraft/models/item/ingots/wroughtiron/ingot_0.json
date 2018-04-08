@@ -1,8 +1,7 @@
 {
-  "forge_marker":1,
+  "parent": "forgecraft:item/ironball",
   "textures": {
     "particle": "forgecraft:blocks/iron_ingot",
     "texture": "forgecraft:blocks/iron_ingot"
-  },
-  "parent": "forgecraft:item/ironball"
+  }
 }

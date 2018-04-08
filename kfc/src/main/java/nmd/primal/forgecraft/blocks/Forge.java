@@ -28,6 +28,8 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.recipes.FireSource;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.items.BaseMultiItem;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -94,6 +96,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack fuelItem = tile.getSlotStack(0);
                 //System.out.println(pItem.getItem().getRegistryName().toString());
+
 
                 /***********************
                 FUEL SLOT CODE
@@ -178,11 +181,12 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                     }*/
 
 
-                    if (Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
+                    if (pItem.getItem() instanceof BaseMultiItem) {
                         //System.out.println("Activating");
                         for (int i = 2; i <= tile.getSlotListSize(); i++) {
                             if (tile.getSlotStack(i).isEmpty()) {
-                                tile.setSlotStack(i, new ItemStack(pItem.getItem(), 1));
+                                ItemStack tempItem = pItem.copy();
+                                tile.setSlotStack(i,tempItem);
                                 pItem.shrink(1);
                                 return true;
                             }
@@ -208,7 +212,6 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                             return true;
                         }
                     }
-
                 }
             }
             //System.out.println(tile.getSlotStack(0));
