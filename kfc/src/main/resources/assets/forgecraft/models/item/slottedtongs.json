@@ -32,7 +32,27 @@
     {"predicate": {"type": 0.23},"model": "forgecraft:item/slottedtongs/slottedtongs_23"},
     {"predicate": {"type": 0.24},"model": "forgecraft:item/slottedtongs/slottedtongs_24"},
     {"predicate": {"type": 0.25},"model": "forgecraft:item/slottedtongs/slottedtongs_25"},
-    {"predicate": {"type": 0.26},"model": "forgecraft:item/slottedtongs/slottedtongs_26"}
+    {"predicate": {"type": 0.26},"model": "forgecraft:item/slottedtongs/slottedtongs_26"},
+    {"predicate": {"type": 0.27},"model": "forgecraft:item/slottedtongs/slottedtongs_27"},
+    {"predicate": {"type": 0.28},"model": "forgecraft:item/slottedtongs/slottedtongs_28"},
+    {"predicate": {"type": 0.29},"model": "forgecraft:item/slottedtongs/slottedtongs_29"},
+    {"predicate": {"type": 0.30},"model": "forgecraft:item/slottedtongs/slottedtongs_30"},
+    {"predicate": {"type": 0.31},"model": "forgecraft:item/slottedtongs/slottedtongs_31"},
+    {"predicate": {"type": 0.32},"model": "forgecraft:item/slottedtongs/slottedtongs_32"},
+    {"predicate": {"type": 0.33},"model": "forgecraft:item/slottedtongs/slottedtongs_33"},
+    {"predicate": {"type": 0.34},"model": "forgecraft:item/slottedtongs/slottedtongs_34"},
+    {"predicate": {"type": 0.35},"model": "forgecraft:item/slottedtongs/slottedtongs_35"},
+    {"predicate": {"type": 0.36},"model": "forgecraft:item/slottedtongs/slottedtongs_36"},
+    {"predicate": {"type": 0.37},"model": "forgecraft:item/slottedtongs/slottedtongs_37"},
+    {"predicate": {"type": 0.38},"model": "forgecraft:item/slottedtongs/slottedtongs_38"},
+    {"predicate": {"type": 0.29},"model": "forgecraft:item/slottedtongs/slottedtongs_39"},
+    {"predicate": {"type": 0.40},"model": "forgecraft:item/slottedtongs/slottedtongs_40"},
+    {"predicate": {"type": 0.41},"model": "forgecraft:item/slottedtongs/slottedtongs_41"},
+    {"predicate": {"type": 0.42},"model": "forgecraft:item/slottedtongs/slottedtongs_42"},
+    {"predicate": {"type": 0.43},"model": "forgecraft:item/slottedtongs/slottedtongs_43"},
+    {"predicate": {"type": 0.44},"model": "forgecraft:item/slottedtongs/slottedtongs_44"},
+    {"predicate": {"type": 0.45},"model": "forgecraft:item/slottedtongs/slottedtongs_45"},
+    {"predicate": {"type": 0.46},"model": "forgecraft:item/slottedtongs/slottedtongs_46"}
   ]
 }
 

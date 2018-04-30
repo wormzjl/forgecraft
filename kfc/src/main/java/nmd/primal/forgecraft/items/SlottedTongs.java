@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -23,20 +24,27 @@ import nmd.primal.core.api.interfaces.IPickup;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
+import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.blocks.Forge;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
+import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
+import nmd.primal.forgecraft.util.AnvilHandler;
+import org.lwjgl.Sys;
 
 import javax.annotation.Nullable;
+
+import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
 
 /**
  * Created by mminaie on 12/30/17.
  */
-public class SlottedTongs extends Item implements IPickup {
+public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
     public SlottedTongs(String unlocalizedName) {
         setUnlocalizedName(unlocalizedName);
@@ -53,6 +61,7 @@ public class SlottedTongs extends Item implements IPickup {
                 ItemStack slotStack = item.getSlotList().get(0);
                 //TODO get the item name
                 if (stack.getItem() instanceof SlottedTongs) {
+                    //System.out.println(slotStack.getTagCompound());
                     if (slotStack.getItem() instanceof ItemNBTCrucible){
                         if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getBoolean("hot")){
                             return 0.01f;
@@ -160,6 +169,76 @@ public class SlottedTongs extends Item implements IPickup {
                             }
                         }
                     }
+                    if(slotStack.getItem() instanceof BaseMultiItem){
+                        Item slotItem = slotStack.getItem();
+                        if (slotStack.getTagCompound() != null) {
+                            if (!slotStack.getTagCompound().getBoolean("hot")) {
+                                if (slotItem.equals(ModItems.bronzeingotball)) {
+                                    return 0.27f;
+                                }
+                                if (slotItem.equals(ModItems.ironingotball)) {
+                                    System.out.println("Rendering ingot ball");
+                                    return 0.28f;
+                                }
+                                if (slotItem.equals(ModItems.ironcleaningotball)) {
+                                    return 0.29f;
+                                }
+                                if (slotItem.equals(ModItems.steelingotball)) {
+                                    return 0.30f;
+                                }
+                                if (slotItem.equals(ModItems.wootzingotball)) {
+                                    return 0.31f;
+                                }
+                                if (slotItem.equals(ModItems.bronzechunk)) {
+                                    return 0.32f;
+                                }
+                                if (slotItem.equals(ModItems.ironchunk)) {
+                                    return 0.33f;
+                                }
+                                if (slotItem.equals(ModItems.ironcleanchunk)) {
+                                    return 0.34f;
+                                }
+                                if (slotItem.equals(ModItems.steelchunk)) {
+                                    return 0.35f;
+                                }
+                                if (slotItem.equals(ModItems.wootzchunk)) {
+                                    return 0.36f;
+                                }
+                            }
+                            if (slotStack.getTagCompound().getBoolean("hot")) {
+                                if (slotItem.equals(ModItems.bronzeingotball)) {
+                                    return 0.37f;
+                                }
+                                if (slotItem.equals(ModItems.ironingotball)) {
+                                    return 0.38f;
+                                }
+                                if (slotItem.equals(ModItems.ironcleaningotball)) {
+                                    return 0.39f;
+                                }
+                                if (slotItem.equals(ModItems.steelingotball)) {
+                                    return 0.40f;
+                                }
+                                if (slotItem.equals(ModItems.wootzingotball)) {
+                                    return 0.41f;
+                                }
+                                if (slotItem.equals(ModItems.bronzechunk)) {
+                                    return 0.42f;
+                                }
+                                if (slotItem.equals(ModItems.ironchunk)) {
+                                    return 0.43f;
+                                }
+                                if (slotItem.equals(ModItems.ironcleanchunk)) {
+                                    return 0.44f;
+                                }
+                                if (slotItem.equals(ModItems.steelchunk)) {
+                                    return 0.45f;
+                                }
+                                if (slotItem.equals(ModItems.wootzchunk)) {
+                                    return 0.46f;
+                                }
+                            }
+                        }
+                    }
                 }
                 return 0.0F;
             }
@@ -171,97 +250,131 @@ public class SlottedTongs extends Item implements IPickup {
         return slotList;
     }
 
+    public void setSlotList(ItemStack stack) {
+        slotList.set(0, stack);
+    }
+
     public NonNullList<ItemStack> slotList = NonNullList.withSize(1, ItemStack.EMPTY);
 
     @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ)
+    public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitx, float hity, float hitz)
     {
         if(!world.isRemote){
-            IBlockState state = world.getBlockState(pos);
-            Block block = world.getBlockState(pos).getBlock();
-            ItemStack itemstack = player.getHeldItem(hand);
-            if(slotList.get(0).isEmpty()){
-                if (block instanceof NBTCrucible) {
-                    ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
-                    slotList.set(0, tempStack);
-                    world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+            //if (hand.equals(player.swingingHand)) {
+                IBlockState state = world.getBlockState(pos);
+                Block block = world.getBlockState(pos).getBlock();
+                ItemStack itemstack = player.getHeldItem(hand);
+
+                if (block instanceof AnvilStone) {
+                    TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+                    doAnvilInventoryManager(itemstack, world, tile, pos, hitx, hity, hitz, state, player);
                     return EnumActionResult.SUCCESS;
                 }
-            }
-            if(!slotList.get(0).isEmpty() ){
-                if(slotList.get(0).getItem() instanceof ItemNBTCrucible) {
-                    NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
-                    if (tag != null) {
-                        ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
-                        int i = this.getMetadata(slotList.get(0).getMetadata());
-                        IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitX, hitY, hitZ, i, player, hand);
-                        temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitX, hitY, hitZ, iblockstate1);
-                        slotList.set(0, ItemStack.EMPTY);
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
-            }
 
-
-            /*****
-             TAKES the Tool Parts from the Forge
-             *****/
-            if(slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-                    for (int i = 4; i < tile.getSlotListSize(); i++) {
-                        ItemStack tempStack = tile.getSlotStack(i).copy();
+                if (slotList.get(0).isEmpty()) {
+                    if (block instanceof NBTCrucible) {
+                        ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
                         slotList.set(0, tempStack);
-                        tile.setSlotStack(i, ItemStack.EMPTY);
+                        world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                         return EnumActionResult.SUCCESS;
                     }
                 }
-            }
-
-            /*****
-             PUTS the Ingots into the Forge
-             *****/
-            if(!slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-                    if( !(slotList.get(0).getItem() instanceof ToolPart)) {
-                        for (int i = 4; i < tile.getSlotListSize(); i++) {
-                            ItemStack tempStack = slotList.get(0).copy();
-                            tile.setSlotStack(i, tempStack);
+                if (!slotList.get(0).isEmpty()) {
+                    if (slotList.get(0).getItem() instanceof ItemNBTCrucible) {
+                        NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
+                        if (tag != null) {
+                            ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
+                            int i = this.getMetadata(slotList.get(0).getMetadata());
+                            IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
+                            temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
                             slotList.set(0, ItemStack.EMPTY);
                             return EnumActionResult.SUCCESS;
                         }
                     }
                 }
-            }
-            /*****
-             PUTS the Ingots into the Forge
-             *****/
 
-            if(!slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-                    if(slotList.get(0).getItem() instanceof ToolPart) {
-                        ItemStack tempStack = slotList.get(0).copy();
-                        tile.setSlotStack(4, tempStack);
-                        slotList.set(0, ItemStack.EMPTY);
-                        return EnumActionResult.SUCCESS;
+                /*****
+                 TAKES anything out from the Forge
+                 *****/
+                if (slotList.get(0).isEmpty()) {
+                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                        TileForge tile = (TileForge) world.getTileEntity(pos);
+                        for (int i = 2; i < tile.getSlotListSize(); i++) {
+                            if (tile.getSlotStack(i) != ItemStack.EMPTY) {
+                                ItemStack tempStack = tile.getSlotStack(i).copy();
+                                System.out.println(tempStack);
+                                slotList.set(0, tempStack);
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                System.out.println(slotList.get(0));
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
                     }
                 }
-            }
 
-            if(!slotList.get(0).isEmpty() ){
-                if(slotList.get(0).getItem() instanceof ToolPart) {
-                    ItemStack tempStack = slotList.get(0).copy();
-                    PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                    slotList.set(0, ItemStack.EMPTY);
-                    return EnumActionResult.SUCCESS;
+                /*****
+                 PUTS the Ingots into the Forge
+                 *****/
+                if (!slotList.get(0).isEmpty()) {
+                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                        TileForge tile = (TileForge) world.getTileEntity(pos);
+                        if (!(slotList.get(0).getItem() instanceof ToolPart)) {
+                            for (int i = 2; i < tile.getSlotListSize(); i++) {
+                                ItemStack tempStack = slotList.get(0).copy();
+                                tile.setSlotStack(i, tempStack);
+                                slotList.set(0, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
+                    }
                 }
-            }
+                /*****
+                 PUTS the ToolParts into the Forge
+                 *****/
+
+                if (!slotList.get(0).isEmpty()) {
+                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                        TileForge tile = (TileForge) world.getTileEntity(pos);
+                        if (slotList.get(0).getItem() instanceof ToolPart) {
+                            ItemStack tempStack = slotList.get(0).copy();
+                            tile.setSlotStack(4, tempStack);
+                            slotList.set(0, ItemStack.EMPTY);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+
+                /*****
+                 DROPS the ToolParts into the World
+                 *****/
+                if (!slotList.get(0).isEmpty()) {
+                    if (!(block instanceof AnvilBase)) {
+                        if (slotList.get(0).getItem() instanceof ToolPart) {
+                            ItemStack tempStack = slotList.get(0).copy();
+                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                            slotList.set(0, ItemStack.EMPTY);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+                /*****
+                 DROPS the Ingots into the World
+                 *****/
+                if (!slotList.get(0).isEmpty()) {
+                    if (!(block instanceof AnvilBase)) {
+                        if (slotList.get(0).getItem() instanceof BaseMultiItem) {
+                            ItemStack tempStack = slotList.get(0).copy();
+                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                            slotList.set(0, ItemStack.EMPTY);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+            //}
 
             return EnumActionResult.FAIL;
         }
-        return EnumActionResult.SUCCESS;
+        return EnumActionResult.FAIL;
     }
 
 

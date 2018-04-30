@@ -14,6 +14,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 
@@ -37,14 +38,17 @@ public class BaseMultiItem extends BaseItem {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 BaseMultiItem item = (BaseMultiItem) stack.getItem();
+                Item itemStack = stack.getItem();
                 //TODO get the item name
                 if (stack.getItem() instanceof BaseMultiItem) {
                     if(stack.getTagCompound() != null) {
-                        if (!stack.getTagCompound().getBoolean("hot")) {
-                            return 0.0f;
-                        }
-                        if (stack.getTagCompound().getBoolean("hot")) {
-                            return 0.1f;
+                        if(itemStack.equals(ModItems.ironingotball)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.0f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.01f;
+                            }
                         }
                     }
                 }

@@ -43,7 +43,8 @@ public class ModItems {
     public static Item stonetongs;
     public static Item castingmud;
 
-
+    public static Item bronzeingotball;
+    public static Item bronzechunk;
     public static Item ironingotball;
     public static Item ironchunk;
     public static Item ironcleaningotball;
@@ -248,6 +249,8 @@ public class ModItems {
          INGOTS AND CHUNKS
          **********/
 
+        bronzeingotball = new BaseMultiItem("bronzeingotball", PrimalAPI.ToolMaterials.TOOL_BRONZE);
+        bronzechunk = new BaseMultiItem("bronzechunk", PrimalAPI.ToolMaterials.TOOL_BRONZE);
         ironingotball = new BaseMultiItem("ironingotball", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
         ironchunk = new BaseMultiItem("ironchunk", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
         ironcleaningotball= new BaseMultiItem("ironcleaningotball", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
@@ -408,6 +411,8 @@ public class ModItems {
         registerRender(forgehammer);
 
 
+        registerRender(bronzeingotball);
+        registerRender(bronzechunk);
         registerRender(ironingotball);
         registerRender(ironchunk);
         registerRender(ironcleaningotball);

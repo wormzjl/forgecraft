@@ -6,6 +6,6 @@
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/ingots/wroughtiron/ingot_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/ingots/wroughtiron/ingot_1"}
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/ingots/wroughtiron/ingot_01"}
   ]
 }

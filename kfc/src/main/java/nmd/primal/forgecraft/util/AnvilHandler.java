@@ -6,6 +6,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -20,6 +21,7 @@ import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -185,8 +187,8 @@ public interface AnvilHandler {
                     for (int x = 0; x < 5; x++) {
                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-                                AnvilHandler.doWork(pItem, counter, tile, world, pos, player);
-                                return true;
+                                return AnvilHandler.doWork(pItem, counter, tile, world, pos, player);
+                                //return true;
                             }
                         }
                         counter++;
@@ -199,8 +201,7 @@ public interface AnvilHandler {
                     for (int x = 0; x < 5; x++) {
                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
-                                doWork(pItem, counter, tile, world, pos, player);
-                                return true;
+                                return AnvilHandler.doWork(pItem, counter, tile, world, pos, player);
                             }
                         }
                         counter++;
@@ -213,8 +214,7 @@ public interface AnvilHandler {
                     for (int z = 0; z < 5; z++) {
                         if (hitx >= this.getNormalMin(x) && hitx <= this.getNormalMax(x)) {
                             if (hitz >= this.getReverseMin(z) && hitz <= this.getReverseMax(z)) {
-                                doWork(pItem, counter, tile, world, pos, player);
-                                return true;
+                                return AnvilHandler.doWork(pItem, counter, tile, world, pos, player);
                             }
                         }
                         counter++;
@@ -227,8 +227,7 @@ public interface AnvilHandler {
                     for (int z = 0; z < 5; z++) {
                         if (hitx >= this.getReverseMin(x) && hitx <= this.getReverseMax(x)) {
                             if (hitz >= this.getNormalMin(z) && hitz <= this.getNormalMax(z)) {
-                                doWork(pItem, counter, tile, world, pos, player);
-                                return true;
+                                return AnvilHandler.doWork(pItem, counter, tile, world, pos, player);
                             }
                         }
                         counter++;
@@ -241,8 +240,39 @@ public interface AnvilHandler {
 
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
-        if (pItem.getItem().equals(ModItems.stonetongs)) {
-            if ((pItem.getTagCompound().getInteger("type") == 6) ||
+        if(!world.isRemote) {
+            if (pItem.getItem().equals(ModItems.slottedtongs)) {
+
+                SlottedTongs tongs = (SlottedTongs) pItem.getItem();
+                ItemStack tongStack = tongs.getSlotList().get(0).copy();
+
+                if (tongStack.isEmpty()) {
+                    if (!tile.getSlotStack(counter).isEmpty()) {
+                        ItemStack tempStack = tile.getSlotStack(counter).copy();
+                        tongs.setSlotList(tempStack);
+                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                        System.out.println("Tongs should have an item");
+                        return true;
+                    }
+                }
+
+                if (!tongStack.isEmpty()) {
+                    if (tile.getSlotStack(counter).isEmpty()) {
+                        ItemStack tempStack = tongs.getSlotList().get(0).copy();
+                        tile.setSlotStack(counter, tempStack);
+                        tongs.setSlotList(ItemStack.EMPTY);
+                        System.out.println("Tongs should not an item");
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+
+
+            /*if ((pItem.getTagCompound().getInteger("type") == 6) ||
                     (pItem.getTagCompound().getInteger("type") == 7) ||
                     (pItem.getTagCompound().getInteger("type") == 8) ||
                     (pItem.getTagCompound().getInteger("type") == 9) ||
@@ -300,7 +330,7 @@ public interface AnvilHandler {
                     }
                 }*/
 
-                if (tile.getSlotStack(counter).isEmpty()) {
+                //if (tile.getSlotStack(counter).isEmpty()) {
                     //System.out.println("Activating");
                     /*if (pItem.getTagCompound().getInteger("type") == 6) {
                         //System.out.println("Tongs meta = 6");
@@ -315,7 +345,7 @@ public interface AnvilHandler {
                         ///System.out.println(counter);
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
-                    }*/
+                    }
                     if (pItem.getTagCompound().getInteger("type") == 8) {
                         ItemStack tempStack = new ItemStack(ModItems.pickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -388,7 +418,7 @@ public interface AnvilHandler {
                         pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
-
+                    */
                     /*********************************
                      *            Clean Iron         *
                      *********************************/
@@ -405,7 +435,7 @@ public interface AnvilHandler {
                         ///System.out.println(counter);
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
-                    }*/
+                    }
                     if (pItem.getTagCompound().getInteger("type") == 17) {
                         ItemStack tempStack = new ItemStack(ModItems.cleanironpickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -478,7 +508,7 @@ public interface AnvilHandler {
                         pItem.getTagCompound().setInteger("tempDamage", 0);
                         return true;
                     }
-
+                    */
                     /*********************************
                      *              Steel            *
                      *********************************/
@@ -497,7 +527,7 @@ public interface AnvilHandler {
                         //System.out.println(tile.getSlotStack(counter));
                         return true;
                     }
-                    */
+
                     if (pItem.getTagCompound().getInteger("type") == 26) {
                         ItemStack tempStack = new ItemStack(ModItems.steelpickaxehead, 1);
                         tempStack.setTagCompound(new NBTTagCompound());
@@ -693,9 +723,8 @@ public interface AnvilHandler {
                 pItem.shrink(1);
                 return true;
             }
-        }
-        return false;
-    }
+        }*/
+
 
     static void doDrops(World world, BlockPos pos) {
         if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops")) {
