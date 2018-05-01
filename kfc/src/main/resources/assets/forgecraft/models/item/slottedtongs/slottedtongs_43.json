@@ -1,0 +1,9 @@
+{
+  "parent": "forgecraft:item/stonetongs_chunk_default",
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:blocks/stone_slab",
+    "texture2": "forgecraft:blocks/iron_ingot_hot"
+  }
+}

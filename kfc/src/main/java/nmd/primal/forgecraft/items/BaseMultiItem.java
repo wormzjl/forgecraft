@@ -50,6 +50,38 @@ public class BaseMultiItem extends BaseItem {
                                 return 0.01f;
                             }
                         }
+                        if(itemStack.equals(ModItems.bronzeingotball)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.02f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.03f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.ironcleaningotball)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.04f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.05f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.steelingotball)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.06f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.07f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.wootzingotball)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.08f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.09f;
+                            }
+                        }
                     }
                 }
                 return 0.0f;

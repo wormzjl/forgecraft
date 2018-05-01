@@ -177,7 +177,6 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                     return 0.27f;
                                 }
                                 if (slotItem.equals(ModItems.ironingotball)) {
-                                    System.out.println("Rendering ingot ball");
                                     return 0.28f;
                                 }
                                 if (slotItem.equals(ModItems.ironcleaningotball)) {
