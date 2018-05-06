@@ -24,6 +24,10 @@ public class ModCrafting{
 
         Random rand = new Random();
 
+        /***********************/
+        /***CRUCIBLE CRAFTING***/
+        /***********************/
+
         CrucibleCrafting.addRecipe(
                 new OreIngredient("oreIron"),
                 Ingredient.EMPTY,
@@ -35,6 +39,58 @@ public class ModCrafting{
                 100,
                 100,
                 1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustIron"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.IRON_DUST, 1),
+                new ItemStack(ModItems.ironcleaningotball, 1),
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(ModItems.ironcleaningotball, 1)),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH, 1)),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(ModItems.ironcleaningotball, 1),
+                new ItemStack(ModItems.steelingotball, 1),
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
+                new OreIngredient("oreMagnetite"),
+                new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
+                new ItemStack(ModItems.wootzingotball, 1),
+                100,
+                100,
+                1000);
+
+        //TODO BRONZE RECIPE
+
+        /*
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
+                "XL","Y ",
+                ('X'), "dustIron",
+                ('L'), PrimalAPI.Items.CARBONATE_SLACK,
+                ('Y'), ModBlocks.emptycrucible);
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
+                "XC","Y ",
+                ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
+                ('C'), new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH),
+                ('Y'), ModBlocks.emptycrucible);
+        */
 
         /***CASTING BLOCK***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),

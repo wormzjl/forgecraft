@@ -1,0 +1,7 @@
+{
+  "parent": "forgecraft:item/ironball",
+  "textures": {
+    "particle": "forgecraft:blocks/clean_iron_ingot",
+    "texture": "forgecraft:blocks/clean_iron_ingot"
+  }
+}

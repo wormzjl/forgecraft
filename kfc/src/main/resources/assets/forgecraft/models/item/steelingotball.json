@@ -1,0 +1,11 @@
+{
+  "parent": "forgecraft:item/ironball",
+  "textures": {
+    "particle": "forgecraft:blocks/iron_ingot",
+    "texture": "forgecraft:blocks/iron_ingot"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.06},"model": "forgecraft:item/ingots/steel/ingot_06"},
+    {"predicate": {"type": 0.07},"model": "forgecraft:item/ingots/steel/ingot_07"}
+  ]
+}

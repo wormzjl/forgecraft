@@ -153,7 +153,7 @@ public class ModItems {
         //itemcrucible = new ItemCrucible("itemcrucible");
         bellowshandle = new BaseItem("bellowshandle");
         softcrucible = new ItemSoftCrucible("softcrucible");
-        stonetongs = new ItemStoneTongs("stonetongs");
+        //stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
 
@@ -285,7 +285,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(castingmud);
         ForgeRegistries.ITEMS.register(bellowshandle);
         ForgeRegistries.ITEMS.register(softcrucible);
-        ForgeRegistries.ITEMS.register(stonetongs);
+        //ForgeRegistries.ITEMS.register(stonetongs);
         ForgeRegistries.ITEMS.register(forgehammer);
 
         ForgeRegistries.ITEMS.register(ironingotball);
@@ -419,6 +419,8 @@ public class ModItems {
         registerRender(ironcleanchunk);
         registerRender(steelingotball);
         registerRender(steelchunk);
+        registerRender(wootzingotball);
+        registerRender(wootzchunk);
 
         //registerRender(test);
 
@@ -525,7 +527,7 @@ public class ModItems {
 
     }
 
-    @SideOnly(Side.CLIENT)
+    /*@SideOnly(Side.CLIENT)
     public static void registerCustomRenders(){
         ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(),
                 new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
@@ -703,7 +705,7 @@ public class ModItems {
                 return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
             }
         });
-    }
+    }*/
 
     private static void registerRender(Item item) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
