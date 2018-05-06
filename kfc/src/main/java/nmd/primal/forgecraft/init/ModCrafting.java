@@ -69,7 +69,19 @@ public class ModCrafting{
                 Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
                 Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
-                new OreIngredient("oreMagnetite"),
+                new OreIngredient("dustMagnetite"),
+                new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
+                new ItemStack(ModItems.wootzingotball, 1),
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
+                new OreIngredient("magnetite"),
                 new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
                 100,
