@@ -1,6 +1,8 @@
 package nmd.primal.forgecraft.items;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.Block;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +21,7 @@ import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by mminaie on 2/19/17.
@@ -87,9 +90,35 @@ public class BaseMultiItem extends BaseItem {
                 return 0.0f;
             }
         });
+    }
 
-
-
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if(!item.isEmpty())
+        {
+            if (item.hasTagCompound())
+            {
+                tooltip.add(ChatFormatting.GRAY + "Upgrades: " + item.getTagCompound().getString("upgrades"));
+                /*
+                tooltip.add(ChatFormatting.GRAY + "Upgrades: " + (3 - getModifiers(item)) );
+                if (getEmerald(item) == true) {
+                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+                }
+                if (getDiamondLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+                }
+                if (getRedstoneLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
+                }
+                if (getLapisLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
+                }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+                */
+            }
+        }
     }
 
     public Item.ToolMaterial getMaterial(Item item){

@@ -21,7 +21,7 @@ public class ClientProxy implements CommonProxy {
 
     @Override
     public void preInit(){
-        ModItems.registerCustomRenders();
+        //ModItems.registerCustomRenders();
     }
 
     @Override

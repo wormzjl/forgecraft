@@ -63,7 +63,7 @@ dependencies {
 
     // CraftTweaker
     //compile "CraftTweaker2:CraftTweaker2-MC1120-Main:${craftweaker_version}"
-    compile "CraftTweaker2:CraftTweaker2-API:${craftweaker_version}"
+    //compile "CraftTweaker2:CraftTweaker2-API:${craftweaker_version}"
 }
 
 processResources {

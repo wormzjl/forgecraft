@@ -6,6 +6,8 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
@@ -13,6 +15,7 @@ import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.recipes.RecipeHandler;
 import nmd.primal.forgecraft.crafting.*;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -89,6 +92,47 @@ public class ModCrafting{
                 1000);
 
         //TODO BRONZE RECIPE
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustTin"),
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                new ItemStack(ModItems.bronzeingotball, 1),
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreBronze"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                new ItemStack(ModItems.bronzeingotball, 1),
+                100,
+                100,
+                1000);
+
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setString("upgrades", "redstone");
+        ItemStack redBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        redBronze.setTagCompound(tag.copy());
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotBronze"),
+                new OreIngredient("dustRedstone"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                redBronze,
+                100,
+                100,
+                1000);
+
 
         /*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
@@ -249,8 +293,6 @@ public class ModCrafting{
                 "E","Y",
                 ('E'), PrimalAPI.Items.EMERALD_KNAPP,
                 ('Y'), ModBlocks.rawbronzecrucible);
-
-
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenbronzetool, 1),
