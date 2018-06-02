@@ -58,53 +58,70 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
-            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-            ItemStack pItem = player.inventory.getCurrentItem();
-            ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
+            if(hand == player.getActiveHand()) {
+                TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+                ItemStack pItem = player.inventory.getCurrentItem();
+                ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
 
-            /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
-            if(player.isSneaking() == false) {
-                if(!pItem.isEmpty()) {
-                    if(pItem.getItem() instanceof SlottedTongs) {
-                        return false;
-                    } else {
-                        for (int i = 0; i < tile.ingList.size(); i++) {
-                            if (tile.ingList.get(i).isEmpty()) {
-                                tile.ingList.set(i, pItem1);
-                                pItem.shrink(1);
-                                tile.update();
-                                tile.markDirty();
-                                return true;
+                System.out.println(tile.getStatus());
+                /**PICKS UP THE CRUCIBLE**/
+                if (player.isSneaking() == false) {
+                    if (pItem.isEmpty()) {
+                        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
+                        if (recipe != null) {
+                            tile.setDrops(recipe.getDropsRaw());
+                        }
+                        PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
+                        world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                        return true;
+                    }
+                }
+
+                /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
+                if (player.isSneaking() == false) {
+                    if (!pItem.isEmpty()) {
+                        if (pItem.getItem() instanceof SlottedTongs) {
+                            return false;
+                        } else {
+                            for (int i = 0; i < tile.ingList.size(); i++) {
+                                if (tile.ingList.get(i).isEmpty()) {
+                                    tile.ingList.set(i, pItem1);
+                                    pItem.shrink(1);
+                                    tile.update();
+                                    tile.markDirty();
+                                    return true;
+                                }
                             }
                         }
                     }
                 }
-            }
-            /**CLEARS THE INVENTORY**/
-            if (player.isSneaking() == true) {
-                if(pItem.isEmpty()) {
-                    for (int i = 0; i < tile.ingList.size(); i++) {
-                        if (!tile.ingList.get(i).isEmpty()) {
-                            PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
-                            tile.ingList.set(i, ItemStack.EMPTY);
+                /**CLEARS THE INVENTORY**/
+                if (player.isSneaking() == true) {
+                    if (pItem.isEmpty()) {
+                        if (!tile.getStatus()) {
+                            for (int i = 0; i < tile.ingList.size(); i++) {
+                                if (!tile.ingList.get(i).isEmpty()) {
+                                    PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
+                                    tile.ingList.set(i, ItemStack.EMPTY);
+                                }
+                            }
+                            tile.update();
+                            tile.markDirty();
+                            return true;
                         }
                     }
-                    tile.update();
-                    tile.markDirty();
-                    return true;
                 }
-            }
-            /**PICKS UP THE CRUCIBLE**/
-            if(player.isSneaking() == false) {
-
-                if(pItem.isEmpty()){
-                    CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
-                    if(recipe != null){
-                        tile.setDrops(recipe.getDropsRaw());
+                /**REMOVE COOKED ITEM**/
+                if (player.isSneaking() == true) {
+                    if (pItem.isEmpty()) {
+                        if (tile.getStatus()) {
+                            PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
+                            tile.setStatus(false);
+                            tile.update();
+                            tile.markDirty();
+                            return true;
+                        }
                     }
-                    PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
-                    world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
-                    return true;
                 }
             }
         }

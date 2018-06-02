@@ -131,7 +131,7 @@ public class ModCrafting{
                 redBronze,
                 100,
                 100,
-                1000);
+                100);
 
 
         /*
