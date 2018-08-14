@@ -13,10 +13,11 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.items.tools.WorkBlade;
 import nmd.primal.forgecraft.init.ModItems;
+
+import static nmd.primal.core.api.PrimalAPI.randomCheck;
 
 /**
  * Created by mminaie on 7/2/17.
@@ -48,7 +49,7 @@ public class YewStave extends BlockCustomBase {
             if(world.getBlockState(pos.up()).getBlock() instanceof YewStave ) {
                 //world.playSound(player, player.posX, player.posY, player.posZ, PrimalSounds.TOOL_BLADE_SCRAPE, SoundCategory.PLAYERS, 1.0F, 1F);
                 world.playSound(null, pos, PrimalAPI.Sounds.SOUND_TOOL_BLADE_SCRAPE, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                if(CommonUtils.randomCheck(3) ) {
+                if(randomCheck(3) ) {
                     PlayerHelper.spawnItemOnGround(world, pos, new ItemStack(ModItems.rawlongbow, 1));
                     world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
                     world.setBlockState(pos.up(), Blocks.AIR.getDefaultState(), 2);

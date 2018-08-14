@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -26,10 +25,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.core.common.recipes.FireSource;
+import nmd.primal.core.common.recipes.inworld.FireSource;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 

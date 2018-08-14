@@ -1,13 +1,9 @@
 package nmd.primal.forgecraft.items;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -35,11 +31,8 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 import nmd.primal.forgecraft.util.AnvilHandler;
-import org.lwjgl.Sys;
 
 import javax.annotation.Nullable;
-
-import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
 
 /**
  * Created by mminaie on 12/30/17.

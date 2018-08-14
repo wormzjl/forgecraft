@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.compat;
 
 import net.minecraftforge.oredict.OreDictionary;
-import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 
 /**

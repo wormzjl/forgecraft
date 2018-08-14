@@ -2,35 +2,20 @@ package nmd.primal.forgecraft.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.core.common.items.tools.Gallagher;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.*;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.blocks.Crucibles.CrucibleHot;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
-import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
  * Created by kitsu on 11/26/2016.

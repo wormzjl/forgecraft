@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -19,7 +18,6 @@ import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
-import java.util.StringJoiner;
 
 /**
  * Created by mminaie on 3/9/17.

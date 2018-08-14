@@ -18,12 +18,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 
 import java.util.Random;
+
+import static nmd.primal.core.api.PrimalAPI.randomCheck;
 
 /**
  * Created by mminaie on 6/19/17.
@@ -58,7 +59,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
     public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
     {
         if (!world.isRemote) {
-            if(CommonUtils.randomCheck(4)) {
+            if(randomCheck(4)) {
                 TileCastingForm tile = (TileCastingForm) world.getTileEntity(pos);
                 String[] tempArray = new String[25];
                 for (int i = 0; i < 25; i++) {

@@ -1,21 +1,16 @@
 package nmd.primal.forgecraft.init;
 
-import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.CommonUtils;
-import nmd.primal.core.common.recipes.RecipeHandler;
+import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
 import nmd.primal.forgecraft.crafting.*;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -99,7 +94,7 @@ public class ModCrafting{
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustTin"),
                 Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
                 new ItemStack(ModItems.bronzeingotball, 1),
                 100,
                 100,
@@ -111,7 +106,7 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
                 new ItemStack(ModItems.bronzeingotball, 1),
                 100,
                 100,
@@ -127,7 +122,7 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.CAULDRON_SLAG, 1),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
                 redBronze,
                 100,
                 100,
@@ -1114,7 +1109,7 @@ public class ModCrafting{
                         empty,empty,diamond,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalAPI.Items.DIAMOND_KNAPP, CommonUtils.randomChanceReturn(2, 2, 3)),
+                new ItemStack(PrimalAPI.Items.DIAMOND_KNAPP, PrimalAPI.randomChanceReturn(2, 2, 3)),
                 "null"
         );
 
@@ -1221,7 +1216,7 @@ public class ModCrafting{
                         empty,empty,emerald,empty,empty,
                         empty,empty,empty,empty,empty,
                         empty,empty,empty,empty,empty },
-                new ItemStack(PrimalAPI.Items.EMERALD_KNAPP, CommonUtils.randomChanceReturn(3, 2, 3)),
+                new ItemStack(PrimalAPI.Items.EMERALD_KNAPP, PrimalAPI.randomChanceReturn(3, 2, 3)),
                 "null"
         );
 

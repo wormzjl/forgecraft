@@ -2,7 +2,6 @@ package nmd.primal.forgecraft.tiles;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;

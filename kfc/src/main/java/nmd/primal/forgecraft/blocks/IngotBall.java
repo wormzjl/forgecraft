@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.blocks;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockDynamicLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -10,25 +9,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.api.interfaces.IPickup;
-import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
-import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.tiles.TileAnvil;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

@@ -1,24 +1,19 @@
 package nmd.primal.forgecraft.items;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
-import nmd.primal.forgecraft.items.parts.ToolPart;
 
 import javax.annotation.Nullable;
 import java.util.List;

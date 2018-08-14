@@ -5,7 +5,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import nmd.primal.core.api.interfaces.IFireProof;
 import nmd.primal.forgecraft.ModInfo;
 
 

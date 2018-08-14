@@ -5,8 +5,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
@@ -14,16 +12,13 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.CommonUtils;
+import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
-import nmd.primal.forgecraft.crafting.BloomeryCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
-
-import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 
 /**
  * Created by mminaie on 1/22/17.
@@ -49,15 +44,11 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.iteration++;
                 if (this.iteration == 100) {
                     RecipeHelper.fuelManager(world,this, this.getSlotStack(0));
-                    if(CommonUtils.randomCheck(1000)) {
-                        makeSmoke(world, pos);
-                    }
+                    FireHelper.makeSmoke(world, pos, 1000);
                 }
                 if (this.iteration == 200) {
                     RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
-                    if(CommonUtils.randomCheck(1000)) {
-                        makeSmoke(world, pos);
-                    }
+                    FireHelper.makeSmoke(world, pos, 1000);
                 }
                 if (this.iteration == 300) {
                     this.iteration = 0;
@@ -70,9 +61,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                         }
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
                     RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
-                    if(CommonUtils.randomCheck(1000)) {
-                        makeSmoke(world, pos);
-                    }
+                    FireHelper.makeSmoke(world, pos, 1000);
                 }
                 slotOneManager();
             }
@@ -200,9 +189,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                 this.markDirty();
                 this.updateBlock();
             }
-            if(CommonUtils.randomCheck(1000)) {
-                makeSmoke(world, pos);
-            }
+            FireHelper.makeSmoke(world, pos, 1000);
         }
     }
 
