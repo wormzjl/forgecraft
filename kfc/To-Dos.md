@@ -1,16 +1,19 @@
 # To-Dos
 
 ## Bugs
-
+- [ ] Unable to place Vanilla Iron Nuggets on Forge #42
+- [ ] JEI not showing full crafting recipe for Tools #38
 
 ## Current Feature
- - [ ] Steel Plate Recipe
- - [ ] NBT Crucible
- - [ ] NBT Crucible Recipes
- - [ ] Slotted Tongs
- - [ ] Item Crucible
- - [ ] NBTCrucible to ItemCrucible transformer
- - [ ] StoneTongs ItemCrucible to NBTCrucible transformer
+- [ ] Config Usage
+- [ ] Steel Plate Recipe #37
+- [ ] Craft Tweaker Support
+- [x] NBT Crucible
+- [x] NBT Crucible Recipes
+- [x] Slotted Tongs
+- [x] Item Crucible
+- [x] NBTCrucible to ItemCrucible transformer
+- [x] StoneTongs ItemCrucible to NBTCrucible transformer
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -24,15 +27,13 @@
 - [ ] Create lock assembly item
 
 ## Backlog
-- [ ] Move Ingot break into chunks logic out of the block and into the ForgeHammer
+- [x] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
 - [ ] Gold Smelting
 - [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
-- [ ] WeaponHead recipes
-
 
 ### Tid-Bits
 ```
