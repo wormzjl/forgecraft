@@ -18,7 +18,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
 
     private ItemStack drops;
     private int heat;
-    private boolean hot;
+    private int hot;
     private boolean status;
 
     public ItemStack getDrops() {
@@ -37,11 +37,11 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         this.heat = heat;
     }
 
-    public boolean getHot() {
+    public int getHot() {
         return hot;
     }
 
-    public void setHot(boolean hot) {
+    public void setHot(int hot) {
         this.hot = hot;
     }
 
@@ -76,19 +76,19 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
 
     private void coolManager(BlockPos pos, World world, IBlockState state) {
         //System.out.println(this.getHeat() + " " + this.getHot() + " " + this.getDrops());
-        if(this.getHot()){
+        if(this.getHot() == 15){
             //System.out.println("Still Hot");
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
-                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 15), 2);
             }
             if(this.getHeat() == 0){
-                this.setHot(false);
+                this.setHot(6);
                 CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                 this.setDrops(recipe.getDropsCooked());
                 this.setStatus(true);
                 System.out.println("Ready to harvest: " + this.getDrops());
-                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
+                world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 6), 2);
                 this.updateBlock();
                 this.markDirty();
 
@@ -109,7 +109,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         //this.dropList = NonNullList.<ItemStack>withSize(this.dropList.size(), ItemStack.EMPTY);
         //ItemStackHelper.loadAllItems(nbt, this.dropList);
         this.heat = nbt.getInteger("heat");
-        this.hot = nbt.getBoolean("hot");
+        this.hot = nbt.getInteger("hot");
         this.status = nbt.getBoolean("status");
         return nbt;
     }
@@ -120,7 +120,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         ItemStackHelper.saveAllItems(nbt, this.ingList);
         //ItemStackHelper.saveAllItems(nbt, this.dropList);
         nbt.setInteger("heat", this.heat);
-        nbt.setBoolean("hot", this.hot);
+        nbt.setInteger("hot", this.hot);
         nbt.setBoolean("status", this.status);
         super.writeNBT(nbt);
         return nbt;

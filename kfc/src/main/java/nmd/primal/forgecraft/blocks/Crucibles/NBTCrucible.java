@@ -10,6 +10,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
@@ -48,7 +49,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         setRegistryName(registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setHardness(3.0f);
-        setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
+        setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.LAYERS, Integer.valueOf(0)));
+        //setDefaultState(this.blockState.getBaseState().withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
     }
 
     @Override
@@ -80,10 +82,11 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         if (pItem.getItem() instanceof SlottedTongs) {
                             return false;
                         } else {
-                            for (int i = 0; i < tile.ingList.size(); i++) {
-                                if (tile.ingList.get(i).isEmpty()) {
-                                    tile.ingList.set(i, pItem1);
+                            for (int i = 1; i < tile.ingList.size()+1; i++) {
+                                if (tile.ingList.get(i-1).isEmpty()) {
+                                    tile.ingList.set(i-1, pItem1);
                                     pItem.shrink(1);
+                                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, i), 2);
                                     tile.update();
                                     tile.markDirty();
                                     return true;
@@ -102,6 +105,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                     tile.ingList.set(i, ItemStack.EMPTY);
                                 }
                             }
+                            world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -114,6 +118,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         if (tile.getStatus()) {
                             PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
                             tile.setStatus(false);
+                            world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -163,7 +168,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
-            if(recipe != null && tile.getStatus() && !tile.getHot()){
+            if(recipe != null && tile.getStatus() && tile.getHot() != 15){
                 PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
             }
         }
@@ -184,9 +189,10 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             if(NBTHelper.hasNBT(stack)){
                 NBTTagCompound tag = stack.getSubCompound("BlockEntityTag").copy();
-                if(tag.getBoolean("hot")){
-                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                }
+                ItemStack temp = stack.copy();
+                int i = temp.getItem().getMetadata(stack.getMetadata());
+                //TODO update this with number instead of the boolean
+                    world.setBlockState(pos, getStateFromMeta(i), 2);
             }
         }
     }
@@ -195,13 +201,83 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     public int getMetaFromState(IBlockState state) {
         int i = 0;
 
-        if( state.getValue(PrimalAPI.States.ACTIVE) == false){
+        if( state.getValue(PrimalAPI.States.LAYERS) == 0){
             i = 0;
             return i;
         }
 
-        if( state.getValue(PrimalAPI.States.ACTIVE) == true) {
+        if( state.getValue(PrimalAPI.States.LAYERS) == 1){
             i = 1;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 2){
+            i = 2;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 3){
+            i = 3;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 4){
+            i = 4;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 5){
+            i = 5;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 6){
+            i = 6;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 7){
+            i = 7;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 8){
+            i = 8;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 9){
+            i = 9;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 10){
+            i = 10;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 11){
+            i = 11;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 12){
+            i = 12;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 13){
+            i = 13;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 14){
+            i = 14;
+            return i;
+        }
+
+        if( state.getValue(PrimalAPI.States.LAYERS) == 15){
+            i = 15;
             return i;
         }
 
@@ -214,17 +290,59 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         IBlockState iblockstate = this.getDefaultState();
 
         if (meta == 0){
-            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, false);
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 0);
         }
         if (meta == 1){
-            iblockstate = iblockstate.withProperty(PrimalAPI.States.ACTIVE, true);
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 1);
+        }
+        if (meta == 2){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 2);
+        }
+        if (meta == 3){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 3);
+        }
+        if (meta == 4){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 4);
+        }
+        if (meta == 5){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 5);
+        }
+        if (meta == 6){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 6);
+        }
+        if (meta == 7){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 7);
+        }
+        if (meta == 8){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 8);
+        }
+        if (meta == 9){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 9);
+        }
+        if (meta == 10){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 10);
+        }
+        if (meta == 11){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 11);
+        }
+        if (meta == 12){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 12);
+        }
+        if (meta == 13){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 13);
+        }
+        if (meta == 14){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 14);
+        }
+        if (meta == 15){
+            iblockstate = iblockstate.withProperty(PrimalAPI.States.LAYERS, 15);
         }
         return iblockstate;
     }
 
     @Override
     protected BlockStateContainer createBlockState() {
-        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.ACTIVE});
+        return new BlockStateContainer(this, new IProperty[] {PrimalAPI.States.LAYERS});
     }
 
 

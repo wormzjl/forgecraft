@@ -1,20 +1,133 @@
 {
   "forge_marker":1,
   "variants": {
-    "active": {
-      "false": {
+    "layers": {
+      "0": {
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab"
         },
-        "model": "forgecraft:crucibleshut"
+        "model": "forgecraft:emptycrucible"
       },
-      "true": {
+      "1": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "blocks/sand"
+        },
+        "model": "forgecraft:castingcrucible1"
+      },
+      "2": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "blocks/sand"
+        },
+        "model": "forgecraft:castingcrucible2"
+      },
+      "3": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "blocks/sand"
+        },
+        "model": "forgecraft:castingcrucible3"
+      },
+      "4": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "blocks/sand"
+        },
+        "model": "forgecraft:castingcrucible4"
+      },
+      "5": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "blocks/sand"
+        },
+        "model": "forgecraft:castingcrucible5"
+      },
+      "6": {
         "textures": {
           "particle": "forgecraft:blocks/stone_slab_hot",
-          "texture": "forgecraft:blocks/stone_slab_hot"
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
         },
-        "model": "forgecraft:crucibleshut"
+        "model": "forgecraft:castingcrucible"
+      },
+      "7": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "8": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "9": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "10": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "11": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "12": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "13": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "14": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
+      },
+      "15": {
+        "textures": {
+          "particle": "forgecraft:blocks/stone_slab_hot",
+          "texture": "forgecraft:blocks/stone_slab_hot",
+          "texture1": "forgecraft:items/hot_bronze"
+        },
+        "model": "forgecraft:castingcrucible"
       }
     }
   }

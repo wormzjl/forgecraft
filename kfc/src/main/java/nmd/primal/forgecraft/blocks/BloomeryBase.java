@@ -109,31 +109,34 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                         ITextComponent itextcomponent = new TextComponentString(display);
                         player.sendStatusMessage(itextcomponent, false);
                         NBTTagCompound tag = tile.getSlotStack(1).getSubCompound("BlockEntityTag");
-                        NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
-                        NonNullList<ItemStack> dropList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
-                        ItemStackHelper.loadAllItems(tag, ingList);
-                        ItemStackHelper.loadAllItems(tag, dropList);
-                        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
-                        if(recipe != null) {
-                            Integer minTemp = recipe.getCookTemp();
-                            Integer cookCounter = tile.getCookCounter();
-                            Integer idealTime = recipe.getCookTime();
-                            Integer remainingTime = idealTime - cookCounter;
 
-                            String display1 =
-                                    "Cooking: " + tileItem1.getDisplayName() +
-                                            " Target Temp: " + minTemp.toString() +
-                                            " Time Left: " + remainingTime.toString();
-                            String display2 = tileItem1.getDisplayName() + "finished.";
-                            ITextComponent itextcomponent1 = null;
-                            if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
-                                itextcomponent1 = new TextComponentString(display2);
-                            } else itextcomponent1 = new TextComponentString(display1);
+                        if(tag != null) {
+                            NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                            NonNullList<ItemStack> dropList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+                            ItemStackHelper.loadAllItems(tag, ingList);
+                            ItemStackHelper.loadAllItems(tag, dropList);
+                            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                            if (recipe != null) {
+                                Integer minTemp = recipe.getCookTemp();
+                                Integer cookCounter = tile.getCookCounter();
+                                Integer idealTime = recipe.getCookTime();
+                                Integer remainingTime = idealTime - cookCounter;
 
-                            player.sendStatusMessage(itextcomponent1, false);
+                                String display1 =
+                                        "Cooking: " + tileItem1.getDisplayName() +
+                                                " Target Temp: " + minTemp.toString() +
+                                                " Time Left: " + remainingTime.toString();
+                                String display2 = tileItem1.getDisplayName() + "finished.";
+                                ITextComponent itextcomponent1 = null;
+                                if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
+                                    itextcomponent1 = new TextComponentString(display2);
+                                } else itextcomponent1 = new TextComponentString(display1);
 
+                                player.sendStatusMessage(itextcomponent1, false);
+
+                            }
+                            return true;
                         }
-                        return true;
                     }
                 }
             }

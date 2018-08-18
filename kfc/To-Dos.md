@@ -5,6 +5,8 @@
 - [ ] JEI not showing full crafting recipe for Tools #38
 
 ## Current Feature
+- [ ] Update nbt Crucible Models with open top
+- [ ] Update Casting recipes to use new slotted tongs and nbtCrucible
 - [ ] Config Usage
 - [ ] Steel Plate Recipe #37
 - [ ] Craft Tweaker Support
