@@ -48,13 +48,10 @@ public interface BreakerHandler {
         for (int i=0; i < EnumFacing.HORIZONTALS.length; i++) {
             EnumFacing face = world.getBlockState(pos).getValue(CustomContainerFacing.FACING);
             if(face.equals(world.getBlockState(pos).getValue(CustomContainerFacing.FACING))){
-                Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
+                //Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
                 IBlockState smashState = world.getBlockState(pos.offset(face));
-                //Block smashBlock = world.getBlockState(pos).getBlock();
-                ItemStack smashStack = NBTHelper.getStackBlockNBT(world, pos, state, new ItemStack(Item.getItemFromBlock(smashBlock), 1, smashBlock.damageDropped(state)));
-
-
                 if(!smashState.getBlock().equals(Blocks.AIR)) {
+                    ItemStack smashStack = new ItemStack(Item.getItemFromBlock(smashState.getBlock()), 1, smashState.getBlock().getMetaFromState(smashState));
 
                     for (GallagherRecipe recipe : GallagherRecipe.RECIPES) {
                         if (recipe.match(smashState)) {
