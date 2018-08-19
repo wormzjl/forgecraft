@@ -70,7 +70,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         if (recipe != null) {
                             tile.setDrops(recipe.getDropsRaw());
                         }
-                        PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
+                        PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
                         world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                         return true;
                     }
@@ -87,6 +87,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                     tile.ingList.set(i-1, pItem1);
                                     pItem.shrink(1);
                                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, i), 2);
+                                    tile.setHot(i);
                                     tile.update();
                                     tile.markDirty();
                                     return true;
@@ -106,6 +107,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                 }
                             }
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
+                            tile.setHot(0);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -119,6 +121,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                             PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
                             tile.setStatus(false);
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
+                            tile.setHot(0);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -143,10 +146,9 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         return this.takeBlock(world, pos, state, EnumFacing.UP, player);
     }
 
-    @Override
-    public ItemStack getItem(World world, BlockPos pos, IBlockState state)
+    public ItemStack getCrucibleItem(World world, BlockPos pos, IBlockState state, EntityPlayer player)
     {
-        return  NBTHelper.getStackBlockNBT(world, pos, state, super.getItem(world, pos, state));
+        return  NBTHelper.getStackBlockNBT(world, pos, state, super.getPickBlock(state, null, world, pos, player));
     }
 
     public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
@@ -154,7 +156,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileNBTCrucible) {
-                PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getItem(world, pos, state));
+                PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
                 return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
             }
         }
@@ -192,7 +194,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 ItemStack temp = stack.copy();
                 int i = temp.getItem().getMetadata(stack.getMetadata());
                 //TODO update this with number instead of the boolean
-                    world.setBlockState(pos, getStateFromMeta(i), 2);
+                    world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, tile.getHot()), 2);
             }
         }
     }
