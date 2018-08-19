@@ -274,12 +274,16 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 if (!slotList.get(0).isEmpty()) {
                     if (slotList.get(0).getItem() instanceof ItemNBTCrucible) {
                         NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
+                        NBTTagCompound defaultNBT = this.slotList.get(0).getTagCompound();
                         if (tag != null) {
+                            System.out.println(tag);
+                            System.out.println(defaultNBT);
                             ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
                             int i = this.getMetadata(slotList.get(0).getMetadata());
                             IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
                             temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
                             slotList.set(0, ItemStack.EMPTY);
+
                             return EnumActionResult.SUCCESS;
                         }
                     }
