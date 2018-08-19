@@ -1,9 +1,0 @@
-{
-  "parent": "forgecraft:item/stonetongs_hotiron",
-  "textures": {
-    "particle": "blocks/planks_oak",
-    "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:blocks/stone_slab",
-    "texture2": "forgecraft:blocks/stone_slab_hot"
-  }
-}

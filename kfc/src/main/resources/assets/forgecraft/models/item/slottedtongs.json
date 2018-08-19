@@ -7,7 +7,7 @@
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/slottedtongs/slottedtongs_0"},
-    {"predicate": {"type": 0.01},"model": "forgecraft:item/slottedtongs/slottedtongs_1"},
+    {"predicate": {"type": 0.025},"model": "forgecraft:item/slottedtongs/slottedtongs_015"},
     {"predicate": {"type": 0.02},"model": "forgecraft:item/slottedtongs/slottedtongs_2"},
     {"predicate": {"type": 0.03},"model": "forgecraft:item/slottedtongs/slottedtongs_3"},
     {"predicate": {"type": 0.04},"model": "forgecraft:item/slottedtongs/slottedtongs_4"},

@@ -56,11 +56,41 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 if (stack.getItem() instanceof SlottedTongs) {
                     //System.out.println(slotStack.getTagCompound());
                     if (slotStack.getItem() instanceof ItemNBTCrucible){
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getBoolean("hot")){
-                            return 0.01f;
+                        //Render Empty Crucible
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 0){
+                            return 0.011f;
                         }
-                        if(!item.getSlotList().get(0).getSubCompound("BlockEntityTag").getBoolean("hot")){
-                            return 0.02f;
+                        //Render Level 1
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 1){
+                            return 0.012f;
+                        }
+                        //Render Level 2
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 2){
+                            return 0.013f;
+                        }
+                        //Render Level 3
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 3){
+                            return 0.013f;
+                        }
+                        //Render Level 4
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 4){
+                            return 0.014f;
+                        }
+                        //Render Level 5
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 5){
+                            return 0.015f;
+                        }
+                        //Render Cooked
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 6){
+                            return 0.016f;
+                        }
+                        //Render Slagged
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 7){
+                            return 0.017f;
+                        }
+                        //Render Hot
+                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 15){
+                            return 0.025f;
                         }
                     }
                     if(slotStack.getItem() instanceof ToolPart){

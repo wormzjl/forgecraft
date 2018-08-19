@@ -1,15 +1,23 @@
 package nmd.primal.forgecraft.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemStackHandler;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.PrimalCore;
+import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
+import nmd.primal.core.common.init.recipes.custom.RecipesGallagher;
+import nmd.primal.core.common.recipes.AbstractToolRecipe;
+import nmd.primal.core.common.recipes.inworld.GallagherRecipe;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 
@@ -40,10 +48,25 @@ public interface BreakerHandler {
         for (int i=0; i < EnumFacing.HORIZONTALS.length; i++) {
             EnumFacing face = world.getBlockState(pos).getValue(CustomContainerFacing.FACING);
             if(face.equals(world.getBlockState(pos).getValue(CustomContainerFacing.FACING))){
-                //Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
+                Block smashBlock = world.getBlockState(pos.offset(face)).getBlock();
                 IBlockState smashState = world.getBlockState(pos.offset(face));
+                //Block smashBlock = world.getBlockState(pos).getBlock();
+                ItemStack smashStack = NBTHelper.getStackBlockNBT(world, pos, state, new ItemStack(Item.getItemFromBlock(smashBlock), 1, smashBlock.damageDropped(state)));
+
+
                 if(!smashState.getBlock().equals(Blocks.AIR)) {
-                    ItemStack smashStack = new ItemStack(Item.getItemFromBlock(smashState.getBlock()), 1, smashState.getBlock().getMetaFromState(smashState));
+
+                    for (GallagherRecipe recipe : GallagherRecipe.RECIPES) {
+                        if (recipe.match(smashState)) {
+                            if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
+                                world.setBlockToAir(pos.offset(face));
+                                PlayerHelper.spawnItemOnGround(world, pos.offset(face), recipe.getOutputStack());
+                                tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 1);
+                                return true;
+                            }
+                        }
+                    }
+
                     if (RecipeHelper.isOreName(smashStack, "oreIron")) {
                         if (tile.getCharge() > getThreshold(world, pos.offset(face))) {
                             world.setBlockToAir(pos.offset(face));
@@ -100,6 +123,7 @@ public interface BreakerHandler {
                             return true;
                         }
                     }
+
                 }
             } else {
                 tile.getSlotStack(0).setItemDamage(tile.getSlotStack(0).getItemDamage() + 10);
