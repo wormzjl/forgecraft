@@ -13,7 +13,7 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "blocks/sand"
+          "texture1": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible1"
       },
@@ -21,7 +21,7 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "blocks/sand"
+          "texture1": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible2"
       },
@@ -29,7 +29,7 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "blocks/sand"
+          "texture1": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible3"
       },
@@ -37,7 +37,7 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "blocks/sand"
+          "texture1": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible4"
       },
@@ -45,7 +45,7 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "blocks/sand"
+          "texture1": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible5"
       },
@@ -53,9 +53,9 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab_hot",
           "texture": "forgecraft:blocks/stone_slab_hot",
-          "texture1": "forgecraft:items/hot_bronze"
+          "texture1": "forgecraft:blocks/crucible_cooked"
         },
-        "model": "forgecraft:castingcrucible"
+        "model": "forgecraft:castingcrucible4"
       },
       "7": {
         "textures": {
@@ -127,7 +127,7 @@
           "texture": "forgecraft:blocks/stone_slab_hot",
           "texture1": "forgecraft:items/hot_bronze"
         },
-        "model": "forgecraft:castingcrucible"
+        "model": "forgecraft:castingcrucible4"
       }
     }
   }

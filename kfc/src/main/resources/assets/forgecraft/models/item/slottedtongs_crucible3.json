@@ -227,7 +227,7 @@
 			"shade": false,
 			"faces": {
 				"down": { "uv": [ 5.5, 9.5, 10.5, 14.5 ], "texture": "#texture3" },
-				"up": { "uv": [ 5.5, 0.5, 10.5, 5.5 ], "texture": "#texture3" },
+				"up": { "uv": [ 5.5, 5.5, 10.5, 10.5 ], "texture": "#texture3" },
 				"north": { "uv": [ 5.5, 12, 10.5, 13 ], "texture": "#texture3" },
 				"south": { "uv": [ 5.5, 12, 10.5, 13 ], "texture": "#texture3" },
 				"west": { "uv": [ 0.5, 12, 5.5, 13 ], "texture": "#texture3" },

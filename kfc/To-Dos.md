@@ -1,6 +1,7 @@
 # To-Dos
 
 ## Bugs
+- [ ] Slotted Tongs loses slotted Item after shutting down the client
 - [ ] Unable to place Vanilla Iron Nuggets on Forge #42
 - [ ] JEI not showing full crafting recipe for Tools #38
 

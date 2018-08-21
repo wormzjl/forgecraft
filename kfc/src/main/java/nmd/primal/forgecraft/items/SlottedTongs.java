@@ -56,17 +56,18 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 if (stack.getItem() instanceof SlottedTongs) {
                     //System.out.println(slotStack.getTagCompound());
                     if (slotStack.getItem() instanceof ItemNBTCrucible){
+                        //System.out.println(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot"));
                         //Render Empty Crucible
                         if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 0){
-                            return 0.011f;
+                            return 0.0f;
                         }
                         //Render Level 1
                         if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 1){
-                            return 0.012f;
+                            return 0.011f;
                         }
                         //Render Level 2
                         if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 2){
-                            return 0.013f;
+                            return 0.012f;
                         }
                         //Render Level 3
                         if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 3){
