@@ -13,7 +13,8 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "forgecraft:blocks/dirty_sand"
+          "texture1": "forgecraft:blocks/dirty_sand",
+          "texture3": "forgecraft:blocks/dirty_sand"
         },
         "model": "forgecraft:castingcrucible1"
       },
@@ -55,7 +56,7 @@
           "texture": "forgecraft:blocks/stone_slab_hot",
           "texture1": "forgecraft:blocks/crucible_cooked"
         },
-        "model": "forgecraft:castingcrucible4"
+        "model": "forgecraft:castingcrucible"
       },
       "7": {
         "textures": {
@@ -127,7 +128,7 @@
           "texture": "forgecraft:blocks/stone_slab_hot",
           "texture1": "forgecraft:items/hot_bronze"
         },
-        "model": "forgecraft:castingcrucible4"
+        "model": "forgecraft:castingcrucible"
       }
     }
   }

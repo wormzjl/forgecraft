@@ -88,7 +88,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.markDirty();
                 }
                 if (cookCounter >= (recipe.getCookTime()/4) && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
-                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
+                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("hot", 15);
                     System.out.println("hot");
                     this.updateBlock();
                     this.markDirty();

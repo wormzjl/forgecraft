@@ -31,17 +31,56 @@ public class ItemNBTCrucible extends ItemBlock {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                //TODO get the item name
+                System.out.println("Is this even render code");
                 if (item.hasTagCompound()) {
-                    if (getHot(item)){
-                        //System.out.println("Should be Red");
+                    System.out.println("We have a tag compound");
+                    if (getHot(item) == 0){
+                        return 0.0f;
+                    }
+                    if (getHot(item) == 1){
                         return 0.1f;
                     }
-                }
-                if (item.hasTagCompound()) {
-                    if (!getHot(item)){
-                        //System.out.println("Should be Brown");
-                        return 0.0f;
+                    if (getHot(item) == 2){
+                        return 0.2f;
+                    }
+                    if (getHot(item) == 3){
+                        return 0.3f;
+                    }
+                    if (getHot(item) == 4){
+                        return 0.4f;
+                    }
+                    if (getHot(item) == 5){
+                        return 0.5f;
+                    }
+                    if (getHot(item) == 6){
+                        return 0.6f;
+                    }
+                    if (getHot(item) == 7){
+                        return 0.7f;
+                    }
+                    if (getHot(item) == 8){
+                        return 0.8f;
+                    }
+                    if (getHot(item) == 9){
+                        return 0.9f;
+                    }
+                    if (getHot(item) == 10){
+                        return 0.10f;
+                    }
+                    if (getHot(item) == 11){
+                        return 0.11f;
+                    }
+                    if (getHot(item) == 12){
+                        return 0.12f;
+                    }
+                    if (getHot(item) == 13){
+                        return 0.13f;
+                    }
+                    if (getHot(item) == 14){
+                        return 0.14f;
+                    }
+                    if (getHot(item) == 15){
+                        return 0.15f;
                     }
                 }
                 return 0.0F;
@@ -49,13 +88,14 @@ public class ItemNBTCrucible extends ItemBlock {
         });
     }
 
-    public boolean getHot(ItemStack stack) {
+    public int getHot(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
-                return stack.getSubCompound("BlockEntityTag").getBoolean("hot");
+                System.out.println(stack.getSubCompound("BlockEntityTag").getInteger("hot"));
+                return stack.getSubCompound("BlockEntityTag").getInteger("hot");
             }
         }
-        return false;
+        return 0;
     }
 
     @Override

@@ -1,11 +1,11 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/planks_oak",
-		"texture": "blocks/planks_oak",
-		"texture1": "blocks/stone_slab",
-		"texture2": "blocks/stone_slab_hot",
-		"texture3": "blocks/dirty_sand"
+		"particle": "forgecraft:blocks/planks_oak",
+		"texture": "forgecraft:blocks/planks_oak",
+		"texture1": "forgecraft:blocks/stone_slab",
+		"texture2": "forgecraft:blocks/stone_slab_hot",
+		"texture3": "forgecraft:blocks/dirty_sand"
 	},
 	"elements": [ 	 
 		{
