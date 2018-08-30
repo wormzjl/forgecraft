@@ -1,5 +1,5 @@
 {
-  "parent": "forgecraft:emptycrucible",
+  "parent": "forgecraft:block/emptycrucible",
   "textures": {
     "particle": "forgecraft:blocks/stone_slab",
     "texture": "forgecraft:blocks/stone_slab"

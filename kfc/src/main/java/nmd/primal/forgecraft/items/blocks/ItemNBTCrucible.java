@@ -31,9 +31,7 @@ public class ItemNBTCrucible extends ItemBlock {
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                System.out.println("Is this even render code");
                 if (item.hasTagCompound()) {
-                    System.out.println("We have a tag compound");
                     if (getHot(item) == 0){
                         return 0.0f;
                     }
@@ -91,7 +89,6 @@ public class ItemNBTCrucible extends ItemBlock {
     public int getHot(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
-                System.out.println(stack.getSubCompound("BlockEntityTag").getInteger("hot"));
                 return stack.getSubCompound("BlockEntityTag").getInteger("hot");
             }
         }
