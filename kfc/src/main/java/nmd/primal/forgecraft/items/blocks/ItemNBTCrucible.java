@@ -36,31 +36,31 @@ public class ItemNBTCrucible extends ItemBlock {
                         return 0.0f;
                     }
                     if (getHot(item) == 1){
-                        return 0.1f;
+                        return 0.01f;
                     }
                     if (getHot(item) == 2){
-                        return 0.2f;
+                        return 0.02f;
                     }
                     if (getHot(item) == 3){
-                        return 0.3f;
+                        return 0.03f;
                     }
                     if (getHot(item) == 4){
-                        return 0.4f;
+                        return 0.04f;
                     }
                     if (getHot(item) == 5){
-                        return 0.5f;
+                        return 0.05f;
                     }
                     if (getHot(item) == 6){
-                        return 0.6f;
+                        return 0.06f;
                     }
                     if (getHot(item) == 7){
-                        return 0.7f;
+                        return 0.07f;
                     }
                     if (getHot(item) == 8){
-                        return 0.8f;
+                        return 0.08f;
                     }
                     if (getHot(item) == 9){
-                        return 0.9f;
+                        return 0.09f;
                     }
                     if (getHot(item) == 10){
                         return 0.10f;
@@ -79,6 +79,8 @@ public class ItemNBTCrucible extends ItemBlock {
                     }
                     if (getHot(item) == 15){
                         return 0.15f;
+                    } else {
+                        return 0.0f;
                     }
                 }
                 return 0.0F;

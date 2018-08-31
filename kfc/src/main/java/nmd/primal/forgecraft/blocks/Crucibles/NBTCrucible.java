@@ -62,7 +62,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
 
-                System.out.println(tile.getStatus());
+                //System.out.println(tile.getStatus());
                 /**PICKS UP THE CRUCIBLE**/
                 if (player.isSneaking() == false) {
                     if (pItem.isEmpty()) {
@@ -77,7 +77,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 }
 
                 /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
-                if (player.isSneaking() == false) {
+                if (!player.isSneaking()) {
                     if (!pItem.isEmpty()) {
                         if (pItem.getItem() instanceof SlottedTongs) {
                             return false;
@@ -88,7 +88,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                     pItem.shrink(1);
                                     tile.setHot(i);
                                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, i), 2);
-                                    System.out.println(i);
                                     tile.update();
                                     tile.markDirty();
                                     return true;

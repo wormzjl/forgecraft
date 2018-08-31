@@ -86,8 +86,6 @@ public class ModCrafting{
                 100,
                 1000);
 
-        //TODO BRONZE RECIPE
-
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),

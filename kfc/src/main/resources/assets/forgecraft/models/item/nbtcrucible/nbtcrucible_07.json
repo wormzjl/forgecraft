@@ -1,0 +1,9 @@
+{
+  "parent": "forgecraft:block/castingcrucible1",
+  "textures": {
+    "particle": "forgecraft:blocks/stone_slab",
+    "texture": "forgecraft:blocks/stone_slab",
+    "texture1": "forgecraft:blocks/dirty_sand",
+    "texture3": "forgecraft:blocks/dirty_sand"
+  }
+}

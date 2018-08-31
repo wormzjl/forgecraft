@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:castingcrucible",
+  "textures": {
+    "particle": "forgecraft:blocks/stone_slab_hot",
+    "texture": "forgecraft:blocks/stone_slab_hot",
+    "texture1": "forgecraft:items/hot_bronze"
+  }
+}

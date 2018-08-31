@@ -6,7 +6,21 @@
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/nbtcrucible/nbtcrucible_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/nbtcrucible/nbtcrucible_1"}
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/nbtcrucible/nbtcrucible_01"},
+    {"predicate": {"type": 0.02},"model": "forgecraft:item/nbtcrucible/nbtcrucible_02"},
+    {"predicate": {"type": 0.03},"model": "forgecraft:item/nbtcrucible/nbtcrucible_03"},
+    {"predicate": {"type": 0.04},"model": "forgecraft:item/nbtcrucible/nbtcrucible_04"},
+    {"predicate": {"type": 0.05},"model": "forgecraft:item/nbtcrucible/nbtcrucible_05"},
+    {"predicate": {"type": 0.06},"model": "forgecraft:item/nbtcrucible/nbtcrucible_06"},
+    {"predicate": {"type": 0.07},"model": "forgecraft:item/nbtcrucible/nbtcrucible_07"},
+    {"predicate": {"type": 0.08},"model": "forgecraft:item/nbtcrucible/nbtcrucible_08"},
+    {"predicate": {"type": 0.09},"model": "forgecraft:item/nbtcrucible/nbtcrucible_09"},
+    {"predicate": {"type": 0.10},"model": "forgecraft:item/nbtcrucible/nbtcrucible_10"},
+    {"predicate": {"type": 0.11},"model": "forgecraft:item/nbtcrucible/nbtcrucible_11"},
+    {"predicate": {"type": 0.12},"model": "forgecraft:item/nbtcrucible/nbtcrucible_12"},
+    {"predicate": {"type": 0.13},"model": "forgecraft:item/nbtcrucible/nbtcrucible_13"},
+    {"predicate": {"type": 0.14},"model": "forgecraft:item/nbtcrucible/nbtcrucible_14"},
+    {"predicate": {"type": 0.15},"model": "forgecraft:item/nbtcrucible/nbtcrucible_15"}
   ]
 }
 
