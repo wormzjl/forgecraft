@@ -7,7 +7,10 @@
 
 ## Current Feature
 - [x] Update nbt Crucible Models with open top
-- [ ] Update Tongs Models
+- [x] Update all slotted tong models
+- [ ] Need to update nbtCrucible models when hot and in bloomery
+- [ ] Need to update hot tongs model
+- [ ] CT Support
 - [ ] Update Casting recipes to use new slotted tongs and nbtCrucible
 - [ ] Config Usage
 - [ ] Steel Plate Recipe #37

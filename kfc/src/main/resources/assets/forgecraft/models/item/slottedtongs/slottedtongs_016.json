@@ -1,10 +1,10 @@
 {
-  "parent": "forgecraft:item/slottedtongs_crucible5",
+  "parent": "forgecraft:item/slottedtongs_crucible3",
   "textures": {
     "particle": "blocks/planks_oak",
     "texture": "blocks/planks_oak",
     "texture1": "forgecraft:blocks/stone_slab",
     "texture2": "forgecraft:blocks/stone_slab",
-    "texture3": "forgecraft:blocks/dirty_sand"
+    "texture3": "forgecraft:blocks/dirty_sand_cooked"
   }
 }

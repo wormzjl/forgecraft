@@ -1,5 +1,5 @@
 {
-  "parent": "forgecraft:item/slottedtongs_crucible5",
+  "parent": "forgecraft:item/slottedtongs_crucible2",
   "textures": {
     "particle": "blocks/planks_oak",
     "texture": "blocks/planks_oak",

@@ -1,0 +1,10 @@
+{
+  "parent": "forgecraft:item/slottedtongs_crucible4",
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak",
+    "texture1": "blocks/stone_slab",
+    "texture2": "blocks/stone_slab_hot",
+    "texture3": "blocks/molten_crucible"
+  }
+}
