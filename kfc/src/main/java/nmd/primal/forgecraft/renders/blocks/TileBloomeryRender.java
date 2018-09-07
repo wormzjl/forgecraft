@@ -40,6 +40,13 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
             ItemStack stack0 = tile.getSlotStack(0);
             ItemStack stack1 = tile.getSlotStack(1);
 
+            if (!stack1.isEmpty()) {
+                GL11.glPushMatrix();
+                GL11.glTranslated(0, 0.50D, 0);
+                //renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
+                renderItem.renderItem(stack1, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+            }
 
             if (!stack0.isEmpty()) {
 
@@ -66,13 +73,7 @@ public class TileBloomeryRender extends TileEntitySpecialRenderer<TileBloomery>
                 }
             }
 
-            if (!stack1.isEmpty()) {
-                GL11.glPushMatrix();
-                GL11.glTranslated(0, 0.50D, 0);
-                //renderItem.renderItem(stack1, renderItem.getItemModelMesher().getItemModel(stack1));
-                renderItem.renderItem(stack1, ItemCameraTransforms.TransformType.FIXED);
-                GL11.glPopMatrix();
-            }
+
 
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
             GL11.glPopMatrix();

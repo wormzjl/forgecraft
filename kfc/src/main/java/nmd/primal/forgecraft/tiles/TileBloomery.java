@@ -74,7 +74,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         NBTTagCompound tag = this.getSlotStack(1).getSubCompound("BlockEntityTag");
         //System.out.println(this.getSlotStack(1).getTagCompound());
         if(tag != null) {
-            System.out.println(tag);
+            //System.out.println(tag);
             ItemStackHelper.loadAllItems(tag, ingList);
             ItemStackHelper.loadAllItems(tag, dropList);
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
@@ -83,13 +83,13 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                         !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
                     cookCounter++;
                     //this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
-                    System.out.println("Cooking");
+                    //System.out.println("Cooking");
                     this.updateBlock();
                     this.markDirty();
                 }
                 if (cookCounter >= (recipe.getCookTime()/4) && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
                     this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("hot", 15);
-                    System.out.println("hot");
+                    //System.out.println("hot");
                     this.updateBlock();
                     this.markDirty();
                 }
@@ -97,7 +97,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
                     this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
                     this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("heat", this.getHeat());
                     cookCounter = 0;
-                    System.out.println("Cooked");
+                    //System.out.println("Cooked");
                     this.updateBlock();
                     this.markDirty();
                 }

@@ -29,6 +29,7 @@ import java.util.List;
 /**
  * Created by mminaie on 1/23/17.
  */
+/**
 public class ItemStoneTongs extends Item {
 
     public ItemStoneTongs(String unlocalizedName) {
@@ -143,7 +144,7 @@ public class ItemStoneTongs extends Item {
 
 
          */
-
+/*
         if(!world.isRemote) {
             ItemStack itemstack = player.getHeldItem(hand);
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
@@ -195,12 +196,14 @@ public class ItemStoneTongs extends Item {
 /*****
  Picks Up Hot Crucibles from the Ground
  *****/
+/*
             if (world.getBlockState(pos).getBlock() instanceof BloomeryBase == false) {
                 if(world.getBlockState(pos).getBlock() instanceof CrucibleHot) {
                     TileBaseCrucible tileCrucible = (TileBaseCrucible) world.getTileEntity(pos);
                     /***************************
                      *       Crucibles         *
                      ***************************/
+/*
                     if (world.getBlockState(pos).getBlock() == ModBlocks.emptycruciblehot) {
                         itemstack.getTagCompound().setInteger("type", 1);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -297,6 +300,7 @@ public class ItemStoneTongs extends Item {
                      51 | Hot Bronze Crucible Lapis
                      52 | Hot Cooked Bronze Crucible Lapis
                      ***************************/
+                    /*
                     if (world.getBlockState(pos).getBlock() == ModBlocks.hotbronzecrucible) {
                         itemstack.getTagCompound().setInteger("type", 39);
                         itemstack.getTagCompound().setInteger("cooldown", tileCrucible.countdown);
@@ -362,6 +366,7 @@ public class ItemStoneTongs extends Item {
 /*****
  Places the content from the Tongs to the World
  *****/
+                    /*
                 if ((world.getBlockState(pos).getBlock() instanceof Crucible) || (world.getBlockState(pos).getBlock() instanceof CrucibleHot)) {
                     return EnumActionResult.FAIL;
                 } else if (world.getBlockState(pos).getMaterial() == Material.ROCK ||
@@ -418,6 +423,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                                 */
+                    /*
                             case 8:
                                 return EnumActionResult.FAIL;
                             case 9:
@@ -456,6 +462,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                                 */
+                    /*
                             case 17:
                                 return EnumActionResult.FAIL;
                             case 18:
@@ -495,6 +502,7 @@ public class ItemStoneTongs extends Item {
                                 itemstack.getTagCompound().setInteger("type", 0);
                                 return EnumActionResult.SUCCESS;
                                 */
+                    /*
                             case 29:
                                 world.setBlockState(tempPos, ModBlocks.hotbronzecrucible.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible39 = (TileBaseCrucible) world.getTileEntity(tempPos);
@@ -521,6 +529,7 @@ public class ItemStoneTongs extends Item {
                              51 | Hot Bronze Crucible Lapis
                              52 | Hot Cooked Bronze Crucible Lapis
                              ***************************/
+                    /*
                             case 45:
                                 world.setBlockState(tempPos, ModBlocks.hotbronzecrucible_emerald.getDefaultState(), 2);
                                 TileBaseCrucible tileCrucible45 = (TileBaseCrucible) world.getTileEntity(tempPos);
@@ -584,6 +593,7 @@ public class ItemStoneTongs extends Item {
 /*****
  Pulls the crucible from the Bloomery
  *****/
+                    /*
             if (world.getBlockState(pos).getBlock() instanceof BloomeryBase) {
                 if (itemstack.getTagCompound().getInteger("type") == 0) {
                     TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
@@ -644,6 +654,7 @@ public class ItemStoneTongs extends Item {
                         tile.setSlotStack(1, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                         */
+                    /*
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotbronzecrucible))) {
                         itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 39);
@@ -666,6 +677,7 @@ public class ItemStoneTongs extends Item {
                          51 | Hot Bronze Crucible Lapis
                          52 | Hot Cooked Bronze Crucible Lapis
                          ***************************/
+                    /*
                     } else if (tile.getSlotStack(1).getItem().equals(Item.getItemFromBlock(ModBlocks.hotbronzecrucible_emerald))) {
                         itemstack.getTagCompound().setInteger("cooldown", 0);
                         itemstack.getTagCompound().setInteger("type", 45);
@@ -886,7 +898,7 @@ public class ItemStoneTongs extends Item {
                 }
             }*/
 
-
+/*
 
             else return EnumActionResult.FAIL;
             //System.out.println(itemstack.getTagCompound().getInteger("type"));
@@ -905,3 +917,4 @@ public class ItemStoneTongs extends Item {
     }
 
 }
+**/

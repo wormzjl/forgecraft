@@ -79,7 +79,7 @@ public class Crucible extends Block {
     public void onBlockDestroyedByPlayer(World world, BlockPos pos, IBlockState state)
     {
 
-        if(!world.isRemote){
+        /*if(!world.isRemote){
             if(this.getUnlocalizedName().equals("tile.emptycruciblecracked")){} else spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.emptycrucible, 1));
 
             if(StringUtils.isEmpty(this.getUnlocalizedName()) == false) {
@@ -89,7 +89,7 @@ public class Crucible extends Block {
                     }
                 }
             }
-        }
+        }*/
     }
 
     private String checkDrops(String name){

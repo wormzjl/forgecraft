@@ -98,6 +98,10 @@ public class ModCrafting{
                 100,
                 1000);
 
+        NBTTagCompound tagBronzeDefault = new NBTTagCompound();
+        tagBronzeDefault.setString("upgrades", "");
+        ItemStack defaultBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        defaultBronze.setTagCompound(tagBronzeDefault.copy());
         CrucibleCrafting.addRecipe(
                 new OreIngredient("oreBronze"),
                 Ingredient.EMPTY,
@@ -105,7 +109,7 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.bronzeingotball, 1),
+                defaultBronze,
                 100,
                 100,
                 1000);
@@ -126,6 +130,53 @@ public class ModCrafting{
                 100,
                 100);
 
+        NBTTagCompound diamondBronzeTag = new NBTTagCompound();
+        tag.setString("upgrades", "diamond");
+        ItemStack diamondBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        diamondBronze.setTagCompound(diamondBronzeTag.copy());
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotBronze"),
+                new OreIngredient("dustDiamond"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                diamondBronze,
+                100,
+                100,
+                100);
+
+        NBTTagCompound emeraldBronzeTag = new NBTTagCompound();
+        tag.setString("upgrades", "emerald");
+        ItemStack emeraldBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        emeraldBronze.setTagCompound(emeraldBronzeTag.copy());
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotBronze"),
+                new OreIngredient("dustEmerald"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                diamondBronze,
+                100,
+                100,
+                100);
+
+        NBTTagCompound tagBronzeLapis = new NBTTagCompound();
+        tagBronzeDefault.setString("upgrades", "lapis");
+        ItemStack lapisBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        lapisBronze.setTagCompound(tagBronzeLapis.copy());
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreBronze"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                lapisBronze,
+                100,
+                100,
+                1000);
 
         /*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
@@ -216,7 +267,7 @@ public class ModCrafting{
                 "X X", "X X", " X ", 'X', Items.STICK);
 
         /***Tongs***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.stonetongs, 1),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.slottedtongs, 1),
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
         /***RAW CRUCIBLES***/
@@ -237,9 +288,8 @@ public class ModCrafting{
                 ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
                 ('C'), new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH),
                 ('Y'), ModBlocks.emptycrucible);
-
-
-        */
+*/
+/*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawbronzecrucible),
                 "XCX"," X "," Y ",
                 ('X'), "dustCopper",
@@ -291,7 +341,8 @@ public class ModCrafting{
                 ('T'), new ItemStack(ModItems.brokenbronzetool, 1),
                 ('Y'), new ItemStack(ModBlocks.emptycrucible, 1)
                 );
-/*
+
+
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible, 1),
                 "T", "Y",
                 ('T'), new ItemStack(ModItems.brokenwroughtirontool, 1),
@@ -480,7 +531,7 @@ public class ModCrafting{
         /***************************************************************/
 
         /***Bloomery Crafting***/
-
+/*
 //Makes the Empty Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModItems.softcrucible, 1),
@@ -584,6 +635,7 @@ public class ModCrafting{
                 0.25f
         );
         */
+        /*
         //Makes the Hot Bronze Crucible
         BloomeryCrafting.addRecipe(
                 new ItemStack(ModBlocks.rawbronzecrucible, 1),
@@ -710,6 +762,7 @@ public class ModCrafting{
                 0.5f,
                 0.5f
         );
+        */
 
         //TODO PLACE HOLDER FOR WOOTZ
 

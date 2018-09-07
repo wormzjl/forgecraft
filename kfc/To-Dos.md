@@ -10,11 +10,27 @@
 - [x] Update all slotted tong models
 - [ ] Need to update nbtCrucible models when hot and in bloomery
 - [ ] Need to update hot tongs model
+
+- [ ] How to cook Soft Crucible https://git.nmd.so/nmd/PrimalCore/src/branch/tile-factory/src/main/java/nmd/primal/core/common/init/recipes/custom/RecipesHibachi.java
+make a copy of it somewhere, it doenst need to be instantiated or anything, the event annotation will automatically load it
+for your setRecipeName include your mod id like .setRecipeName(KFC.MOD_ID, "soft_crucible"));
+you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID)  with your mod id also
+
+- [ ] Chunk and Ball stacking
+- [ ] Adobe Bloomery Texture
+- [ ] Adobe Forge Texture
+- [ ] Casting Mud Texture
+- [ ] Wootz Chunk Model
+- [ ] Leather Helmet Inventory Model
 - [ ] CT Support
-- [ ] Update Casting recipes to use new slotted tongs and nbtCrucible
 - [ ] Config Usage
 - [ ] Steel Plate Recipe #37
 - [ ] Craft Tweaker Support
+- [x] Inventory model for nbtCrucible
+- [x] Tongs hot Texture
+- [x] Casting Block line 103
+- [x] Bloomery rendering all messed up
+- [x] Update Casting recipes to use new slotted tongs and nbtCrucible
 - [x] NBT Crucible
 - [x] NBT Crucible Recipes
 - [x] Slotted Tongs

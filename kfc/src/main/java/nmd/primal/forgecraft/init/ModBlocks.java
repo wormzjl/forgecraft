@@ -38,6 +38,7 @@ public class ModBlocks {
     public static Block pistonbellowsdarkoak;
     public static Block pistonbellowsacacia;
 
+    /**
     public static Block emptycrucible;
     public static Block emptycruciblehot;
     public static Block emptycruciblecracked;
@@ -62,6 +63,7 @@ public class ModBlocks {
     public static Block rawbronzecrucible_emerald;
     public static Block hotbronzecrucible_emerald;
     public static Block hotcookedbronzecrucible_emerald;
+     **/
 
     //public static Block ironball;
     //public static Block ironchunk;
@@ -96,7 +98,7 @@ public class ModBlocks {
         pistonbellowsdarkoak = new PistonBellows(Material.WOOD, "pistonbellowsdarkoak");
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
 
-        emptycrucible = new Crucible(Material.ROCK, "emptycrucible");
+        /*emptycrucible = new Crucible(Material.ROCK, "emptycrucible");
         emptycruciblehot = new CrucibleHot(Material.ROCK, "emptycruciblehot");
         emptycruciblecracked = new Crucible(Material.ROCK, "emptycruciblecracked");
         emptycruciblecrackedhot = new CrucibleHot(Material.ROCK, "emptycruciblecrackedhot");
@@ -120,6 +122,7 @@ public class ModBlocks {
         rawbronzecrucible_emerald = new Crucible(Material.ROCK, "rawbronzecrucible_emerald");
         hotbronzecrucible_emerald = new CrucibleHot(Material.ROCK, "hotbronzecrucible_emerald");
         hotcookedbronzecrucible_emerald = new CrucibleHot(Material.ROCK, "hotcookedbronzecrucible_emerald");
+        */
 
         /*
         ironball = new IngotBall(Material.IRON, "ironball", 5.0F, "big") {
@@ -385,7 +388,7 @@ public class ModBlocks {
         registerBlockWithItem(pistonbellowsdarkoak);
         registerBlockWithItem(pistonbellowsacacia);
 
-        registerBlockWithItem(emptycrucible);
+        /*registerBlockWithItem(emptycrucible);
         registerBlockWithItem(emptycruciblehot);
         registerBlockWithItem(emptycruciblecracked);
         registerBlockWithItem(emptycruciblecrackedhot);
@@ -409,7 +412,7 @@ public class ModBlocks {
         registerBlockWithItem(rawbronzecrucible_lapis);
         registerBlockWithItem(hotbronzecrucible_lapis);
         registerBlockWithItem(hotcookedbronzecrucible_lapis);
-
+*/
         //registerBlockWithItem(ironball);
         //registerBlockWithItem(ironchunk);
 
@@ -448,7 +451,7 @@ public class ModBlocks {
 
         registerRender(bloomery_brick);
         registerRender(bloomery_adobe);
-
+        /*
         registerRender(emptycrucible);
         registerRender(emptycruciblehot);
         registerRender(emptycruciblecracked);
@@ -473,7 +476,7 @@ public class ModBlocks {
         registerRender(rawbronzecrucible_lapis);
         registerRender(hotbronzecrucible_lapis);
         registerRender(hotcookedbronzecrucible_lapis);
-
+        */
         //registerRender(ironball);
         //registerRender(ironchunk);
 

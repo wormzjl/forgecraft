@@ -7,13 +7,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -22,11 +20,14 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.tiles.TileCastingBlock;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -69,15 +70,16 @@ public class CastingBlock extends CustomContainerFacing {
             world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, ySpeed, ySpeed, ySpeed, new int[0]);
         }
     }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
         if (!world.isRemote) {
-            TileCastingBlock tile = (TileCastingBlock)  world.getTileEntity(pos);
+            TileCastingBlock tile = (TileCastingBlock) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
 
-            if(player.isSneaking()) {
-                if(!tile.getSlotStack(0).isEmpty()){
+            if (player.isSneaking()) {
+                if (!tile.getSlotStack(0).isEmpty()) {
                     ItemStack copyStack = tile.getSlotStack(0).copy();
                     PlayerHelper.spawnItemOnPlayer(world, player, copyStack);
                     tile.setSlotStack(0, ItemStack.EMPTY);
@@ -86,8 +88,8 @@ public class CastingBlock extends CustomContainerFacing {
                 }
             }
 
-            if(pItem.getItem() instanceof CastingPart){
-                if(!player.isSneaking()) {
+            if (pItem.getItem() instanceof CastingPart) {
+                if (!player.isSneaking()) {
                     if (tile.getSlotStack(0).isEmpty()) {
                         ItemStack copyStack = pItem.copy();
                         copyStack.setCount(1);
@@ -99,468 +101,490 @@ public class CastingBlock extends CustomContainerFacing {
                 }
             }
 
-            if(pItem.getItem() == ModItems.stonetongs ){
-                ItemStack dropCrucible = new ItemStack(ModBlocks.emptycrucible);
-                if(pItem.getTagCompound().getInteger("type") == 40){
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_hoe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+            if (pItem.getItem() == ModItems.slottedtongs) {
+                //TODO need to fix dropCrucible with default state
+                ItemStack dropCrucible = new ItemStack(ModBlocks.nbtCrucible);
+                NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                SlottedTongs tongs = (SlottedTongs) pItem.getItem();
+                ItemStack slotStack = tongs.getSlotList().get(0);
+                if (!tongs.getSlotList().isEmpty()) {
+                    ingList = tongs.getSlotList();
+                    NBTTagCompound tag = slotStack.getSubCompound("BlockEntityTag");
+                    if (tag != null) {
+                        ItemStackHelper.loadAllItems(tag, ingList);
+                        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                        if (recipe != null) {
+                            ItemStack outputStack = recipe.getDropsCooked();
+                            if (outputStack.getItem() == ModItems.bronzeingotball) {
+                                NBTTagCompound recipeTag = outputStack.getTagCompound();
+                                if (recipeTag != null) {
 
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
+                                    /**Vanilla Bronze**/
+                                    if (recipeTag.getString("upgrades") == ("")) {
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            //makeEmbers(world, pos, world.rand);
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                    }
+
+                                    /**Emerald Bronze**/
+                                    if (recipeTag.getString("upgrades") == ("emerald")) {
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+                                            dropStack.setTagCompound(new NBTTagCompound());
+                                            NBTTagCompound tags = new NBTTagCompound();
+
+                                            dropStack.getTagCompound().setTag("tags", tags);
+                                            dropStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                            dropStack.getSubCompound("tags").setBoolean("emerald", true);
+                                            dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                            dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                            dropStack.getSubCompound("tags").setInteger("lapis", 0);
+
+                                            dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
+                                            dropStack.setTagCompound(new NBTTagCompound());
+                                            NBTTagCompound tags = new NBTTagCompound();
+
+                                            dropStack.getTagCompound().setTag("tags", tags);
+                                            dropStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                            dropStack.getSubCompound("tags").setBoolean("emerald", true);
+                                            dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                            dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                            dropStack.getSubCompound("tags").setInteger("lapis", 0);
+
+                                            dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
+                                            dropStack.setTagCompound(new NBTTagCompound());
+                                            NBTTagCompound tags = new NBTTagCompound();
+
+                                            dropStack.getTagCompound().setTag("tags", tags);
+                                            dropStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                            dropStack.getSubCompound("tags").setBoolean("emerald", true);
+                                            dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                            dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                            dropStack.getSubCompound("tags").setInteger("lapis", 0);
+
+                                            dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
+                                            dropStack.setTagCompound(new NBTTagCompound());
+                                            NBTTagCompound tags = new NBTTagCompound();
+
+                                            dropStack.getTagCompound().setTag("tags", tags);
+                                            dropStack.getSubCompound("tags").setBoolean("hot", false);
+
+                                            dropStack.getSubCompound("tags").setBoolean("emerald", true);
+                                            dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                            dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                            dropStack.getSubCompound("tags").setInteger("lapis", 0);
+
+                                            dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+
+                                        if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
+                                            ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                            PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                            pItem.getTagCompound().setInteger("type", 0);
+                                            if (randomCheck(2)) {
+                                                tile.setSlotStack(0, ItemStack.EMPTY);
+                                            }
+                                            return true;
+                                        }
+
+                                        /**Diamond Bronze**/
+                                        if (recipeTag.getString("upgrades") == ("diamond")) {
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 1);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 1);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 1);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 1);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                        }
+
+                                        /**Redstone Bronze**/
+                                        if (recipeTag.getString("upgrades") == ("redstone")) {
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 1);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 1);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 1);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 1);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 0);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                        }
+                                        /**Lapis Bronze**/
+                                        if (recipeTag.getString("upgrades") == ("lapis")) {
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 1);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 1);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 1);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
+                                                dropStack.setTagCompound(new NBTTagCompound());
+
+
+                                                NBTTagCompound tags = new NBTTagCompound();
+                                                dropStack.getTagCompound().setTag("tags", tags);
+                                                dropStack.getSubCompound("tags").setBoolean("hot", false);
+                                                dropStack.getSubCompound("tags").setBoolean("emerald", false);
+                                                dropStack.getSubCompound("tags").setInteger("diamond", 0);
+                                                dropStack.getSubCompound("tags").setInteger("redstone", 0);
+                                                dropStack.getSubCompound("tags").setInteger("lapis", 1);
+                                                dropStack.getSubCompound("tags").setInteger("modifiers", 1);
+
+
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                            if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
+                                                ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropStack);
+                                                PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
+                                                pItem.getTagCompound().setInteger("type", 0);
+                                                if (randomCheck(2)) {
+                                                    tile.setSlotStack(0, ItemStack.EMPTY);
+                                                }
+                                                return true;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
                         }
-                        //makeEmbers(world, pos, world.rand);
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_axe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_shovel){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_gladius){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                }
-                /***************************
-                 *          Bronze          *
-                 *
-                 46 | Hot Cooked Bronze Crucible Emerald
-                 48 | Hot Cooked Bronze Crucible Diamond
-                 50 | Hot Cooked Bronze Crucible Redstone
-                 52 | Hot Cooked Bronze Crucible Lapis
-                 ***************************/
-                if(pItem.getTagCompound().getInteger("type") == 46){
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_hoe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-                        NBTTagCompound tags = new NBTTagCompound();
-
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-
-                        dropStack.getSubCompound("tags").setBoolean("emerald", true);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-                        NBTTagCompound tags = new NBTTagCompound();
-
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-
-                        dropStack.getSubCompound("tags").setBoolean("emerald", true);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_axe){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-                        NBTTagCompound tags = new NBTTagCompound();
-
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-
-                        dropStack.getSubCompound("tags").setBoolean("emerald", true);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_shovel){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-                        NBTTagCompound tags = new NBTTagCompound();
-
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-
-                        dropStack.getSubCompound("tags").setBoolean("emerald", true);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if(tile.getSlotStack(0).getItem() == ModItems.cast_gladius){
-                        ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                }
-                if(pItem.getTagCompound().getInteger("type") == 48) {
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 1);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if (randomCheck(2)) {
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 1);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if (randomCheck(2)) {
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 1);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if (randomCheck(2)) {
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 1);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if (randomCheck(2)) {
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if (randomCheck(2)) {
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                }
-                if(pItem.getTagCompound().getInteger("type") == 50) {
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 1);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 1);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 1);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 1);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 0);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                }
-                if(pItem.getTagCompound().getInteger("type") == 52) {
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_hoe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzehoehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 1);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_pickaxe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzepickaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 1);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_axe) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeaxehead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 1);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_shovel) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzeshovelhead);
-                        dropStack.setTagCompound(new NBTTagCompound());
-
-
-                        NBTTagCompound tags = new NBTTagCompound();
-                        dropStack.getTagCompound().setTag("tags", tags);
-                        dropStack.getSubCompound("tags").setBoolean("hot", false);
-                        dropStack.getSubCompound("tags").setBoolean("emerald", false);
-                        dropStack.getSubCompound("tags").setInteger("diamond", 0);
-                        dropStack.getSubCompound("tags").setInteger("redstone", 0);
-                        dropStack.getSubCompound("tags").setInteger("lapis", 1);
-                        dropStack.getSubCompound("tags").setInteger("modifiers", 1);
-
-
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
-                    }
-                    if (tile.getSlotStack(0).getItem() == ModItems.cast_gladius) {
-                        ItemStack dropStack = new ItemStack(ModItems.bronzegladius);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropStack);
-                        PlayerHelper.spawnItemOnGround(world, pos, dropCrucible);
-                        pItem.getTagCompound().setInteger("type", 0);
-                        if(randomCheck(2)){
-                            tile.setSlotStack(0, ItemStack.EMPTY);
-                        }
-                        return true;
                     }
                 }
             }

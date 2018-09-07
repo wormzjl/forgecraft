@@ -58,17 +58,19 @@
         "textures": {
           "particle": "forgecraft:blocks/stone_slab",
           "texture": "forgecraft:blocks/stone_slab",
-          "texture1": "forgecraft:blocks/crucible_cooked"
+          "texture1": "forgecraft:blocks/crucible_cooked",
+          "texture3": "forgecraft:blocks/crucible_cooked"
         },
-        "model": "forgecraft:castingcrucible"
+        "model": "forgecraft:castingcrucible3"
       },
       "7": {
         "textures": {
-          "particle": "forgecraft:blocks/stone_slab_hot",
-          "texture": "forgecraft:blocks/stone_slab_hot",
-          "texture1": "forgecraft:items/hot_bronze"
+          "particle": "forgecraft:blocks/stone_slab",
+          "texture": "forgecraft:blocks/stone_slab",
+          "texture1": "forgecraft:blocks/crucible_cooked",
+          "texture3": "forgecraft:blocks/crucible_cooked"
         },
-        "model": "forgecraft:castingcrucible"
+        "model": "forgecraft:castingcrucible3"
       },
       "8": {
         "textures": {
@@ -132,7 +134,7 @@
           "texture": "forgecraft:blocks/stone_slab_hot",
           "texture1": "forgecraft:items/hot_bronze"
         },
-        "model": "forgecraft:castingcrucible"
+        "model": "forgecraft:castingcrucible3"
       }
     }
   }
