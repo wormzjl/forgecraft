@@ -16,6 +16,7 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] Steel Plate Recipe #37
 - [ ] Bronze Plate Cast
 - [ ] Craft Tweaker Support
+- [ ] JEI Support
 - [ ] Need Recipe for Soft Crucible
 - [x] Make Wootz Weapons
 - [x] Crucible is not resetting after iron is removed.
