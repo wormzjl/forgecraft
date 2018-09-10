@@ -13,11 +13,14 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 
 - [ ] Leather Helmet Inventory Model
 - [ ] Config Usage
-- [ ] Steel Plate Recipe #37
 - [ ] Bronze Plate Cast
 - [ ] Craft Tweaker Support
 - [ ] JEI Support
-- [ ] Need Recipe for Soft Crucible
+- [ ] People seem to not like being able to put anything in the Crucible
+- [x] Steel Plate Recipe #37
+- [x] Damascus Recipes
+- [x] Damascus Weapons
+- [x] Need Recipe for Soft Crucible
 - [x] Make Wootz Weapons
 - [x] Crucible is not resetting after iron is removed.
 - [x] Chunk and Ball stacking
@@ -53,6 +56,7 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Sparks to forging
 - [x] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
