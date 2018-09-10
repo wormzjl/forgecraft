@@ -1,0 +1,8 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "forgecraft:blocks/clean_iron_ingot",
+    "texture": "forgecraft:blocks/clean_iron_ingot"
+  },
+  "parent": "forgecraft:block/ironchunk"
+}

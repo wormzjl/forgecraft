@@ -1,0 +1,11 @@
+{
+  "parent": "forgecraft:item/ironchunk",
+  "textures": {
+    "particle": "forgecraft:blocks/wootz_ingot",
+    "texture": "forgecraft:blocks/wootz_ingot"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.18},"model": "forgecraft:item/chunks/wootz/chunk_08"},
+    {"predicate": {"type": 0.19},"model": "forgecraft:item/chunks/wootz/chunk_09"}
+  ]
+}

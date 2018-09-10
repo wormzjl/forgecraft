@@ -1,8 +1,11 @@
 {
-  "forge_marker":1,
+  "parent": "forgecraft:item/ironchunk",
   "textures": {
     "particle": "forgecraft:blocks/clean_iron_ingot",
     "texture": "forgecraft:blocks/clean_iron_ingot"
   },
-  "parent": "forgecraft:block/ironchunk"
+  "overrides": [
+    {"predicate": {"type": 0.14},"model": "forgecraft:item/chunks/cleaniron/chunk_04"},
+    {"predicate": {"type": 0.15},"model": "forgecraft:item/chunks/cleaniron/chunk_05"}
+  ]
 }

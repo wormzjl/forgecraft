@@ -3,8 +3,8 @@
   "textures": {
 		"particle": "forgecraft:blocks/brick",
 		"texture": "forgecraft:blocks/brick",
-		"texture1": "primal:items/adobebrick_dry",
-		"texture2": "primal:blocks/adobebrick_mortar"
+		"texture1": "primal:blocks/adobe_brick",
+		"texture2": "primal:blocks/adobe_brick_mortar"
   },
   "parent": "forgecraft:block/bloomery_adobe"
 }

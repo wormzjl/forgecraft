@@ -39,7 +39,7 @@ public class ModItems {
     public static Item bronzeingotball;
     public static Item bronzechunk;
     public static Item ironingotball;
-    public static Item ironchunk;
+    public static Item wroughtironchunk;
     public static Item ironcleaningotball;
     public static Item ironcleanchunk;
     public static Item steelingotball;
@@ -109,13 +109,16 @@ public class ModItems {
     public static Item wroughtirongladius;
     public static Item cleanirongladius;
     public static Item steelgladius;
+    public static Item wootzgladius;
 
     public static Item cleanironlongsword;
     public static Item steellongsword;
+    public static Item wootzlongsword;
 
     public static Item wroughtironslayer;
     public static Item cleanironslayer;
     public static Item steelslayer;
+    public static Item wootzslayer;
 
     public static Item brokenbronzetool;
     public static Item brokenwroughtirontool;
@@ -224,17 +227,20 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5D, 2D);
+        bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5.5D, 2D);
         wroughtirongladius = new CustomSword("wroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
         cleanirongladius = new CustomSword("cleanirongladius", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 5D, -1.85D);
         steelgladius = new CustomSword("steelgladius", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,6D, -1.85D);
+        wootzgladius = new CustomSword("wootzgladius", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 7D, -1.75D);
 
         cleanironlongsword = new CustomSword("cleanironlongsword", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 7D, -2.5D);
         steellongsword = new CustomSword("steellongsword", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,8D, -2.25D);
+        wootzlongsword = new CustomSword("wootzlongsword", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL,9D, -2D);
 
         wroughtironslayer = new SlayerSword("wroughtironslayer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 11.5D, -3.7D);
         cleanironslayer = new SlayerSword("cleanironslayer", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 10D, -3.5D);
         steelslayer = new SlayerSword("steelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.3D);
+        wootzslayer = new SlayerSword("steelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.1D);
 
         wroughtironshield = new CustomShield("wroughtironshield", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
@@ -245,7 +251,7 @@ public class ModItems {
         bronzeingotball = new BaseMultiItem("bronzeingotball", PrimalAPI.ToolMaterials.TOOL_BRONZE);
         bronzechunk = new BaseMultiItem("bronzechunk", PrimalAPI.ToolMaterials.TOOL_BRONZE);
         ironingotball = new BaseMultiItem("ironingotball", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
-        ironchunk = new BaseMultiItem("ironchunk", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        wroughtironchunk = new BaseMultiItem("wroughtironchunk", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
         ironcleaningotball= new BaseMultiItem("ironcleaningotball", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
         ironcleanchunk= new BaseMultiItem("ironcleanchunk", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
         steelingotball= new BaseMultiItem("steelingotball", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
@@ -282,7 +288,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(forgehammer);
 
         ForgeRegistries.ITEMS.register(ironingotball);
-        ForgeRegistries.ITEMS.register(ironchunk);
+        ForgeRegistries.ITEMS.register(wroughtironchunk);
         ForgeRegistries.ITEMS.register(ironcleaningotball);
         ForgeRegistries.ITEMS.register(ironcleanchunk);
         ForgeRegistries.ITEMS.register(steelingotball);
@@ -407,7 +413,7 @@ public class ModItems {
         registerRender(bronzeingotball);
         registerRender(bronzechunk);
         registerRender(ironingotball);
-        registerRender(ironchunk);
+        registerRender(wroughtironchunk);
         registerRender(ironcleaningotball);
         registerRender(ironcleanchunk);
         registerRender(steelingotball);
@@ -519,186 +525,6 @@ public class ModItems {
         registerRender(leatherhelmet);
 
     }
-
-    /*@SideOnly(Side.CLIENT)
-    public static void registerCustomRenders(){
-        ModelBakery.registerItemVariants(ModItems.stonetongs, ModItems.stonetongs.getRegistryName(),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_default"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_emptyhotcracked"),
-
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotiron"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironcooked"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotironfailed"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_ingot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_chunk"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_pickaxe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_axe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_shovel_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hoe_hot"),
-
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotcleaniron"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotcleanironcooked"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotcleanironfailed"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleanironingot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleanironchunk"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleaniron_pickaxe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleaniron_axe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleaniron_shovel_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_cleaniron_hoe_hot"),
-
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotsteel"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotsteelcooked"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotsteelfailed"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steelingot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steelchunk"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_pickaxe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_axe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_shovel_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_steel_hoe_hot"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze_lapis"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked_lapis"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze_redstone"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked_redstone"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze_emerald"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked_emerald"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronze_diamond"),
-                new ResourceLocation(ModInfo.MOD_ID, "stonetongs_hotbronzecooked_diamond")
-                );
-        ModelLoader.setCustomMeshDefinition(ModItems.stonetongs, new ItemMeshDefinition() {
-
-            @Override
-            public ModelResourceLocation getModelLocation(ItemStack stack) {
-                if (stack.hasTagCompound()) {
-                  if (stack.getTagCompound().getInteger("type") == 0 ){
-                    return new ModelResourceLocation(stack.getItem().getRegistryName() + "_default", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 1 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 2 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_emptyhotcracked", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 3 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotiron", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 4 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotironcooked", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 5 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotironfailed", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 6 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_ingot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 7 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_chunk", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 8 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_pickaxe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 9 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_axe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 10 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_shovel_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 11 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hoe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 12 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotcleaniron", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 13 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotcleanironcooked", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 14 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotcleanironfailed", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 15 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleanironingot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 16 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleanironchunk", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 17 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleaniron_pickaxe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 18 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleaniron_axe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 19 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleaniron_shovel_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 20 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_cleaniron_hoe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 21 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotsteel", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 22 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotsteelcooked", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 23 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotsteelfailed", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 24 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steelingot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 25 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steelchunk", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 26 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steel_pickaxe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 27 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steel_axe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 28 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steel_shovel_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 29 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_steel_hoe_hot", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 39 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 40 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 45 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze_emerald", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 46 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked_emerald", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 47 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze_diamond", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 48 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked_diamond", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 49 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze_redstone", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 50 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked_redstone", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 51 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronze_lapis", "inventory");
-                  }
-                  else if (stack.getTagCompound().getInteger("type") == 52 ) {
-                      return new ModelResourceLocation(stack.getItem().getRegistryName() + "_hotbronzecooked_lapis", "inventory");
-                  }
-                  else return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
-                }
-                return new ModelResourceLocation(stack.getItem().getRegistryName(), "inventory");
-            }
-        });
-    }*/
 
     private static void registerRender(Item item) {
         Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));

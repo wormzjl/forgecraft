@@ -31,22 +31,31 @@ public class AnvilStone extends AnvilBase {
         if (!world.isRemote) {
             ItemStack pItem = player.inventory.getCurrentItem();
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
-
             ItemStack stack12 = tile.getSlotStack(12).copy();
-            if (hand.equals(player.swingingHand)) {
+            if (hand.equals(hand.MAIN_HAND)) {
                 if (!stack12.isEmpty()) {
                     if (tile != null) {
                         if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
-                            NBTTagCompound nbt12 = stack12.getTagCompound();
+                            NBTTagCompound tempTag = new NBTTagCompound();
 
-                            ItemStack tempironchunk = new ItemStack(ModItems.ironchunk, 1);
+                            ItemStack tempironchunk = new ItemStack(ModItems.wroughtironchunk, 1);
+                            tempironchunk.setTagCompound(tempTag);
                             tempironchunk.getTagCompound().setBoolean("hot", true);
+
                             ItemStack tempironcleanchunk = new ItemStack(ModItems.ironcleanchunk, 1);
+                            tempironcleanchunk.setTagCompound(tempTag);
                             tempironcleanchunk.getTagCompound().setBoolean("hot", true);
+
                             ItemStack tempsteelchunk = new ItemStack(ModItems.steelchunk, 1);
+                            tempsteelchunk.setTagCompound(tempTag);
                             tempsteelchunk.getTagCompound().setBoolean("hot", true);
+
                             ItemStack tempwootzchunk = new ItemStack(ModItems.wootzchunk, 1);
+                            tempwootzchunk.setTagCompound(tempTag);
                             tempwootzchunk.getTagCompound().setBoolean("hot", true);
+
+                            System.out.println(stack12.getTagCompound());
+
                             if (stack12.getItem().equals(ModItems.ironingotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 tile.setSlotStack(6, tempironchunk);
                                 tile.setSlotStack(7, tempironchunk);
@@ -58,6 +67,7 @@ public class AnvilStone extends AnvilBase {
                                 tile.setSlotStack(17, tempironchunk);
                                 tile.setSlotStack(18, tempironchunk);
                                 world.playEvent(1031, pos, 0);
+                                return true;
                             }
                             if (stack12.getItem().equals(ModItems.ironcleaningotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 tile.setSlotStack(6, tempironcleanchunk);
@@ -70,6 +80,7 @@ public class AnvilStone extends AnvilBase {
                                 tile.setSlotStack(17, tempironcleanchunk);
                                 tile.setSlotStack(18, tempironcleanchunk);
                                 world.playEvent(1031, pos, 0);
+                                return true;
                             }
                             if (stack12.getItem().equals(ModItems.steelingotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 tile.setSlotStack(6, tempsteelchunk);
@@ -81,6 +92,7 @@ public class AnvilStone extends AnvilBase {
                                 tile.setSlotStack(16, tempsteelchunk);
                                 tile.setSlotStack(17, tempsteelchunk);
                                 tile.setSlotStack(18, tempsteelchunk);
+                                return true;
                             }
                             if (stack12.getItem().equals(ModItems.wootzingotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 tile.setSlotStack(6, tempwootzchunk);
@@ -92,6 +104,7 @@ public class AnvilStone extends AnvilBase {
                                 tile.setSlotStack(16, tempwootzchunk);
                                 tile.setSlotStack(17, tempwootzchunk);
                                 tile.setSlotStack(18, tempwootzchunk);
+                                return true;
                             }
                         }
                     }

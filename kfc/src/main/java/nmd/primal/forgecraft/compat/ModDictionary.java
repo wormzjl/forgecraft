@@ -20,7 +20,7 @@ public class ModDictionary {/***************************************************
             //if (ModConfig.COMPATIBILITY_DICTIONARY_MAGMACREAM_AS_SLIME)
                 //OreDictionary.registerOre("clayball", Items.CLAY_BALL);
                 OreDictionary.registerOre("ingotIron", ModItems.ironingotball);
-                OreDictionary.registerOre("nuggetIron", ModItems.ironchunk);
+                OreDictionary.registerOre("nuggetIron", ModItems.wroughtironchunk);
                 OreDictionary.registerOre("ingotIron", ModItems.ironcleaningotball);
                 OreDictionary.registerOre("nuggetIron", ModItems.ironcleanchunk);
                 OreDictionary.registerOre("ingotSteel", ModItems.steelingotball);

@@ -4,6 +4,7 @@ import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -28,7 +29,7 @@ public class BaseMultiItem extends BaseItem {
     public BaseMultiItem( String name, Item.ToolMaterial material) {
         super(name);
         mat = material;
-        this.setMaxStackSize(1);
+        //this.setMaxStackSize(1);
         this.setNoRepair();
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
@@ -40,6 +41,7 @@ public class BaseMultiItem extends BaseItem {
                 //TODO get the item name
                 if (stack.getItem() instanceof BaseMultiItem) {
                     if(stack.getTagCompound() != null) {
+                        /***INGOTS***/
                         if(itemStack.equals(ModItems.ironingotball)) {
                             if (!stack.getTagCompound().getBoolean("hot")) {
                                 return 0.0f;
@@ -78,6 +80,47 @@ public class BaseMultiItem extends BaseItem {
                             }
                             if (stack.getTagCompound().getBoolean("hot")) {
                                 return 0.09f;
+                            }
+                        }
+                        /***CHUNKS***/
+                        if(itemStack.equals(ModItems.wroughtironchunk)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.10f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.11f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.bronzechunk)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.12f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.13f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.ironcleanchunk)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.14f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.15f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.steelchunk)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.16f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.17f;
+                            }
+                        }
+                        if(itemStack.equals(ModItems.wootzchunk)) {
+                            if (!stack.getTagCompound().getBoolean("hot")) {
+                                return 0.18f;
+                            }
+                            if (stack.getTagCompound().getBoolean("hot")) {
+                                return 0.19f;
                             }
                         }
                     }
@@ -130,12 +173,27 @@ public class BaseMultiItem extends BaseItem {
     }
 
     @Override
-    public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
+    public void onUpdate(ItemStack stack, World world, Entity player, int itemSlot, boolean isSelected) {
         //System.out.println(item.getTagCompound());
-        if (!item.hasTagCompound()) {
-            item.setTagCompound(new NBTTagCompound());
-            item.getTagCompound().setBoolean("hot", false);
+        if (!stack.hasTagCompound()) {
+            stack.setTagCompound(new NBTTagCompound());
+            stack.getTagCompound().setBoolean("hot", false);
         }
 
     }
+
+    @Override
+    public boolean onEntityItemUpdate(net.minecraft.entity.item.EntityItem entityItem)
+    {
+        if(entityItem.isWet()){
+            if(entityItem.getItem().hasTagCompound()) {
+                if(entityItem.getItem().getTagCompound().getBoolean("hot")){
+                    entityItem.getItem().getTagCompound().setBoolean("hot", false);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
 }

@@ -517,7 +517,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
             GL11.glPopMatrix();
         }
         //ModItems.ironchunkhot
-        if(item == ModItems.ironchunk){
+        if(item == ModItems.wroughtironchunk){
             GL11.glPushMatrix();
             double scale = 1.0D;
             GL11.glScaled(scale, scale, scale);

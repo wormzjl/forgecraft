@@ -4,6 +4,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -13,12 +14,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.interfaces.IPickup;
+import nmd.primal.core.common.PrimalCore;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.tiles.AbstractTileTank;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
@@ -214,7 +218,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                 if (slotItem.equals(ModItems.bronzechunk)) {
                                     return 0.32f;
                                 }
-                                if (slotItem.equals(ModItems.ironchunk)) {
+                                if (slotItem.equals(ModItems.wroughtironchunk)) {
                                     return 0.33f;
                                 }
                                 if (slotItem.equals(ModItems.ironcleanchunk)) {
@@ -246,7 +250,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                 if (slotItem.equals(ModItems.bronzechunk)) {
                                     return 0.42f;
                                 }
-                                if (slotItem.equals(ModItems.ironchunk)) {
+                                if (slotItem.equals(ModItems.wroughtironchunk)) {
                                     return 0.43f;
                                 }
                                 if (slotItem.equals(ModItems.ironcleanchunk)) {
@@ -380,6 +384,28 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                         }
                     }
                 }
+                if (!slotList.get(0).isEmpty()) {
+                    if ((block.equals(Blocks.HOPPER))) {
+                        if (slotList.get(0).getItem() instanceof BaseMultiItem) {
+                            ItemStack tempStack = slotList.get(0).copy();
+                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                            slotList.set(0, ItemStack.EMPTY);
+                            return EnumActionResult.SUCCESS;
+                        }
+                    }
+                }
+                /*****
+                 Cools the Ingots on the Tongs
+                 *****/
+                /*if (!slotList.get(0).isEmpty()) {
+                    System.out.println(world.getBlockState(pos).getBlock());
+                    if (world.getBlockState(pos).getBlock() == PrimalAPI.Blocks.BARREL) {
+                        AbstractTileTank tileTank = (AbstractTileTank) world.getTileEntity(pos);
+                        System.out.println(tileTank.getContainedFluid());
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+                */
                 /*****
                  DROPS the Ingots into the World
                  *****/
@@ -393,13 +419,12 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                         }
                     }
                 }
-            //}
+
 
             return EnumActionResult.FAIL;
         }
         return EnumActionResult.FAIL;
     }
-
 
     public ItemStack getItem(World world, BlockPos pos, IBlockState state, Block block)
     {

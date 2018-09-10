@@ -62,7 +62,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 ItemStack pItem = player.inventory.getCurrentItem();
                 ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
 
-                //System.out.println(tile.getStatus());
                 /**PICKS UP THE CRUCIBLE**/
                 if (player.isSneaking() == false) {
                     if (pItem.isEmpty()) {
@@ -99,7 +98,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 /**CLEARS THE INVENTORY**/
                 if (player.isSneaking() == true) {
                     if (pItem.isEmpty()) {
-                        if (!tile.getStatus()) {
+                        if (tile.getHot()!=15) {
                             for (int i = 0; i < tile.ingList.size(); i++) {
                                 if (!tile.ingList.get(i).isEmpty()) {
                                     PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
@@ -108,6 +107,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                             }
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.setHot(0);
+                            tile.setStatus(false);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -119,9 +119,9 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                     if (pItem.isEmpty()) {
                         if (tile.getStatus()) {
                             PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
-                            tile.setStatus(false);
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.setHot(0);
+                            tile.setStatus(false);
                             tile.update();
                             tile.markDirty();
                             return true;

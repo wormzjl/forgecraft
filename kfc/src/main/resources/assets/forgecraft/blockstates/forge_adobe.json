@@ -4,16 +4,16 @@
     "active": {
       "true": {
         "textures": {
-          "particle": "primal:blocks/adobebrick",
-          "texture": "primal:blocks/adobebrick",
+          "particle": "primal:blocks/adobe_brick",
+          "texture": "primal:blocks/adobe_brick",
           "texture1": "forgecraft:blocks/adobebrick_lit"
         },
         "model": "forgecraft:forge_lit"
       },
       "false": {
         "textures": {
-          "particle": "primal:blocks/adobebrick",
-          "texture": "primal:blocks/adobebrick"
+          "particle": "primal:blocks/adobe_brick",
+          "texture": "primal:blocks/adobe_brick"
         },
         "model": "forgecraft:forge"
       }
@@ -26,5 +26,3 @@
     }
   }
 }
-
-

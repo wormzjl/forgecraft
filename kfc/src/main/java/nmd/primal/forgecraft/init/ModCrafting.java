@@ -887,8 +887,8 @@ public class ModCrafting{
 
 //Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
-                ModItems.ironchunk,
-                new ItemStack(ModItems.ironchunk,1),
+                ModItems.wroughtironchunk,
+                new ItemStack(ModItems.wroughtironchunk,1),
                 800,
                 160,
                 400,
@@ -1063,7 +1063,7 @@ public class ModCrafting{
          ******************************************************************************/
 
         //String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
-        String hotChunk = ModItems.ironchunk.getRegistryName().toString();
+        String hotChunk = ModItems.wroughtironchunk.getRegistryName().toString();
         String hotCleanChunk = ModItems.ironcleanchunk.getRegistryName().toString();
         String hotSteelChunk = ModItems.steelchunk.getRegistryName().toString();
         String hotWootzChunk = ModItems.wootzchunk.getRegistryName().toString();
