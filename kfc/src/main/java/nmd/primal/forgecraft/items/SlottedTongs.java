@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -14,12 +15,15 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.interfaces.IPickup;
 import nmd.primal.core.common.PrimalCore;
+import nmd.primal.core.common.helper.FluidHelper;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.tiles.AbstractTileTank;
@@ -286,141 +290,151 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitx, float hity, float hitz)
     {
         if(!world.isRemote){
-            //if (hand.equals(player.swingingHand)) {
-                IBlockState state = world.getBlockState(pos);
-                Block block = world.getBlockState(pos).getBlock();
-                ItemStack itemstack = player.getHeldItem(hand);
+        //if (hand.equals(player.swingingHand)) {
+            IBlockState state = world.getBlockState(pos);
+            Block block = world.getBlockState(pos).getBlock();
+            ItemStack itemstack = player.getHeldItem(hand);
+            ItemStack slotStack = slotList.get(0);
 
-                if (block instanceof AnvilStone) {
-                    TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
-                    doAnvilInventoryManager(itemstack, world, tile, pos, hitx, hity, hitz, state, player);
+            if (block instanceof AnvilStone) {
+                TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+                doAnvilInventoryManager(itemstack, world, tile, pos, hitx, hity, hitz, state, player);
+                return EnumActionResult.SUCCESS;
+            }
+
+            if (slotList.get(0).isEmpty()) {
+                if (block instanceof NBTCrucible) {
+                    ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
+                    slotList.set(0, tempStack);
+                    world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                     return EnumActionResult.SUCCESS;
                 }
-
-                if (slotList.get(0).isEmpty()) {
-                    if (block instanceof NBTCrucible) {
-                        ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
-                        slotList.set(0, tempStack);
-                        world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+            }
+            if (!slotList.get(0).isEmpty()) {
+                if (slotList.get(0).getItem() instanceof ItemNBTCrucible) {
+                    NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
+                    NBTTagCompound defaultNBT = this.slotList.get(0).getTagCompound();
+                    if (tag != null) {
+                        ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
+                        int i = this.getMetadata(slotList.get(0).getMetadata());
+                        IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
+                        temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
+                        slotList.set(0, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     }
                 }
-                if (!slotList.get(0).isEmpty()) {
-                    if (slotList.get(0).getItem() instanceof ItemNBTCrucible) {
-                        NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
-                        NBTTagCompound defaultNBT = this.slotList.get(0).getTagCompound();
-                        if (tag != null) {
-                            ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
-                            int i = this.getMetadata(slotList.get(0).getMetadata());
-                            IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
-                            temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
-                            slotList.set(0, ItemStack.EMPTY);
+            }
+
+            /*****
+             TAKES anything out from the Forge
+             *****/
+            if (slotList.get(0).isEmpty()) {
+                if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                    TileForge tile = (TileForge) world.getTileEntity(pos);
+                    for (int i = 2; i < tile.getSlotListSize(); i++) {
+                        if (tile.getSlotStack(i) != ItemStack.EMPTY) {
+                            ItemStack tempStack = tile.getSlotStack(i).copy();
+                            //System.out.println(tempStack);
+                            slotList.set(0, tempStack);
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                            //System.out.println(slotList.get(0));
                             return EnumActionResult.SUCCESS;
                         }
                     }
                 }
+            }
 
-                /*****
-                 TAKES anything out from the Forge
-                 *****/
-                if (slotList.get(0).isEmpty()) {
-                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                        TileForge tile = (TileForge) world.getTileEntity(pos);
+            /*****
+             PUTS the Ingots into the Forge
+             *****/
+            if (!slotList.get(0).isEmpty()) {
+                if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                    TileForge tile = (TileForge) world.getTileEntity(pos);
+                    if (!(slotList.get(0).getItem() instanceof ToolPart)) {
                         for (int i = 2; i < tile.getSlotListSize(); i++) {
-                            if (tile.getSlotStack(i) != ItemStack.EMPTY) {
-                                ItemStack tempStack = tile.getSlotStack(i).copy();
-                                System.out.println(tempStack);
-                                slotList.set(0, tempStack);
-                                tile.setSlotStack(i, ItemStack.EMPTY);
-                                System.out.println(slotList.get(0));
-                                return EnumActionResult.SUCCESS;
-                            }
-                        }
-                    }
-                }
-
-                /*****
-                 PUTS the Ingots into the Forge
-                 *****/
-                if (!slotList.get(0).isEmpty()) {
-                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                        TileForge tile = (TileForge) world.getTileEntity(pos);
-                        if (!(slotList.get(0).getItem() instanceof ToolPart)) {
-                            for (int i = 2; i < tile.getSlotListSize(); i++) {
-                                ItemStack tempStack = slotList.get(0).copy();
-                                tile.setSlotStack(i, tempStack);
-                                slotList.set(0, ItemStack.EMPTY);
-                                return EnumActionResult.SUCCESS;
-                            }
-                        }
-                    }
-                }
-                /*****
-                 PUTS the ToolParts into the Forge
-                 *****/
-
-                if (!slotList.get(0).isEmpty()) {
-                    if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                        TileForge tile = (TileForge) world.getTileEntity(pos);
-                        if (slotList.get(0).getItem() instanceof ToolPart) {
                             ItemStack tempStack = slotList.get(0).copy();
-                            tile.setSlotStack(4, tempStack);
+                            tile.setSlotStack(i, tempStack);
                             slotList.set(0, ItemStack.EMPTY);
                             return EnumActionResult.SUCCESS;
                         }
                     }
                 }
+            }
+            /*****
+             PUTS the ToolParts into the Forge
+             *****/
 
-                /*****
-                 DROPS the ToolParts into the World
-                 *****/
-                if (!slotList.get(0).isEmpty()) {
-                    if (!(block instanceof AnvilBase)) {
-                        if (slotList.get(0).getItem() instanceof ToolPart) {
-                            ItemStack tempStack = slotList.get(0).copy();
-                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                            slotList.set(0, ItemStack.EMPTY);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                if (!slotList.get(0).isEmpty()) {
-                    if ((block.equals(Blocks.HOPPER))) {
-                        if (slotList.get(0).getItem() instanceof BaseMultiItem) {
-                            ItemStack tempStack = slotList.get(0).copy();
-                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                            slotList.set(0, ItemStack.EMPTY);
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-                /*****
-                 Cools the Ingots on the Tongs
-                 *****/
-                /*if (!slotList.get(0).isEmpty()) {
-                    System.out.println(world.getBlockState(pos).getBlock());
-                    if (world.getBlockState(pos).getBlock() == PrimalAPI.Blocks.BARREL) {
-                        AbstractTileTank tileTank = (AbstractTileTank) world.getTileEntity(pos);
-                        System.out.println(tileTank.getContainedFluid());
+            if (!slotList.get(0).isEmpty()) {
+                if (world.getBlockState(pos).getBlock() instanceof Forge) {
+                    TileForge tile = (TileForge) world.getTileEntity(pos);
+                    if (slotList.get(0).getItem() instanceof ToolPart) {
+                        ItemStack tempStack = slotList.get(0).copy();
+                        tile.setSlotStack(4, tempStack);
+                        slotList.set(0, ItemStack.EMPTY);
                         return EnumActionResult.SUCCESS;
                     }
                 }
-                */
-                /*****
-                 DROPS the Ingots into the World
-                 *****/
-                if (!slotList.get(0).isEmpty()) {
-                    if (!(block instanceof AnvilBase)) {
-                        if (slotList.get(0).getItem() instanceof BaseMultiItem) {
+            }
+
+            /*****
+             DROPS the ToolParts into the World
+             *****/
+            if (!slotList.get(0).isEmpty()) {
+                if (!(block instanceof AnvilBase)) {
+                    if (slotList.get(0).getItem() instanceof ToolPart) {
+                        ItemStack tempStack = slotList.get(0).copy();
+                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                        slotList.set(0, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+            }
+            if (!slotList.get(0).isEmpty()) {
+                if ((block.equals(Blocks.HOPPER))) {
+                    if (slotList.get(0).getItem() instanceof BaseMultiItem) {
+                        ItemStack tempStack = slotList.get(0).copy();
+                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                        slotList.set(0, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+            }
+
+            /*****
+             Cools the Ingots on the Tongs
+             *****/
+            if (!slotList.get(0).isEmpty()) {
+                if (world.getBlockState(pos).getBlock() == PrimalAPI.Blocks.BARREL) {
+                    AbstractTileTank tileTank = (AbstractTileTank) world.getTileEntity(pos);
+                    if (slotStack.getTagCompound().getBoolean("hot")) {
+                        if (tileTank.getContainedFluid().getFluid().equals(FluidRegistry.WATER) ||
+                                tileTank.getContainedFluid().getFluid().equals(PrimalAPI.Fluids.RAIN_WATER)
+                                ) {
                             ItemStack tempStack = slotList.get(0).copy();
+                            tempStack.getTagCompound().setBoolean("hot", false);
+                            slotList.set(0, ItemStack.EMPTY);
                             PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
                             slotList.set(0, ItemStack.EMPTY);
                             return EnumActionResult.SUCCESS;
                         }
                     }
                 }
+            }
 
-
+            /*****
+             DROPS the Ingots into the World
+             *****/
+            if (!slotList.get(0).isEmpty()) {
+                if (!(block instanceof AnvilBase)) {
+                    if (slotList.get(0).getItem() instanceof BaseMultiItem) {
+                        ItemStack tempStack = slotList.get(0).copy();
+                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                        slotList.set(0, ItemStack.EMPTY);
+                        return EnumActionResult.SUCCESS;
+                    }
+                }
+            }
             return EnumActionResult.FAIL;
         }
         return EnumActionResult.FAIL;

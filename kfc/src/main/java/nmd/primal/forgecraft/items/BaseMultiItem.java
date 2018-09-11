@@ -6,14 +6,17 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.init.ModItems;
 
 import javax.annotation.Nullable;
@@ -189,10 +192,12 @@ public class BaseMultiItem extends BaseItem {
             if(entityItem.getItem().hasTagCompound()) {
                 if(entityItem.getItem().getTagCompound().getBoolean("hot")){
                     entityItem.getItem().getTagCompound().setBoolean("hot", false);
+                    entityItem.getEntityWorld().playSound(null, entityItem.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
                     return true;
                 }
             }
         }
+
         return false;
     }
 

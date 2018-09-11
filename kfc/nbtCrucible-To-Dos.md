@@ -17,6 +17,7 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] Craft Tweaker Support
 - [ ] JEI Support
 - [ ] People seem to not like being able to put anything in the Crucible
+- [ ] Apply Forge turn off logic to Bloomery
 - [x] Steel Plate Recipe #37
 - [x] Damascus Recipes
 - [x] Damascus Weapons
