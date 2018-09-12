@@ -18,6 +18,12 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] JEI Support
 - [ ] People seem to not like being able to put anything in the Crucible
 - [ ] Apply Forge turn off logic to Bloomery
+- [ ] Update SoftCrucible Model
+- [ ] Mass Ore Production
+- [ ] Gold Production
+- [ ] Silver/Lead Production
+- [ ] Hot Crucible doesn't have hot molten layer
+- [ ] Can't add upgrades to the anvil
 - [x] Steel Plate Recipe #37
 - [x] Damascus Recipes
 - [x] Damascus Weapons
