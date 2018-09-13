@@ -172,10 +172,10 @@ public interface AnvilHandler {
 
     default boolean doAnvilInventoryManager(ItemStack pItem, World world, TileAnvil tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
         if ( (!(pItem.getItem() instanceof Gallagher)) || (!(pItem.getItem() instanceof ForgeHammer)) ) {
-            if(Block.getBlockFromItem(pItem.getItem()) instanceof IngotBall) {
+            if(pItem.getItem() instanceof BaseMultiItem) {
                 return false;
             }
-
+            System.out.println("We are in Inventory Manager");
             if (state.getValue(FACING) == EnumFacing.NORTH) {
                 int counter = 0;
                 for (int z = 0; z < 5; z++) {

@@ -128,7 +128,9 @@ public class AnvilStone extends AnvilBase {
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
+                System.out.println("Calling Inventory Manager");
                 doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
+                return true;
             }
             return false;
         }
