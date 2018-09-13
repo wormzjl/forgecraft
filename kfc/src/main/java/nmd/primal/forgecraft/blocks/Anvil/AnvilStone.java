@@ -128,6 +128,7 @@ public class AnvilStone extends AnvilBase {
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
+                doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
             }
             return false;
         }
