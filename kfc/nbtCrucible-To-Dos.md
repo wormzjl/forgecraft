@@ -16,14 +16,11 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] Bronze Plate Cast
 - [ ] Craft Tweaker Support
 - [ ] JEI Support
-- [ ] People seem to not like being able to put anything in the Crucible
 - [ ] Apply Forge turn off logic to Bloomery
 - [ ] Update SoftCrucible Model
-- [ ] Mass Ore Production
-- [ ] Gold Production
-- [ ] Silver/Lead Production
-- [ ] Hot Crucible doesn't have hot molten layer
-- [ ] Can't add upgrades to the anvil
+- [x] Crucibles were returning input ingredients even after cooked
+- [x] Hot Crucible doesn't have hot molten layer
+- [x] Can't add upgrades to the anvil
 - [x] Steel Plate Recipe #37
 - [x] Damascus Recipes
 - [x] Damascus Weapons
@@ -63,6 +60,8 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Mass Ore Production
+- [ ] Silver/Lead Production
 - [ ] Sparks to forging
 - [x] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe

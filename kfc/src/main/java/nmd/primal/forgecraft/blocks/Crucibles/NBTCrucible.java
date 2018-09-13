@@ -99,18 +99,20 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 if (player.isSneaking() == true) {
                     if (pItem.isEmpty()) {
                         if (tile.getHot()!=15) {
-                            for (int i = 0; i < tile.ingList.size(); i++) {
-                                if (!tile.ingList.get(i).isEmpty()) {
-                                    PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
-                                    tile.ingList.set(i, ItemStack.EMPTY);
+                            if (!tile.getStatus()) {
+                                for (int i = 0; i < tile.ingList.size(); i++) {
+                                    if (!tile.ingList.get(i).isEmpty()) {
+                                        PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList.get(i));
+                                        tile.ingList.set(i, ItemStack.EMPTY);
+                                    }
                                 }
+                                world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
+                                tile.setHot(0);
+                                tile.setStatus(false);
+                                tile.update();
+                                tile.markDirty();
+                                return true;
                             }
-                            world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
-                            tile.setHot(0);
-                            tile.setStatus(false);
-                            tile.update();
-                            tile.markDirty();
-                            return true;
                         }
                     }
                 }

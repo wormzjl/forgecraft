@@ -134,7 +134,7 @@
           "texture": "forgecraft:blocks/stone_slab_hot",
           "texture1": "forgecraft:items/hot_bronze"
         },
-        "model": "forgecraft:castingcrucible3"
+        "model": "forgecraft:castingcrucible"
       }
     }
   }

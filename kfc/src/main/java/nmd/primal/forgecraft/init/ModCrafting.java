@@ -273,6 +273,10 @@ public class ModCrafting{
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.slottedtongs, 1),
                 "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
 
+        /***Anvil***/
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.stoneanvil, 1),
+                "   ", " I ", " S ", 'I', ModItems.ironingotball, 'S', Blocks.STONE);
+
         /***RAW CRUCIBLES***/
 /*
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawironcrucible),

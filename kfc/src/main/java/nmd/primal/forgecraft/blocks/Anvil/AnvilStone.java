@@ -54,8 +54,6 @@ public class AnvilStone extends AnvilBase {
                             tempwootzchunk.setTagCompound(tempTag);
                             tempwootzchunk.getTagCompound().setBoolean("hot", true);
 
-                            System.out.println(stack12.getTagCompound());
-
                             if (stack12.getItem().equals(ModItems.ironingotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 tile.setSlotStack(6, tempironchunk);
                                 tile.setSlotStack(7, tempironchunk);
@@ -128,7 +126,6 @@ public class AnvilStone extends AnvilBase {
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
-                System.out.println("Calling Inventory Manager");
                 doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
                 return true;
             }
