@@ -53,10 +53,10 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
         return background;
     }
 
-    //@Override
-    //public void drawExtras(@Nonnull Minecraft minecraft)
+    @Override
+    public void drawExtras(@Nonnull Minecraft minecraft)
     {
-        //progress.draw(minecraft, 67, 18);
+        progress.draw(minecraft, 67, 18);
     }
 
     @Override
