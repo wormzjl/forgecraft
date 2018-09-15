@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * Created by mminaie on 11/11/17.
  */
-public class TileNBTCrucible extends BaseTile implements ITickable, IRecipeCache<CrucibleCrafting> {
+public class TileNBTCrucible extends BaseTile implements ITickable {
 
     private ItemStack drops;
     private int heat;
@@ -130,35 +130,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable, IRecipeCache
         return nbt;
     }
 
-    // ***************************************************************************** //
-    //  IRecipeCache
-    // ***************************************************************************** //
-    private List<CrucibleCrafting> recipe_cache = new ArrayList<>();
 
-    @Override
-    public List<CrucibleCrafting> getRecipeCache()
-    {
-        return recipe_cache;
-    }
-
-    @Override
-    public CrucibleCrafting matchRecipe()
-    {
-        for (CrucibleCrafting recipe : this.getRecipeCache()) {
-            if (recipe.isRecipe(this.ingList.get(0), this.ingList.get(1), this.ingList.get(2), this.ingList.get(3), this.ingList.get(4))) {
-                return recipe;
-            }
-        }
-
-        for (CrucibleCrafting recipe : CrucibleCrafting.RECIPES) {
-            if (recipe.isRecipe(this.ingList.get(0), this.ingList.get(1), this.ingList.get(2), this.ingList.get(3), this.ingList.get(4))) {
-                this.addRecipeCache(recipe);
-                return recipe;
-            }
-        }
-
-        return null;
-    }
 
 }
 

@@ -47,7 +47,7 @@ public class ModInfo {
     public static class Registries
     {
         // In-World Recipes
-        public static final IForgeRegistry<CrucibleCrafting> CRUCIBLE_CRAFTINGS = GameRegistry.findRegistry(CrucibleCrafting.class);
+        //public static final IForgeRegistry<CrucibleCrafting> CRUCIBLE_CRAFTINGS = GameRegistry.findRegistry(CrucibleCrafting.class);
 
     }
 

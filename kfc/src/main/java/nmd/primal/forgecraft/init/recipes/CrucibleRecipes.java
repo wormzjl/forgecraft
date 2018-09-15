@@ -1,22 +1,5 @@
 package nmd.primal.forgecraft.init.recipes;
 
-import net.minecraft.init.Blocks;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.oredict.OreIngredient;
-import net.minecraftforge.registries.IForgeRegistry;
-import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.recipes.tile.CauldronRecipe;
-import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-import nmd.primal.forgecraft.init.ModItems;
-
-
 /**
  * Created by mminaie on 9/15/18.
  */
@@ -200,3 +183,4 @@ public final class CrucibleRecipes {
 
     }
 }
+*/

@@ -43,7 +43,7 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
     @Override
     public String getTitle()
     {
-        return I18n.format("jei.category.primal.crucible");
+        return I18n.format("jei.category.forgecraft.crucible");
     }
 
     @Nonnull
@@ -53,10 +53,10 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
         return background;
     }
 
-    @Override
-    public void drawExtras(@Nonnull Minecraft minecraft)
+    //@Override
+    //public void drawExtras(@Nonnull Minecraft minecraft)
     {
-        progress.draw(minecraft, 67, 18);
+        //progress.draw(minecraft, 67, 18);
     }
 
     @Override
