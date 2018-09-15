@@ -21,6 +21,10 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     //public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTINGS;
     //public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
 
+    public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
+        return crucibleCrafting;
+    }
+
     private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
 
     private int cookTemp;

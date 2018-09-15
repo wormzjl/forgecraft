@@ -12,7 +12,7 @@ public class CrucibleRecipeChecker {
 
     public static List<CrucibleCrafting> getRecipes() {
         List<CrucibleCrafting> recipes = new ArrayList<>();
-        for (CrucibleCrafting recipe : CrucibleCrafting.RECIPES) {
+        for (CrucibleCrafting recipe : CrucibleCrafting.getCrucibleCrafting()) {
             recipes.add(recipe);
         }
         return recipes;

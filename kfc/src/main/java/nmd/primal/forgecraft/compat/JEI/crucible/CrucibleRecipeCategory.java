@@ -17,7 +17,7 @@ import javax.annotation.Nonnull;
  */
 public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapper>
 {
-    public static String CATEGORY = CommonUtils.prefix("cauldron");
+    public static String CATEGORY = CommonUtils.prefix("crucible");
 
     private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/cauldron.png");
     private static ResourceLocation gui_progress = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/cauldron_progress.png");
@@ -43,7 +43,7 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
     @Override
     public String getTitle()
     {
-        return I18n.format("jei.category.primal.cauldron");
+        return I18n.format("jei.category.primal.crucible");
     }
 
     @Nonnull
@@ -62,17 +62,17 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
     @Override
     public void setRecipe(IRecipeLayout layout, CrucibleRecipeWrapper recipe, IIngredients ingredients)
     {
-        IGuiFluidStackGroup fluids = layout.getFluidStacks();
+        //IGuiFluidStackGroup fluids = layout.getFluidStacks();
         IGuiItemStackGroup items = layout.getItemStacks();
 
         //  input fluid
-        fluids.init(0, true, 6, 8, 13, 48, 4000, true, null);
-        fluids.set(ingredients);
+        //fluids.init(0, true, 6, 8, 13, 48, 4000, true, null);
+        //fluids.set(ingredients);
 
         //  output_items fluid
         //if (recipe.output_fluid != null) {
-        fluids.init(1, false, 135, 8, 13, 48, 4000, true, null);
-        fluids.set(ingredients);
+        //fluids.init(1, false, 135, 8, 13, 48, 4000, true, null);
+        //fluids.set(ingredients);
         //}
 
         //  input items
