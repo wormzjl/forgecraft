@@ -57,8 +57,13 @@ public class CrucibleRecipeWrapper implements IRecipeWrapper
     @Override
     public void getIngredients(IIngredients ingredients)
     {
-        ingredients.setInput(Ingredient.class, this.crucibleCrafting);
-        //ingredients.setOutputs(ItemStack.class, this.dropsCooked);
+        //ingredients.setInputs(Ingredient.class, this.crucibleCrafting);
+        ingredients.setInput(ItemStack.class, this.ing0);
+        ingredients.setInput(ItemStack.class, this.ing1);
+        ingredients.setInput(ItemStack.class, this.ing2);
+        ingredients.setInput(ItemStack.class, this.ing3);
+        ingredients.setInput(ItemStack.class, this.ing4);
+        ingredients.setOutput(ItemStack.class, this.dropsCooked);
     }
 
     @Override
