@@ -13,7 +13,6 @@ public class ModTiles {
         registerTileEntity(TileForge.class, "firebox");
         registerTileEntity(TilePistonBellows.class, "pistonbellows");
         registerTileEntity(TileBloomery.class, "bloomery");
-        registerTileEntity(TileBaseCrucible.class, "basecrucible");
         registerTileEntity(TileAnvil.class, "anvil");
         registerTileEntity(TileBreaker.class, "breaker");
         registerTileEntity(TileCastingForm.class, "castingform");

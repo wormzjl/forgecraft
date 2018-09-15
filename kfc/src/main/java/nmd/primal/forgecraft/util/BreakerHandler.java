@@ -1,22 +1,15 @@
 package nmd.primal.forgecraft.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemStackHandler;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.PrimalCore;
-import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.core.common.init.recipes.custom.RecipesGallagher;
-import nmd.primal.core.common.recipes.AbstractToolRecipe;
 import nmd.primal.core.common.recipes.inworld.GallagherRecipe;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileBreaker;

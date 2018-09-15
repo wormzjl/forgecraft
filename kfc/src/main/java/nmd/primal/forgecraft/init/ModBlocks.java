@@ -13,8 +13,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.*;
-import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
-import nmd.primal.forgecraft.blocks.Crucibles.CrucibleHot;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 
 /**

@@ -15,7 +15,6 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.BloomeryBase;
-import nmd.primal.forgecraft.blocks.Crucibles.Crucible;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
@@ -282,9 +281,6 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         }
         if(index == 1){
             if (stack.getItem() == ModItems.softcrucible) {
-                return true;
-            }
-            if(Block.getBlockFromItem(stack.getItem()) instanceof Crucible ){
                 return true;
             }
             if(Block.getBlockFromItem(stack.getItem()) instanceof NBTCrucible ){

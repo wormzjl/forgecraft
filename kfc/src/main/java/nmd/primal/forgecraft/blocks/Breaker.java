@@ -20,7 +20,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.items.tools.Gallagher;
-import nmd.primal.core.common.recipes.inworld.GallagherRecipe;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 import nmd.primal.forgecraft.util.BreakerHandler;

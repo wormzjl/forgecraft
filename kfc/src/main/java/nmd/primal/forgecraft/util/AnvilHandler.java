@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,7 +13,6 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.CommonUtils;
-import nmd.primal.forgecraft.blocks.IngotBall;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;

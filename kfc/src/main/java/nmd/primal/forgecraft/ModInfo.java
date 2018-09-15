@@ -2,8 +2,11 @@ package nmd.primal.forgecraft;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
 
@@ -37,4 +40,15 @@ public class ModInfo {
             return new ItemStack(ModItems.forgehammer);
         }
     };
+
+    // ***************************************************************************** //
+    //  PrimalAPI.Registries
+    // ***************************************************************************** //
+    public static class Registries
+    {
+        // In-World Recipes
+        public static final IForgeRegistry<CrucibleCrafting> CRUCIBLE_CRAFTINGS = GameRegistry.findRegistry(CrucibleCrafting.class);
+
+    }
+
 }

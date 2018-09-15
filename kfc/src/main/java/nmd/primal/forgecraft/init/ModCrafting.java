@@ -9,9 +9,11 @@ import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
-import nmd.primal.forgecraft.crafting.*;
+import nmd.primal.forgecraft.crafting.AnvilCrafting;
+import nmd.primal.forgecraft.crafting.CastingformCrafting;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 /**
@@ -28,6 +30,7 @@ public class ModCrafting{
         /***********************/
         /***CRUCIBLE CRAFTING***/
         /***********************/
+
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("oreIron"),

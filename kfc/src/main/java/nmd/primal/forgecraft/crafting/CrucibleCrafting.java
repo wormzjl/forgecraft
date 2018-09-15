@@ -2,23 +2,70 @@ package nmd.primal.forgecraft.crafting;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.forgecraft.ModInfo;
 
+import javax.annotation.Nullable;
 import java.util.*;
 
 /**
  * Created by mminaie on 11/11/17.
  */
-public class CrucibleCrafting {
+public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
 
     // ***************************************************************************** //
     //  Recipe Handler CrucibleHandler
     // ***************************************************************************** //
+
+    //public static final String RECIPE_PREFIX = "crucible";
+    //public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTINGS;
+    //public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
 
     private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
 
     private int cookTemp;
     private int cookTime;
     private int coolTime;
+
+    public Ingredient getIng0() {
+        return ing0;
+    }
+
+    public void setIng0(Ingredient ing0) {
+        this.ing0 = ing0;
+    }
+
+    public Ingredient getIng1() {
+        return ing1;
+    }
+
+    public void setIng1(Ingredient ing1) {
+        this.ing1 = ing1;
+    }
+
+    public Ingredient getIng2() {
+        return ing2;
+    }
+
+    public void setIng2(Ingredient ing2) {
+        this.ing2 = ing2;
+    }
+
+    public Ingredient getIng3() {
+        return ing3;
+    }
+
+    public void setIng3(Ingredient ing3) {
+        this.ing3 = ing3;
+    }
+
+    public Ingredient getIng4() {
+        return ing4;
+    }
+
+    public void setIng4(Ingredient ing4) {
+        this.ing4 = ing4;
+    }
 
     private Ingredient ing0;
     private Ingredient ing1;
@@ -28,6 +75,14 @@ public class CrucibleCrafting {
 
     private ItemStack dropsCooked;
     private ItemStack dropsRaw;
+
+    public List<Ingredient> getIngredientList() {
+        return ingredientList;
+    }
+
+    public void setIngredientList(List<Ingredient> ingredientList) {
+        this.ingredientList = ingredientList;
+    }
 
     private List<Ingredient> ingredientList = new List<Ingredient>() {
         @Override
@@ -152,7 +207,7 @@ public class CrucibleCrafting {
     public CrucibleCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
                             ItemStack outputRaw, ItemStack outputCooked,
                             Integer temp, Integer cookTime, Integer coolTime){
-
+        //super();
         this.ing0 = i0;
         this.ing1 = i1;
         this.ing2 = i2;
@@ -227,4 +282,32 @@ public class CrucibleCrafting {
     public ItemStack getDropsRaw() {
         return dropsRaw;
     }
+
+
+/*
+    /// forge registries require a unique REGISTRY_NAME ///
+    @Override
+    public String getRecipePrefix()
+    {
+        return RECIPE_PREFIX;
+    }
+
+    @Override
+    public Collection<CrucibleCrafting> getRecipes()
+    {
+        return RECIPES;
+    }
+
+    /**
+     * Shim for getting a recipe directly from correctly formatted name
+     * @param recipe_name basic recipe name, no prefix or mod id
+     * @return Recipe object
+     */
+/*
+    @Nullable
+    public static CrucibleCrafting getRecipe(String recipe_name)
+    {
+        return REGISTRY.getValue(getFullRecipeName(RECIPE_PREFIX, recipe_name));
+    }
+*/
 }

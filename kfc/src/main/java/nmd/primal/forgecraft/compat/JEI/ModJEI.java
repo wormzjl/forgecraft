@@ -3,59 +3,12 @@ package nmd.primal.forgecraft.compat.JEI;
 import mezz.jei.api.*;
 import mezz.jei.api.gui.ICraftingGridHelper;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
-import mezz.jei.api.recipe.VanillaRecipeCategoryUid;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.*;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.OreIngredient;
-import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.api.interfaces.types.ITypeMud;
-import nmd.primal.core.api.interfaces.types.ITypeWood;
-import nmd.primal.core.common.compat.jei.CraftingTableTransfer;
-import nmd.primal.core.common.compat.jei.cauldron.CauldronRecipeCategory;
-import nmd.primal.core.common.compat.jei.cauldron.CauldronRecipeChecker;
-import nmd.primal.core.common.compat.jei.cauldron.CauldronRecipeHandler;
-import nmd.primal.core.common.compat.jei.drying.DryingRecipeCategory;
-import nmd.primal.core.common.compat.jei.drying.DryingRecipeChecker;
-import nmd.primal.core.common.compat.jei.drying.DryingRecipeHandler;
-import nmd.primal.core.common.compat.jei.flake.FlakeRecipeCategory;
-import nmd.primal.core.common.compat.jei.flake.FlakeRecipeChecker;
-import nmd.primal.core.common.compat.jei.flake.FlakeRecipeHandler;
-import nmd.primal.core.common.compat.jei.hibachi.HibachiRecipeCategory;
-import nmd.primal.core.common.compat.jei.hibachi.HibachiRecipeChecker;
-import nmd.primal.core.common.compat.jei.hibachi.HibachiRecipeHandler;
-import nmd.primal.core.common.compat.jei.smelter.SmelterRecipeCategory;
-import nmd.primal.core.common.compat.jei.smelter.SmelterRecipeChecker;
-import nmd.primal.core.common.compat.jei.smelter.SmelterRecipeHandler;
-import nmd.primal.core.common.compat.jei.tools.axe.AxeRecipeCategory;
-import nmd.primal.core.common.compat.jei.tools.axe.AxeRecipeChecker;
-import nmd.primal.core.common.compat.jei.tools.axe.AxeRecipeHandler;
-import nmd.primal.core.common.compat.jei.tools.blade.BladeRecipeCategory;
-import nmd.primal.core.common.compat.jei.tools.blade.BladeRecipeChecker;
-import nmd.primal.core.common.compat.jei.tools.blade.BladeRecipeHandler;
-import nmd.primal.core.common.compat.jei.tools.gallahger.GallagherRecipeCategory;
-import nmd.primal.core.common.compat.jei.tools.gallahger.GallagherRecipeChecker;
-import nmd.primal.core.common.compat.jei.tools.gallahger.GallagherRecipeHandler;
-import nmd.primal.core.common.compat.jei.tools.hoe.HoeRecipeCategory;
-import nmd.primal.core.common.compat.jei.tools.hoe.HoeRecipeChecker;
-import nmd.primal.core.common.compat.jei.tools.hoe.HoeRecipeHandler;
-import nmd.primal.core.common.compat.jei.tools.shovel.ShovelRecipeCategory;
-import nmd.primal.core.common.compat.jei.tools.shovel.ShovelRecipeChecker;
-import nmd.primal.core.common.compat.jei.tools.shovel.ShovelRecipeHandler;
-import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.core.common.items.tools.Gallagher;
-import nmd.primal.core.common.items.tools.WorkBlade;
-import nmd.primal.core.common.recipes.inworld.*;
-import nmd.primal.core.common.recipes.tile.CauldronRecipe;
-import nmd.primal.core.common.recipes.tile.DryingRecipe;
-import nmd.primal.core.common.recipes.tile.HibachiRecipe;
-import nmd.primal.core.common.recipes.tile.SmelterRecipe;
+import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeCategory;
+import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeChecker;
+import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeHandler;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 
 import javax.annotation.Nonnull;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mminaie on 9/11/18.
@@ -68,11 +21,11 @@ public class ModJEI implements IModPlugin {
     public static IGuiHelper guiHelper;
     private static final int craftOutputSlot = 0;
     private static final int craftInputSlot1 = 1;
-    private static List<ItemStack> gallaghers = new ArrayList<>();
-    private static List<ItemStack> blades = new ArrayList<>();
-    private static List<ItemStack> axes = new ArrayList<>();
-    private static List<ItemStack> shovels = new ArrayList<>();
-    private static List<ItemStack> hoes = new ArrayList<>();
+    //private static List<ItemStack> gallaghers = new ArrayList<>();
+    //private static List<ItemStack> blades = new ArrayList<>();
+    //private static List<ItemStack> axes = new ArrayList<>();
+    //private static List<ItemStack> shovels = new ArrayList<>();
+    //private static List<ItemStack> hoes = new ArrayList<>();
 
     @Override
     public void registerCategories(IRecipeCategoryRegistration registry) {
@@ -82,20 +35,20 @@ public class ModJEI implements IModPlugin {
         //
         //  In-World
         //
-        registry.addRecipeCategories(new FlakeRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new GallagherRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new BladeRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new AxeRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new ShovelRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new HoeRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new FlakeRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new GallagherRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new BladeRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new AxeRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new ShovelRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new HoeRecipeCategory(guiHelper));
 
         //
         //  Tiles
         //
-        registry.addRecipeCategories(new DryingRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new HibachiRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new SmelterRecipeCategory(guiHelper));
-        registry.addRecipeCategories(new CauldronRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new DryingRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new HibachiRecipeCategory(guiHelper));
+        //registry.addRecipeCategories(new SmelterRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
     }
 
     @Override
@@ -104,15 +57,15 @@ public class ModJEI implements IModPlugin {
         guiHelper = jeiHelper.getGuiHelper();
         craftingGridHelper = guiHelper.createCraftingGridHelper(craftInputSlot1, craftOutputSlot);
 
-        this.buildToolLists();
+        //this.buildToolLists();
 
         //
         //  Crafting Tables
         //
         //registry.handleRecipes(TableRecipe.class, new TableRecipeHandler(), VanillaRecipeCategoryUid.CRAFTING);
-        registry.getRecipeTransferRegistry().addRecipeTransferHandler(new CraftingTableTransfer());
-        registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.WORKTABLE_SHELF, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
-        registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.WORKTABLE_SLAB, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
+        //registry.getRecipeTransferRegistry().addRecipeTransferHandler(new CraftingTableTransfer());
+        //registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.WORKTABLE_SHELF, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
+        //registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.WORKTABLE_SLAB, 1, OreDictionary.WILDCARD_VALUE), VanillaRecipeCategoryUid.CRAFTING);
 
         // ***************************************************************************** //
         //  Tile Recipes
@@ -120,40 +73,40 @@ public class ModJEI implements IModPlugin {
         //
         //  Drying Racks
         //
-        registry.handleRecipes(DryingRecipe.class, new DryingRecipeHandler(), DryingRecipeCategory.CATEGORY);
-        registry.addRecipes(DryingRecipeChecker.getRecipes(), DryingRecipeCategory.CATEGORY);
+        //registry.handleRecipes(DryingRecipe.class, new DryingRecipeHandler(), DryingRecipeCategory.CATEGORY);
+        //registry.addRecipes(DryingRecipeChecker.getRecipes(), DryingRecipeCategory.CATEGORY);
         // TODO: report to JEI? wildcard does not work for the tab icon
         //registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.DRYING_RACK, 1, OreDictionary.WILDCARD_VALUE), DryingRecipeCategory.CATEGORY);
-        for (ITypeWood.EnumType type : ITypeWood.EnumType.values())
-            registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.DRYING_RACK, 1, type.getMetadata()), DryingRecipeCategory.CATEGORY);
+        //for (ITypeWood.EnumType type : ITypeWood.EnumType.values())
+        //    registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.DRYING_RACK, 1, type.getMetadata()), DryingRecipeCategory.CATEGORY);
 
         //
         //  Hibachi
         //
-        registry.handleRecipes(HibachiRecipe.class, new HibachiRecipeHandler(), HibachiRecipeCategory.CATEGORY);
-        registry.addRecipes(HibachiRecipeChecker.getRecipes(), HibachiRecipeCategory.CATEGORY);
-        for (ITypeMud.EnumType type : ITypeMud.EnumType.values())
-            registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.HIBACHI, 1, type.getMetadata()), HibachiRecipeCategory.CATEGORY);
+        //registry.handleRecipes(HibachiRecipe.class, new HibachiRecipeHandler(), HibachiRecipeCategory.CATEGORY);
+        //registry.addRecipes(HibachiRecipeChecker.getRecipes(), HibachiRecipeCategory.CATEGORY);
+        //for (ITypeMud.EnumType type : ITypeMud.EnumType.values())
+        //    registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.HIBACHI, 1, type.getMetadata()), HibachiRecipeCategory.CATEGORY);
 
         //
         //  Smelter
         //
-        registry.handleRecipes(SmelterRecipe.class, new SmelterRecipeHandler(), SmelterRecipeCategory.CATEGORY);
-        registry.addRecipes(SmelterRecipeChecker.getRecipes(), SmelterRecipeCategory.CATEGORY);
-        for (ITypeMud.EnumType type : ITypeMud.EnumType.values()) {
-            ItemStack stack = new ItemStack(PrimalAPI.Blocks.SMELTER, 1, type.getMetadata());
-            NBTTagCompound nbt = new NBTTagCompound();
-            stack.setTagInfo("BlockEntityTag", nbt);
-            nbt.setBoolean("covered", true);
-            registry.addRecipeCatalyst(stack, SmelterRecipeCategory.CATEGORY);
-        }
+        //registry.handleRecipes(SmelterRecipe.class, new SmelterRecipeHandler(), SmelterRecipeCategory.CATEGORY);
+        //registry.addRecipes(SmelterRecipeChecker.getRecipes(), SmelterRecipeCategory.CATEGORY);
+        //for (ITypeMud.EnumType type : ITypeMud.EnumType.values()) {
+        //    ItemStack stack = new ItemStack(PrimalAPI.Blocks.SMELTER, 1, type.getMetadata());
+        //    NBTTagCompound nbt = new NBTTagCompound();
+        //    stack.setTagInfo("BlockEntityTag", nbt);
+        //    nbt.setBoolean("covered", true);
+        //     registry.addRecipeCatalyst(stack, SmelterRecipeCategory.CATEGORY);
+        //}
 
         //
         //  Cauldron
         //
-        registry.handleRecipes(CauldronRecipe.class, new CauldronRecipeHandler(), CauldronRecipeCategory.CATEGORY);
-        registry.addRecipes(CauldronRecipeChecker.getRecipes(), CauldronRecipeCategory.CATEGORY);
-        registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.CAULDRON), CauldronRecipeCategory.CATEGORY);
+        registry.handleRecipes(CrucibleCrafting.class, new CrucibleRecipeHandler(), CrucibleRecipeCategory.CATEGORY);
+        registry.addRecipes(CrucibleRecipeChecker.getRecipes(), CrucibleRecipeCategory.CATEGORY);
+        //registry.addRecipeCatalyst(new ItemStack(PrimalAPI.Blocks.CAULDRON), CrucibleRecipeCategory.CATEGORY);
 
         // ***************************************************************************** //
         //  In-World Tools
@@ -161,7 +114,7 @@ public class ModJEI implements IModPlugin {
         //
         //  Flaking
         //
-        registry.handleRecipes(FlakeRecipe.class, new FlakeRecipeHandler(), FlakeRecipeCategory.CATEGORY);
+        /*registry.handleRecipes(FlakeRecipe.class, new FlakeRecipeHandler(), FlakeRecipeCategory.CATEGORY);
         registry.addRecipes(FlakeRecipeChecker.getRecipes(), FlakeRecipeCategory.CATEGORY);
         registry.addRecipeCatalyst(new ItemStack(Blocks.STONE), FlakeRecipeCategory.CATEGORY);
 
@@ -204,10 +157,11 @@ public class ModJEI implements IModPlugin {
         registry.addRecipes(HoeRecipeChecker.getRecipes(), HoeRecipeCategory.CATEGORY);
         for (ItemStack stack : hoes)
             registry.addRecipeCatalyst(stack, HoeRecipeCategory.CATEGORY);
-
+*/
         // ***************************************************************************** //
         //  Info
         // ***************************************************************************** //
+        /*
         registry.addIngredientInfo(new ItemStack(PrimalAPI.Blocks.FISH_TRAP, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.primal.fish_trap");
         registry.addIngredientInfo(new ItemStack(PrimalAPI.Blocks.DRYING_RACK, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.primal.drying_rack");
         registry.addIngredientInfo(new ItemStack(PrimalAPI.Blocks.HIBACHI, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.primal.hibachi");
@@ -246,10 +200,11 @@ public class ModJEI implements IModPlugin {
         //registry.addIngredientInfo(new ItemStack(PrimalAPI.Blocks.NETHER_GROWTH),ItemStack.class,"jei.info.primal.nethergrowth");
 
         registry.addIngredientInfo(new ItemStack(PrimalAPI.Items.DIRT_STICK), ItemStack.class, "jei.info.primal.debug_dirt_stick");
-
-        this.cleanLists();
+        */
+        //this.cleanLists();
     }
 
+    /*
     private void buildToolLists() {
         for (Item item : ForgeRegistries.ITEMS.getValuesCollection()) {
             if (item != null) {
@@ -281,4 +236,5 @@ public class ModJEI implements IModPlugin {
         blades.clear();
         gallaghers.clear();
     }
+    */
 }
