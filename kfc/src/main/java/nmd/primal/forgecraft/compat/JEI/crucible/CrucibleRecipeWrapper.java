@@ -5,10 +5,13 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 
 import javax.annotation.Nonnull;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,8 +35,9 @@ public class CrucibleRecipeWrapper implements IRecipeWrapper
     protected Ingredient ing3;
     protected Ingredient ing4;
 
-    protected List crucibleCrafting;
+    protected List<Ingredient> ingredientList;
 
+    protected List crucibleCrafting;
 
     public CrucibleRecipeWrapper(CrucibleCrafting recipe)
     {
@@ -51,6 +55,7 @@ public class CrucibleRecipeWrapper implements IRecipeWrapper
         this.ing3 = recipe.getIng3();
         this.ing4 = recipe.getIng4();
 
+        this.ingredientList = recipe.getIngredientList();
         this.crucibleCrafting = recipe.getIngredientList();
     }
 
@@ -66,10 +71,17 @@ public class CrucibleRecipeWrapper implements IRecipeWrapper
         ingredients.setOutput(ItemStack.class, this.dropsCooked);
     }
 
+    public List<ItemStack> getIngredient(int a){
+
+        ItemStack[] tempArray = this.ingredientList.get(a).getMatchingStacks();
+        List<ItemStack> stackList = Arrays.asList(tempArray);
+        return stackList;
+    }
+
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
-        minecraft.fontRenderer.drawString(String.valueOf(cookTime), 80, 48, Color.gray.getRGB());
-        minecraft.fontRenderer.drawString(String.valueOf(cookTemp), 80, 38, Color.gray.getRGB());
+        minecraft.fontRenderer.drawString(String.valueOf("Cook time: " + cookTime), 60, 50, Color.red.getRGB());
+        minecraft.fontRenderer.drawString(String.valueOf("Cook temp: " + cookTemp), 60, 10, Color.green.getRGB());
     }
 }

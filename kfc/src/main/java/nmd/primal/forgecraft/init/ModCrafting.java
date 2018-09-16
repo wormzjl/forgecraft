@@ -25,7 +25,7 @@ public class ModCrafting{
 
         Random rand = new Random();
 
-        RecipeHandler.addSmelting(ModItems.softcrucible, new ItemStack(ModBlocks.nbtCrucible, 1));
+        //RecipeHandler.addSmelting(ModItems.softcrucible, new ItemStack(ModBlocks.nbtCrucible, 1));
 
         /***********************/
         /***CRUCIBLE CRAFTING***/

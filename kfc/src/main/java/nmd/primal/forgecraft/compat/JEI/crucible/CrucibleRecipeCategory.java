@@ -1,10 +1,13 @@
 package nmd.primal.forgecraft.compat.JEI.crucible;
 
+import crafttweaker.api.item.IngredientAny;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import nmd.primal.core.common.compat.jei.AbstractCategory;
 import nmd.primal.core.common.helper.CommonUtils;
@@ -65,6 +68,7 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
         //IGuiFluidStackGroup fluids = layout.getFluidStacks();
         IGuiItemStackGroup items = layout.getItemStacks();
 
+
         //  input fluid
         //fluids.init(0, true, 6, 8, 13, 48, 4000, true, null);
         //fluids.set(ingredients);
@@ -76,12 +80,18 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
         //}
 
         //  input items
-        items.init(0, true, 31, 18);
-        items.init(1, true, 50, 18);
-        items.init(2, true, 31, 37);
-        items.init(3, true, 50, 37);
+        items.init(0, true, 0, 18);
+        items.init(1, true, 10, 18);
+        items.init(2, true, 20, 18);
+        items.init(3, true, 30, 18);
+        items.init(4, true, 50, 18);
 
-        //items.set(0, recipe.item_input_1);
+
+        items.set(0, recipe.getIngredient(0));
+        items.set(1, recipe.getIngredient(1));
+        items.set(2, recipe.getIngredient(2));
+        items.set(3, recipe.getIngredient(3));
+        items.set(4, recipe.getIngredient(4));
         //items.set(1, recipe.item_input_2);
         //items.set(2, recipe.item_input_3);
         //items.set(3, recipe.item_input_4);
