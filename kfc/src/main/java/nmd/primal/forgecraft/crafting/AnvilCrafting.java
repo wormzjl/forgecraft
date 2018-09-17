@@ -14,6 +14,10 @@ public class AnvilCrafting {
     //  Recipe Handler AnvilCrafting
     // ***************************************************************************** //
 
+    public static ArrayList<AnvilCrafting> getAnvilRecipes() {
+        return anvilRecipes;
+    }
+
     private static ArrayList<AnvilCrafting> anvilRecipes = new ArrayList<>();
 
     private String[] input = new String[25];

@@ -6,9 +6,13 @@ import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
+import nmd.primal.forgecraft.compat.JEI.anvil.AnvilRecipeCategory;
+import nmd.primal.forgecraft.compat.JEI.anvil.AnvilRecipeChecker;
+import nmd.primal.forgecraft.compat.JEI.anvil.AnvilRecipeHandler;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeCategory;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeChecker;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeHandler;
+import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 
@@ -37,6 +41,7 @@ public class ModJEI implements IModPlugin
         //  Recipe Categories
         //
         registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
+        registry.addRecipeCategories(new AnvilRecipeCategory(guiHelper));
     }
 
     @Override
@@ -49,11 +54,20 @@ public class ModJEI implements IModPlugin
         //  Recipes
         // ***************************************************************************** //
         //
-        //  Cauldron
+        //  Crucible
         //
         registry.handleRecipes(CrucibleCrafting.class, new CrucibleRecipeHandler(), CrucibleRecipeCategory.CATEGORY);
         registry.addRecipes(CrucibleRecipeChecker.getRecipes(), CrucibleRecipeCategory.CATEGORY);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.nbtCrucible), CrucibleRecipeCategory.CATEGORY);
+        //
+        //  Anvil
+        //
+        registry.handleRecipes(AnvilCrafting.class, new AnvilRecipeHandler(), AnvilRecipeCategory.CATEGORY);
+        registry.addRecipes(AnvilRecipeChecker.getRecipes(), AnvilRecipeCategory.CATEGORY);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.stoneanvil), AnvilRecipeCategory.CATEGORY);
+
+
+
 
         // ***************************************************************************** //
         //  Info
@@ -61,5 +75,7 @@ public class ModJEI implements IModPlugin
         registry.addIngredientInfo(ItemStack.EMPTY, ItemStack.class, "jei.info.forgecraft.crucible");
         registry.addIngredientInfo(new ItemStack(ModBlocks.nbtCrucible, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.crucible");
         registry.addIngredientInfo(new OreIngredient("oreIron"), OreIngredient.class, "jei.info.forgecraft.oreiron");
+
+        registry.addIngredientInfo(new ItemStack(ModBlocks.stoneanvil, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.anvil");
     }
 }

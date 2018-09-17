@@ -10,8 +10,8 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;
+
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
