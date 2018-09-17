@@ -126,3 +126,5 @@ forgecraft.config.title=ForgeCraft Config
 
 forgecraft.compatibility=Compatibility
 forgecraft.compatibility.tooltip=Compatibility Features
+
+jei.category.forgecraft.crucible=Crucible Crafting

@@ -1,17 +1,16 @@
 package nmd.primal.forgecraft.compat.JEI.crucible;
 
-import crafttweaker.api.item.IngredientAny;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.*;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.ResourceLocation;
 import nmd.primal.core.common.compat.jei.AbstractCategory;
 import nmd.primal.core.common.helper.CommonUtils;
-import nmd.primal.core.common.init.ModInfo;
+import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;
 
@@ -22,17 +21,13 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
 {
     public static String CATEGORY = CommonUtils.prefix("crucible");
 
-    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/cauldron.png");
-    private static ResourceLocation gui_progress = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/cauldron_progress.png");
+    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/crucible.png");
     private final IDrawable background;
-    private final IDrawableAnimated progress;
 
     public CrucibleRecipeCategory(IGuiHelper guiHelper)
     {
-        background = guiHelper.createDrawable(gui_background, 0, 0, 160, 60, 0, 0, 0, 0);
-
-        IDrawableStatic progressDrawable = guiHelper.createDrawable(gui_progress, -14, -1, 24, 52);
-        progress = guiHelper.createAnimatedDrawable(progressDrawable, 200, IDrawableAnimated.StartDirection.BOTTOM, false);
+        //background = guiHelper.createDrawable(gui_background, 0, 0, 134, 144, 0, 0, 0, 0);
+        background = guiHelper.createDrawable(gui_background, 0,0,160,134);
     }
 
     @Nonnull
@@ -59,55 +54,40 @@ public class CrucibleRecipeCategory extends AbstractCategory<CrucibleRecipeWrapp
     @Override
     public void drawExtras(@Nonnull Minecraft minecraft)
     {
-        progress.draw(minecraft, 67, 18);
+        //progress.draw(minecraft, 67, 18);
     }
 
     @Override
     public void setRecipe(IRecipeLayout layout, CrucibleRecipeWrapper recipe, IIngredients ingredients)
     {
-        //IGuiFluidStackGroup fluids = layout.getFluidStacks();
         IGuiItemStackGroup items = layout.getItemStacks();
 
-
-        //  input fluid
-        //fluids.init(0, true, 6, 8, 13, 48, 4000, true, null);
-        //fluids.set(ingredients);
-
-        //  output_items fluid
-        //if (recipe.output_fluid != null) {
-        //fluids.init(1, false, 135, 8, 13, 48, 4000, true, null);
-        //fluids.set(ingredients);
-        //}
-
-        //  input items
-        items.init(0, true, 0, 18);
-        items.init(1, true, 10, 18);
-        items.init(2, true, 20, 18);
-        items.init(3, true, 30, 18);
-        items.init(4, true, 50, 18);
+        /***INPUTS***/
+        items.init(0, true, 1, 77);
+        items.init(1, true, 1, 58);
+        items.init(2, true, 1, 39);
+        items.init(3, true, 1, 20);
+        items.init(4, true, 1, 1);
 
 
+        //items.set(0, recipe.getIngredient(0));
         items.set(0, recipe.getIngredient(0));
         items.set(1, recipe.getIngredient(1));
         items.set(2, recipe.getIngredient(2));
         items.set(3, recipe.getIngredient(3));
         items.set(4, recipe.getIngredient(4));
-        //items.set(1, recipe.item_input_2);
-        //items.set(2, recipe.item_input_3);
-        //items.set(3, recipe.item_input_4);
 
-        //items.set(0, RecipeHelper.getSlotList(recipe.input_slots, 0));
-        //items.set(1, RecipeHelper.getSlotList(recipe.input_slots, 1));
-        //items.set(2, RecipeHelper.getSlotList(recipe.input_slots, 2));
-        //items.set(3, RecipeHelper.getSlotList(recipe.input_slots, 3));
+        /***OUTPUTS***/
+        items.init(5, false, 115, 96);
+        items.set(5, recipe.dropsCooked);
 
-        //  output_items items
-        //if (recipe.output_items != null) {
-        items.init(4, false, 104, 18);
-        items.set(ingredients);
+        /***EXTRAS***/
+        items.init(6, false, 1, 96);
+        ItemStack crucibleStack = new ItemStack(ModBlocks.nbtCrucible, 1, 0);
+        items.set(6, crucibleStack);
 
-        items.init(5, false, 104, 37);
-        items.set(ingredients);
-        //}
+        items.init(7, false, 58, 96);
+        ItemStack bloomeryStack = new ItemStack(ModBlocks.bloomery_brick, 1, 0);
+        items.set(7, bloomeryStack);
     }
 }

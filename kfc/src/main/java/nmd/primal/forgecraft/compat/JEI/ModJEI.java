@@ -5,6 +5,7 @@ import mezz.jei.api.gui.ICraftingGridHelper;
 import mezz.jei.api.recipe.IRecipeCategoryRegistration;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeCategory;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeChecker;
 import nmd.primal.forgecraft.compat.JEI.crucible.CrucibleRecipeHandler;
@@ -57,6 +58,8 @@ public class ModJEI implements IModPlugin
         // ***************************************************************************** //
         //  Info
         // ***************************************************************************** //
-        //egistry.addIngredientInfo(new ItemStack(ModBlocks.nbtCrucible, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.crucible");
+        registry.addIngredientInfo(ItemStack.EMPTY, ItemStack.class, "jei.info.forgecraft.crucible");
+        registry.addIngredientInfo(new ItemStack(ModBlocks.nbtCrucible, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.crucible");
+        registry.addIngredientInfo(new OreIngredient("oreIron"), OreIngredient.class, "jei.info.forgecraft.oreiron");
     }
 }

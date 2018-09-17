@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.init;
 
+import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -69,11 +70,11 @@ public class ModCrafting{
                 1000);
 
         CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
                 new OreIngredient("dustMagnetite"),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
                 new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
                 100,
@@ -81,11 +82,11 @@ public class ModCrafting{
                 1000);
 
         CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, 15)),
                 new OreIngredient("magnetite"),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
                 new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
                 100,
