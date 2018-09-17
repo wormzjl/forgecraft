@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.compat.JEI.anvil;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
+import net.minecraft.client.Minecraft;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
@@ -12,6 +13,8 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
+import javax.annotation.Nonnull;
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class AnvilRecipeWrapper implements IRecipeWrapper {
 
     protected final AnvilCrafting recipe;
 
-    protected String[] input;
+    protected ItemStack[] input;
     protected String upgradeType;
     protected ItemStack output;
 
@@ -39,21 +42,22 @@ public class AnvilRecipeWrapper implements IRecipeWrapper {
     @Override
     public void getIngredients(IIngredients ingredients) {
 
-        for(int i =0; i < input.length; i++){
-            ResourceLocation name = new ResourceLocation(input[i]);
-            ingredients.setInput(ItemStack.class, ForgeRegistries.ITEMS.getValue(name));
+        for(int i =0; i < 25; i++){
+            //if(this.input[i] != new ItemStack(Items.AIR, 1) {
+                ingredients.setInput(ItemStack.class, this.input[i]);
+            //}
         }
+        ingredients.setOutput(ItemStack.class, this.output);
     }
 
-    public Item getIngredient(int a){
+    public ItemStack getIngredient(int a){
+        return input[a];
+    }
 
-        Item[] tempArray = new Item[25];
-        for(int i =0; i < input.length; i++){
-            ResourceLocation name = new ResourceLocation(input[i]);
-            tempArray[i] = ForgeRegistries.ITEMS.getValue(name);
-        }
-        List<Item> stackList = Arrays.asList(tempArray);
-        return stackList.get(a);
+    @Override
+    public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
+    {
+        //minecraft.fontRenderer.drawString(recipe.getDropsCooked().getDisplayName() + " Recipe", 20, 5, Color.black.getRGB());
     }
 
 }

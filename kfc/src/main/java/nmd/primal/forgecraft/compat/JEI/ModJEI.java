@@ -72,9 +72,9 @@ public class ModJEI implements IModPlugin
         // ***************************************************************************** //
         //  Info
         // ***************************************************************************** //
-        registry.addIngredientInfo(ItemStack.EMPTY, ItemStack.class, "jei.info.forgecraft.crucible");
+        //registry.addIngredientInfo(ItemStack.EMPTY, ItemStack.class, "jei.info.forgecraft.crucible");
         registry.addIngredientInfo(new ItemStack(ModBlocks.nbtCrucible, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.crucible");
-        registry.addIngredientInfo(new OreIngredient("oreIron"), OreIngredient.class, "jei.info.forgecraft.oreiron");
+        //registry.addIngredientInfo(new OreIngredient("oreIron"), OreIngredient.class, "jei.info.forgecraft.oreiron");
 
         registry.addIngredientInfo(new ItemStack(ModBlocks.stoneanvil, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.anvil");
     }

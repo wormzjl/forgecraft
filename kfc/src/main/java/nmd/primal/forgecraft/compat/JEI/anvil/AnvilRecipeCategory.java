@@ -13,6 +13,7 @@ import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.compat.JEI.AbstractCategory;
 import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
 
 import javax.annotation.Nonnull;
 
@@ -23,13 +24,13 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
 {
     public static String CATEGORY = CommonUtils.prefix("anvil");
 
-    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/crucible.png");
+    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/anvil.png");
     private final IDrawable background;
 
     public AnvilRecipeCategory(IGuiHelper guiHelper)
     {
         //background = guiHelper.createDrawable(gui_background, 0, 0, 134, 144, 0, 0, 0, 0);
-        background = guiHelper.createDrawable(gui_background, 0,0,160,134);
+        background = guiHelper.createDrawable(gui_background, 0,0,160,96);
     }
 
     @Nonnull
@@ -98,17 +99,17 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
         //items.set(0, recipe.getIngredient(0));
 
         for(int i =0; i < 25; i++){
-            items.set(i, new ItemStack(recipe.getIngredient(i), 1));
+            items.set(i, recipe.getIngredient(i));
         }
 
         /***OUTPUTS***/
-        items.init(25, false, 115, 96);
+        items.init(25, false, 133, 40);
         items.set(25, recipe.output);
 
         /***EXTRAS***/
-        //items.init(6, false, 1, 96);
-        //ItemStack crucibleStack = new ItemStack(ModBlocks.nbtCrucible, 1, 0);
-        //items.set(6, crucibleStack);
+        items.init(26, false, 105, 28);
+        ItemStack hammerStack = new ItemStack(ModItems.forgehammer, 1);
+        items.set(26, hammerStack);
 
         //items.init(7, false, 58, 96);
         //ItemStack bloomeryStack = new ItemStack(ModBlocks.bloomery_brick, 1, 0);

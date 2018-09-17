@@ -3,6 +3,7 @@ package nmd.primal.forgecraft.blocks.Anvil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -108,21 +109,10 @@ public class AnvilStone extends AnvilBase {
                     }
                 }
                 if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
-                    String[] tempArray = new String[25];
+                    ItemStack[] tempArray = new ItemStack[25];
                     for (int i = 0; i < 25; i++) {
-                        tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
+                        tempArray[i] = tile.getSlotStack(i);
                     }
-                /*for (int i = 0; i < 25; i++) {
-                    if (tile.getSlotStack(i).getItem() instanceof BaseMultiItem) {
-                        if (((BaseMultiItem) tile.getSlotStack(i).getItem()).getMaterial(tile.getSlotStack(i).getItem()) != PrimalMaterials.TOOL_WROUGHT_IRON) {
-                            world.setBlockState(pos, Blocks.AIR.getDefaultState(), 2);
-                            CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(PrimalItems.ROCK_STONE, 3));
-                            CommonUtils.spawnItemEntityFromWorld(world, pos, new ItemStack(ModBlocks.ironball, 1));
-                            this.breakBlock(world, pos, state);
-                            return true;
-                        }
-                    }
-                }*/
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }

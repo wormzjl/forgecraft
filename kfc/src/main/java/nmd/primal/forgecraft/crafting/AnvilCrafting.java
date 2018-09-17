@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.crafting;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -20,13 +21,13 @@ public class AnvilCrafting {
 
     private static ArrayList<AnvilCrafting> anvilRecipes = new ArrayList<>();
 
-    private String[] input = new String[25];
+    private ItemStack[] input = new ItemStack[25];
 
     private String upgradeType;
 
     private ItemStack output;
 
-    public AnvilCrafting(String[] input, ItemStack output, String upgrade){
+    public AnvilCrafting(ItemStack[] input, ItemStack output, String upgrade){
 
         this.input = input;
         this.output = output;
@@ -38,33 +39,47 @@ public class AnvilCrafting {
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(String[] input, ItemStack output, String upgrade)
+    public static void addRecipe(ItemStack[] input, ItemStack output, String upgrade)
     {
         anvilRecipes.add(new AnvilCrafting(input, output, upgrade));
     }
 
-    public static boolean isRecipe(String[] array)
+    public static boolean isRecipe(ItemStack[] array)
     {
         for(AnvilCrafting recipe : anvilRecipes) {
             if (Arrays.equals(array, recipe.input))
-
                 return true;
         }
         return false;
     }
 
-    public static AnvilCrafting getRecipe(String[] array)
+    public static AnvilCrafting getRecipe(ItemStack[] array)
     {
         for(AnvilCrafting recipe : anvilRecipes) {
-            if (Arrays.equals(array, recipe.input))
+            if(checkArrays(recipe.getInput(), array)){
                 return recipe;
+            }
         }
         return null;
     }
 
-    public String[] getInput() {return this.input;}
+    public static boolean checkArrays (ItemStack[] leftArray, ItemStack[] rightArray){
+        int a =0;
+        for(int i=0; i<leftArray.length; i++){
+            if( (leftArray[i].isEmpty() && rightArray[i].isEmpty()) ||
+                    ((leftArray[i].isItemEqualIgnoreDurability(rightArray[i]))) ) {
+                a++;
+            }
+            if(a == 25){
+                return true;
+            }
+        }
+        return false;
+    }
 
-    public ItemStack getOutput() {return this.output;}
+    public ItemStack[] getInput() {return this.input;}
+
+    public ItemStack getOutput() {return this.output.copy();}
 
     public String getUpgrade() {return this.upgradeType; }
 

@@ -5,6 +5,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -54,7 +55,7 @@ public interface AnvilHandler {
         return reverseMax[x];
     }
 
-    default boolean doAnvilRecipe(ItemStack pItem, String[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
+    default boolean doAnvilRecipe(ItemStack pItem, ItemStack[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
             if (pItem.getItem() instanceof Gallagher) {
