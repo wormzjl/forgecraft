@@ -19,13 +19,18 @@ public class CastingCrafting {
 
     private Item[] input = new Item[25];
 
+    public String getUpgradeType() {
+        return upgradeType;
+    }
+
+    private String upgradeType;
     private ItemStack output;
 
     public CastingCrafting(Item[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
-
+        //this.upgradeType = upgrade;
     }
 
     // ***************************************************************************** //

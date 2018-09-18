@@ -7,18 +7,31 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.inventory.ItemStackHelper;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
+import nmd.primal.forgecraft.crafting.CastingCrafting;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.init.ModBlocks;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.parts.BronzeToolPart;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 
@@ -47,8 +60,35 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
         if (!world.isRemote) {
             TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
-            doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
-
+            if(pItem.getItem() != ModItems.slottedtongs) {
+                doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
+            }
+            if(pItem.getItem().equals(ModItems.slottedtongs)){
+                SlottedTongs tongs = (SlottedTongs) pItem.getItem();
+                if(tongs.getSlotList().get(0).getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
+                    ItemStack tongsStack = tongs.getSlotList().get(0).copy();
+                    NBTTagCompound tag = tongsStack.getSubCompound("BlockEntityTag").copy();
+                    if(tag != null){
+                        NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                        ItemStackHelper.loadAllItems(tag, ingList);
+                        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                        if(recipe != null){
+                            if(tag.getBoolean("status") && tag.getInteger("hot") == 15){
+                                Item[] tempArray = new Item[25];
+                                for(int i=0; i<25; i++){
+                                    tempArray[i] = tile.getSlotStack(i).getItem();
+                                }
+                                CastingCrafting casting = CastingCrafting.getRecipe(tempArray);
+                                if(casting != null){
+                                    CommonUtils.spawnItemEntityFromWorld(world, pos, casting.getOutput());
+                                    return true;
+                                }
+                            }
+                            return true;
+                        }
+                    }
+                }
+            }
             return false;
         }
         return false;

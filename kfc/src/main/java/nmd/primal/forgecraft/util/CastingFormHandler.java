@@ -189,12 +189,11 @@ public interface CastingFormHandler {
         return false;
     }
 
-    default void doCraftingformCrafting(Item[] tempArray, World world, TileCastingForm tile, BlockPos pos){
+    default void doCastingCrafting(Item[] tempArray, World world, TileCastingForm tile, BlockPos pos){
         CastingCrafting recipe = CastingCrafting.getRecipe(tempArray);
         if (recipe != null) {
             CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
         }
-        //world.playEvent(1031, pos, 0);
         for (int i = 0; i < tile.getSlotListSize(); i++) {
             if (!tile.getSlotStack(i).isEmpty()) {
                 tile.setSlotStack(i, ItemStack.EMPTY);
