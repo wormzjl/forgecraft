@@ -14,23 +14,16 @@ public class CastingCrafting {
     // ***************************************************************************** //
     //  Recipe Handler AnvilCrafting
     // ***************************************************************************** //
-
     private static ArrayList<CastingCrafting> castingRecipes = new ArrayList<>();
 
     private Item[] input = new Item[25];
-
-    public String getUpgradeType() {
-        return upgradeType;
-    }
-
-    private String upgradeType;
     private ItemStack output;
+
 
     public CastingCrafting(Item[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
-        //this.upgradeType = upgrade;
     }
 
     // ***************************************************************************** //
@@ -40,6 +33,10 @@ public class CastingCrafting {
     public static void addRecipe(Item[] input, ItemStack output)
     {
         castingRecipes.add(new CastingCrafting(input, output));
+    }
+
+    public static ArrayList<CastingCrafting> getCastingRecipes() {
+        return castingRecipes;
     }
 
     public static boolean isRecipe(Item[] array)

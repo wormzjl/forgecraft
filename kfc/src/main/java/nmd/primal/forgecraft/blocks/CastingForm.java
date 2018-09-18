@@ -67,13 +67,15 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                 SlottedTongs tongs = (SlottedTongs) pItem.getItem();
                 if(tongs.getSlotList().get(0).getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
                     ItemStack tongsStack = tongs.getSlotList().get(0).copy();
-                    NBTTagCompound tag = tongsStack.getSubCompound("BlockEntityTag").copy();
+                    NBTTagCompound tag = tongsStack.getTagCompound().copy();
                     if(tag != null){
                         NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
-                        ItemStackHelper.loadAllItems(tag, ingList);
+                        NonNullList<ItemStack> ingListEmpty = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                        ItemStackHelper.loadAllItems(tag.getCompoundTag("BlockEntityTag"), ingList);
+                        //getSubCompound("BlockEntityTag")
                         CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                         if(recipe != null){
-                            if(tag.getBoolean("status") && tag.getInteger("hot") == 15){
+                            if(tag.getCompoundTag("BlockEntityTag").getBoolean("status") && tag.getCompoundTag("BlockEntityTag").getInteger("hot") == 15){
                                 Item[] tempArray = new Item[25];
                                 for(int i=0; i<25; i++){
                                     tempArray[i] = tile.getSlotStack(i).getItem();
@@ -81,10 +83,13 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                 CastingCrafting casting = CastingCrafting.getRecipe(tempArray);
                                 if(casting != null){
                                     CommonUtils.spawnItemEntityFromWorld(world, pos, casting.getOutput());
+                                    tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
+                                    tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
+                                    ItemStackHelper.loadAllItems(tag, ingListEmpty);
+                                    tongs.getSlotList().get(0).setTagCompound(tag);
                                     return true;
                                 }
                             }
-                            return true;
                         }
                     }
                 }

@@ -59,7 +59,8 @@
     {"predicate": {"type": 0.43},"model": "forgecraft:item/slottedtongs/slottedtongs_43"},
     {"predicate": {"type": 0.44},"model": "forgecraft:item/slottedtongs/slottedtongs_44"},
     {"predicate": {"type": 0.45},"model": "forgecraft:item/slottedtongs/slottedtongs_45"},
-    {"predicate": {"type": 0.46},"model": "forgecraft:item/slottedtongs/slottedtongs_46"}
+    {"predicate": {"type": 0.46},"model": "forgecraft:item/slottedtongs/slottedtongs_46"},
+    {"predicate": {"type": 0.99},"model": "forgecraft:item/slottedtongs/slottedtongs_99"}
   ]
 }
 

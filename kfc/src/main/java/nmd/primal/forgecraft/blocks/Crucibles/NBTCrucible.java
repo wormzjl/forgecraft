@@ -108,6 +108,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                                 tile.setHot(0);
                                 tile.setStatus(false);
+                                //tile.setDrops(ItemStack.EMPTY);
                                 tile.update();
                                 tile.markDirty();
                                 return true;
@@ -123,6 +124,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.setHot(0);
                             tile.setStatus(false);
+                            //tile.setDrops(ItemStack.EMPTY);
                             tile.update();
                             tile.markDirty();
                             return true;
