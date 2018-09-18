@@ -3,7 +3,6 @@ package nmd.primal.forgecraft.init;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -13,7 +12,7 @@ import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
-import nmd.primal.forgecraft.crafting.CastingformCrafting;
+import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
@@ -722,62 +721,62 @@ public class ModCrafting{
          CASTING
          ******************************************************************************/
 
-        String empty = ItemStack.EMPTY.getItem().getRegistryName().toString();
-        String muddd = ModItems.castingmud.getRegistryName().toString();
+        Item empty = Items.AIR;
+        Item muddd = ModItems.castingmud;
 
         //Casting Pickaxe
-        CastingformCrafting.addRecipe(
-                new String[] {
+        CastingCrafting.addRecipe(
+                new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         empty,muddd,muddd,muddd,empty,
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.cast_pickaxe, 1)
+                new ItemStack(ModItems.bronzepickaxehead, 1)
         );
 
         //Casting Shovel
-        CastingformCrafting.addRecipe(
-                new String[] {
+        CastingCrafting.addRecipe(
+                new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,muddd,empty,muddd },
-                new ItemStack(ModItems.cast_shovel, 1)
+                new ItemStack(ModItems.bronzeshovelhead, 1)
         );
 
         //Casting Axe
-        CastingformCrafting.addRecipe(
-                new String[] {
+        CastingCrafting.addRecipe(
+                new Item[] {
                         muddd,empty,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.cast_axe, 1)
+                new ItemStack(ModItems.bronzeaxehead, 1)
         );
 
         //Casting Hoe
-        CastingformCrafting.addRecipe(
-                new String[] {
+        CastingCrafting.addRecipe(
+                new Item[] {
                         muddd,muddd,muddd,empty,empty,
                         muddd,muddd,empty,muddd,muddd,
                         muddd,empty,muddd,muddd,muddd,
                         empty,muddd,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.cast_hoe, 1)
+                new ItemStack(ModItems.bronzehoehead, 1)
         );
 
         //Casting Gladius
-        CastingformCrafting.addRecipe(
-                new String[] {
+        CastingCrafting.addRecipe(
+                new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,empty,muddd,muddd,
                         muddd,muddd,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,muddd,empty,muddd,muddd },
-                new ItemStack(ModItems.cast_gladius, 1)
+                new ItemStack(ModItems.bronzegladius, 1)
         );
 
         /******************************************************************************

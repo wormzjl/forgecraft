@@ -2,13 +2,14 @@ package nmd.primal.forgecraft.util;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.CommonUtils;
-import nmd.primal.forgecraft.crafting.CastingformCrafting;
+import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 
@@ -188,8 +189,8 @@ public interface CastingFormHandler {
         return false;
     }
 
-    default void doCraftingformCrafting(String[] tempArray, World world, TileCastingForm tile, BlockPos pos){
-        CastingformCrafting recipe = CastingformCrafting.getRecipe(tempArray);
+    default void doCraftingformCrafting(Item[] tempArray, World world, TileCastingForm tile, BlockPos pos){
+        CastingCrafting recipe = CastingCrafting.getRecipe(tempArray);
         if (recipe != null) {
             CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
         }

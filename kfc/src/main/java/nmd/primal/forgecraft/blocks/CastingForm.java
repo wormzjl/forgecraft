@@ -54,22 +54,6 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
         return false;
     }
 
-
-    @Override
-    public void updateTick(World world, BlockPos pos, IBlockState state, Random random)
-    {
-        if (!world.isRemote) {
-            if(randomCheck(4)) {
-                TileCastingForm tile = (TileCastingForm) world.getTileEntity(pos);
-                String[] tempArray = new String[25];
-                for (int i = 0; i < 25; i++) {
-                    tempArray[i] = tile.getSlotStack(i).getItem().getRegistryName().toString();
-                }
-                doCraftingformCrafting(tempArray, world, tile, pos);
-            }
-        }
-    }
-
     @Override
     public void breakBlock(World world, BlockPos pos, IBlockState state)
     {

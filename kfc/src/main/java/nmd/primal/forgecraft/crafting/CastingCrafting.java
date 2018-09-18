@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.crafting;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 import java.util.ArrayList;
@@ -8,19 +9,19 @@ import java.util.Arrays;
 /**
  * Created by mminaie on 6/22/17.
  */
-public class CastingformCrafting {
+public class CastingCrafting {
 
     // ***************************************************************************** //
     //  Recipe Handler AnvilCrafting
     // ***************************************************************************** //
 
-    private static ArrayList<CastingformCrafting> castingRecipes = new ArrayList<>();
+    private static ArrayList<CastingCrafting> castingRecipes = new ArrayList<>();
 
-    private String[] input = new String[25];
+    private Item[] input = new Item[25];
 
     private ItemStack output;
 
-    public CastingformCrafting(String[] input, ItemStack output){
+    public CastingCrafting(Item[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
@@ -31,14 +32,14 @@ public class CastingformCrafting {
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(String[] input, ItemStack output)
+    public static void addRecipe(Item[] input, ItemStack output)
     {
-        castingRecipes.add(new CastingformCrafting(input, output));
+        castingRecipes.add(new CastingCrafting(input, output));
     }
 
-    public static boolean isRecipe(String[] array)
+    public static boolean isRecipe(Item[] array)
     {
-        for(CastingformCrafting recipe : castingRecipes) {
+        for(CastingCrafting recipe : castingRecipes) {
             if (Arrays.equals(array, recipe.input))
 
                 return true;
@@ -46,16 +47,16 @@ public class CastingformCrafting {
         return false;
     }
 
-    public static CastingformCrafting getRecipe(String[] array)
+    public static CastingCrafting getRecipe(Item[] array)
     {
-        for(CastingformCrafting recipe : castingRecipes) {
+        for(CastingCrafting recipe : castingRecipes) {
             if (Arrays.equals(array, recipe.input))
                 return recipe;
         }
         return null;
     }
 
-    public String[] getInput() {return this.input;}
+    public Item[] getInput() {return this.input;}
 
     public ItemStack getOutput() {return this.output;}
 
