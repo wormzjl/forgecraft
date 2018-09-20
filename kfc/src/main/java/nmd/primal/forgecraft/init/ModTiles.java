@@ -16,7 +16,6 @@ public class ModTiles {
         registerTileEntity(TileAnvil.class, "anvil");
         registerTileEntity(TileBreaker.class, "breaker");
         registerTileEntity(TileCastingForm.class, "castingform");
-        registerTileEntity(TileCastingBlock.class, "castingblock");
         registerTileEntity(TileNBTCrucible.class, "nbtcrucible");
     }
 

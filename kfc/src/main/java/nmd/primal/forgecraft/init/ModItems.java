@@ -12,7 +12,6 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
-import nmd.primal.forgecraft.items.casting.CastingPart;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
@@ -46,13 +45,6 @@ public class ModItems {
     public static Item steelchunk;
     public static Item wootzingotball;
     public static Item wootzchunk;
-
-    public static Item cast_axe;
-    public static Item cast_gladius;
-    public static Item cast_hoe;
-    public static Item cast_pickaxe;
-    public static Item cast_shovel;
-
 
     public static Item pickaxehead;
     public static Item ironaxehead;
@@ -157,16 +149,6 @@ public class ModItems {
         unstrunglongbow = new BaseItem("unstrunglongbow");
         longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
-
-
-        /**********
-         CASTING PARTS
-         **********/
-        cast_axe = new CastingPart("cast_axe");
-        cast_gladius = new CastingPart("cast_gladius");
-        cast_hoe = new CastingPart("cast_hoe");
-        cast_pickaxe = new CastingPart("cast_pickaxe");
-        cast_shovel = new CastingPart("cast_shovel");
 
         /**********
          TOOL PARTS
@@ -301,15 +283,6 @@ public class ModItems {
         //ForgeRegistries.ITEMS.register(test);
 
         /**********
-         CASTING PARTS
-         **********/
-        ForgeRegistries.ITEMS.register(cast_axe);
-        ForgeRegistries.ITEMS.register(cast_gladius);
-        ForgeRegistries.ITEMS.register(cast_hoe);
-        ForgeRegistries.ITEMS.register(cast_pickaxe);
-        ForgeRegistries.ITEMS.register(cast_shovel);
-
-        /**********
          TOOL PARTS
          **********/
         ForgeRegistries.ITEMS.register(bronzepickaxehead);
@@ -427,15 +400,6 @@ public class ModItems {
         registerRender(wootzchunk);
 
         //registerRender(test);
-
-        /**********
-         CASTING PARTS
-         **********/
-        registerRender(cast_axe);
-        registerRender(cast_gladius);
-        registerRender(cast_hoe);
-        registerRender(cast_pickaxe);
-        registerRender(cast_shovel);
 
         /**********
          TOOL PARTS

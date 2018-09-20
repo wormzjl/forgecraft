@@ -28,6 +28,7 @@ import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
@@ -149,9 +150,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     @Override
     public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
     {
-        System.out.println("Removed by player");
         this.onBlockHarvested(world, pos, state, player);
-        return this.takeBlock(world, pos, state, EnumFacing.UP, player);
+        return this.destroyBlock(world, pos, state, EnumFacing.UP, player);
     }
 
     public ItemStack getCrucibleItem(World world, BlockPos pos, IBlockState state, EntityPlayer player)
@@ -159,12 +159,14 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         return  NBTHelper.getStackBlockNBT(world, pos, state, super.getPickBlock(state, null, world, pos, player));
     }
 
-    public boolean takeBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
+    public boolean destroyBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
     {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileNBTCrucible) {
-                PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
+                //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
+                ItemStack dropStack = new ItemStack(ModBlocks.nbtCrucible, 1);
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                 return true;
             }

@@ -3,10 +3,12 @@ package nmd.primal.forgecraft.init;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
@@ -15,7 +17,9 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.util.ToolNBT;
 
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -28,9 +32,14 @@ public class ModCrafting{
         Random rand = new Random();
         ItemStack emptyAir = ItemStack.EMPTY;
 
+        NBTTagCompound newTag = new NBTTagCompound();
+
+
         NBTTagCompound setHot = new NBTTagCompound();
         setHot.setBoolean("hot",  true);
 
+        ItemStack hotBronzeIngot = new ItemStack(ModItems.bronzeingotball, 1);
+        hotBronzeIngot.setTagCompound(setHot);
         ItemStack hotIronIngot = new ItemStack(ModItems.ironingotball, 1);
         hotIronIngot.setTagCompound(setHot);
         ItemStack hotCleanIronIngot = new ItemStack(ModItems.ironcleaningotball, 1);
@@ -40,15 +49,14 @@ public class ModCrafting{
         ItemStack hotWootzIngot = new ItemStack(ModItems.wootzingotball, 1);
         hotWootzIngot.setTagCompound(setHot);
 
+        ItemStack hotBronzeChunk = new ItemStack( ModItems.bronzechunk, 1);
+        hotBronzeChunk.setTagCompound(setHot);
         ItemStack hotChunk = new ItemStack( ModItems.wroughtironchunk, 1);
         hotChunk.setTagCompound(setHot);
-
         ItemStack hotCleanChunk = new ItemStack(ModItems.ironcleanchunk, 1);
         hotCleanChunk.setTagCompound(setHot);
-
         ItemStack hotSteelChunk = new ItemStack(ModItems.steelchunk, 1);
         hotSteelChunk.setTagCompound(setHot);
-
         ItemStack hotWootzChunk = new ItemStack(ModItems.wootzchunk, 1);
         hotWootzChunk.setTagCompound(setHot);
 
@@ -60,61 +68,191 @@ public class ModCrafting{
         ItemStack redstone = new ItemStack(Items.REDSTONE, 1);
         ItemStack lapis = new ItemStack(Items.DYE, 1, 4);
 
+
+
+        ItemStack[] toolArray = new ItemStack[20];
+        ItemStack[] hotToolArray = new ItemStack[16];
+
+        ItemStack bronzepickaxehead = new ItemStack(ModItems.bronzepickaxehead, 1);
+        bronzepickaxehead.setTagCompound(newTag);
+        toolArray[0] = bronzepickaxehead;
+        ItemStack bronzeaxehead = new ItemStack(ModItems.bronzeaxehead, 1);
+        bronzeaxehead.setTagCompound(newTag);
+        toolArray[1] = bronzeaxehead;
+        ItemStack bronzeshovelhead = new ItemStack(ModItems.bronzeshovelhead, 1);
+        bronzeshovelhead.setTagCompound(newTag);
+        toolArray[2] = bronzeshovelhead;
+        ItemStack bronzehoehead = new ItemStack(ModItems.bronzehoehead, 1);
+        bronzehoehead.setTagCompound(newTag);
+        toolArray[3] = bronzehoehead;
+
         ItemStack pickaxehead = new ItemStack(ModItems.pickaxehead, 1);
+        pickaxehead.setTagCompound(newTag);
+        toolArray[4] = pickaxehead;
         ItemStack ironaxehead = new ItemStack(ModItems.ironaxehead, 1);
+        ironaxehead.setTagCompound(newTag);
+        toolArray[5] = ironaxehead;
         ItemStack ironshovelhead = new ItemStack(ModItems.ironshovelhead, 1);
+        ironshovelhead.setTagCompound(newTag);
+        toolArray[6] = ironshovelhead;
         ItemStack ironhoehead = new ItemStack(ModItems.ironhoehead, 1);
+        ironhoehead.setTagCompound(newTag);
+        toolArray[7] = ironhoehead;
 
         ItemStack cleanpickaxehead = new ItemStack(ModItems.cleanironpickaxehead, 1);
+        cleanpickaxehead.setTagCompound(newTag);
+        toolArray[8] = cleanpickaxehead;
         ItemStack cleanaxehead = new ItemStack(ModItems.cleanironaxehead, 1);
+        cleanaxehead.setTagCompound(newTag);
+        toolArray[9] = cleanaxehead;
         ItemStack cleanshovelhead = new ItemStack(ModItems.cleanironshovelhead, 1);
+        cleanshovelhead.setTagCompound(newTag);
+        toolArray[10] = cleanshovelhead;
         ItemStack cleanhoehead = new ItemStack(ModItems.cleanironhoehead, 1);
+        cleanhoehead.setTagCompound(newTag);
+        toolArray[11] =cleanhoehead ;
 
         ItemStack steelpickaxehead = new ItemStack(ModItems.steelpickaxehead, 1);
+        steelpickaxehead.setTagCompound(newTag);
+        toolArray[12] = steelpickaxehead;
         ItemStack steelaxehead = new ItemStack(ModItems.steelaxehead, 1);
+        steelaxehead.setTagCompound(newTag);
+        toolArray[13] =steelaxehead ;
         ItemStack steelshovelhead = new ItemStack(ModItems.steelshovelhead, 1);
+        steelshovelhead.setTagCompound(newTag);
+        toolArray[14] = steelshovelhead;
         ItemStack steelhoehead = new ItemStack(ModItems.steelhoehead, 1);
+        steelhoehead.setTagCompound(newTag);
+        toolArray[15] =steelhoehead ;
 
         ItemStack wootzpickaxehead = new ItemStack(ModItems.wootzpickaxehead, 1);
+        wootzpickaxehead.setTagCompound(newTag);
+        toolArray[16] = wootzpickaxehead;
         ItemStack wootzaxehead = new ItemStack(ModItems.wootzaxehead, 1);
+        wootzaxehead.setTagCompound(newTag);
+        toolArray[17] = wootzaxehead;
         ItemStack wootzshovelhead = new ItemStack(ModItems.wootzshovelhead, 1);
+        wootzshovelhead.setTagCompound(newTag);
+        toolArray[18] =wootzshovelhead ;
         ItemStack wootzhoehead = new ItemStack(ModItems.wootzhoehead, 1);
+        wootzhoehead.setTagCompound(newTag);
+        toolArray[19] = wootzhoehead;
 
-        ItemStack hotpickaxehead = new ItemStack(ModItems.pickaxehead, 1);
-        hotpickaxehead.setTagCompound(setHot);
-        ItemStack hotironaxehead = new ItemStack(ModItems.ironaxehead, 1);
-        hotironaxehead.setTagCompound(setHot);
-        ItemStack hotironshovelhead = new ItemStack(ModItems.ironshovelhead, 1);
-        hotironshovelhead.setTagCompound(setHot);
-        ItemStack hotironhoehead = new ItemStack(ModItems.ironhoehead, 1);
-        hotironhoehead.setTagCompound(setHot);
 
-        ItemStack hotcleanpickaxehead = new ItemStack(ModItems.cleanironpickaxehead, 1);
-        hotcleanpickaxehead.setTagCompound(setHot);
-        ItemStack hotcleanaxehead = new ItemStack(ModItems.cleanironaxehead, 1);
-        hotcleanaxehead.setTagCompound(setHot);
-        ItemStack hotcleanshovelhead = new ItemStack(ModItems.cleanironshovelhead, 1);
-        hotcleanshovelhead.setTagCompound(setHot);
-        ItemStack hotcleanhoehead = new ItemStack(ModItems.cleanironhoehead, 1);
-        hotcleanhoehead.setTagCompound(setHot);
+        ItemStack hotpickaxehead = pickaxehead.copy();
+        hotToolArray[0] =hotpickaxehead;
+        ItemStack hotironaxehead = ironaxehead.copy();
+        hotToolArray[1] =hotironaxehead;
+        ItemStack hotironshovelhead = ironshovelhead.copy();
+        hotToolArray[2] =hotironshovelhead;
+        ItemStack hotironhoehead = ironhoehead.copy();
+        hotToolArray[3] =hotironhoehead;
 
-        ItemStack hotsteelpickaxehead = new ItemStack(ModItems.steelpickaxehead, 1);
-        hotsteelpickaxehead.setTagCompound(setHot);
-        ItemStack hotsteelaxehead = new ItemStack(ModItems.steelaxehead, 1);
-        hotsteelaxehead.setTagCompound(setHot);
-        ItemStack hotsteelshovelhead = new ItemStack(ModItems.steelshovelhead, 1);
-        hotsteelshovelhead.setTagCompound(setHot);
-        ItemStack hotsteelhoehead = new ItemStack(ModItems.steelhoehead, 1);
-        hotsteelhoehead.setTagCompound(setHot);
+        ItemStack hotcleanpickaxehead = cleanpickaxehead.copy();
+        hotToolArray[4] = hotcleanpickaxehead;
+        ItemStack hotcleanaxehead = cleanaxehead.copy();
+        hotToolArray[5] = hotcleanaxehead;
+        ItemStack hotcleanshovelhead = cleanshovelhead.copy();
+        hotToolArray[6] = hotcleanshovelhead;
+        ItemStack hotcleanhoehead = cleanhoehead.copy();
+        hotToolArray[7] = hotcleanhoehead;
 
-        ItemStack hotwootzpickaxehead = new ItemStack(ModItems.wootzpickaxehead, 1);
-        hotwootzpickaxehead.setTagCompound(setHot);
-        ItemStack hotwootzaxehead = new ItemStack(ModItems.wootzaxehead, 1);
-        hotwootzaxehead.setTagCompound(setHot);
-        ItemStack hotwootzshovelhead = new ItemStack(ModItems.wootzshovelhead, 1);
-        hotwootzshovelhead.setTagCompound(setHot);
-        ItemStack hotwootzhoehead = new ItemStack(ModItems.wootzhoehead, 1);
-        hotwootzhoehead.setTagCompound(setHot);
+        ItemStack hotsteelpickaxehead = steelpickaxehead.copy();
+        hotToolArray[8] = hotsteelpickaxehead;
+        ItemStack hotsteelaxehead = steelaxehead.copy();
+        hotToolArray[9] = hotsteelaxehead;
+        ItemStack hotsteelshovelhead = steelshovelhead.copy();
+        hotToolArray[10] = hotsteelshovelhead;
+        ItemStack hotsteelhoehead = steelhoehead.copy();
+        hotToolArray[11] = hotsteelhoehead;
+
+        ItemStack hotwootzpickaxehead = wootzpickaxehead.copy();
+        hotToolArray[12] = hotwootzpickaxehead;
+        ItemStack hotwootzaxehead = wootzaxehead.copy();
+        hotToolArray[13] = hotwootzaxehead;
+        ItemStack hotwootzshovelhead = wootzshovelhead.copy();
+        hotToolArray[14] = hotwootzshovelhead;
+        ItemStack hotwootzhoehead = wootzhoehead.copy();
+        hotToolArray[15] = hotwootzhoehead;
+
+
+
+        for(ItemStack temp : toolArray) {
+            System.out.println(temp);
+            if(temp.getTagCompound() == null){
+                System.out.println("NBT is Null");
+            }
+            NBTTagCompound tags = new NBTTagCompound();
+            temp.getTagCompound().setTag("tags", tags);
+
+            temp.getSubCompound("tags").setBoolean("hot", false);
+            temp.getSubCompound("tags").setBoolean("emerald", false);
+            temp.getSubCompound("tags").setInteger("diamond", 0);
+            temp.getSubCompound("tags").setInteger("redstone", 0);
+            temp.getSubCompound("tags").setInteger("lapis", 0);
+            temp.getSubCompound("tags").setInteger("modifiers", 0);
+        }
+
+        bronzepickaxehead = toolArray[0];
+        bronzeaxehead = toolArray[1];
+        bronzeshovelhead = toolArray[2];
+        bronzehoehead = toolArray[3];
+
+        pickaxehead = toolArray[4];
+        ironaxehead = toolArray[5];
+        ironshovelhead = toolArray[6];
+        ironhoehead = toolArray[7];
+
+        cleanpickaxehead = toolArray[8];
+        cleanaxehead = toolArray[9];
+        cleanshovelhead = toolArray[10];
+        cleanhoehead = toolArray[11];
+
+        steelpickaxehead = toolArray[12] ;
+        steelaxehead = toolArray[13] ;
+        steelshovelhead = toolArray[14];
+        steelhoehead = toolArray[15] ;
+
+        wootzpickaxehead = toolArray[16];
+        wootzaxehead = toolArray[17];
+        wootzshovelhead = toolArray[18] ;
+        wootzhoehead = toolArray[19];
+
+        for(ItemStack temp : hotToolArray) {
+            //NBTTagCompound newTag = new NBTTagCompound();
+            NBTTagCompound tags = new NBTTagCompound();
+
+            //temp.setTagCompound(newTag);
+            temp.getTagCompound().setTag("tags", tags);
+
+            temp.getTagCompound().setTag("tags", tags);
+            temp.getSubCompound("tags").setBoolean("hot", true);
+            temp.getSubCompound("tags").setBoolean("emerald", false);
+            temp.getSubCompound("tags").setInteger("diamond", 0);
+            temp.getSubCompound("tags").setInteger("redstone", 0);
+            temp.getSubCompound("tags").setInteger("lapis", 0);
+            temp.getSubCompound("tags").setInteger("modifiers", 0);
+        }
+
+        hotpickaxehead = hotToolArray[0];
+        hotironaxehead = hotToolArray[1];
+        hotironshovelhead = hotToolArray[2];
+        hotironhoehead = hotToolArray[3];
+
+        hotcleanpickaxehead = hotToolArray[4];
+        hotcleanaxehead = hotToolArray[5];
+        hotcleanshovelhead = hotToolArray[6];
+        hotcleanhoehead = hotToolArray[7];
+
+        hotsteelpickaxehead = hotToolArray[8] ;
+        hotsteelaxehead = hotToolArray[9] ;
+        hotsteelshovelhead = hotToolArray[10];
+        hotsteelhoehead = hotToolArray[11] ;
+
+        hotwootzpickaxehead = hotToolArray[12];
+        hotwootzaxehead = hotToolArray[13];
+        hotwootzshovelhead = hotToolArray[14] ;
+        hotwootzhoehead = hotToolArray[15];
 
         //RecipeHandler.addSmelting(ModItems.softcrucible, new ItemStack(ModBlocks.nbtCrucible, 1));
 
@@ -131,9 +269,21 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(Blocks.IRON_ORE, 1),
                 new ItemStack(ModItems.ironingotball, 1),
-                100,
-                100,
-                1000);
+                1400,
+                1200,
+                800);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustIron"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(Blocks.IRON_ORE, 1),
+                new ItemStack(ModItems.ironingotball, 1),
+                1250,
+                1100,
+                800);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustIron"),
@@ -143,9 +293,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.IRON_DUST, 1),
                 new ItemStack(ModItems.ironcleaningotball, 1),
-                100,
-                100,
-                1000);
+                1550,
+                1200,
+                800);
 
         CrucibleCrafting.addRecipe(
                 Ingredient.fromStacks(new ItemStack(ModItems.ironcleaningotball, 1)),
@@ -155,8 +305,8 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(ModItems.ironcleaningotball, 1),
                 new ItemStack(ModItems.steelingotball, 1),
-                100,
-                100,
+                2100,
+                1500,
                 1000);
 
         CrucibleCrafting.addRecipe(
@@ -167,9 +317,9 @@ public class ModCrafting{
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
                 new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
-                100,
-                100,
-                1000);
+                2100,
+                1800,
+                1500);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("magnetite"),
@@ -179,9 +329,9 @@ public class ModCrafting{
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
                 new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
-                100,
-                100,
-                1000);
+                2100,
+                1800,
+                1500);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
@@ -191,9 +341,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 new ItemStack(ModItems.bronzeingotball, 1),
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         NBTTagCompound tagBronzeDefault = new NBTTagCompound();
         tagBronzeDefault.setString("upgrades", "");
@@ -207,9 +357,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 defaultBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
@@ -219,9 +369,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 defaultBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("upgrades", "redstone");
@@ -235,9 +385,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 redBronze,
-                100,
-                100,
-                100);
+                1100,
+                800,
+                600);
 
         NBTTagCompound diamondBronzeTag = new NBTTagCompound();
         tag.setString("upgrades", "diamond");
@@ -251,9 +401,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 diamondBronze,
-                100,
-                100,
-                100);
+                1100,
+                800,
+                600);
 
         NBTTagCompound emeraldBronzeTag = new NBTTagCompound();
         tag.setString("upgrades", "emerald");
@@ -267,9 +417,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 emeraldBronze,
-                100,
-                100,
-                100);
+                1100,
+                800,
+                600);
 
         NBTTagCompound tagBronzeLapis = new NBTTagCompound();
         tagBronzeDefault.setString("upgrades", "lapis");
@@ -283,9 +433,9 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 lapisBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
@@ -295,9 +445,9 @@ public class ModCrafting{
                 new OreIngredient("dustRedstone"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 redBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
@@ -307,9 +457,9 @@ public class ModCrafting{
                 new OreIngredient("dustDiamond"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 diamondBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
@@ -319,9 +469,9 @@ public class ModCrafting{
                 new OreIngredient("dustEmerald"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 emeraldBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
@@ -331,27 +481,10 @@ public class ModCrafting{
                 new OreIngredient("dustLapis"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 lapisBronze,
-                100,
-                100,
-                1000);
+                1100,
+                800,
+                600);
 
-        /*
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawcleanironcrucible),
-                "XL","Y ",
-                ('X'), "dustIron",
-                ('L'), PrimalAPI.Items.CARBONATE_SLACK,
-                ('Y'), ModBlocks.emptycrucible);
-
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.rawsteelcrucible),
-                "XC","Y ",
-                ('X'), new ItemStack(ModBlocks.ironcleanball, 1),
-                ('C'), new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH),
-                ('Y'), ModBlocks.emptycrucible);
-        */
-
-        /***CASTING BLOCK***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingblock),
-                " B ", "BXB", " B ", 'X', Blocks.STONE_SLAB, 'B', PrimalAPI.Items.ADOBE_BRICK_DRY);
 
         /***CASTING FORM***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
@@ -882,7 +1015,7 @@ public class ModCrafting{
                         empty,muddd,muddd,muddd,empty,
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.bronzepickaxehead, 1)
+                bronzepickaxehead
         );
 
         //Casting Shovel
@@ -894,7 +1027,7 @@ public class ModCrafting{
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,muddd,empty,muddd },
-                new ItemStack(ModItems.bronzeshovelhead, 1)
+                bronzeshovelhead
         );
 
         //Casting Axe
@@ -906,7 +1039,7 @@ public class ModCrafting{
                         muddd,empty,empty,empty,muddd,
                         muddd,empty,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.bronzeaxehead, 1)
+                bronzeaxehead
         );
 
         //Casting Hoe
@@ -918,7 +1051,7 @@ public class ModCrafting{
                         muddd,empty,muddd,muddd,muddd,
                         empty,muddd,muddd,muddd,muddd,
                         muddd,muddd,muddd,muddd,muddd },
-                new ItemStack(ModItems.bronzehoehead, 1)
+                bronzehoehead
         );
 
         //Casting Gladius

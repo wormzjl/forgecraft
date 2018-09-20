@@ -1,0 +1,66 @@
+{
+	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
+	"textures": {
+		"particle": "blocks/e_particle",
+		"texture": "blocks/stone"
+	},
+	"elements": [ 	 
+		{
+			"__comment": "Box1",
+			"from": [ 0, 0, 0 ],
+			"to": [ 16, 8, 7 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 16, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 16, 7 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 8, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 8, 16, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 8, 7, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 9, 8, 16, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box1",
+			"from": [ 0, 0, 9 ],
+			"to": [ 16, 8, 16 ],
+			"faces": {
+				"down": { "uv": [ 0, 9, 16, 16 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 0, 16, 7 ], "texture": "#texture" },
+				"north": { "uv": [ 0, 8, 16, 16 ], "texture": "#texture" },
+				"south": { "uv": [ 0, 8, 16, 16 ], "texture": "#texture" },
+				"west": { "uv": [ 0, 8, 7, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 9, 8, 16, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box4",
+			"from": [ 0, 0, 7 ],
+			"to": [ 7, 8, 9 ],
+			"faces": {
+				"down": { "uv": [ 0, 7, 7, 9 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 7, 7, 9 ], "texture": "#texture" },
+				"west": { "uv": [ 7, 8, 9, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7, 8, 9, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box4",
+			"from": [ 9, 0, 7 ],
+			"to": [ 16, 8, 9 ],
+			"faces": {
+				"down": { "uv": [ 0, 7, 7, 9 ], "texture": "#texture" },
+				"up": { "uv": [ 0, 7, 7, 9 ], "texture": "#texture" },
+				"west": { "uv": [ 7, 8, 9, 16 ], "texture": "#texture" },
+				"east": { "uv": [ 7, 8, 9, 16 ], "texture": "#texture" }
+			}
+		},
+		{
+			"__comment": "Box6",
+			"from": [ 7, 0, 7 ],
+			"to": [ 9, 1, 9 ],
+			"faces": {
+				"down": { "uv": [ 7, 7, 9, 9 ], "texture": "#texture" },
+				"up": { "uv": [ 7, 7, 9, 9 ], "texture": "#texture" }
+			}
+		}
+	]
+}
