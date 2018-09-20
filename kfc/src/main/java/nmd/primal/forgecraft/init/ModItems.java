@@ -240,7 +240,7 @@ public class ModItems {
         wroughtironslayer = new SlayerSword("wroughtironslayer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 11.5D, -3.7D);
         cleanironslayer = new SlayerSword("cleanironslayer", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 10D, -3.5D);
         steelslayer = new SlayerSword("steelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.3D);
-        wootzslayer = new SlayerSword("steelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.1D);
+        wootzslayer = new SlayerSword("wootzslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL,11D, -3.1D);
 
         wroughtironshield = new CustomShield("wroughtironshield", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
@@ -287,6 +287,8 @@ public class ModItems {
         //ForgeRegistries.ITEMS.register(stonetongs);
         ForgeRegistries.ITEMS.register(forgehammer);
 
+        ForgeRegistries.ITEMS.register(bronzeingotball);
+        ForgeRegistries.ITEMS.register(bronzechunk);
         ForgeRegistries.ITEMS.register(ironingotball);
         ForgeRegistries.ITEMS.register(wroughtironchunk);
         ForgeRegistries.ITEMS.register(ironcleaningotball);
@@ -370,13 +372,16 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(bronzegladius);
         ForgeRegistries.ITEMS.register(cleanirongladius);
         ForgeRegistries.ITEMS.register(steelgladius);
+        ForgeRegistries.ITEMS.register(wootzgladius);
 
         ForgeRegistries.ITEMS.register(cleanironlongsword);
         ForgeRegistries.ITEMS.register(steellongsword);
+        ForgeRegistries.ITEMS.register(wootzlongsword);
 
         ForgeRegistries.ITEMS.register(wroughtironslayer);
         ForgeRegistries.ITEMS.register(cleanironslayer);
         ForgeRegistries.ITEMS.register(steelslayer);
+        ForgeRegistries.ITEMS.register(wootzslayer);
 
         ForgeRegistries.ITEMS.register(rawlongbow);
         ForgeRegistries.ITEMS.register(unstrunglongbow);
@@ -497,13 +502,16 @@ public class ModItems {
         registerRender(wroughtirongladius);
         registerRender(cleanirongladius);
         registerRender(steelgladius);
+        registerRender(wootzgladius);
 
         registerRender(cleanironlongsword);
         registerRender(steellongsword);
+        registerRender(wootzlongsword);
 
         registerRender(wroughtironslayer);
         registerRender(cleanironslayer);
         registerRender(steelslayer);
+        registerRender(wootzslayer);
 
         registerRender(rawlongbow);
         registerRender(unstrunglongbow);

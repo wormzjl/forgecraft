@@ -11,6 +11,7 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -34,6 +35,7 @@ import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
+import nmd.primal.forgecraft.util.ToolNBT;
 
 import java.util.Random;
 
@@ -42,7 +44,7 @@ import static nmd.primal.core.api.PrimalAPI.randomCheck;
 /**
  * Created by mminaie on 6/19/17.
  */
-public class CastingForm extends CustomContainerFacing implements CastingFormHandler{
+public class CastingForm extends CustomContainerFacing implements CastingFormHandler, ToolNBT {
 
     protected static AxisAlignedBB bound = new AxisAlignedBB(0/16D, 0.0D, 0/16D, 16/16D, 3/16D, 16/16D);
 
@@ -67,12 +69,13 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                 SlottedTongs tongs = (SlottedTongs) pItem.getItem();
                 if(tongs.getSlotList().get(0).getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
                     ItemStack tongsStack = tongs.getSlotList().get(0).copy();
+
                     NBTTagCompound tag = tongsStack.getTagCompound().copy();
                     if(tag != null){
                         NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
                         NonNullList<ItemStack> ingListEmpty = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
                         ItemStackHelper.loadAllItems(tag.getCompoundTag("BlockEntityTag"), ingList);
-                        //getSubCompound("BlockEntityTag")
+
                         CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                         if(recipe != null){
                             if(tag.getCompoundTag("BlockEntityTag").getBoolean("status") && tag.getCompoundTag("BlockEntityTag").getInteger("hot") == 15){
@@ -80,14 +83,44 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                 for(int i=0; i<25; i++){
                                     tempArray[i] = tile.getSlotStack(i).getItem();
                                 }
-                                CastingCrafting casting = CastingCrafting.getRecipe(tempArray);
+                                CastingCrafting casting = CastingCrafting.getRecipe(tongsStack, tempArray);
                                 if(casting != null){
-                                    CommonUtils.spawnItemEntityFromWorld(world, pos, casting.getOutput());
-                                    tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
-                                    tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
-                                    ItemStackHelper.loadAllItems(tag, ingListEmpty);
-                                    tongs.getSlotList().get(0).setTagCompound(tag);
-                                    return true;
+                                    NBTTagCompound tagOutput = recipe.getDropsCooked().getTagCompound().copy();
+                                    if(tagOutput != null) {
+                                        ItemStack dropStack = casting.getOutput();
+                                        dropStack.setTagCompound(new NBTTagCompound());
+                                        NBTTagCompound tags = new NBTTagCompound();
+
+                                        dropStack.getTagCompound().setTag("tags", tags);
+                                        setHot(dropStack, false);
+                                        if (tagOutput.getString("upgrades") == "emerald") {
+                                            setEmerald(dropStack, true);
+                                        } else {
+                                            setEmerald(dropStack, false);
+                                        }
+                                        if (tagOutput.getString("upgrades") == "diamond") {
+                                            setDiamondLevel(dropStack, 1);
+                                        } else {
+                                            setDiamondLevel(dropStack, 0);
+                                        }
+                                        if (tagOutput.getString("upgrades") == "redstone") {
+                                            setRedstoneLevel(dropStack, 1);
+                                        } else {
+                                            setRedstoneLevel(dropStack, 0);
+                                        }
+                                        if (tagOutput.getString("upgrades") == "lapis") {
+                                            setLapisLevel(dropStack, 1);
+                                        } else {
+                                            setLapisLevel(dropStack, 0);
+                                        }
+                                        setModifiers(dropStack, 1);
+                                        CommonUtils.spawnItemEntityFromWorld(world, pos, dropStack);
+                                        tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
+                                        tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
+                                        ItemStackHelper.saveAllItems(tag.getCompoundTag("BlockEntityTag"), ingListEmpty);
+                                        tongs.getSlotList().get(0).setTagCompound(tag);
+                                        return true;
+                                    }
                                 }
                             }
                         }

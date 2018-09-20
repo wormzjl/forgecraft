@@ -1,11 +1,11 @@
 {
   "parent": "forgecraft:item/ironchunk",
   "textures": {
-    "particle": "forgecraft:blocks/bronze_ingot",
-    "texture": "forgecraft:blocks/bronze_ingot"
+    "particle": "forgecraft:blocks/bronze_block",
+    "texture": "forgecraft:blocks/bronze_block"
   },
   "overrides": [
-    {"predicate": {"type": 0.12},"model": "forgecraft:item/chunks/bronze/chunk_04"},
-    {"predicate": {"type": 0.13},"model": "forgecraft:item/chunks/bronze/chunk_05"}
+    {"predicate": {"type": 0.12},"model": "forgecraft:item/chunks/bronze/chunk_02"},
+    {"predicate": {"type": 0.13},"model": "forgecraft:item/chunks/bronze/chunk_03"}
   ]
 }

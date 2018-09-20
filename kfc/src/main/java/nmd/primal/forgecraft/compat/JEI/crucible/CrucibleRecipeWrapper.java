@@ -82,7 +82,7 @@ public class CrucibleRecipeWrapper implements IRecipeWrapper
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
-        minecraft.fontRenderer.drawString(String.valueOf(cookTemp), 58, 120, Color.red.getRGB());
+        minecraft.fontRenderer.drawString(String.valueOf(cookTemp) + "\u00b0", 58, 120, Color.red.getRGB());
         minecraft.fontRenderer.drawString(String.valueOf(cookTime + " ticks"), 58, 86, Color.blue.getRGB());
         minecraft.fontRenderer.drawString(recipe.getDropsCooked().getDisplayName() + " Recipe", 20, 5, Color.black.getRGB());
     }

@@ -26,7 +26,8 @@ tile.emptycruciblehit.name=Hot Empty Crucible
 tile.emptycruciblecracked.name= Cracked Empty Crucible
 tile.emptycruciblecrackedhot.name=Cracked Hot Empty Crucible
 
-
+item.bronzeingotball.name=Bronze Ingot
+item.bronzechunk.name=Bronze Chunk
 item.ironingotball.name=Wrought Iron Ingot
 item.wroughtironchunk.name=Wrought Iron Chunk
 item.ironcleaningotball.name=Clean Iron Ingot
@@ -48,7 +49,7 @@ item.rawlongbow.name=Raw Longbow
 
 item.bellowshandle.name=Bellows Handle
 item.softcrucible.name=Soft Crucible
-item.stonetongs.name=Stone Tongs
+item.slottedtongs.name=Stone Tongs
 item.forgehammer.name=Forge Hammer
 
 item.cast_axe.name=Axe Cast
@@ -117,7 +118,9 @@ item.wootzpickaxe.name=Damascus Steel Pickaxe
 item.wootzaxe.name=Damascus Steel Axe
 item.wootzshovel.name=Damascus Steel Shovel
 item.wootzhoe.name=Damascus Steel Hoe
-#item.wootzsword.name=Damascus Steel Sword
+item.wootzgladius.name=Damascus Gladius
+item.wootzlongsword.name=Damascus Longsword
+item.wootzslayer.name=Damascus Slayer
 
 item.leatherhelmet.name=Hardened Leather Helmet
 
@@ -129,3 +132,5 @@ forgecraft.compatibility.tooltip=Compatibility Features
 
 jei.category.forgecraft.crucible=Crucible Crafting
 jei.category.forgecraft.anvil=Anvil Crafting
+jei.category.forgecraft.casting=Casting
+jei.category.forgecraft.forging=Forging

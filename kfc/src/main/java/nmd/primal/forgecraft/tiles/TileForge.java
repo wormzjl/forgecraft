@@ -191,17 +191,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter2--;
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput();
+                        ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-                        if(outputStack.getItem() instanceof ToolPart) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
-                        if(outputStack.getItem() instanceof BaseMultiItem) {
-                            //System.out.println(stack.getTagCompound());
-                            stackCompound.setBoolean("hot", true);
-                            outputStack.setTagCompound(stackCompound);
-                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
@@ -214,16 +205,9 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter3--;
                     }
                     if (cookCounter3 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput();
+                        ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-                        if(outputStack.getItem() instanceof ToolPart) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
-                        if(outputStack.getItem() instanceof BaseMultiItem) {
-                            stackCompound.setBoolean("hot", true);
-                            outputStack.setTagCompound(stackCompound);
-                        }
+
                         this.setSlotStack(i, outputStack);
 
                         cookCounter3 = 0;
@@ -237,17 +221,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter4--;
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput();
+                        ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-                        //System.out.println(stackCompound.getCompoundTag("tags"));
-                        if(outputStack.getItem() instanceof ToolPart) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
-                        if(outputStack.getItem() instanceof BaseMultiItem) {
-                            stackCompound.setBoolean("hot", true);
-                            outputStack.setTagCompound(stackCompound);
-                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter4 = 0;
                     }
@@ -260,16 +235,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter5--;
                     }
                     if (cookCounter5 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput();
+                        ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-                        if(outputStack.getItem() instanceof ToolPart) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
-                        if(outputStack.getItem() instanceof BaseMultiItem) {
-                            stackCompound.setBoolean("hot", true);
-                            outputStack.setTagCompound(stackCompound);
-                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
                     }
@@ -282,16 +249,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter6--;
                     }
                     if (cookCounter6 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput();
+                        ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-                        if(outputStack.getItem() instanceof ToolPart) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
-                        if(outputStack.getItem() instanceof BaseMultiItem) {
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getTagCompound().setBoolean("hot", true);
-                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter6 = 0;
                     }

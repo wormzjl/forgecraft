@@ -13,11 +13,13 @@ you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID) 
 
 - [ ] Leather Helmet Inventory Model
 - [ ] Config Usage
-- [ ] Bronze Plate Cast
 - [ ] Craft Tweaker Support
-- [ ] JEI Support
 - [ ] Apply Forge turn off logic to Bloomery
-- [ ] Update SoftCrucible Model
+- [ ] Copper Tools
+- [ ] Config for lowering fortune multiplier
+- [x] Bronze Plate Cast
+- [x] JEI Support
+- [x] Update SoftCrucible Model
 - [x] Crucibles were returning input ingredients even after cooked
 - [x] Hot Crucible doesn't have hot molten layer
 - [x] Can't add upgrades to the anvil

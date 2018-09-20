@@ -7,9 +7,10 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
-import nmd.primal.core.common.compat.jei.AbstractCategory;
+
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.compat.JEI.AbstractCategory;
 import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;

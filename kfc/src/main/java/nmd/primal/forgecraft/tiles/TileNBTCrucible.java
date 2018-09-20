@@ -73,23 +73,33 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         if (!world.isRemote) {
             World world = this.getWorld();
             IBlockState state = world.getBlockState(this.pos);
-
+            dropsManager();
             coolManager(this.pos, world, state);
+        }
+    }
+
+    private void dropsManager(){
+        CrucibleCrafting recipe = CrucibleCrafting.getRecipe(this.ingList.get(0), this.ingList.get(1), this.ingList.get(2), this.ingList.get(3), this.ingList.get(4));
+        if(recipe!=null){
+            if( (this.getHot() == 15) && (this.getStatus()) ){
+                this.setDrops(recipe.getDropsCooked());
+            } else if ((this.getHot() == 15) && (!this.getStatus())){
+                this.setDrops(recipe.getDropsRaw());
+            }
         }
     }
 
     private void coolManager(BlockPos pos, World world, IBlockState state) {
         //System.out.println(this.getHeat() + " " + this.getHot() + " " + this.getDrops());
         if(this.getHot() == 15){
-            //System.out.println("Still Hot");
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 15), 2);
             }
             if(this.getHeat() == 0){
                 this.setHot(6);
-                CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
-                this.setDrops(recipe.getDropsCooked());
+                //CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                //this.setDrops(recipe.getDropsCooked());
                 this.setStatus(true);
                 System.out.println("Ready to harvest: " + this.getDrops());
                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 6), 2);

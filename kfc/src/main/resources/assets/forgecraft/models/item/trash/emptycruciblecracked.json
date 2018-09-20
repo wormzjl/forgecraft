@@ -1,8 +1,0 @@
-{
-  "forge_marker":1,
-  "textures": {
-    "particle": "forgecraft:blocks/stone_slab_cracked",
-    "texture": "forgecraft:blocks/stone_slab_cracked"
-  },
-  "parent": "forgecraft:block/emptycrucible"
-}

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.anvil;
+package nmd.primal.forgecraft.compat.JEI.casting;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -19,17 +19,17 @@ import javax.annotation.Nonnull;
 /**
  * Created by mminaie on 9/16/18.
  */
-public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
+public class CastingRecipeCategory extends AbstractCategory<CastingRecipeWrapper>
 {
-    public static String CATEGORY = CommonUtils.prefix("anvil");
+    public static String CATEGORY = CommonUtils.prefix("casting");
 
-    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/anvil.png");
+    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/casting.png");
     private final IDrawable background;
 
-    public AnvilRecipeCategory(IGuiHelper guiHelper)
+    public CastingRecipeCategory(IGuiHelper guiHelper)
     {
         //background = guiHelper.createDrawable(gui_background, 0, 0, 134, 144, 0, 0, 0, 0);
-        background = guiHelper.createDrawable(gui_background, 0,0,160,96);
+        background = guiHelper.createDrawable(gui_background, 0,0,256,96);
     }
 
     @Nonnull
@@ -43,7 +43,7 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
     @Override
     public String getTitle()
     {
-        return I18n.format("jei.category.forgecraft.anvil");
+        return I18n.format("jei.category.forgecraft.casting");
     }
 
     @Nonnull
@@ -60,7 +60,7 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, AnvilRecipeWrapper recipe, IIngredients ingredients)
+    public void setRecipe(IRecipeLayout layout, CastingRecipeWrapper recipe, IIngredients ingredients)
     {
         IGuiItemStackGroup items = layout.getItemStacks();
 
@@ -102,13 +102,13 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
         }
 
         /***OUTPUTS***/
-        items.init(25, false, 133, 40);
-        items.set(25, recipe.output);
+        items.init(26, false, 133, 77);
+        items.set(26, recipe.output);
 
         /***EXTRAS***/
-        items.init(26, false, 105, 28);
-        ItemStack hammerStack = new ItemStack(ModItems.forgehammer, 1);
-        items.set(26, hammerStack);
+        //items.init(26, false, 105, 28);
+        //ItemStack hammerStack = new ItemStack(ModItems.forgehammer, 1);
+        //items.set(26, hammerStack);
 
         //items.init(7, false, 58, 96);
         //ItemStack bloomeryStack = new ItemStack(ModBlocks.bloomery_brick, 1, 0);

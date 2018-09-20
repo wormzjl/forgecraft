@@ -189,8 +189,8 @@ public interface CastingFormHandler {
         return false;
     }
 
-    default void doCastingCrafting(Item[] tempArray, World world, TileCastingForm tile, BlockPos pos){
-        CastingCrafting recipe = CastingCrafting.getRecipe(tempArray);
+    default void doCastingCrafting(ItemStack source, Item[] tempArray, World world, TileCastingForm tile, BlockPos pos){
+        CastingCrafting recipe = CastingCrafting.getRecipe(source, tempArray);
         if (recipe != null) {
             CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
         }

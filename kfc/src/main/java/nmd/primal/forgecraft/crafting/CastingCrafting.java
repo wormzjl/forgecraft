@@ -19,20 +19,27 @@ public class CastingCrafting {
     private Item[] input = new Item[25];
     private ItemStack output;
 
+    public ItemStack getSource() {
+        return source;
+    }
 
-    public CastingCrafting(Item[] input, ItemStack output){
+    private ItemStack source;
+
+
+    public CastingCrafting(ItemStack source, Item[] input, ItemStack output){
 
         this.input = input;
         this.output = output;
+        this.source = source;
     }
 
     // ***************************************************************************** //
     //  Recipe Methods
     // ***************************************************************************** //
 
-    public static void addRecipe(Item[] input, ItemStack output)
+    public static void addRecipe(ItemStack source, Item[] input, ItemStack output)
     {
-        castingRecipes.add(new CastingCrafting(input, output));
+        castingRecipes.add(new CastingCrafting(source, input, output));
     }
 
     public static ArrayList<CastingCrafting> getCastingRecipes() {
@@ -49,11 +56,13 @@ public class CastingCrafting {
         return false;
     }
 
-    public static CastingCrafting getRecipe(Item[] array)
+    public static CastingCrafting getRecipe(ItemStack source, Item[] array)
     {
         for(CastingCrafting recipe : castingRecipes) {
-            if (Arrays.equals(array, recipe.input))
-                return recipe;
+            if (source.isItemEqualIgnoreDurability(source)) {
+                if (Arrays.equals(array, recipe.input))
+                    return recipe;
+            }
         }
         return null;
     }

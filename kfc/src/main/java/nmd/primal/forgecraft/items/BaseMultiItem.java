@@ -177,10 +177,10 @@ public class BaseMultiItem extends BaseItem {
     @Override
     public void onUpdate(ItemStack stack, World world, Entity player, int itemSlot, boolean isSelected) {
         //System.out.println(item.getTagCompound());
-        if (!stack.hasTagCompound()) {
-            stack.setTagCompound(new NBTTagCompound());
-            stack.getTagCompound().setBoolean("hot", false);
-        }
+        //if (!stack.hasTagCompound()) {
+        //    stack.setTagCompound(new NBTTagCompound());
+        //    stack.getTagCompound().setBoolean("hot", false);
+        //}
 
     }
 

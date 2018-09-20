@@ -26,6 +26,95 @@ public class ModCrafting{
     public static void register() {
 
         Random rand = new Random();
+        ItemStack emptyAir = ItemStack.EMPTY;
+
+        NBTTagCompound setHot = new NBTTagCompound();
+        setHot.setBoolean("hot",  true);
+
+        ItemStack hotIronIngot = new ItemStack(ModItems.ironingotball, 1);
+        hotIronIngot.setTagCompound(setHot);
+        ItemStack hotCleanIronIngot = new ItemStack(ModItems.ironcleaningotball, 1);
+        hotCleanIronIngot.setTagCompound(setHot);
+        ItemStack hotSteelIngot = new ItemStack(ModItems.steelingotball, 1);
+        hotSteelIngot.setTagCompound(setHot);
+        ItemStack hotWootzIngot = new ItemStack(ModItems.wootzingotball, 1);
+        hotWootzIngot.setTagCompound(setHot);
+
+        ItemStack hotChunk = new ItemStack( ModItems.wroughtironchunk, 1);
+        hotChunk.setTagCompound(setHot);
+
+        ItemStack hotCleanChunk = new ItemStack(ModItems.ironcleanchunk, 1);
+        hotCleanChunk.setTagCompound(setHot);
+
+        ItemStack hotSteelChunk = new ItemStack(ModItems.steelchunk, 1);
+        hotSteelChunk.setTagCompound(setHot);
+
+        ItemStack hotWootzChunk = new ItemStack(ModItems.wootzchunk, 1);
+        hotWootzChunk.setTagCompound(setHot);
+
+        ItemStack diamond = new ItemStack(Items.DIAMOND, 1);
+        ItemStack emerald = new ItemStack(Items.EMERALD, 1);
+
+        ItemStack emeraldShard = new ItemStack(PrimalAPI.Items.EMERALD_KNAPP, 1);
+        ItemStack diamondShard = new ItemStack(PrimalAPI.Items.DIAMOND_KNAPP, 1);
+        ItemStack redstone = new ItemStack(Items.REDSTONE, 1);
+        ItemStack lapis = new ItemStack(Items.DYE, 1, 4);
+
+        ItemStack pickaxehead = new ItemStack(ModItems.pickaxehead, 1);
+        ItemStack ironaxehead = new ItemStack(ModItems.ironaxehead, 1);
+        ItemStack ironshovelhead = new ItemStack(ModItems.ironshovelhead, 1);
+        ItemStack ironhoehead = new ItemStack(ModItems.ironhoehead, 1);
+
+        ItemStack cleanpickaxehead = new ItemStack(ModItems.cleanironpickaxehead, 1);
+        ItemStack cleanaxehead = new ItemStack(ModItems.cleanironaxehead, 1);
+        ItemStack cleanshovelhead = new ItemStack(ModItems.cleanironshovelhead, 1);
+        ItemStack cleanhoehead = new ItemStack(ModItems.cleanironhoehead, 1);
+
+        ItemStack steelpickaxehead = new ItemStack(ModItems.steelpickaxehead, 1);
+        ItemStack steelaxehead = new ItemStack(ModItems.steelaxehead, 1);
+        ItemStack steelshovelhead = new ItemStack(ModItems.steelshovelhead, 1);
+        ItemStack steelhoehead = new ItemStack(ModItems.steelhoehead, 1);
+
+        ItemStack wootzpickaxehead = new ItemStack(ModItems.wootzpickaxehead, 1);
+        ItemStack wootzaxehead = new ItemStack(ModItems.wootzaxehead, 1);
+        ItemStack wootzshovelhead = new ItemStack(ModItems.wootzshovelhead, 1);
+        ItemStack wootzhoehead = new ItemStack(ModItems.wootzhoehead, 1);
+
+        ItemStack hotpickaxehead = new ItemStack(ModItems.pickaxehead, 1);
+        hotpickaxehead.setTagCompound(setHot);
+        ItemStack hotironaxehead = new ItemStack(ModItems.ironaxehead, 1);
+        hotironaxehead.setTagCompound(setHot);
+        ItemStack hotironshovelhead = new ItemStack(ModItems.ironshovelhead, 1);
+        hotironshovelhead.setTagCompound(setHot);
+        ItemStack hotironhoehead = new ItemStack(ModItems.ironhoehead, 1);
+        hotironhoehead.setTagCompound(setHot);
+
+        ItemStack hotcleanpickaxehead = new ItemStack(ModItems.cleanironpickaxehead, 1);
+        hotcleanpickaxehead.setTagCompound(setHot);
+        ItemStack hotcleanaxehead = new ItemStack(ModItems.cleanironaxehead, 1);
+        hotcleanaxehead.setTagCompound(setHot);
+        ItemStack hotcleanshovelhead = new ItemStack(ModItems.cleanironshovelhead, 1);
+        hotcleanshovelhead.setTagCompound(setHot);
+        ItemStack hotcleanhoehead = new ItemStack(ModItems.cleanironhoehead, 1);
+        hotcleanhoehead.setTagCompound(setHot);
+
+        ItemStack hotsteelpickaxehead = new ItemStack(ModItems.steelpickaxehead, 1);
+        hotsteelpickaxehead.setTagCompound(setHot);
+        ItemStack hotsteelaxehead = new ItemStack(ModItems.steelaxehead, 1);
+        hotsteelaxehead.setTagCompound(setHot);
+        ItemStack hotsteelshovelhead = new ItemStack(ModItems.steelshovelhead, 1);
+        hotsteelshovelhead.setTagCompound(setHot);
+        ItemStack hotsteelhoehead = new ItemStack(ModItems.steelhoehead, 1);
+        hotsteelhoehead.setTagCompound(setHot);
+
+        ItemStack hotwootzpickaxehead = new ItemStack(ModItems.wootzpickaxehead, 1);
+        hotwootzpickaxehead.setTagCompound(setHot);
+        ItemStack hotwootzaxehead = new ItemStack(ModItems.wootzaxehead, 1);
+        hotwootzaxehead.setTagCompound(setHot);
+        ItemStack hotwootzshovelhead = new ItemStack(ModItems.wootzshovelhead, 1);
+        hotwootzshovelhead.setTagCompound(setHot);
+        ItemStack hotwootzhoehead = new ItemStack(ModItems.wootzhoehead, 1);
+        hotwootzhoehead.setTagCompound(setHot);
 
         //RecipeHandler.addSmelting(ModItems.softcrucible, new ItemStack(ModBlocks.nbtCrucible, 1));
 
@@ -122,6 +211,18 @@ public class ModCrafting{
                 100,
                 1000);
 
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotBronze"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                defaultBronze,
+                100,
+                100,
+                1000);
+
         NBTTagCompound tag = new NBTTagCompound();
         tag.setString("upgrades", "redstone");
         ItemStack redBronze = new ItemStack(ModItems.bronzeingotball, 1);
@@ -165,7 +266,7 @@ public class ModCrafting{
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
-                diamondBronze,
+                emeraldBronze,
                 100,
                 100,
                 100);
@@ -175,11 +276,59 @@ public class ModCrafting{
         ItemStack lapisBronze = new ItemStack(ModItems.bronzeingotball, 1);
         lapisBronze.setTagCompound(tagBronzeLapis.copy());
         CrucibleCrafting.addRecipe(
-                new OreIngredient("oreBronze"),
+                new OreIngredient("ingotBronze"),
+                new OreIngredient("dustLapis"),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                lapisBronze,
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustTin"),
+                new OreIngredient("dustRedstone"),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                redBronze,
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustTin"),
+                new OreIngredient("dustDiamond"),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                diamondBronze,
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustTin"),
+                new OreIngredient("dustEmerald"),
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                emeraldBronze,
+                100,
+                100,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustCopper"),
+                new OreIngredient("dustTin"),
+                new OreIngredient("dustLapis"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 lapisBronze,
                 100,
@@ -726,6 +875,7 @@ public class ModCrafting{
 
         //Casting Pickaxe
         CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
@@ -737,6 +887,7 @@ public class ModCrafting{
 
         //Casting Shovel
         CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,empty,muddd,muddd,
@@ -748,6 +899,7 @@ public class ModCrafting{
 
         //Casting Axe
         CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,empty,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
@@ -759,6 +911,7 @@ public class ModCrafting{
 
         //Casting Hoe
         CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,muddd,muddd,empty,empty,
                         muddd,muddd,empty,muddd,muddd,
@@ -770,6 +923,7 @@ public class ModCrafting{
 
         //Casting Gladius
         CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
                         muddd,muddd,empty,muddd,muddd,
@@ -777,6 +931,18 @@ public class ModCrafting{
                         muddd,empty,empty,empty,muddd,
                         muddd,muddd,empty,muddd,muddd },
                 new ItemStack(ModItems.bronzegladius, 1)
+        );
+
+        //Casting Bronze Plate
+        CastingCrafting.addRecipe(
+                new ItemStack(ModItems.bronzeingotball, 1),
+                new Item[] {
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,empty,empty,muddd,muddd,
+                        muddd,empty,empty,muddd,muddd,
+                        muddd,muddd,muddd,muddd,muddd },
+                new ItemStack(PrimalAPI.Items.BRONZE_PLATE, 1)
         );
 
         /******************************************************************************
@@ -787,7 +953,7 @@ public class ModCrafting{
         ForgeCrafting.addRecipe(
                 ModItems.ironingotball,
                 //800, 200
-                new ItemStack(ModItems.ironingotball, 1),
+                hotIronIngot,
                 100,
                 100,
                 500,
@@ -797,7 +963,7 @@ public class ModCrafting{
 //Makes a Hot Clean Iron Ingot
         ForgeCrafting.addRecipe(
                 ModItems.ironcleaningotball,
-                new ItemStack(ModItems.ironcleaningotball, 1),
+                hotCleanIronIngot,
                 900,
                 250,
                 500,
@@ -807,7 +973,7 @@ public class ModCrafting{
 //Makes a Hot Steel Ingot
         ForgeCrafting.addRecipe(
                 ModItems.steelingotball,
-                new ItemStack(ModItems.steelingotball, 1),
+                hotSteelIngot,
                 1000,
                 300,
                 500,
@@ -817,7 +983,7 @@ public class ModCrafting{
         //Makes a Hot Wootz Ingot
         ForgeCrafting.addRecipe(
                 ModItems.wootzingotball,
-                new ItemStack(ModItems.wootzingotball, 1),
+                hotWootzIngot,
                 1000,
                 300,
                 500,
@@ -828,7 +994,7 @@ public class ModCrafting{
 // Converts a Vanilla Ingot into ForgeCraft Ingot Ball
         ForgeCrafting.addRecipe(
                 Items.IRON_INGOT,
-                new ItemStack(ModItems.ironingotball, 1),
+                hotIronIngot,
                 800,
                 200,
                 500,
@@ -839,7 +1005,7 @@ public class ModCrafting{
 //Makes a Hot Iron Chunk
         ForgeCrafting.addRecipe(
                 ModItems.wroughtironchunk,
-                new ItemStack(ModItems.wroughtironchunk,1),
+                hotChunk,
                 800,
                 160,
                 400,
@@ -849,7 +1015,7 @@ public class ModCrafting{
 //Makes a Hot Clean Iron Chunk
         ForgeCrafting.addRecipe(
                 ModItems.ironcleanchunk,
-                new ItemStack(ModItems.ironcleanchunk,1),
+                hotCleanChunk,
                 900,
                 250,
                 500,
@@ -859,7 +1025,7 @@ public class ModCrafting{
 //Makes a Hot Steel Chunk
         ForgeCrafting.addRecipe(
                 ModItems.steelchunk,
-                new ItemStack(ModItems.steelchunk,1),
+                hotSteelChunk,
                 1000,
                 300,
                 500,
@@ -870,7 +1036,7 @@ public class ModCrafting{
         //Makes a Hot Wootz Chunk
         ForgeCrafting.addRecipe(
                 ModItems.wootzchunk,
-                new ItemStack(ModItems.wootzchunk,1),
+                hotWootzChunk,
                 1000,
                 300,
                 500,
@@ -881,7 +1047,7 @@ public class ModCrafting{
         /***Makes a Hot Iron PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.pickaxehead,
-                new ItemStack(ModItems.pickaxehead, 1),
+                hotpickaxehead,
                 800,
                 160,
                 400,
@@ -892,9 +1058,9 @@ public class ModCrafting{
         /***Makes a Hot Clean Iron PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironpickaxehead,
-                new ItemStack(ModItems.cleanironpickaxehead, 1),
+                hotcleanpickaxehead,
                 800,
-                160,
+                170,
                 400,
                 1.0f,
                 1.0f
@@ -903,9 +1069,20 @@ public class ModCrafting{
         /***Makes a Hot Steel PickaxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelpickaxehead,
-                new ItemStack(ModItems.steelpickaxehead, 1),
+                hotsteelpickaxehead,
                 1000,
-                160,
+                180,
+                400,
+                1.0f,
+                1.0f
+        );
+
+        /***Makes a Hot Wootz PickaxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.wootzpickaxehead,
+                hotwootzpickaxehead,
+                1000,
+                190,
                 400,
                 1.0f,
                 1.0f
@@ -914,7 +1091,7 @@ public class ModCrafting{
         /***Makes a Hot Iron AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironaxehead,
-                new ItemStack(ModItems.ironaxehead, 1),
+                hotironaxehead,
                 800,
                 160,
                 400,
@@ -924,9 +1101,9 @@ public class ModCrafting{
         /***Makes a Hot Clean Iron AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironaxehead,
-                new ItemStack(ModItems.cleanironaxehead, 1),
+                hotcleanaxehead,
                 800,
-                160,
+                170,
                 400,
                 1.0f,
                 1.0f
@@ -934,19 +1111,28 @@ public class ModCrafting{
         /***Makes a Hot Steel AxeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelaxehead,
-                new ItemStack(ModItems.steelaxehead, 1),
-                800,
-                160,
+                hotsteelaxehead,
+                1000,
+                180,
                 400,
                 1.0f,
                 1.0f
         );
-        //TODO Wootz
+        /***Makes a Hot Wootz AxeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.wootzaxehead,
+                hotwootzaxehead,
+                1000,
+                190,
+                400,
+                1.0f,
+                1.0f
+        );
 
         /***Makes a Hot Iron ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironshovelhead,
-                new ItemStack(ModItems.ironshovelhead, 1),
+                hotironshovelhead,
                 800,
                 160,
                 400,
@@ -956,9 +1142,9 @@ public class ModCrafting{
         /***Makes a Hot Clean Iron ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironshovelhead,
-                new ItemStack(ModItems.cleanironshovelhead, 1),
+                hotcleanshovelhead,
                 800,
-                160,
+                170,
                 400,
                 1.0f,
                 1.0f
@@ -966,19 +1152,28 @@ public class ModCrafting{
         /***Makes a Hot Steel ShovelHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelshovelhead,
-                new ItemStack(ModItems.steelshovelhead, 1),
-                800,
-                160,
+                hotsteelshovelhead,
+                1000,
+                180,
                 400,
                 1.0f,
                 1.0f
         );
-    //TODO Wootz
+        /***Makes a Hot Wootz ShovelHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.wootzshovelhead,
+                hotwootzshovelhead,
+                1000,
+                190,
+                400,
+                1.0f,
+                1.0f
+        );
 
         /***Makes a Hot Iron HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.ironhoehead,
-                new ItemStack(ModItems.ironhoehead, 1),
+                hotironhoehead,
                 800,
                 160,
                 400,
@@ -988,9 +1183,9 @@ public class ModCrafting{
         /***Makes a Hot Clean Iron HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.cleanironhoehead,
-                new ItemStack(ModItems.cleanironhoehead, 1),
+                hotcleanhoehead,
                 800,
-                160,
+                170,
                 400,
                 1.0f,
                 1.0f
@@ -998,63 +1193,29 @@ public class ModCrafting{
         /***Makes a Hot Steel HoeHead***/
         ForgeCrafting.addRecipe(
                 ModItems.steelhoehead,
-                new ItemStack(ModItems.steelhoehead, 1),
-                800,
-                160,
+                hotsteelhoehead,
+                1000,
+                180,
                 400,
                 1.0f,
                 1.0f
         );
-    //TODO Wootz
+        /***Makes a Hot Wootz HoeHead***/
+        ForgeCrafting.addRecipe(
+                ModItems.wootzhoehead,
+                hotwootzhoehead,
+                1000,
+                190,
+                400,
+                1.0f,
+                1.0f
+        );
 
         /******************************************************************************
                ANVILING
          ******************************************************************************/
 
-        ItemStack emptyAir = ItemStack.EMPTY;
 
-        NBTTagCompound setHot = new NBTTagCompound();
-        setHot.setBoolean("hot",  true);
-
-        ItemStack hotChunk = new ItemStack( ModItems.wroughtironchunk, 1);
-        hotChunk.setTagCompound(setHot);
-
-        ItemStack hotCleanChunk = new ItemStack(ModItems.ironcleanchunk, 1);
-        hotCleanChunk.setTagCompound(setHot);
-
-        ItemStack hotSteelChunk = new ItemStack(ModItems.steelchunk, 1);
-        hotSteelChunk.setTagCompound(setHot);
-
-        ItemStack hotWootzChunk = new ItemStack(ModItems.wootzchunk, 1);
-        hotWootzChunk.setTagCompound(setHot);
-
-        ItemStack diamond = new ItemStack(Items.DIAMOND, 1);
-        ItemStack emerald = new ItemStack(Items.EMERALD, 1);
-
-        ItemStack emeraldShard = new ItemStack(PrimalAPI.Items.EMERALD_KNAPP, 1);
-        ItemStack diamondShard = new ItemStack(PrimalAPI.Items.DIAMOND_KNAPP, 1);
-        ItemStack redstone = new ItemStack(Items.REDSTONE, 1);
-        ItemStack lapis = new ItemStack(Items.DYE, 1, 4);
-
-        ItemStack pickaxehead = new ItemStack(ModItems.pickaxehead, 1);
-        ItemStack ironaxehead = new ItemStack(ModItems.ironaxehead, 1);
-        ItemStack ironshovelhead = new ItemStack(ModItems.ironshovelhead, 1);
-        ItemStack ironhoehead = new ItemStack(ModItems.ironhoehead, 1);
-
-        ItemStack cleanpickaxehead = new ItemStack(ModItems.cleanironpickaxehead, 1);
-        ItemStack cleanaxehead = new ItemStack(ModItems.cleanironaxehead, 1);
-        ItemStack cleanshovelhead = new ItemStack(ModItems.cleanironshovelhead, 1);
-        ItemStack cleanhoehead = new ItemStack(ModItems.cleanironhoehead, 1);
-
-        ItemStack steelpickaxehead = new ItemStack(ModItems.steelpickaxehead, 1);
-        ItemStack steelaxehead = new ItemStack(ModItems.steelaxehead, 1);
-        ItemStack steelshovelhead = new ItemStack(ModItems.steelshovelhead, 1);
-        ItemStack steelhoehead = new ItemStack(ModItems.steelhoehead, 1);
-
-        ItemStack wootzpickaxehead = new ItemStack(ModItems.wootzpickaxehead, 1);
-        ItemStack wootzaxehead = new ItemStack(ModItems.wootzaxehead, 1);
-        ItemStack wootzshovelhead = new ItemStack(ModItems.wootzshovelhead, 1);
-        ItemStack wootzhoehead = new ItemStack(ModItems.wootzhoehead, 1);
 
         /*** ForgeHammer ***/
         AnvilCrafting.addRecipe(
@@ -1101,18 +1262,6 @@ public class ModCrafting{
                         emptyAir,hotSteelChunk,hotSteelChunk,emptyAir,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
                 new ItemStack(PrimalAPI.Items.STEEL_PLATE, 1),
-                "null"
-        );
-
-        /*** Iron Bars ***/
-        AnvilCrafting.addRecipe(
-                new ItemStack [] {
-                        hotChunk,emptyAir,hotChunk,emptyAir,hotChunk,
-                        hotChunk,hotChunk,hotChunk,hotChunk,hotChunk,
-                        hotChunk,emptyAir,hotChunk,emptyAir,hotChunk,
-                        hotChunk,hotChunk,hotChunk,hotChunk,hotChunk,
-                        hotChunk,emptyAir,hotChunk,emptyAir,hotChunk, },
-                new ItemStack(PrimalAPI.Items.IRON_PLATE, 1),
                 "null"
         );
 

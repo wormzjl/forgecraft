@@ -7,6 +7,7 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -108,7 +109,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                                 tile.setHot(0);
                                 tile.setStatus(false);
-                                //tile.setDrops(ItemStack.EMPTY);
                                 tile.update();
                                 tile.markDirty();
                                 return true;
@@ -119,12 +119,17 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 /**REMOVE COOKED ITEM**/
                 if (player.isSneaking() == true) {
                     if (pItem.isEmpty()) {
-                        if (tile.getStatus()) {
-                            PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
+                        if (tile.getStatus() && tile.getHot()==6) {
+                            ItemStack dropStack = tile.getDrops().copy();
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.setHot(0);
                             tile.setStatus(false);
-                            //tile.setDrops(ItemStack.EMPTY);
+                            tile.setDrops(ItemStack.EMPTY);
+                            tile.ingList.clear();
+                            //PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                            //PlayerHelper.spawnItemOnGround(world, player.getPosition(), dropStack);
+                            EntityItem entityitem = new EntityItem(world, player.posX, player.posY, player.posZ, dropStack); // ? player.posY - 1.0D
+                            world.spawnEntity(entityitem);
                             tile.update();
                             tile.markDirty();
                             return true;
@@ -160,7 +165,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
             TileEntity tile = world.getTileEntity(pos);
             if (tile instanceof TileNBTCrucible) {
                 PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
-                return world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                return true;
             }
         }
         return false;
@@ -173,8 +179,18 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
-            if(recipe != null && tile.getStatus() && tile.getHot() != 15){
-                PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
+            if(recipe != null && tile.getStatus() && tile.getHot() == 6){
+                if(tile.getDrops() != null) {
+                    PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
+                } else {
+                    PlayerHelper.spawnItemOnPlayer(world, player, recipe.getDropsCooked());
+                }
+            }
+            if(recipe != null && tile.getStatus() && tile.getHot() == 15){
+                PlayerHelper.spawnItemOnPlayer(world, player, recipe.getDropsRaw());
+            }
+            if(recipe != null && tile.getStatus() && tile.getHot() != 15 && tile.getHot() != 6){
+                PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList);
             }
         }
     }

@@ -10,7 +10,11 @@ import java.util.ArrayList;
  */
 public class ForgeCrafting {
 
-        // ***************************************************************************** //
+    public static ArrayList<ForgeCrafting> getForgeRecipes() {
+        return forgeRecipes;
+    }
+
+    // ***************************************************************************** //
         //  Recipe Handler ForgeCrafting
         // ***************************************************************************** //
         private static ArrayList<ForgeCrafting> forgeRecipes = new ArrayList<>();
