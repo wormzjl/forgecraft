@@ -2,15 +2,24 @@ package nmd.primal.forgecraft.items.weapons;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by mminaie on 3/23/17.
@@ -50,6 +59,12 @@ public class CustomSword extends ItemSword {
     }
 
     @Override
+    public boolean onLeftClickEntity(ItemStack stack, EntityPlayer player, Entity entity)
+    {
+        return false;
+    }
+
+    @Override
     public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
     {
         Multimap<String, AttributeModifier> multimap =  HashMultimap.<String, AttributeModifier>create();
@@ -61,6 +76,18 @@ public class CustomSword extends ItemSword {
         }
 
         return multimap;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
+        if(item.hasTagCompound())
+        {
+            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " );
+            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+        }
     }
 
 }

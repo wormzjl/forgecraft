@@ -25,8 +25,7 @@ public class ModDictionary {/***************************************************
                 OreDictionary.registerOre("nuggetIron", ModItems.ironcleanchunk);
                 OreDictionary.registerOre("ingotSteel", ModItems.steelingotball);
                 OreDictionary.registerOre("nuggetSteel", ModItems.steelchunk);
-
-
-
+                OreDictionary.registerOre("ingotBronze", ModItems.bronzeingotball);
+                OreDictionary.registerOre("nuggetBronze", ModItems.bronzechunk);
         }
 }

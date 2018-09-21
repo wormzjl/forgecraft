@@ -85,8 +85,8 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
 
                                 CastingCrafting casting = CastingCrafting.getRecipe(tongsStack, tempArray);
                                 if(casting != null){
-                                    NBTTagCompound tagOutput = casting.getOutput().getSubCompound("tag");
-
+                                    NBTTagCompound tagOutput = casting.getOutput().getTagCompound();
+                                    //System.out.println(tagOutput);
                                     if(tagOutput != null) {
                                         ItemStack dropStack = casting.getOutput();
                                         dropStack.setTagCompound(new NBTTagCompound());
@@ -123,6 +123,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                         return true;
                                     }
                                     if(tagOutput == null){
+                                        System.out.println("Tag is null");
                                         if( !(casting.getOutput().getItem() instanceof BronzeToolPart) ){
                                             ItemStack dropStack = casting.getOutput();
                                             CommonUtils.spawnItemEntityFromWorld(world, pos, dropStack);

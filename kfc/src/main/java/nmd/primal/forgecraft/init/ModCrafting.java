@@ -178,10 +178,6 @@ public class ModCrafting{
 
 
         for(ItemStack temp : toolArray) {
-            System.out.println(temp);
-            if(temp.getTagCompound() == null){
-                System.out.println("NBT is Null");
-            }
             NBTTagCompound tags = new NBTTagCompound();
             temp.getTagCompound().setTag("tags", tags);
 
