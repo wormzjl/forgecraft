@@ -42,7 +42,7 @@ public class CauldronRecipes
 
 
 
-
+/*
         recipes.register(new CauldronRecipe(
                 5,
                 FluidRegistry.getFluidStack("water", 1000),
@@ -54,5 +54,6 @@ public class CauldronRecipes
                 lapisBronze,
                 ItemStack.EMPTY).setRecipeName("finishedGladius")
                 );
+                */
     }
 }

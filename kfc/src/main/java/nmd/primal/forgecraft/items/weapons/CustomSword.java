@@ -85,7 +85,7 @@ public class CustomSword extends ItemSword {
         //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " );
+            tooltip.add(ChatFormatting.GRAY + "Upgrades: " );
             tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
         }
     }

@@ -34,7 +34,7 @@ public class ModItems {
     public static Item softcrucible;
     //public static Item stonetongs;
     public static Item castingmud;
-    public static Item rawbronzegladius;
+    //public static Item rawbronzegladius;
 
     public static Item bronzeingotball;
     public static Item bronzechunk;
@@ -210,7 +210,7 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        rawbronzegladius = new Item().setRegistryName("rawbronzegladius").setUnlocalizedName("rawbronzegladius");
+        //rawbronzegladius = new Item().setRegistryName("rawbronzegladius").setUnlocalizedName("rawbronzegladius");
 
         bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5.5D, 2D);
         wroughtirongladius = new CustomSword("wroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
@@ -344,7 +344,7 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        ForgeRegistries.ITEMS.register(rawbronzegladius);
+        //ForgeRegistries.ITEMS.register(rawbronzegladius);
 
         ForgeRegistries.ITEMS.register(wroughtirongladius);
         ForgeRegistries.ITEMS.register(bronzegladius);
@@ -467,7 +467,7 @@ public class ModItems {
          **********/
         registerRender(wroughtironshield);
 
-        registerRender(rawbronzegladius);
+        //registerRender(rawbronzegladius);
 
         registerRender(bronzegladius);
         registerRender(wroughtirongladius);
