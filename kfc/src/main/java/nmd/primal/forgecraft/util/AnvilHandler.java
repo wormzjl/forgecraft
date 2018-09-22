@@ -233,30 +233,31 @@ public interface AnvilHandler {
 
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
-        if (!world.isRemote) {
-            if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
-                SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-                ItemStack tongStack = tongs.getSlotList().get(0).copy();
+        if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
-                if (tongStack.isEmpty()) {
-                    if (!tile.getSlotStack(counter).isEmpty()) {
-                        ItemStack tempStack = tile.getSlotStack(counter).copy();
-                        tongs.setSlotList(tempStack);
-                        tile.setSlotStack(counter, ItemStack.EMPTY);
-                        return true;
-                    }
-                }
+            SlottedTongs tongs = (SlottedTongs) pItem.getItem();
+            ItemStack tongStack = tongs.getSlotList().get(0).copy();
 
-                if (!tongStack.isEmpty()) {
-                    if (tile.getSlotStack(counter).isEmpty()) {
-                        ItemStack tempStack = tongs.getSlotList().get(0).copy();
-                        tile.setSlotStack(counter, tempStack);
-                        tongs.setSlotList(ItemStack.EMPTY);
-                        return true;
-                    }
+            if (tongStack.isEmpty()) {
+                if (!tile.getSlotStack(counter).isEmpty()) {
+                    ItemStack tempStack = tile.getSlotStack(counter).copy();
+                    tongs.setSlotList(tempStack);
+                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                    return true;
                 }
             }
+
+            if (!tongStack.isEmpty()) {
+                if (tile.getSlotStack(counter).isEmpty()) {
+                    ItemStack tempStack = tongs.getSlotList().get(0).copy();
+                    tile.setSlotStack(counter, tempStack);
+                    tongs.setSlotList(ItemStack.EMPTY);
+                    return true;
+                }
+            }
+        }
+        if (!world.isRemote) {
 
             if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
 
