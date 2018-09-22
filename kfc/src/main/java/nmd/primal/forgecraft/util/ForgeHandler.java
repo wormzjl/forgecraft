@@ -13,6 +13,7 @@ import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
 import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -48,10 +49,7 @@ public interface ForgeHandler {
      *****************************************************************************/
 
     default boolean doForgeInventoryManager(ItemStack pItem, World world, TileForge tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
-        //if ((!(pItem.getItem() instanceof Gallagher)) || (!(pItem.getItem() instanceof ForgeHammer))) {
-        //    if (pItem.getItem() instanceof BaseMultiItem) {
-        //        return false;
-        //    }
+
             if (state.getValue(FACING) == EnumFacing.NORTH) {
                 int counter = 0;
                 for (int z = 0; z < arraySize; z++) {
@@ -113,22 +111,18 @@ public interface ForgeHandler {
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
             SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-            ItemStack tongStack = tongs.getSlotList().get(0).copy();
-
-            if (tongStack.isEmpty()) {
+            ItemStack tongsStack = tongs.getSlotList().get(0).copy();
+            if (tongsStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
-                    System.out.println("Removing stuff");
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
                     tongs.setSlotList(tempStack);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
-                    System.out.println(tongs.getSlotList().get(0));
                     return true;
                 }
             }
 
-            if (!tongStack.isEmpty()) {
+            if (!tongsStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    System.out.println("Adding stuff");
                     ItemStack tempStack = tongs.getSlotList().get(0).copy();
                     tile.setSlotStack(counter, tempStack);
                     tongs.setSlotList(ItemStack.EMPTY);
@@ -147,32 +141,42 @@ public interface ForgeHandler {
             }
         }
 
+        if (pItem.getItem() instanceof ToolPart) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                ItemStack tempItem = pItem.copy();
+                tempItem.setCount(1);
+                tile.setSlotStack(counter,tempItem);
+                player.inventory.getCurrentItem().shrink(1);
+                return true;
+            }
+        }
+
         if (!(pItem.getItem() instanceof BaseMultiItem)) {
             if (RecipeHelper.isOreName(pItem, "ingotIron")) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(Items.IRON_INGOT, 1));
-                    pItem.shrink(1);
+                    tile.setSlotStack(counter, new ItemStack(ModItems.ironingotball, 1));
+                    player.inventory.getCurrentItem().shrink(1);
                     return true;
                 }
             }
             if (RecipeHelper.isOreName(pItem, "nuggetIron")) {
                 if (tile.getSlotStack(counter).isEmpty()) {
                     tile.setSlotStack(counter, new ItemStack(ModItems.wroughtironchunk, 1));
-                    pItem.shrink(1);
+                    player.inventory.getCurrentItem().shrink(1);
                     return true;
                 }
             }
             if (RecipeHelper.isOreName(pItem, "ingotSteel")) {
                 if (tile.getSlotStack(counter).isEmpty()) {
                     tile.setSlotStack(counter, new ItemStack(ModItems.steelingotball, 1));
-                    pItem.shrink(1);
+                    player.inventory.getCurrentItem().shrink(1);
                     return true;
                 }
             }
             if (RecipeHelper.isOreName(pItem, "nuggetSteel")) {
                 if (tile.getSlotStack(counter).isEmpty()) {
                     tile.setSlotStack(counter, new ItemStack(ModItems.steelchunk, 1));
-                    pItem.shrink(1);
+                    player.inventory.getCurrentItem().shrink(1);
                     return true;
                 }
             }

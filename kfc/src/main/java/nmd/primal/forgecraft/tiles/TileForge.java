@@ -39,11 +39,10 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
     public double getReverseX(Integer x) {
         return reverseMin[x];
     }
-    public double getReverseZ(Integer x) {
-        return reverseMax[x];
+    public double getReverseZ(Integer x) {return reverseMax[x];
     }
 
-    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+    //private NonNullList<ItemStack> mySlotList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
     //private ItemStack[] inventory = new ItemStack [0];
     //private String customName;
     private int iteration = 0;

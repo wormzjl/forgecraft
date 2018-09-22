@@ -36,6 +36,8 @@ public abstract class TileBaseSlot extends BaseTile {
         return slotList.size();
     }
 
+
+
     public int getSlotLimit()
     {
         //return ((ShelfBasic)this.getBlockType()).getShelfSize();

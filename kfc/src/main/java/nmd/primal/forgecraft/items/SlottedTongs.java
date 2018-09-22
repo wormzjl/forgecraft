@@ -1,10 +1,13 @@
 package nmd.primal.forgecraft.items;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
@@ -15,13 +18,19 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.interfaces.IPickup;
 import nmd.primal.core.common.helper.NBTHelper;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.tiles.AbstractTileTank;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
@@ -37,17 +46,23 @@ import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 import nmd.primal.forgecraft.util.AnvilHandler;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by mminaie on 12/30/17.
  */
 public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
+
     public SlottedTongs(String unlocalizedName) {
         setUnlocalizedName(unlocalizedName);
         this.setRegistryName(unlocalizedName);
         this.setMaxStackSize(1);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
+
+        @CapabilityInject(IItemHandler.class)
+        public static Capability<IItemHandler.class> ITEM_HANDLER;
+
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
@@ -271,6 +286,37 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
     }
 
+
+
+    @Override
+    public ICapabilityProvider initCapabilities(final ItemStack stack, NBTTagCompound nbt)
+    {
+        return new ICapabilityProvider()
+        {
+            final ItemStackHandler itemHandler = new ItemStackHandler(1);
+
+            @Override
+            public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+            {
+                if (capability == ITEM_HANDLER)
+                    return true;
+                return false;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Nullable
+            @Override
+            public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+            {
+                if (capability == ITEM_HANDLER)
+                    return (T) itemHandler;
+                return null;
+            }
+        };
+    }
+
+
+
     public NonNullList<ItemStack> getSlotList() {
         return slotList;
     }
@@ -290,13 +336,13 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
             Block block = world.getBlockState(pos).getBlock();
             ItemStack itemstack = player.getHeldItem(hand);
             ItemStack slotStack = slotList.get(0);
-
+/*
             if (block instanceof AnvilStone) {
                 TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
                 doAnvilInventoryManager(itemstack, world, tile, pos, hitx, hity, hitz, state, player);
                 return EnumActionResult.SUCCESS;
             }
-
+*/
             if (slotList.get(0).isEmpty()) {
                 if (block instanceof NBTCrucible) {
                     ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
@@ -319,68 +365,6 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                     }
                 }
             }
-
-
-            /*****
-             PUTS anything into the Forge
-             *****/
-            /*
-            if (!slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-                    for (int i = 2; i < tile.getSlotListSize(); i++) {
-                        if(tile.getSlotStack(i).isEmpty()) {
-                            ItemStack tempStack = slotList.get(0).copy();
-                            tile.setSlotStack(i, tempStack);
-                            slotList.set(0, ItemStack.EMPTY);
-                            tile.update();
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-            }
-*/
-
-            /*****
-             TAKES anything out from the Forge
-             *****/
-            /*
-            if (slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-
-                    for (int i = 2; i < tile.getSlotListSize(); i++) {
-                        if (tile.getSlotStack(i) != ItemStack.EMPTY) {
-                            ItemStack tempStack = tile.getSlotStack(i).copy();
-
-                            slotList.set(0, tempStack);
-                            tile.setSlotStack(i, ItemStack.EMPTY);
-
-                            return EnumActionResult.SUCCESS;
-                        }
-                    }
-                }
-            }
-        //}
-*/
-            /*****
-             PUTS the ToolParts into the Forge
-             *****/
-
-            /*
-            if (!slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() instanceof Forge) {
-                    TileForge tile = (TileForge) world.getTileEntity(pos);
-                    if (slotList.get(0).getItem() instanceof ToolPart) {
-                        if(){
-                        ItemStack tempStack = slotList.get(0).copy();
-                        tile.setSlotStack(4, tempStack);
-                        slotList.set(0, ItemStack.EMPTY);
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
-            }
-            */
 
             /*****
              DROPS the ToolParts into the World
@@ -430,6 +414,32 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                             slotList.set(0, ItemStack.EMPTY);
                             return EnumActionResult.SUCCESS;
                         }
+                        if (!(slotList.get(0).getItem() instanceof BaseMultiItem)) {
+                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "ingotIron")) {
+                                ItemStack tempStack = slotList.get(0).copy();
+                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                slotList.set(0, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "nuggetIron")) {
+                                ItemStack tempStack = slotList.get(0).copy();
+                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                slotList.set(0, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "ingotSteel")) {
+                                ItemStack tempStack = slotList.get(0).copy();
+                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                slotList.set(0, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "nuggetSteel")) {
+                                ItemStack tempStack = slotList.get(0).copy();
+                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                slotList.set(0, ItemStack.EMPTY);
+                                return EnumActionResult.SUCCESS;
+                            }
+                        }
                     }
                 }
             }
@@ -460,6 +470,51 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         }
 
         return ItemStack.EMPTY;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if(!stack.isEmpty())
+        {
+            SlottedTongs item = (SlottedTongs) stack.getItem();
+            ItemStack slotStack = item.getSlotList().get(0).copy();
+            System.out.println(slotStack);
+            if (!slotStack.isEmpty())
+            {
+                tooltip.add(ChatFormatting.GRAY + "Holding: " + slotStack.getItem().getUnlocalizedName());
+                /*
+                tooltip.add(ChatFormatting.GRAY + "Upgrades: " + (3 - getModifiers(item)) );
+                if (getEmerald(item) == true) {
+                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+                }
+                if (getDiamondLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+                }
+                if (getRedstoneLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
+                }
+                if (getLapisLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
+                }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+                */
+            }
+        }
+    }
+
+    @Override
+    public NBTTagCompound getNBTShareTag(ItemStack stack)
+    {
+
+        return stack.getTagCompound();
+    }
+
+    @Override
+    public void readNBTShareTag(ItemStack stack, @Nullable NBTTagCompound nbt)
+    {
+        stack.setTagCompound(nbt);
     }
 
 }

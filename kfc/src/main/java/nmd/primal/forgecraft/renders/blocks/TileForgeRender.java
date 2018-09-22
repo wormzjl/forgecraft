@@ -85,16 +85,47 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                                 GL11.glPushMatrix();
                                 double tempScale = 1.0D;
                                 GL11.glScaled(tempScale, tempScale, tempScale);
-                                GL11.glTranslated(tile.getNormalX(a), -0.465D, tile.getNormalZ(i));
+                                GL11.glTranslated(tile.getNormalX(a), 0.0D, tile.getNormalZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
-
                             if (item instanceof BaseMultiItem) {
                                 GL11.glPushMatrix();
                                 double tempScale = 1.0D;
                                 GL11.glScaled(tempScale, tempScale, tempScale);
                                 GL11.glTranslated(tile.getNormalX(a), -0.0625D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                        }
+                        counter++;
+                    }
+                }
+            }
+
+            if (state.getValue(Forge.FACING) == EnumFacing.SOUTH) {
+                //float tempScale = 0.8F;
+                GL11.glScalef(0.8F, 0.8F, 0.8F);
+                GL11.glTranslated(-0.3F, 0.1D, -0.7D);
+                int counter = 1;
+                for (int i = 0; i < tile.getArraySize(); i++) {
+                    for (int a = 0; a < tile.getArraySize(); a++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+
+                            if (item instanceof ToolPart ) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getReverseX(a), 0.0D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.0625D, tile.getReverseZ(i));
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
@@ -104,61 +135,75 @@ public class TileForgeRender extends TileEntitySpecialRenderer<TileForge>
                     }
                 }
             }
-/*
-            for (int i = 1; i < tile.getSlotListSize(); i++) {
-                if (!tile.getSlotStack(i).isEmpty()) {
-                    GL11.glPushMatrix();
-                    float tempScale = 0.8F;
-                    GL11.glScalef(tempScale, tempScale, tempScale);
-                    GL11.glTranslated(0.0F, 0.1D, 0.0F);
-                    if (i == 1) {
-                        GL11.glTranslated(-0.3, -0.05D, -0.3D);
-                        if (tile.getSlotStack(i).getItem() == Items.IRON_INGOT) {
-                            GL11.glScalef(0.5f, 0.5f, 0.5f);
-                            GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
-                        }
-                        if (tile.getSlotStack(i).getItem() instanceof ToolPart) {
-                            GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                        }
-                    }
-                    if (i == 2) {
-                        GL11.glTranslated(-0.3, -0.05D, 0.3D);
-                        if (tile.getSlotStack(i).getItem() == Items.IRON_INGOT) {
-                            GL11.glScalef(0.5f, 0.5f, 0.5f);
-                            GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
-                        }
-                        if (tile.getSlotStack(i).getItem() instanceof ToolPart) {
-                            GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                        }
-                    }
-                    if (i == 3) {
-                        if (tile.getSlotStack(i).getItem() == Items.IRON_INGOT) {
-                            GL11.glScalef(0.5f, 0.5f, 0.5f);
-                            GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
-                        }
-                        //GL11.glScalef(0.6F, 0.6F, 0.6F);
-                        if (tile.getSlotStack(i).getItem() instanceof ToolPart) {
-                            GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                        }
 
-                    }
-                    if (i == 4) {
-                        GL11.glTranslated(0.3, -0.05D, -0.3D);
-                        if (tile.getSlotStack(i).getItem() == Items.IRON_INGOT) {
-                            GL11.glScalef(0.5f, 0.5f, 0.5f);
-                            GL11.glRotated(90.0F, 1.0f, 0.0f, 0.0f);
-                        }
-                        if (tile.getSlotStack(i).getItem() instanceof ToolPart) {
-                            GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                        }
-                    }
+            if (state.getValue(Forge.FACING) == EnumFacing.WEST) {
+                //float tempScale = 0.8F;
+                GL11.glScalef(0.8F, 0.8F, 0.8F);
+                GL11.glTranslated(-0.3F, 0.1D, -0.7D);
+                int counter = 1;
+                for (int a = 0; a < tile.getArraySize(); a++) {
+                    for (int i = 0; i < tile.getArraySize(); i++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item instanceof ToolPart ) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getNormalX(a), 0.0D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getNormalX(a), -0.0625D, tile.getReverseZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            } else {
 
-                    renderItem.renderItem(tile.getSlotStack(i), ItemCameraTransforms.TransformType.FIXED);
-                    //renderItem.renderItem(tile.getSlotStack(i), renderItem.getItemModelMesher().getItemModel(tile.getSlotStack(i)));
-                    GL11.glPopMatrix();
+                            }
+
+                        }
+                        counter++;
+                    }
                 }
             }
-*/
+
+            if (state.getValue(Forge.FACING) == EnumFacing.EAST) {
+                //float tempScale = 0.8F;
+                GL11.glScalef(0.8F, 0.8F, 0.8F);
+                GL11.glTranslated(-0.3F, 0.1D, -0.7D);
+                int counter = 1;
+                for (int a = 0; a < tile.getArraySize(); a++) {
+                    for (int i = 0; i < tile.getArraySize(); i++) {
+                        if (!tile.getSlotStack(counter).isEmpty()) {
+                            Item item = tile.getSlotStack(counter).getItem();
+                            if (item instanceof ToolPart ) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getReverseX(a), 0.0D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            }
+                            if (item instanceof BaseMultiItem) {
+                                GL11.glPushMatrix();
+                                double tempScale = 1.0D;
+                                GL11.glScaled(tempScale, tempScale, tempScale);
+                                GL11.glTranslated(tile.getReverseX(a), -0.0625D, tile.getNormalZ(i));
+                                renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
+                                GL11.glPopMatrix();
+                            } else {
+
+                            }
+
+                        }
+                        counter++;
+                    }
+                }
+            }
+
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);
             GL11.glPopMatrix();
         }

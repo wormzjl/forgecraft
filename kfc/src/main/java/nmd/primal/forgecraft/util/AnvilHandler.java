@@ -363,23 +363,13 @@ public interface AnvilHandler {
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
             if (tile != null) {
                 for (ItemStack stack : tile.getSlotList()) {
-                    if (stack != null) {
+                    if (stack != ItemStack.EMPTY) {
                         float offset = 0.7F;
                         double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        ItemStack dropStack = null;
-                        if (stack.getItem() instanceof BaseMultiItem) {
-                            BaseMultiItem item = (BaseMultiItem) stack.getItem();
-                        } else {
-                            dropStack = stack;
-                        }
-                        if(dropStack.hasTagCompound()){
-                            if(dropStack.getItem() instanceof ToolPart){
-                                dropStack.getSubCompound("tags").setBoolean("hot", false);
-                            }
-                        }
-                        EntityItem itemDrop = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, dropStack);
+                        System.out.println(stack);
+                        EntityItem itemDrop = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
                         itemDrop.setDefaultPickupDelay();
                         world.spawnEntity(itemDrop);
                     }
