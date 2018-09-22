@@ -11,10 +11,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.forgecraft.blocks.Forge;
+import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
-import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
@@ -25,7 +23,27 @@ import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
  */
 public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
 
-    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(7, ItemStack.EMPTY);
+    private int arraySize = 2;
+    private double[] normalMin = {0.0625, 0.5625};
+    private double[] normalMax = {0.4375, 0.9375};
+    private double[] reverseMin = {0.5625, 0.0625};
+    private double[] reverseMax = {0.9375, 0.4375};
+
+    public int getArraySize(){return arraySize;}
+    public double getNormalX(Integer x) {
+        return normalMin[x];
+    }
+    public double getNormalZ(Integer x) {
+        return normalMax[x];
+    }
+    public double getReverseX(Integer x) {
+        return reverseMin[x];
+    }
+    public double getReverseZ(Integer x) {
+        return reverseMax[x];
+    }
+
+    private NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
     //private ItemStack[] inventory = new ItemStack [0];
     //private String customName;
     private int iteration = 0;
@@ -174,7 +192,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
 
     private void craftingManager() {
 
-        for (int i = 2; i < this.getSlotListSize(); i++) {
+        for (int i = 1; i < this.getSlotListSize(); i++) {
             ItemStack stack = this.getSlotStack(i).copy();
 
             ForgeCrafting recipe = ForgeCrafting.getRecipe(stack.getItem());
@@ -183,7 +201,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                 if(stack.hasTagCompound()){
                     stackCompound=stack.getTagCompound().copy();
                 }
-                if(i == 2){
+                if(i == 1){
                     if (this.getHeat() >= recipe.getHeatThreshold()) {
                         cookCounter2++;
                     }
@@ -197,7 +215,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter2 = 0;
                     }
                 }
-                if(i == 3){
+                if(i == 2){
                     if (this.getHeat() >= recipe.getHeatThreshold()) {
                         cookCounter3++;
                     }
@@ -213,7 +231,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter3 = 0;
                     }
                 }
-                if(i == 4){
+                if(i == 3){
                     if (this.getHeat() >= recipe.getHeatThreshold()) {
                         cookCounter4++;
                     }
@@ -227,7 +245,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         cookCounter4 = 0;
                     }
                 }
-                if(i == 5){
+                if(i == 4){
                     if (this.getHeat() >= recipe.getHeatThreshold()) {
                         cookCounter5++;
                     }
@@ -239,20 +257,6 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                         outputStack.setItemDamage(stack.getItemDamage());
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
-                    }
-                }
-                if(i == 6){
-                    if (this.getHeat() >= recipe.getHeatThreshold()) {
-                        cookCounter6++;
-                    }
-                    if (this.getHeat() < recipe.getHeatThreshold() && cookCounter6 > 0) {
-                        cookCounter6--;
-                    }
-                    if (cookCounter6 >= recipe.getIdealTime()) {
-                        ItemStack outputStack = recipe.getOutput().copy();
-                        outputStack.setItemDamage(stack.getItemDamage());
-                        this.setSlotStack(i, outputStack);
-                        cookCounter6 = 0;
                     }
                 }
             }

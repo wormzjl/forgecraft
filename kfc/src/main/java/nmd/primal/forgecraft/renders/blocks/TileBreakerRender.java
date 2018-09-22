@@ -9,7 +9,7 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
-import nmd.primal.forgecraft.blocks.Breaker;
+import nmd.primal.forgecraft.blocks.machine.Breaker;
 import nmd.primal.forgecraft.tiles.TileBreaker;
 import org.lwjgl.opengl.GL11;
 

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.machine;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
@@ -9,10 +9,11 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -27,36 +28,36 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.recipes.inworld.FireSource;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.tiles.TileForge;
+import nmd.primal.forgecraft.blocks.CustomContainerFacing;
+import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.tiles.TileBloomery;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
-
-//import nmd.primal.core.api.PrimalBlocks;
-
-
 /**
- * Created by kitsu on 11/26/2016.
+ * Created by mminaie on 6/11/17.
  */
-public class Forge extends CustomContainerFacing implements ITileEntityProvider{
+public class BloomeryBase extends CustomContainerFacing implements ITileEntityProvider {
 
+    //public static final PropertyBool COVERED =  PropertyBool.create("covered");
     private int maxHeat;
-    //public static final PropertyBool PrimalAPI.States.ACTIVE =  PropertyBool.create("PrimalAPI.States.ACTIVE");
-    protected static final AxisAlignedBB collideBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.99D, 1.0D);
-    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
+    public AxisAlignedBB AABB = new AxisAlignedBB(5/32D, 0.0D, 5/32D, 27/32D, 12/16D, 27/32D);
 
-    public Forge(Material material, String name, Integer maxHeat) {
-        super(material, name);
+    public BloomeryBase(Material material, String registryName, Integer maxHeat) {
+        super(material, registryName);
         setCreativeTab(ModInfo.TAB_FORGECRAFT);
         setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
         setHardness(3.0f);
         setResistance(5.0f);
         this.maxHeat=maxHeat;
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        return AABB;
     }
 
     public int getMaxHeat() {
@@ -70,55 +71,78 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     @Override
     public TileEntity createNewTileEntity(World worldIn, int meta)
     {
-        return new TileForge();
+        return new TileBloomery();
     }
 
-    @Nullable
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    /*@Override
+    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
     {
-        return collideBox;
-    }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return boundBox;
-    }
+        this.updateTick(world, pos, state, random);
+        if(!world.isRemote){
+            if(state.getValue(PrimalAPI.States.ACTIVE) == true) {
+                FireHelper.makeSmoke(world, pos, 50);
+            }
+        }
+    }*/
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        if (!world.isRemote) {
-            TileForge tile = (TileForge) world.getTileEntity(pos);
-            if (tile != null) {
-                ItemStack pItem = player.inventory.getCurrentItem();
-                ItemStack fuelItem = tile.getSlotStack(0);
-                //System.out.println(pItem.getItem().getRegistryName().toString());
+
+        if (world.isRemote)
+            return true;
 
 
-                /***********************
-                FUEL SLOT CODE
-                 ***********************/
-                if (!tile.getSlotStack(0).isEmpty()) {
-                    if(player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
-                        ItemStack returnStack = tile.getSlotStack(0).copy();
-                        PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
-                        tile.clearSlot(0);
-                        return true;
-                    }
-                }
-                if(pItem.isEmpty()) {
-                    if(!player.isSneaking()){
-                        if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true){
-                            Integer tempInt = tile.getHeat();
-                            String tempString = tempInt.toString();
-                            ITextComponent itextcomponent = new TextComponentString(tempString);
-                            player.sendStatusMessage(itextcomponent, true);
-                            //System.out.println(pos);
+
+        TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
+        if (tile != null) {
+            ItemStack pItem = player.inventory.getCurrentItem();
+            ItemStack tileItem = tile.getSlotStack(0);
+            ItemStack tileItem1 = tile.getSlotStack(1);
+            if(pItem.isEmpty()) {
+
+                if(!player.isSneaking()){
+                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true){
+
+                        Integer bloomeryHeat = tile.getHeat();
+                        String display =  "\n" + "Current Temp: " + bloomeryHeat.toString() +
+                                " Fuel Remaining: " + tileItem.getCount();
+                        ITextComponent itextcomponent = new TextComponentString(display);
+                        player.sendStatusMessage(itextcomponent, false);
+                        NBTTagCompound tag = tile.getSlotStack(1).getSubCompound("BlockEntityTag");
+
+                        if(tag != null) {
+                            NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
+                            NonNullList<ItemStack> dropList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+                            ItemStackHelper.loadAllItems(tag, ingList);
+                            ItemStackHelper.loadAllItems(tag, dropList);
+                            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                            if (recipe != null) {
+                                Integer minTemp = recipe.getCookTemp();
+                                Integer cookCounter = tile.getCookCounter();
+                                Integer idealTime = recipe.getCookTime();
+                                Integer remainingTime = idealTime - cookCounter;
+
+                                String display1 =
+                                        "Cooking: " + tileItem1.getDisplayName() +
+                                                " Target Temp: " + minTemp.toString() +
+                                                " Time Left: " + remainingTime.toString();
+                                String display2 = tileItem1.getDisplayName() + "finished.";
+                                ITextComponent itextcomponent1 = null;
+                                if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
+                                    itextcomponent1 = new TextComponentString(display2);
+                                } else itextcomponent1 = new TextComponentString(display1);
+
+                                player.sendStatusMessage(itextcomponent1, false);
+
+                            }
                             return true;
                         }
                     }
                 }
+            }
+
+            if(tile.getSlotStack(0) != ItemStack.EMPTY) {
                 if((FireSource.useSource(world, pos, facing, player, hand, pItem, hitX, hitY, hitZ))) {
                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
                     tile.setHeat(100);
@@ -126,126 +150,105 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                     tile.updateBlock();
                     return true;
                 }
-                if((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
-                    if (!fuelItem.isEmpty()){
-                        if(pItem.getItem() == fuelItem.getItem()){
-                            if(fuelItem.getCount() < 64){
-                                if(fuelItem.getCount() + pItem.getCount() <= 64){
-                                    fuelItem.grow(pItem.getCount());
-                                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                                    tile.markDirty();
-                                    tile.updateBlock();
-                                    return true;
-                                }
-                                if(fuelItem.getCount() + pItem.getCount() > 64){
-                                    pItem.setCount(64-pItem.getCount());
-                                    fuelItem.setCount(64);
-                                    tile.markDirty();
-                                    tile.updateBlock();
-                                    return true;
-                                }
+            }
+            if((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
+                if (!tileItem.isEmpty()){
+                    if(pItem.getItem() == tileItem.getItem()){
+                        if(tileItem.getCount() < 64){
+                            if(tileItem.getCount() + pItem.getCount() <= 64){
+                                tileItem.grow(pItem.getCount());
+                                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                                tile.markDirty();
+                                tile.updateBlock();
+                                return true;
+                            }
+                            if(tileItem.getCount() + pItem.getCount() > 64){
+                                pItem.setCount(64-pItem.getCount());
+                                tileItem.setCount(64);
+                                tile.markDirty();
+                                tile.updateBlock();
+                                return true;
                             }
                         }
                     }
-                    if(fuelItem.isEmpty()) {
-                        tile.setSlotStack(0, pItem);
-                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                }
+                if(tileItem.isEmpty()) {
+                    tile.setSlotStack(0, pItem);
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                    return true;
+                }
+            }
+
+            if((!pItem.isEmpty()) && tile.isItemValidForSlot(1, pItem)) {
+                if (!tileItem1.isEmpty()) {
+                    return false;
+                }
+                if(tileItem1.isEmpty()){
+
+                    ItemStack place_stack = pItem.copy();
+                    //if (tile.putStack(slot, place_stack))
+                    tile.setSlotStack(1, place_stack);
+                    pItem.shrink(1);
+                    return true;
+                }
+            }
+
+            /***SLOTTED TONGS CODE TO PLACE THE ITEMS***/
+            if(pItem.getItem() instanceof SlottedTongs) {
+                SlottedTongs temp = (SlottedTongs) pItem.getItem();
+                if (!pItem.isEmpty() && tile.isItemValidForSlot(1, temp.slotList.get(0))) {
+                    if (!tileItem1.isEmpty()) {
+                        return false;
+                    }
+                    if(tileItem1.isEmpty()){
+
+                        ItemStack place_stack = temp.slotList.get(0).copy();
+                        //if (tile.putStack(slot, place_stack))
+                        tile.setSlotStack(1, place_stack);
+                        temp.slotList.set(0, ItemStack.EMPTY);
                         return true;
                     }
                 }
-                /***********************
-                 FORGING SLOTS CODE
-                 ***********************/
-                //REMOVE COOL INGOT
-                if(facing == EnumFacing.UP ) {
-                    /*if (pItem.isEmpty()) {
-                        for (int i = 2; i < tile.getSlotListSize(); i++) {
-                            //System.out.println(i);
-                            if (!tile.getSlotStack(i).isEmpty()) {
-                                if (Block.getBlockFromItem(tile.getSlotStack(i).getItem()) instanceof IngotBall) {
-                                    CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
-                                    tile.setSlotStack(i, ItemStack.EMPTY);
-                                    return true;
-                                }
-                                if(tile.getSlotStack(i).hasTagCompound() == true){
-                                    if (tile.getSlotStack(i).getTagCompound().getBoolean("hot") == false) {
-                                        CommonUtils.spawnItemEntity(world, player, tile.getSlotStack(i));
-                                        tile.setSlotStack(i, ItemStack.EMPTY);
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                    }*/
-
-
-                    if (pItem.getItem() instanceof BaseMultiItem) {
-                        //System.out.println("Activating");
-                        for (int i = 2; i <= tile.getSlotListSize(); i++) {
-                            if (tile.getSlotStack(i).isEmpty()) {
-                                ItemStack tempItem = pItem.copy();
-                                tile.setSlotStack(i,tempItem);
-                                pItem.shrink(1);
-                                return true;
-                            }
-                        }
+            }
+            /***SLOTTED TONGS CODE TO REMOVE THE ITEMS***/
+            if(pItem.getItem() instanceof SlottedTongs) {
+                SlottedTongs temp = (SlottedTongs) pItem.getItem();
+                if (!pItem.isEmpty() && temp.slotList.get(0).isEmpty()) {
+                    if (tileItem1.isEmpty()) {
+                        return false;
                     }
-                    //Needs Ore Dictionary Compat
-                    if (pItem.getItem().equals(new ItemStack(Items.IRON_INGOT).getItem())) {
-                        for (int i = 2; i < 7; i++) {
-                            if (tile.getSlotStack(i).isEmpty()) {
-                                tile.setSlotStack(i, new ItemStack(Items.IRON_INGOT, 1));
-                                pItem.shrink(1);
-                                return true;
-                            }
-                        }
-                    }
-
-                    if(pItem.getItem() instanceof ToolPart){
-                        if(tile.getSlotStack(4).isEmpty()){
-                            //System.out.println("Adding player Item to slot");
-                            tile.setSlotStack(4, pItem);
-                            //System.out.println(tile.getSlotStack(4));
-                            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                    if(!tileItem1.isEmpty()){
+                        ItemStack place_stack = tileItem1.copy();
+                        if(temp.slotList.get(0).isEmpty()){
+                            temp.slotList.set(0, place_stack);
+                            tile.setSlotStack(1, ItemStack.EMPTY);
                             return true;
                         }
                     }
                 }
             }
-            //System.out.println(tile.getSlotStack(0));
-            //System.out.println(tile.getSlotStack(1));
-            //System.out.println(tile.getSlotStack(2));
-            //System.out.println(tile.getSlotStack(3));
-            //System.out.println(tile.getSlotStack(4));
-            //System.out.println(tile.getSlotStack(5));
-            //System.out.println(tile.getSlotStack(6));
+
+            if (!tile.getSlotStack(0).isEmpty()) {
+                if(player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
+                    ItemStack returnStack = tile.getSlotStack(0).copy();
+                    PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
+                    tile.clearSlot(0);
+                    return true;
+                }
+            }
         }
         return false;
     }
 
-    @Override
-    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
-    {
-        //if (!world.isRemote){
-            if(ent instanceof EntityPlayer){
-                if(state.getValue(PrimalAPI.States.ACTIVE) == true){
-                    ent.setFire(1);
-                }
-            }
-        //}
-    }
-
-    public void onBlockClicked(World world, BlockPos pos, EntityPlayer player) {
-
-    }
 
     @Override
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
+        int lightState =0;
         if(state.getValue(PrimalAPI.States.ACTIVE) == true){
-            return 15;
+            lightState = 10;
         }
-        return 0;
+        return lightState;
     }
 
     public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face)
@@ -261,18 +264,22 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     @Override
     public boolean isFireSource(World world, BlockPos pos, EnumFacing side)
     {
-        if (side == EnumFacing.UP)
-        {
-            if(!world.isRemote){
-                TileForge tile = (TileForge) world.getTileEntity(pos);
-                if(tile.getSlotStack(0) != ItemStack.EMPTY){
-                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE)==true){
-                        return true;
-                    }
-                }
+        if(!world.isRemote){
+            if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE)==true){
+                return true;
             }
         }
         return false;
+    }
+
+    @Override
+    public void onEntityCollidedWithBlock(World world, BlockPos pos, IBlockState state, Entity ent)
+    {
+        if(ent instanceof EntityPlayer){
+            if(state.getValue(PrimalAPI.States.ACTIVE) == true){
+                ent.setFire(1);
+            }
+        }
     }
 
     /**
@@ -283,7 +290,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
     {
         if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops"))
         {
-            TileForge tile = (TileForge) world.getTileEntity(pos);
+            TileBloomery tile = (TileBloomery) world.getTileEntity(pos);
             if (tile !=null)
             {
                 for (ItemStack stack : tile.getSlotList())
@@ -300,15 +307,8 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
                 }
             }
         }
-
         super.breakBlock(world, pos, state);
     }
-
-    /*@Override
-    public IBlockState onBlockPlaced(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
-        IBlockState state = super.onBlockPlaced(worldIn, pos, facing, hitX, hitY, hitZ, meta, placer);
-        return state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false));
-    }*/
 
     @Override
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
@@ -415,6 +415,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
         return false;
     }
 
+
     @Override
     public boolean isOpaqueCube(IBlockState state)
     {
@@ -434,17 +435,6 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
         return EnumBlockRenderType.MODEL;
     }
 
-    @Override
-    public void randomTick(World world, BlockPos pos, IBlockState state, Random random)
-    {
-        this.updateTick(world, pos, state, random);
-        if(!world.isRemote){
-            if(state.getValue(PrimalAPI.States.ACTIVE) == true) {
-                makeSmoke(world, pos);
-            }
-        }
-    }
-
     @SideOnly(Side.CLIENT)
     @SuppressWarnings("incomplete-switch")
     public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random rand)
@@ -452,7 +442,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider{
         if(state.getValue(PrimalAPI.States.ACTIVE) == true)
         {
             double d0 = (double)pos.getX() + 0.5D;
-            double d1 = (double)pos.getY() + 0.96D;
+            double d1 = (double)pos.getY() + 0.2D;
             double d2 = (double)pos.getZ() + 0.5D;
             double d3 = 0.52D;
             double d4 = ThreadLocalRandom.current().nextDouble(0.075, 0.35);

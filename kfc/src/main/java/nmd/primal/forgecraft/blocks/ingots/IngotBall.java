@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.ingots;
 
 import net.minecraft.block.BlockDynamicLiquid;
 import net.minecraft.block.material.Material;
@@ -17,6 +17,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.blocks.BlockCustomBase;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;

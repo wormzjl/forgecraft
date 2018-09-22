@@ -396,7 +396,7 @@ public class ModCrafting{
         diamondBronze.getTagCompound().setString("upgrades", "diamond");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
-                new OreIngredient("dustDiamond"),
+                new OreIngredient("flakeDiamond"),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
@@ -410,7 +410,7 @@ public class ModCrafting{
         emeraldBronze.getTagCompound().setString("upgrades", "emerald");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
-                new OreIngredient("dustEmerald"),
+                new OreIngredient("flakeEmerald"),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
@@ -451,7 +451,7 @@ public class ModCrafting{
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustTin"),
-                new OreIngredient("dustDiamond"),
+                new OreIngredient("flakeDiamond"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 diamondBronze,
                 1100,
@@ -463,7 +463,7 @@ public class ModCrafting{
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustTin"),
-                new OreIngredient("dustEmerald"),
+                new OreIngredient("flakeEmerald"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 emeraldBronze,
                 1100,
@@ -559,7 +559,7 @@ public class ModCrafting{
 
         /***Anvil***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.stoneanvil, 1),
-                "   ", " I ", " S ", 'I', ModItems.ironingotball, 'S', Blocks.STONE);
+                "   ", " I ", " S ", 'I', "ingotIron", 'S', Blocks.STONE);
 
 
 
