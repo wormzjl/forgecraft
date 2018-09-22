@@ -1,12 +1,12 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "forgecraft:items/unstrunglongbow",
-		"texture": "forgecraft:items/unstrunglongbow",
-		"texture1": "forgecraft:items/bowstring",
-		"arrow": "forgecraft:items/arrow"
+		"particle": "items/unstrunglongbow",
+		"texture": "items/unstrunglongbow",
+		"texture1": "items/bowstring",
+		"arrow": "items/arrow"
 	},
-	"elements": [
+	"elements": [ 	 
 		{
 			"__comment": "Box7",
 			"from": [ 6.5, 5, 6.5 ],

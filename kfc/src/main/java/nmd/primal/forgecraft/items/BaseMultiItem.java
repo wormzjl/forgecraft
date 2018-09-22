@@ -42,6 +42,7 @@ public class BaseMultiItem extends BaseItem {
                 Item itemStack = stack.getItem();
                 //TODO get the item name
                 if (stack.getItem() instanceof BaseMultiItem) {
+
                     if(stack.getTagCompound() != null) {
                         /***INGOTS***/
                         if(itemStack.equals(ModItems.ironingotball)) {
