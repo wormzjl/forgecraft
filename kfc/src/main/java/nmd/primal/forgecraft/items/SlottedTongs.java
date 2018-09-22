@@ -283,7 +283,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitx, float hity, float hitz)
     {
-        if(!world.isRemote){
+        //if(!world.isRemote){
         //if (hand.equals(player.swingingHand)) {
             IBlockState state = world.getBlockState(pos);
             Block block = world.getBlockState(pos).getBlock();
@@ -430,8 +430,8 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 }
             }
             return EnumActionResult.FAIL;
-        }
-        return EnumActionResult.FAIL;
+        //}
+        //return EnumActionResult.FAIL;
     }
 
     public ItemStack getItem(World world, BlockPos pos, IBlockState state, Block block)
