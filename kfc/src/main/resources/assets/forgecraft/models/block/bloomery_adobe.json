@@ -1,8 +1,8 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/stone_slab",
-		"texture": "blocks/stone_slab",
+		"particle": "primal:blocks/adobe_brick",
+		"texture": "primal:blocks/adobe_brick",
 		"texture1": "primal:blocks/adobe_brick",
 		"texture2": "primal:blocks/adobe_brick_mortar"
 	},

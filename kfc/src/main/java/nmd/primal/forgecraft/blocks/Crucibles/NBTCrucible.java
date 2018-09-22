@@ -60,8 +60,8 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
         if (!world.isRemote) {
             if(hand == player.getActiveHand()) {
                 TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-                ItemStack pItem = player.inventory.getCurrentItem();
-                ItemStack pItem1 = new ItemStack(pItem.getItem(), 1);
+                ItemStack pItem = player.inventory.getCurrentItem().copy();
+                pItem.setCount(1);
 
                 /**PICKS UP THE CRUCIBLE**/
                 if (player.isSneaking() == false) {
@@ -82,22 +82,24 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         if (pItem.getItem() instanceof SlottedTongs) {
                             return false;
                         } else {
+                            pItem.setCount(1);
                             for (int i = 1; i < tile.ingList.size()+1; i++) {
                                 if (tile.ingList.get(i-1).isEmpty()) {
-                                    tile.ingList.set(i-1, pItem1);
-                                    pItem.shrink(1);
+                                    tile.ingList.set(i-1, pItem);
                                     tile.setHot(i);
                                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, i), 2);
+                                    player.inventory.getCurrentItem().shrink(1);
                                     tile.update();
                                     tile.markDirty();
                                     return true;
                                 }
                             }
+
                         }
                     }
                 }
                 /**CLEARS THE INVENTORY**/
-                if (player.isSneaking() == true) {
+                if (player.isSneaking()) {
                     if (pItem.isEmpty()) {
                         if (tile.getHot()!=15) {
                             if (!tile.getStatus()) {
@@ -179,19 +181,18 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     {
         if (!world.isRemote) {
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-            ItemStack pItem = player.inventory.getCurrentItem();
             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
             if(recipe != null && tile.getStatus() && tile.getHot() == 6){
                 if(tile.getDrops() != null) {
-                    PlayerHelper.spawnItemOnPlayer(world, player, tile.getDrops());
-                } else {
                     PlayerHelper.spawnItemOnPlayer(world, player, recipe.getDropsCooked());
+                } else {
+                    PlayerHelper.spawnItemOnPlayer(world, player, recipe.getDropsRaw());
                 }
             }
             if(recipe != null && tile.getStatus() && tile.getHot() == 15){
                 PlayerHelper.spawnItemOnPlayer(world, player, recipe.getDropsRaw());
             }
-            if(recipe != null && tile.getStatus() && tile.getHot() != 15 && tile.getHot() != 6){
+            if(!tile.getStatus() && tile.getHot() != 15 && tile.getHot() != 6){
                 PlayerHelper.spawnItemOnPlayer(world, player, tile.ingList);
             }
         }

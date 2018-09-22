@@ -329,6 +329,13 @@ public class ModCrafting{
                 1800,
                 1500);
 
+
+        NBTTagCompound tagBronzeDefault = new NBTTagCompound();
+        tagBronzeDefault.setString("upgrades", "");
+        tagBronzeDefault.setBoolean("hot", false);
+        ItemStack defaultBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        defaultBronze.setTagCompound(tagBronzeDefault.copy());
+
         CrucibleCrafting.addRecipe(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -336,16 +343,13 @@ public class ModCrafting{
                 new OreIngredient("dustTin"),
                 Ingredient.EMPTY,
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.bronzeingotball, 1),
+                defaultBronze,
                 1100,
                 800,
                 600);
 
-        NBTTagCompound tagBronzeDefault = new NBTTagCompound();
-        tagBronzeDefault.setString("upgrades", "");
-        ItemStack defaultBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        defaultBronze.setTagCompound(tagBronzeDefault.copy());
-        CrucibleCrafting.addRecipe(
+
+        /*CrucibleCrafting.addRecipe(
                 new OreIngredient("oreBronze"),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
@@ -356,6 +360,7 @@ public class ModCrafting{
                 1100,
                 800,
                 600);
+                */
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
@@ -369,10 +374,12 @@ public class ModCrafting{
                 800,
                 600);
 
-        NBTTagCompound tag = new NBTTagCompound();
-        tag.setString("upgrades", "redstone");
-        ItemStack redBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        redBronze.setTagCompound(tag.copy());
+        //NBTTagCompound tag = new NBTTagCompound();
+        //tag.setString("upgrades", "redstone");
+        //ItemStack redBronze = new ItemStack(ModItems.bronzeingotball, 1);
+        //redBronze.setTagCompound(tag.copy());
+        ItemStack redBronze = defaultBronze.copy();
+        redBronze.getTagCompound().setString("upgrades", "redstone");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("dustRedstone"),
@@ -385,10 +392,8 @@ public class ModCrafting{
                 800,
                 600);
 
-        NBTTagCompound diamondBronzeTag = new NBTTagCompound();
-        tag.setString("upgrades", "diamond");
-        ItemStack diamondBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        diamondBronze.setTagCompound(diamondBronzeTag.copy());
+        ItemStack diamondBronze = defaultBronze.copy();
+        diamondBronze.getTagCompound().setString("upgrades", "diamond");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("dustDiamond"),
@@ -401,10 +406,8 @@ public class ModCrafting{
                 800,
                 600);
 
-        NBTTagCompound emeraldBronzeTag = new NBTTagCompound();
-        tag.setString("upgrades", "emerald");
-        ItemStack emeraldBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        emeraldBronze.setTagCompound(emeraldBronzeTag.copy());
+        ItemStack emeraldBronze = defaultBronze.copy();
+        emeraldBronze.getTagCompound().setString("upgrades", "emerald");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("dustEmerald"),
@@ -417,10 +420,8 @@ public class ModCrafting{
                 800,
                 600);
 
-        NBTTagCompound tagBronzeLapis = new NBTTagCompound();
-        tagBronzeDefault.setString("upgrades", "lapis");
-        ItemStack lapisBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        lapisBronze.setTagCompound(tagBronzeLapis.copy());
+        ItemStack lapisBronze = defaultBronze.copy();
+        lapisBronze.getTagCompound().setString("upgrades", "lapis");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("dustLapis"),

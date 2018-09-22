@@ -1,8 +1,8 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "forgecraft:blocks/stone_slab",
-		"texture": "forgecraft:blocks/stone_slab",
+		"particle": "primal:blocks/adobe_brick",
+		"texture": "primal:blocks/adobe_brick",
 		"texture1": "primal:blocks/adobe_brick",
 		"texture2": "primal:blocks/adobe_brick_mortar",
 		"texture3": "forgecraft:blocks/adobebrick_lit"
