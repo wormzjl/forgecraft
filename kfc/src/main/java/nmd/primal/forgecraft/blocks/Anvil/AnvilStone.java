@@ -26,14 +26,15 @@ public class AnvilStone extends AnvilBase {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
-        /******************************************************************************
-         Crafting AnvilStone Recipes
-         *****************************************************************************/
-        if (!world.isRemote) {
-            ItemStack pItem = player.inventory.getCurrentItem();
-            TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
-            ItemStack stack12 = tile.getSlotStack(12).copy();
-            if (hand.equals(hand.MAIN_HAND)) {
+    /******************************************************************************
+     Crafting AnvilStone Recipes
+     *****************************************************************************/
+
+        ItemStack pItem = player.inventory.getCurrentItem();
+        TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+        ItemStack stack12 = tile.getSlotStack(12).copy();
+        if (hand.equals(hand.MAIN_HAND)) {
+            if (!world.isRemote) {
                 if (!stack12.isEmpty()) {
                     if (tile != null) {
                         if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
@@ -116,10 +117,10 @@ public class AnvilStone extends AnvilBase {
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
-                doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
-                return true;
             }
-            return false;
+
+            doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
+            return true;
         }
         return false;
     }
