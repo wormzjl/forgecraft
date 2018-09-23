@@ -3,12 +3,10 @@ package nmd.primal.forgecraft.init;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
@@ -17,9 +15,7 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
-import nmd.primal.forgecraft.util.ToolNBT;
 
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -1419,7 +1415,7 @@ public class ModCrafting{
                 "null"
         );
         /*** Temp Clean Iron Sword ***/
-        //TODO uncomment this
+
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
@@ -1453,7 +1449,6 @@ public class ModCrafting{
                 "null"
         );
         /*** Temp Clean Iron LongSword ***/
-        //TODO uncomment this
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,

@@ -3,20 +3,10 @@ package nmd.primal.forgecraft.compat.JEI.anvil;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.init.Items;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
-import nmd.primal.forgecraft.init.ModItems;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by mminaie on 9/16/18.

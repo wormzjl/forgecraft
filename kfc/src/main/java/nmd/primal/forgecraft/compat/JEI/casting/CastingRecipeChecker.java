@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.compat.JEI.casting;
 
-import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
 
 import java.util.ArrayList;

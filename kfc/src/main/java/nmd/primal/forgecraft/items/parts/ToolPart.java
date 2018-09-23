@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.util.ToolNBT;
 
@@ -274,6 +275,15 @@ public class ToolPart extends Item implements ToolNBT{
             setLapisLevel(item, 0);
             setModifiers(item, 0);
         }
+        if (item.hasTagCompound()) {
+            if (item.getSubCompound("tags").getBoolean("hot")) {
+                player.setFire(1);
+                if (PrimalAPI.randomCheck(50)) {
+                    item.getSubCompound("tags").setBoolean("hot", false);
+                    player.getEntityWorld().playSound(null, player.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
+                }
+            }
+        }
 
     }
 
@@ -288,6 +298,10 @@ public class ToolPart extends Item implements ToolNBT{
                     return true;
                 }
             }
+        }
+        if(!entityItem.isWet()){
+            FireHelper.setFire(entityItem.getEntityWorld(),entityItem.getPosition());
+            return true;
         }
 
         return false;

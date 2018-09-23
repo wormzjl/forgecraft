@@ -14,8 +14,8 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.forgecraft.blocks.machine.BloomeryBase;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
+import nmd.primal.forgecraft.blocks.machine.BloomeryBase;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 

@@ -7,6 +7,7 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -64,8 +65,10 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
+
                 IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
-                ItemStack slotStack = inventory.getStackInSlot(0).copy();
+                ItemStack slotStack = inventory.getStackInSlot(0);
+                //System.out.println(stack.getTagCompound());
 
                 if (stack.getItem() instanceof SlottedTongs) {
                     if (slotStack.getItem() instanceof ItemNBTCrucible) {
@@ -283,32 +286,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
 
 
-    @Override
-    public ICapabilityProvider initCapabilities(final ItemStack stack, NBTTagCompound nbt)
-    {
-        return new ICapabilityProvider()
-        {
-            final ItemStackHandler itemHandler = new ItemStackHandler(1);
 
-            @Override
-            public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
-            {
-                if (capability == ITEM_HANDLER)
-                    return true;
-                return false;
-            }
-
-            @SuppressWarnings("unchecked")
-            @Nullable
-            @Override
-            public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
-            {
-                if (capability == ITEM_HANDLER)
-                    return (T) itemHandler;
-                return null;
-            }
-        };
-    }
 
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitx, float hity, float hitz)
@@ -486,28 +464,65 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         }
     }
 
-    @Nullable
+    @Override
+    public ICapabilityProvider initCapabilities(final ItemStack stack, NBTTagCompound nbt)
+    {
+        return new ICapabilityProvider()
+        {
+            final ItemStackHandler itemHandler = new ItemStackHandler(1);
+
+            @Override
+            public boolean hasCapability(Capability<?> capability, @Nullable EnumFacing facing)
+            {
+                if (capability == ITEM_HANDLER)
+                    return true;
+                return false;
+            }
+
+            @SuppressWarnings("unchecked")
+            @Nullable
+            @Override
+            public <T> T getCapability(Capability<T> capability, @Nullable EnumFacing facing)
+            {
+                if (capability == ITEM_HANDLER)
+                    return (T) itemHandler;
+                return null;
+            }
+        };
+    }
+
     @Override
     public NBTTagCompound getNBTShareTag(ItemStack stack)
     {
-        return super.getNBTShareTag(stack);
-        //IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
-        //NonNullList<ItemStack> setList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
-        //ItemStackHelper.saveAllItems(stack.getTagCompound(), setList);
-        //return stack.getTagCompound();
+        //return stack.getCapability(ITEM_HANDLER, null).
+        /*
+        AntibarrelData data = stack.getCapability(CAP, null);
+
+		if (BlockUtils.hasData(stack))
+		{
+			data.deserializeNBT(BlockUtils.getData(stack));
+			BlockUtils.removeData(stack);
+		}
+         */
+
+        IItemHandler data = stack.getCapability(ITEM_HANDLER, null);
+
+
     }
 
     @Override
     public void readNBTShareTag(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
-        super.readNBTShareTag(stack, nbt);
+        if (nbt != null)
+        {
+            AntibarrelData.get(stack).deserializeNBT(nbt);
+        }
+    }
 
-        //stack.deserializeNBT(nbt);
-        //IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
-        //NonNullList<ItemStack> setList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
-        //ItemStackHelper.loadAllItems(nbt, setList);
-        //inventory.insertItem(0, setList.get(0), false);
-
+    @Override
+    public boolean getShareTag()
+    {
+        return true;
     }
 
 }

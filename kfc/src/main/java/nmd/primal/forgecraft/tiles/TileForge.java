@@ -6,7 +6,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
@@ -145,7 +144,6 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                 }
             }
             if(stack.isEmpty() || RecipeHelper.getBurnTime(stack) <=0){
-                System.out.println(stack);
                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
             }
             if(this.getSlotStack(0).getItem() == PrimalAPI.Items.CHARCOAL_FAIR){
@@ -210,6 +208,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     if (cookCounter2 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
+                        outputStack.setTagCompound(stackCompound);
+                        outputStack.getSubCompound("tags").setBoolean("hot", true);
                         this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
@@ -224,7 +224,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     if (cookCounter3 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
-
+                        outputStack.setTagCompound(stackCompound);
+                        outputStack.getSubCompound("tags").setBoolean("hot", true);
                         this.setSlotStack(i, outputStack);
 
                         cookCounter3 = 0;
@@ -240,6 +241,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     if (cookCounter4 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
+                        outputStack.setTagCompound(stackCompound);
+                        outputStack.getSubCompound("tags").setBoolean("hot", true);
                         this.setSlotStack(i, outputStack);
                         cookCounter4 = 0;
                     }
@@ -254,6 +257,8 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     if (cookCounter5 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
                         outputStack.setItemDamage(stack.getItemDamage());
+                        outputStack.setTagCompound(stackCompound);
+                        outputStack.getSubCompound("tags").setBoolean("hot", true);
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
                     }

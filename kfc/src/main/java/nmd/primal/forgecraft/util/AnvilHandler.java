@@ -5,7 +5,6 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.EnumDyeColor;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -19,7 +18,6 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -57,7 +55,7 @@ public interface AnvilHandler {
         return reverseMax[x];
     }
 
-    default boolean doAnvilRecipe(ItemStack pItem, ItemStack[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
+    default boolean doAnvilRecipe(ItemStack pItem, ItemStack stack12, ItemStack[] tempArray, World world, TileAnvil tile, BlockPos pos, EntityPlayer player) {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
             if (pItem.getItem() instanceof Gallagher) {
@@ -68,12 +66,14 @@ public interface AnvilHandler {
             }
             world.playEvent(1031, pos, 0);
 
-
             if (ThreadLocalRandom.current().nextInt(0, 2) == 0) {
 
                 if (recipe.getOutput().getItem() instanceof ToolPart) {
 
-                    if (!tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
+                    System.out.println(tile.getSlotStack(12).getTagCompound());
+
+                    if (!tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem()) ) {
+
                         ItemStack tempStack = recipe.getOutput();
                         tempStack.setTagCompound(new NBTTagCompound());
                         NBTTagCompound tags = new NBTTagCompound();
@@ -98,9 +98,11 @@ public interface AnvilHandler {
                         outputStack.getTagCompound().setTag("tags", tempNBT);
                         outputStack.getSubCompound("tags").setBoolean("hot", false);
 
+
                         if (recipe.getUpgrade() == "repair") {
                             CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
                         }
+
 
                         if (outputStack.getSubCompound("tags").getInteger("modifiers") < 3) {
 
@@ -253,9 +255,9 @@ public interface AnvilHandler {
 
                 if (!tongStack.isEmpty()) {
                     if (tile.getSlotStack(counter).isEmpty()) {
-                        ItemStack tempStack = tongStack.copy();
-                        tile.setSlotStack(counter, tempStack);
-                        inventory.extractItem(0, 1, false);
+                        //ItemStack tempStack = tongStack.copy();
+                        tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
+                        //System.out.println(tile.getSlotStack(counter).getTagCompound());
                         return true;
                     }
                 }

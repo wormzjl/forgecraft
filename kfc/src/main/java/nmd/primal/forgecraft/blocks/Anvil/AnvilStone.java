@@ -3,7 +3,6 @@ package nmd.primal.forgecraft.blocks.Anvil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -115,7 +114,7 @@ public class AnvilStone extends AnvilBase {
                     for (int i = 0; i < 25; i++) {
                         tempArray[i] = tile.getSlotStack(i);
                     }
-                    doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
+                    doAnvilRecipe(pItem, stack12, tempArray, world, tile, pos, player);
                     return true;
                 }
 

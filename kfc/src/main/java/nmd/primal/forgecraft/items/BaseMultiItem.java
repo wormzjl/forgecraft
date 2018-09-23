@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.forgecraft.init.ModItems;
 
 import javax.annotation.Nullable;
@@ -181,6 +182,18 @@ public class BaseMultiItem extends BaseItem {
         if (!stack.hasTagCompound()) {
             stack.setTagCompound(new NBTTagCompound());
             stack.getTagCompound().setBoolean("hot", false);
+
+        }
+        if (stack.hasTagCompound()) {
+            if (stack.getTagCompound().getBoolean("hot")) {
+                if (stack.getTagCompound().getBoolean("hot")) {
+                    player.setFire(1);
+                }
+                if (PrimalAPI.randomCheck(50)) {
+                    stack.getTagCompound().setBoolean("hot", false);
+                    player.getEntityWorld().playSound(null, player.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
+                }
+            }
         }
     }
 
@@ -195,6 +208,10 @@ public class BaseMultiItem extends BaseItem {
                     return true;
                 }
             }
+        }
+        if(!entityItem.isWet()){
+            FireHelper.setFire(entityItem.getEntityWorld(),entityItem.getPosition());
+            return true;
         }
 
         return false;

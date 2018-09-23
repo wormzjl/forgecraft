@@ -5,7 +5,6 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import javax.annotation.Nonnull;

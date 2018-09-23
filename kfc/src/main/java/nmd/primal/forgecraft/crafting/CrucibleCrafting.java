@@ -3,7 +3,8 @@ package nmd.primal.forgecraft.crafting;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by mminaie on 11/11/17.

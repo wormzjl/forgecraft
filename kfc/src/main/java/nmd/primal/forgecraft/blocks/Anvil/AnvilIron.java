@@ -3,7 +3,6 @@ package nmd.primal.forgecraft.blocks.Anvil;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -33,6 +32,7 @@ public class AnvilIron extends AnvilBase implements AnvilHandler {
         if (!world.isRemote) {
             ItemStack pItem = player.inventory.getCurrentItem();
             TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
+            ItemStack stack12 = tile.getSlotStack(12).copy();
             if (tile != null) {
                 if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
                     ItemStack[] tempArray = new ItemStack[25];
@@ -52,7 +52,7 @@ public class AnvilIron extends AnvilBase implements AnvilHandler {
                             }
                         }
                     }*/
-                    doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
+                    doAnvilRecipe(pItem, stack12, tempArray, world, tile, pos, player);
                     return true;
                 }
                 doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);

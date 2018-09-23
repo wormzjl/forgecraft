@@ -9,11 +9,7 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.api.interfaces.IRecipeCache;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by mminaie on 11/11/17.

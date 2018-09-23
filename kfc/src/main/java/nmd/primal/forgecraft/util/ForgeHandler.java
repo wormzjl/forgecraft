@@ -2,21 +2,15 @@ package nmd.primal.forgecraft.util;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
 import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;

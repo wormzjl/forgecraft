@@ -11,7 +11,6 @@ import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
@@ -26,7 +25,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.IItemHandler;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
@@ -34,14 +32,10 @@ import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
-import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 import nmd.primal.forgecraft.util.ToolNBT;
 
-import java.util.Random;
-
-import static nmd.primal.core.api.PrimalAPI.randomCheck;
 import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 
 /**

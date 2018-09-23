@@ -5,12 +5,9 @@ import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.util.NonNullList;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.List;

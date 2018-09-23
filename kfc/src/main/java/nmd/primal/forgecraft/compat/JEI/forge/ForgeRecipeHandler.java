@@ -2,7 +2,6 @@ package nmd.primal.forgecraft.compat.JEI.forge;
 
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;
-import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import javax.annotation.Nonnull;
