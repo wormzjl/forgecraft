@@ -33,8 +33,9 @@ public class AnvilStone extends AnvilBase {
         ItemStack pItem = player.inventory.getCurrentItem();
         TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
         ItemStack stack12 = tile.getSlotStack(12).copy();
-        if (hand.equals(hand.MAIN_HAND)) {
-            if (!world.isRemote) {
+        if (!world.isRemote) {
+            if (hand.equals(hand.MAIN_HAND)) {
+
                 if (!stack12.isEmpty()) {
                     if (tile != null) {
                         if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
@@ -117,10 +118,11 @@ public class AnvilStone extends AnvilBase {
                     doAnvilRecipe(pItem, tempArray, world, tile, pos, player);
                     return true;
                 }
-            }
 
-            doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
-            return true;
+
+                doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
+                return true;
+            }
         }
         return false;
     }

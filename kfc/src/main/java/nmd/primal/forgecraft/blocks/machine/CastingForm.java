@@ -23,6 +23,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
 import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
@@ -41,6 +42,7 @@ import nmd.primal.forgecraft.util.ToolNBT;
 import java.util.Random;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
+import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/19/17.
@@ -63,13 +65,17 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
         if (!world.isRemote) {
             TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
+
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            ItemStack slotStack = inventory.getStackInSlot(0).copy();
+
             if(pItem.getItem() != ModItems.slottedtongs) {
                 doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
             }
             if(pItem.getItem().equals(ModItems.slottedtongs)){
                 SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-                if(tongs.getSlotList().get(0).getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
-                    ItemStack tongsStack = tongs.getSlotList().get(0).copy();
+                if(slotStack.getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
+                    ItemStack tongsStack = slotStack.copy();
                     NBTTagCompound tag = tongsStack.getTagCompound().copy();
 
                     if(tag != null){
@@ -120,7 +126,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                         tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
                                         tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
                                         ItemStackHelper.saveAllItems(tag.getCompoundTag("BlockEntityTag"), ingListEmpty);
-                                        tongs.getSlotList().get(0).setTagCompound(tag);
+                                        inventory.getStackInSlot(0).setTagCompound(tag);
                                         return true;
                                     }
                                     if(tagOutput == null){
@@ -131,7 +137,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                             tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
                                             tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
                                             ItemStackHelper.saveAllItems(tag.getCompoundTag("BlockEntityTag"), ingListEmpty);
-                                            tongs.getSlotList().get(0).setTagCompound(tag);
+                                            inventory.getStackInSlot(0).setTagCompound(tag);
                                             return true;
                                         }
                                     }

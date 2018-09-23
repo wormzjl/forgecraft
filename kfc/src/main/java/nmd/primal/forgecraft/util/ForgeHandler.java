@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
@@ -18,6 +19,7 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.tiles.TileForge;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
+import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 9/22/18.
@@ -109,13 +111,13 @@ public interface ForgeHandler {
     static boolean doWork(ItemStack pItem, Integer counter, TileForge tile, World world, BlockPos pos, EntityPlayer player) {
 
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            ItemStack tongsStack = inventory.getStackInSlot(0).copy();
 
-            SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-            ItemStack tongsStack = tongs.getSlotList().get(0).copy();
             if (tongsStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
-                    tongs.setSlotList(tempStack);
+                    inventory.insertItem(0, tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
                     return true;
                 }
@@ -123,9 +125,9 @@ public interface ForgeHandler {
 
             if (!tongsStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    ItemStack tempStack = tongs.getSlotList().get(0).copy();
+                    ItemStack tempStack = tongsStack;
                     tile.setSlotStack(counter, tempStack);
-                    tongs.setSlotList(ItemStack.EMPTY);
+                    inventory.extractItem(0, 1, false);
                     return true;
                 }
             }

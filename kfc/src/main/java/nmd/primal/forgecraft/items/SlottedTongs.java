@@ -9,6 +9,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -21,6 +22,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -51,8 +53,12 @@ import java.util.List;
 /**
  * Created by mminaie on 12/30/17.
  */
+
+
 public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
+    @CapabilityInject(IItemHandler.class)
+    public static Capability<IItemHandler> ITEM_HANDLER;
 
     public SlottedTongs(String unlocalizedName) {
         setUnlocalizedName(unlocalizedName);
@@ -60,65 +66,61 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         this.setMaxStackSize(1);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
 
-        @CapabilityInject(IItemHandler.class)
-        public static Capability<IItemHandler.class> ITEM_HANDLER;
-
-
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                SlottedTongs item = (SlottedTongs) stack.getItem();
-                ItemStack slotStack = item.getSlotList().get(0).copy();
+                IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
+                ItemStack slotStack = inventory.getStackInSlot(0).copy();
 
                 if (stack.getItem() instanceof SlottedTongs) {
                     if (slotStack.getItem() instanceof ItemNBTCrucible) {
                         /***Render Empty Crucible***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 0){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 0){
                             return 0.99f;
                         }
                         /***Render Level 1***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 1){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 1){
                             return 0.011f;
                         }
                         /***Render Level 2***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 2){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 2){
                             return 0.012f;
                         }
                         /***Render Level 3***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 3){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 3){
                             return 0.013f;
                         }
                         /***Render Level 4***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 4){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 4){
                             return 0.014f;
                         }
                         /***Render Level 5***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 5){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 5){
                             return 0.015f;
                         }
                         /***Render Level Cooked***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 6){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 6){
                             return 0.016f;
                         }
                         /***Render Failed***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 7){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 7){
                             return 0.017f;
                         }
                         /***Render Hot***/
-                        if(item.getSlotList().get(0).getSubCompound("BlockEntityTag").getInteger("hot") == 15){
+                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 15){
                             return 0.025f;
                         }
                     }
                     if(slotStack.getItem() instanceof ToolPart){
-                        ToolPart toolPart = (ToolPart) item.getSlotList().get(0).getItem();
+                        ToolPart toolPart = (ToolPart) inventory.getStackInSlot(0).getItem();
                         if(toolPart.getID() == "pickaxe"){
-                            if (item.getSlotList().get(0).getSubCompound("tags") != null) {
+                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
                                 if (slotStack.getSubCompound("tags").getBoolean("hot")) {
                                     return 0.03f;
                                 }
-                                if (!item.getSlotList().get(0).getSubCompound("tags").getBoolean("hot")) {
+                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
                                     if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
                                         return 0.04f;
                                     }
@@ -138,11 +140,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                             }
                         }
                         if(toolPart.getID() == "axe"){
-                            if (item.getSlotList().get(0).getSubCompound("tags") != null) {
+                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
                                 if (slotStack.getSubCompound("tags").getBoolean("hot")) {
                                     return 0.09f;
                                 }
-                                if (!item.getSlotList().get(0).getSubCompound("tags").getBoolean("hot")) {
+                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
                                     if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
                                         return 0.10f;
                                     }
@@ -162,11 +164,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                             }
                         }
                         if(toolPart.getID() == "shovel"){
-                            if (item.getSlotList().get(0).getSubCompound("tags") != null) {
+                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
                                 if (slotStack.getSubCompound("tags").getBoolean("hot")) {
                                     return 0.15f;
                                 }
-                                if (!item.getSlotList().get(0).getSubCompound("tags").getBoolean("hot")) {
+                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
                                     if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
                                         return 0.16f;
                                     }
@@ -186,11 +188,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                             }
                         }
                         if(toolPart.getID() == "hoe"){
-                            if (item.getSlotList().get(0).getSubCompound("tags") != null) {
+                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
                                 if (slotStack.getSubCompound("tags").getBoolean("hot")) {
                                     return 0.21f;
                                 }
-                                if (!item.getSlotList().get(0).getSubCompound("tags").getBoolean("hot")) {
+                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
                                     if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
                                         return 0.22f;
                                     }
@@ -315,27 +317,16 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         };
     }
 
-
-
-    public NonNullList<ItemStack> getSlotList() {
-        return slotList;
-    }
-
-    public void setSlotList(ItemStack stack) {
-        slotList.set(0, stack);
-    }
-
-    public NonNullList<ItemStack> slotList = NonNullList.withSize(1, ItemStack.EMPTY);
-
     @Override
     public EnumActionResult onItemUse(EntityPlayer player, World world, BlockPos pos, EnumHand hand, EnumFacing face, float hitx, float hity, float hitz)
     {
-        //if(!world.isRemote){
-        if (hand.equals(player.getActiveHand())) {
-            IBlockState state = world.getBlockState(pos);
-            Block block = world.getBlockState(pos).getBlock();
-            ItemStack itemstack = player.getHeldItem(hand);
-            ItemStack slotStack = slotList.get(0);
+        if(!world.isRemote) {
+            if (hand.equals(player.getActiveHand())) {
+                IBlockState state = world.getBlockState(pos);
+                Block block = world.getBlockState(pos).getBlock();
+                ItemStack itemstack = player.getHeldItem(hand);
+                IItemHandler inventory = itemstack.getCapability(ITEM_HANDLER, null);
+                ItemStack slotStack = inventory.getStackInSlot(0).copy();
 /*
             if (block instanceof AnvilStone) {
                 TileAnvil tile = (TileAnvil) world.getTileEntity(pos);
@@ -343,105 +334,107 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 return EnumActionResult.SUCCESS;
             }
 */
-            if (slotList.get(0).isEmpty()) {
-                if (block instanceof NBTCrucible) {
-                    ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
-                    slotList.set(0, tempStack);
-                    world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
-                    return EnumActionResult.SUCCESS;
-                }
-            }
-            if (!slotList.get(0).isEmpty()) {
-                if (slotList.get(0).getItem() instanceof ItemNBTCrucible) {
-                    NBTTagCompound tag = this.slotList.get(0).getSubCompound("BlockEntityTag").copy();
-                    NBTTagCompound defaultNBT = this.slotList.get(0).getTagCompound();
-                    if (tag != null) {
-                        ItemBlock temp = (ItemBlock) slotList.get(0).getItem();
-                        int i = this.getMetadata(slotList.get(0).getMetadata());
-                        IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
-                        temp.placeBlockAt(slotList.get(0), player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
-                        slotList.set(0, ItemStack.EMPTY);
+                if (slotStack.isEmpty()) {
+                    if (block instanceof NBTCrucible) {
+                        ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
+                        inventory.insertItem(0, tempStack, false);
+                        world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                         return EnumActionResult.SUCCESS;
                     }
                 }
-            }
+                if (!slotStack.isEmpty()) {
+                    if (slotStack.getItem() instanceof ItemNBTCrucible) {
+                        NBTTagCompound tag = slotStack.getSubCompound("BlockEntityTag").copy();
 
-            /*****
-             DROPS the ToolParts into the World
-             *****/
-            if (!slotList.get(0).isEmpty()) {
-                if (!(block instanceof AnvilBase)) {
-                    if (slotList.get(0).getItem() instanceof ToolPart) {
-                        ItemStack tempStack = slotList.get(0).copy();
-                        PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                        slotList.set(0, ItemStack.EMPTY);
-                        return EnumActionResult.SUCCESS;
-                    }
-                }
-            }
-
-            /*****
-             Cools the Ingots on the Tongs
-             *****/
-            if (!slotList.get(0).isEmpty()) {
-                if (world.getBlockState(pos).getBlock() == PrimalAPI.Blocks.BARREL) {
-                    AbstractTileTank tileTank = (AbstractTileTank) world.getTileEntity(pos);
-                    if (slotStack.getTagCompound().getBoolean("hot")) {
-                        if (tileTank.getContainedFluid().getFluid().equals(FluidRegistry.WATER) ||
-                                tileTank.getContainedFluid().getFluid().equals(PrimalAPI.Fluids.RAIN_WATER)
-                                ) {
-                            ItemStack tempStack = slotList.get(0).copy();
-                            tempStack.getTagCompound().setBoolean("hot", false);
-                            slotList.set(0, ItemStack.EMPTY);
-                            PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                            world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
-                            slotList.set(0, ItemStack.EMPTY);
+                        if (tag != null) {
+                            ItemBlock temp = (ItemBlock) slotStack.getItem();
+                            int i = this.getMetadata(slotStack.getMetadata());
+                            IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
+                            temp.placeBlockAt(slotStack, player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
+                            inventory.extractItem(0, 1, false);
                             return EnumActionResult.SUCCESS;
                         }
                     }
                 }
-            }
 
-            /*****
-             DROPS the Ingots into the World
-             *****/
-            if (!slotList.get(0).isEmpty()) {
-                if (!(block instanceof AnvilBase)) {
-                    if (!(block instanceof Forge)) {
-                        if (slotList.get(0).getItem() instanceof BaseMultiItem) {
-                            ItemStack tempStack = slotList.get(0).copy();
+                /*****
+                 DROPS the ToolParts into the World
+                 *****/
+                if (!slotStack.isEmpty()) {
+                    if (!(block instanceof AnvilBase)) {
+                        if (slotStack.getItem() instanceof ToolPart) {
+                            ItemStack tempStack = slotStack;
                             PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                            slotList.set(0, ItemStack.EMPTY);
+                            inventory.extractItem(0, 1, false);
                             return EnumActionResult.SUCCESS;
                         }
-                        if (!(slotList.get(0).getItem() instanceof BaseMultiItem)) {
-                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "ingotIron")) {
-                                ItemStack tempStack = slotList.get(0).copy();
+                    }
+                }
+
+                /*****
+                 Cools the Ingots on the Tongs
+                 *****/
+                if (!slotStack.isEmpty()) {
+                    if (world.getBlockState(pos).getBlock() == PrimalAPI.Blocks.BARREL) {
+                        AbstractTileTank tileTank = (AbstractTileTank) world.getTileEntity(pos);
+                        if (slotStack.getTagCompound().getBoolean("hot")) {
+                            if (tileTank.getContainedFluid().getFluid().equals(FluidRegistry.WATER) ||
+                                    tileTank.getContainedFluid().getFluid().equals(PrimalAPI.Fluids.RAIN_WATER)
+                                    ) {
+                                ItemStack tempStack = slotStack.copy();
+                                tempStack.getTagCompound().setBoolean("hot", false);
+                                inventory.extractItem(0, 1, false);
                                 PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                                slotList.set(0, ItemStack.EMPTY);
-                                return EnumActionResult.SUCCESS;
-                            }
-                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "nuggetIron")) {
-                                ItemStack tempStack = slotList.get(0).copy();
-                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                                slotList.set(0, ItemStack.EMPTY);
-                                return EnumActionResult.SUCCESS;
-                            }
-                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "ingotSteel")) {
-                                ItemStack tempStack = slotList.get(0).copy();
-                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                                slotList.set(0, ItemStack.EMPTY);
-                                return EnumActionResult.SUCCESS;
-                            }
-                            if (RecipeHelper.isOreName(slotList.get(0).getItem(), "nuggetSteel")) {
-                                ItemStack tempStack = slotList.get(0).copy();
-                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
-                                slotList.set(0, ItemStack.EMPTY);
+                                world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
                                 return EnumActionResult.SUCCESS;
                             }
                         }
                     }
                 }
+
+                /*****
+                 DROPS the Ingots into the World
+                 *****/
+                if (!slotStack.isEmpty()) {
+                    if (!(block instanceof AnvilBase)) {
+                        if (!(block instanceof Forge)) {
+                            if (slotStack.getItem() instanceof BaseMultiItem) {
+                                ItemStack tempStack = slotStack.copy();
+                                PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                inventory.extractItem(0, 1, false);
+                                return EnumActionResult.SUCCESS;
+                            }
+                            if (!(slotStack.getItem() instanceof BaseMultiItem)) {
+                                if (RecipeHelper.isOreName(slotStack.getItem(), "ingotIron")) {
+                                    ItemStack tempStack = slotStack.copy();
+                                    PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                    inventory.extractItem(0, 1, false);
+                                    return EnumActionResult.SUCCESS;
+                                }
+                                if (RecipeHelper.isOreName(slotStack.getItem(), "nuggetIron")) {
+                                    ItemStack tempStack = slotStack.copy();
+                                    PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                    inventory.extractItem(0, 1, false);
+                                    return EnumActionResult.SUCCESS;
+                                }
+                                if (RecipeHelper.isOreName(slotStack.getItem(), "ingotSteel")) {
+                                    ItemStack tempStack = slotStack.copy();
+                                    PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                    inventory.extractItem(0, 1, false);
+                                    return EnumActionResult.SUCCESS;
+                                }
+                                if (RecipeHelper.isOreName(slotStack.getItem(), "nuggetSteel")) {
+                                    ItemStack tempStack = slotStack.copy();
+                                    PlayerHelper.spawnItemOnGround(world, pos, tempStack);
+                                    inventory.extractItem(0, 1, false);
+                                    //inventory.insertItem(0, ItemStack.EMPTY, false);
+                                    return EnumActionResult.SUCCESS;
+                                }
+                            }
+                        }
+                    }
+                }
+                return EnumActionResult.FAIL;
             }
             return EnumActionResult.FAIL;
         }
@@ -478,9 +471,8 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     {
         if(!stack.isEmpty())
         {
-            SlottedTongs item = (SlottedTongs) stack.getItem();
-            ItemStack slotStack = item.getSlotList().get(0).copy();
-            System.out.println(slotStack);
+            IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
+            ItemStack slotStack = inventory.getStackInSlot(0).copy();
             if (!slotStack.isEmpty())
             {
                 tooltip.add(ChatFormatting.GRAY + "Holding: " + slotStack.getItem().getUnlocalizedName());
@@ -504,17 +496,28 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         }
     }
 
+    @Nullable
     @Override
     public NBTTagCompound getNBTShareTag(ItemStack stack)
     {
-
+        super.getNBTShareTag(stack);
+        IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
+        NonNullList<ItemStack> setList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+        ItemStackHelper.saveAllItems(stack.getTagCompound(), setList);
         return stack.getTagCompound();
     }
 
     @Override
     public void readNBTShareTag(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
-        stack.setTagCompound(nbt);
+        super.readNBTShareTag(stack, nbt);
+
+        stack.deserializeNBT(nbt);
+        IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
+        NonNullList<ItemStack> setList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
+        ItemStackHelper.loadAllItems(nbt, setList);
+        inventory.insertItem(0, setList.get(0), false);
+
     }
 
 }

@@ -11,6 +11,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.items.IItemHandler;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.CommonUtils;
@@ -25,6 +26,7 @@ import nmd.primal.forgecraft.tiles.TileAnvil;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
+import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/10/17.
@@ -236,13 +238,13 @@ public interface AnvilHandler {
 
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
-            SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-            ItemStack tongStack = tongs.getSlotList().get(0).copy();
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            ItemStack tongStack = inventory.getStackInSlot(0).copy();
 
             if (tongStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
-                    tongs.setSlotList(tempStack);
+                    inventory.insertItem(0,tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
                     return true;
                 }
@@ -250,9 +252,9 @@ public interface AnvilHandler {
 
             if (!tongStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    ItemStack tempStack = tongs.getSlotList().get(0).copy();
+                    ItemStack tempStack = tongStack.copy();
                     tile.setSlotStack(counter, tempStack);
-                    tongs.setSlotList(ItemStack.EMPTY);
+                    inventory.extractItem(0, 1, false);
                     return true;
                 }
             }

@@ -93,78 +93,82 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
     {
-        TileForge tile = (TileForge) world.getTileEntity(pos);
-        if (tile != null) {
-            if (hand.equals(player.getActiveHand())) {
 
-                ItemStack pItem = player.inventory.getCurrentItem().copy();
-                ItemStack fuelItem = tile.getSlotStack(0);
+        if (!world.isRemote) {
+            TileForge tile = (TileForge) world.getTileEntity(pos);
+            if (tile != null) {
+                if (hand.equals(player.getActiveHand())) {
 
-                if (!world.isRemote) {
-                    /***********************
-                     FUEL SLOT CODE
-                     ***********************/
-                    if (!tile.getSlotStack(0).isEmpty()) {
-                        if (player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
-                            ItemStack returnStack = tile.getSlotStack(0).copy();
-                            PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
-                            tile.clearSlot(0);
-                            return true;
-                        }
-                    }
-                    if (pItem.isEmpty()) {
-                        if (!player.isSneaking()) {
-                            if (world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true) {
-                                Integer tempInt = tile.getHeat();
-                                String tempString = tempInt.toString();
-                                ITextComponent itextcomponent = new TextComponentString(tempString);
-                                player.sendStatusMessage(itextcomponent, true);
-                                //System.out.println(pos);
+                    ItemStack pItem = player.inventory.getCurrentItem().copy();
+                    ItemStack fuelItem = tile.getSlotStack(0);
+
+                    if (!world.isRemote) {
+                        /***********************
+                         FUEL SLOT CODE
+                         ***********************/
+                        if (!tile.getSlotStack(0).isEmpty()) {
+                            if (player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
+                                ItemStack returnStack = tile.getSlotStack(0).copy();
+                                PlayerHelper.spawnItemOnPlayer(world, player, returnStack);
+                                tile.clearSlot(0);
                                 return true;
                             }
                         }
-                    }
-                    if ((FireSource.useSource(world, pos, facing, player, hand, pItem, hitX, hitY, hitZ))) {
-                        world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                        tile.setHeat(100);
-                        tile.markDirty();
-                        tile.updateBlock();
-                        return true;
-                    }
-                    if ((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
-                        if (!fuelItem.isEmpty()) {
-                            if (pItem.getItem() == fuelItem.getItem()) {
-                                if (fuelItem.getCount() < 64) {
-                                    if (fuelItem.getCount() + pItem.getCount() <= 64) {
-                                        fuelItem.grow(pItem.getCount());
-                                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                                        tile.markDirty();
-                                        tile.updateBlock();
-                                        return true;
-                                    }
-                                    if (fuelItem.getCount() + pItem.getCount() > 64) {
-                                        pItem.setCount(64 - pItem.getCount());
-                                        fuelItem.setCount(64);
-                                        tile.markDirty();
-                                        tile.updateBlock();
-                                        return true;
-                                    }
+                        if (pItem.isEmpty()) {
+                            if (!player.isSneaking()) {
+                                if (world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true) {
+                                    Integer tempInt = tile.getHeat();
+                                    String tempString = tempInt.toString();
+                                    ITextComponent itextcomponent = new TextComponentString(tempString);
+                                    player.sendStatusMessage(itextcomponent, true);
+                                    //System.out.println(pos);
+                                    return true;
                                 }
                             }
                         }
-                        if (fuelItem.isEmpty()) {
-                            tile.setSlotStack(0, pItem);
-                            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                        if ((FireSource.useSource(world, pos, facing, player, hand, pItem, hitX, hitY, hitZ))) {
+                            world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                            tile.setHeat(100);
+                            tile.markDirty();
+                            tile.updateBlock();
                             return true;
                         }
-                    }
-                }
+                        if ((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
+                            if (!fuelItem.isEmpty()) {
+                                if (pItem.getItem() == fuelItem.getItem()) {
+                                    if (fuelItem.getCount() < 64) {
+                                        if (fuelItem.getCount() + pItem.getCount() <= 64) {
+                                            fuelItem.grow(pItem.getCount());
+                                            player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                                            tile.markDirty();
+                                            tile.updateBlock();
+                                            return true;
+                                        }
+                                        if (fuelItem.getCount() + pItem.getCount() > 64) {
+                                            pItem.setCount(64 - pItem.getCount());
+                                            fuelItem.setCount(64);
+                                            tile.markDirty();
+                                            tile.updateBlock();
+                                            return true;
+                                        }
+                                    }
+                                }
+                            }
+                            if (fuelItem.isEmpty()) {
+                                tile.setSlotStack(0, pItem);
+                                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                                return true;
+                            }
+                        }
 
-                if (facing == EnumFacing.UP) {
-                    doForgeInventoryManager(pItem, world, tile, pos, hitX, hitY, hitZ, state, player);
+
+                        if (facing == EnumFacing.UP) {
+                            doForgeInventoryManager(pItem, world, tile, pos, hitX, hitY, hitZ, state, player);
+                        }
+                    }
+
                 }
             }
-
         }
         return false;
     }

@@ -24,6 +24,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.IItemHandler;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.recipes.inworld.FireSource;
@@ -35,6 +36,8 @@ import nmd.primal.forgecraft.tiles.TileBloomery;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/11/17.
@@ -195,32 +198,42 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
             /***SLOTTED TONGS CODE TO PLACE THE ITEMS***/
             if(pItem.getItem() instanceof SlottedTongs) {
-                SlottedTongs temp = (SlottedTongs) pItem.getItem();
-                if (!pItem.isEmpty() && tile.isItemValidForSlot(1, temp.slotList.get(0))) {
+
+
+                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+                ItemStack slotStack = inventory.getStackInSlot(0).copy();
+
+                //SlottedTongs temp = (SlottedTongs) pItem.getItem();
+                if (!pItem.isEmpty() && tile.isItemValidForSlot(1, slotStack)) {
                     if (!tileItem1.isEmpty()) {
                         return false;
                     }
                     if(tileItem1.isEmpty()){
 
-                        ItemStack place_stack = temp.slotList.get(0).copy();
+                        ItemStack place_stack = slotStack.copy();
                         //if (tile.putStack(slot, place_stack))
                         tile.setSlotStack(1, place_stack);
-                        temp.slotList.set(0, ItemStack.EMPTY);
+                        inventory.insertItem(0, ItemStack.EMPTY, false);
                         return true;
                     }
                 }
             }
             /***SLOTTED TONGS CODE TO REMOVE THE ITEMS***/
             if(pItem.getItem() instanceof SlottedTongs) {
-                SlottedTongs temp = (SlottedTongs) pItem.getItem();
-                if (!pItem.isEmpty() && temp.slotList.get(0).isEmpty()) {
+
+                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+                ItemStack slotStack = inventory.getStackInSlot(0).copy();
+
+                //SlottedTongs temp = (SlottedTongs) pItem.getItem();
+
+                if (!pItem.isEmpty() && inventory.getStackInSlot(0).isEmpty()) {
                     if (tileItem1.isEmpty()) {
                         return false;
                     }
                     if(!tileItem1.isEmpty()){
                         ItemStack place_stack = tileItem1.copy();
-                        if(temp.slotList.get(0).isEmpty()){
-                            temp.slotList.set(0, place_stack);
+                        if(inventory.getStackInSlot(0).isEmpty()){
+                            inventory.insertItem(0, place_stack, false);
                             tile.setSlotStack(1, ItemStack.EMPTY);
                             return true;
                         }
