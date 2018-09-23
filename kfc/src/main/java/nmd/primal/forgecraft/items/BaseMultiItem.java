@@ -210,8 +210,10 @@ public class BaseMultiItem extends BaseItem {
             }
         }
         if(!entityItem.isWet()){
-            FireHelper.setFire(entityItem.getEntityWorld(),entityItem.getPosition());
-            return true;
+            if(entityItem.getItem().getTagCompound().getBoolean("hot")) {
+                FireHelper.setFire(entityItem.getEntityWorld(), entityItem.getPosition());
+                return true;
+            }
         }
 
         return false;
