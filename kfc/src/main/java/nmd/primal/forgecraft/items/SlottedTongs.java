@@ -21,6 +21,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -74,7 +75,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 ItemStack slotStack = inventory.getStackInSlot(0);
 
 
-                //System.out.println(stack.getTagCompound());
+                    //System.out.println(slotStack);
 
                 if (stack.getItem() instanceof SlottedTongs) {
                     if (slotStack.getItem() instanceof ItemNBTCrucible) {
@@ -302,6 +303,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                 IBlockState state = world.getBlockState(pos);
                 Block block = world.getBlockState(pos).getBlock();
                 ItemStack itemstack = player.getHeldItem(hand);
+                SlottedTongs itemstackItem = (SlottedTongs) itemstack.getItem();
 
                 IItemHandler inventory = itemstack.getCapability(ITEM_HANDLER, null);
                 ItemStack slotStack = inventory.getStackInSlot(0).copy();
@@ -314,7 +316,8 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                 ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
                                 inventory.insertItem(0, tempStack, false);
                                 world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
-                                itemstack.getItem().updateItemStackNBT(itemstack.getTagCompound());
+                                //itemstack.getItem().updateItemStackNBT(itemstack.getTagCompound());
+                                itemstackItem.markDirty(itemstack);
                                 return EnumActionResult.SUCCESS;
                             }
                         }
@@ -328,7 +331,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                     IBlockState iblockstate1 = temp.getBlock().getStateForPlacement(world, pos, face, hitx, hity, hitz, i, player, hand);
                                     temp.placeBlockAt(slotStack, player, world, pos.up(1), face, hitx, hity, hitz, iblockstate1);
                                     inventory.extractItem(0, 1, false);
-                                    itemstack.getItem().updateItemStackNBT(itemstack.getTagCompound());
+                                    itemstackItem.markDirty(itemstack);
                                     return EnumActionResult.SUCCESS;
                                 }
                             }
@@ -476,8 +479,18 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     @Override
     public ICapabilityProvider initCapabilities(final ItemStack stack, NBTTagCompound nbt)
     {
-        return new ICapabilityProvider()
+        return new ICapabilitySerializable<NBTTagCompound>()
         {
+            @Override
+            public NBTTagCompound serializeNBT() {
+                return itemHandler .serializeNBT();
+            }
+
+            @Override
+            public void deserializeNBT(NBTTagCompound nbt) {
+                itemHandler.deserializeNBT(nbt);
+            }
+
             final ItemStackHandler itemHandler = new ItemStackHandler(1);
             private NBTTagCompound cachedNetData;
 
@@ -509,7 +522,15 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     public NBTTagCompound getNBTShareTag(ItemStack stack)
     {
         System.out.println("Does getNBT ever run");
-        return stack.getTagCompound();
+
+        ItemStackHandler h = (ItemStackHandler)stack.getCapability(ITEM_HANDLER, null);
+        if(stack.getTagCompound() != null) {
+            NBTTagCompound tag = stack.getTagCompound().copy();
+            tag.setTag("Inventory", h.serializeNBT());
+            tag.removeTag("changeNumber");
+            return tag;
+        }
+        return null;
     }
 
     /**
@@ -521,6 +542,12 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         System.out.println("Does readNBT ever run");
         if (nbt != null)
         {
+            ItemStackHandler h = (ItemStackHandler)stack.getCapability(ITEM_HANDLER, null);
+
+            h.deserializeNBT(nbt.getCompoundTag("Inventory"));
+
+            //nbt.removeTag("Inventory");
+
             stack.setTagCompound(nbt);
         }
     }
@@ -538,6 +565,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
         System.out.println("Update NBT");
 
         return true;
+    }
+
+    public void markDirty(ItemStack stack){
+        NBTTagCompound tag = stack.getTagCompound();
+        tag.setInteger("changeNumber", tag.getInteger("changeNumber") + 1);
     }
 
 }
