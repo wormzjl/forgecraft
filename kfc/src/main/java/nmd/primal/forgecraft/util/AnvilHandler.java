@@ -236,30 +236,31 @@ public interface AnvilHandler {
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
 
-        if (pItem.getItem().equals(ModItems.slottedtongs)) {
-
-            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
-            ItemStack tongStack = inventory.getStackInSlot(0).copy();
-
-            if (tongStack.isEmpty()) {
-                if (!tile.getSlotStack(counter).isEmpty()) {
-                    ItemStack tempStack = tile.getSlotStack(counter).copy();
-                    inventory.insertItem(0,tempStack, false);
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-            }
-
-            if (!tongStack.isEmpty()) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    ItemStack tempStack = tongStack.copy();
-                    tile.setSlotStack(counter, tempStack);
-                    inventory.extractItem(0, 1, false);
-                    return true;
-                }
-            }
-        }
         if (!world.isRemote) {
+            if (pItem.getItem().equals(ModItems.slottedtongs)) {
+
+                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+                ItemStack tongStack = inventory.getStackInSlot(0).copy();
+
+                if (tongStack.isEmpty()) {
+                    if (!tile.getSlotStack(counter).isEmpty()) {
+                        ItemStack tempStack = tile.getSlotStack(counter).copy();
+                        inventory.insertItem(0,tempStack, false);
+                        tile.setSlotStack(counter, ItemStack.EMPTY);
+                        return true;
+                    }
+                }
+
+                if (!tongStack.isEmpty()) {
+                    if (tile.getSlotStack(counter).isEmpty()) {
+                        ItemStack tempStack = tongStack.copy();
+                        tile.setSlotStack(counter, tempStack);
+                        inventory.extractItem(0, 1, false);
+                        return true;
+                    }
+                }
+            }
+
 
             if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
 

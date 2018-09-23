@@ -8,6 +8,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
@@ -53,6 +54,7 @@ public interface ForgeHandler {
     default boolean doForgeInventoryManager(ItemStack pItem, World world, TileForge tile, BlockPos pos, float hitx, float hity, float hitz, IBlockState state, EntityPlayer player) {
 
             if (state.getValue(FACING) == EnumFacing.NORTH) {
+
                 int counter = 0;
                 for (int z = 0; z < arraySize; z++) {
                     for (int x = 0; x < arraySize; x++) {
@@ -109,16 +111,15 @@ public interface ForgeHandler {
     }
 
     static boolean doWork(ItemStack pItem, Integer counter, TileForge tile, World world, BlockPos pos, EntityPlayer player) {
-
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
-            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            IItemHandler inventory = (IItemHandlerModifiable) pItem.getCapability(ITEM_HANDLER, null);
             ItemStack tongsStack = inventory.getStackInSlot(0).copy();
 
             if (tongsStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
-                    inventory.insertItem(0, tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
+                    inventory.insertItem(0, tempStack, false);
                     return true;
                 }
             }
