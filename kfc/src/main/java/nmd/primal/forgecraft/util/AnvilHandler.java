@@ -236,7 +236,7 @@ public interface AnvilHandler {
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
 
-        if (!world.isRemote) {
+
             if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
                 IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
@@ -357,7 +357,7 @@ public interface AnvilHandler {
                     return true;
                 }
             }
-        }
+
         return false;
     }
 

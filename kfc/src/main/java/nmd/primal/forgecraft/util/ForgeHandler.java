@@ -111,22 +111,23 @@ public interface ForgeHandler {
     }
 
     static boolean doWork(ItemStack pItem, Integer counter, TileForge tile, World world, BlockPos pos, EntityPlayer player) {
+
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
-            IItemHandler inventory = (IItemHandlerModifiable) pItem.getCapability(ITEM_HANDLER, null);
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
             ItemStack tongsStack = inventory.getStackInSlot(0).copy();
 
             if (tongsStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
                     inventory.insertItem(0, tempStack, false);
+                    tile.setSlotStack(counter, ItemStack.EMPTY);
                     return true;
                 }
             }
 
             if (!tongsStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    ItemStack tempStack = tongsStack;
+                    ItemStack tempStack = tongsStack.copy();
                     tile.setSlotStack(counter, tempStack);
                     inventory.extractItem(0, 1, false);
                     return true;

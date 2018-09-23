@@ -99,7 +99,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
             if (tile != null) {
                 if (hand.equals(player.getActiveHand())) {
 
-                    ItemStack pItem = player.inventory.getCurrentItem().copy();
+                    ItemStack pItem = player.inventory.getCurrentItem();
                     ItemStack fuelItem = tile.getSlotStack(0);
 
                     /***********************
@@ -160,9 +160,9 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                         }
                     }
 
-
                     if (facing == EnumFacing.UP) {
                         doForgeInventoryManager(pItem, world, tile, pos, hitX, hitY, hitZ, state, player);
+                        return true;
                     }
                 }
             }
