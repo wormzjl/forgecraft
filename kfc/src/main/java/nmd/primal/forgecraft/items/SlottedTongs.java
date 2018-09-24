@@ -60,7 +60,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     //public static CapabilityItemHandler ITEM_HANDLER;
 
     public SlottedTongs(String unlocalizedName) {
-        setUnlocalizedName(unlocalizedName);
+        this.setUnlocalizedName(unlocalizedName);
         this.setRegistryName(unlocalizedName);
         this.setMaxStackSize(1);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
@@ -71,10 +71,13 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
 
+
                 IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
                 ItemStack slotStack = inventory.getStackInSlot(0);
 
-
+                if(stack.getTagCompound() != null){
+                    System.out.println(slotStack);
+                }
                     //System.out.println(slotStack);
 
                 if (stack.getItem() instanceof SlottedTongs) {

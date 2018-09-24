@@ -31,11 +31,18 @@ public class ModInfo {
     /** Creative Tabs **/
     public static CreativeTabs TAB_FORGECRAFT = new CreativeTabs(MOD_ID)
     {
+        /*@Override
+        @SideOnly(Side.CLIENT)
+        public ItemStack createIcon() {
+            return new ItemStack(ModItems.forgehammer);
+        }*/
+
         @Override
         @SideOnly(Side.CLIENT)
         public ItemStack getTabIconItem() {
             return new ItemStack(ModItems.forgehammer);
         }
+
     };
 
     // ***************************************************************************** //
