@@ -1,28 +1,14 @@
 # To-Dos
 
 ## Bugs
-- [ ] Slotted Tongs loses slotted Item after shutting down the client
-- [ ] Unable to place Vanilla Iron Nuggets on Forge #42
-- [ ] JEI not showing full crafting recipe for Tools #38
 
 ## Current Feature
-- [ ] How to cook Soft Crucible https://git.nmd.so/nmd/PrimalCore/src/branch/tile-factory/src/main/java/nmd/primal/core/common/init/recipes/custom/RecipesHibachi.java
-make a copy of it somewhere, it doenst need to be instantiated or anything, the event annotation will automatically load it
-for your setRecipeName include your mod id like .setRecipeName(KFC.MOD_ID, "soft_crucible"));
-you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID)  with your mod id also
 
-- [x] Fix Plate Crafting
-- [x] Longbow animation
-- [x] Fix Forge Cool Down
-- [x] Fix Forge StackTagCompound management
-- [x] ForgeHammer Recipes
-
-- [ ] Leather Helmet Inventory Model
-- [ ] Config Usage
-- [ ] Craft Tweaker Support
-- [ ] Apply Forge turn off logic to Bloomery
 - [ ] Copper Tools
+- [ ] Craft Tweaker Support
+- [ ] Config Usage
 - [ ] Config for lowering fortune multiplier
+- [ ] Hardened Leather Helmet Inventory Model
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -55,6 +41,13 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Apply Forge turn off logic to Bloomery
+- [x] Soft Crucible Hibachi Recipe
+- [x] Fix Plate Crafting
+- [x] Longbow animation
+- [x] Fix Forge Cool Down
+- [x] Fix Forge StackTagCompound management
+- [x] ForgeHammer Recipes
 - [x] Bronze Plate Cast
 - [x] JEI Support
 - [x] Update SoftCrucible Model
