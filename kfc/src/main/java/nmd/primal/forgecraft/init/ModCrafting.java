@@ -278,6 +278,18 @@ public class ModCrafting{
                 800);
 
         CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(ModItems.brokenwroughtirontool, 1)),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                new ItemStack(ModItems.ironingotball, 1),
+                1250,
+                1100,
+                800);
+
+        CrucibleCrafting.addRecipe(
                 new OreIngredient("dustIron"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
                 Ingredient.EMPTY,
@@ -290,12 +302,36 @@ public class ModCrafting{
                 800);
 
         CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(ModItems.brokencleanirontool, 1)),
+                new OreIngredient("nuggetIron"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                new ItemStack(ModItems.ironcleaningotball, 1),
+                1550,
+                1200,
+                800);
+
+        CrucibleCrafting.addRecipe(
                 Ingredient.fromStacks(new ItemStack(ModItems.ironcleaningotball, 1)),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new ItemStack(ModItems.ironcleaningotball, 1),
+                new ItemStack(ModItems.steelingotball, 1),
+                2100,
+                1500,
+                1000);
+
+        CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(ModItems.brokensteeltool, 1)),
+                new OreIngredient("nuggetSteel"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
                 new ItemStack(ModItems.steelingotball, 1),
                 2100,
                 1500,
@@ -325,6 +361,19 @@ public class ModCrafting{
                 1800,
                 1500);
 
+        CrucibleCrafting.addRecipe(
+                Ingredient.fromStacks(new ItemStack(ModItems.brokenwootztool, 1)),
+                new OreIngredient("nuggetWootz"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                new ItemStack(ModItems.wootzingotball, 1),
+                2100,
+                1800,
+                1500);
+
+//TODO change plate recipe
 
         NBTTagCompound tagBronzeDefault = new NBTTagCompound();
         tagBronzeDefault.setString("upgrades", "");
@@ -1064,9 +1113,9 @@ public class ModCrafting{
                 new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[] {
                         muddd,muddd,muddd,muddd,muddd,
-                        muddd,muddd,muddd,muddd,muddd,
-                        muddd,empty,empty,muddd,muddd,
-                        muddd,empty,empty,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,empty,empty,empty,muddd,
                         muddd,muddd,muddd,muddd,muddd },
                 new ItemStack(PrimalAPI.Items.BRONZE_PLATE, 1)
         );
@@ -1080,7 +1129,7 @@ public class ModCrafting{
                 ModItems.ironingotball,
                 //800, 200
                 hotIronIngot,
-                100,
+                800,
                 100,
                 500,
                 1.0f,
@@ -1355,6 +1404,42 @@ public class ModCrafting{
                 "null"
         );
 
+        /*** ForgeHammer ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.forgehammer, 1),
+                "null"
+        );
+
+        /*** ForgeHammer ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.forgehammer, 1),
+                "null"
+        );
+
+        /*** ForgeHammer ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.forgehammer, 1),
+                "null"
+        );
+
         /*** Bucket ***/
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
@@ -1371,9 +1456,21 @@ public class ModCrafting{
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
+                        emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
+                        emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
+                new ItemStack(PrimalAPI.Items.IRON_PLATE, 1),
+                "null"
+        );
+
+        /*** Primal Plate ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
-                        emptyAir,hotChunk,hotChunk,emptyAir,emptyAir,
-                        emptyAir,hotChunk,hotChunk,emptyAir,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
                 new ItemStack(PrimalAPI.Items.IRON_PLATE, 1),
                 "null"
@@ -1383,9 +1480,23 @@ public class ModCrafting{
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
+                new ItemStack(PrimalAPI.Items.STEEL_PLATE, 1),
+                "null"
+        );
+
+
+
+        /*** Steel Plate ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
-                        emptyAir,hotSteelChunk,hotSteelChunk,emptyAir,emptyAir,
-                        emptyAir,hotSteelChunk,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
                 new ItemStack(PrimalAPI.Items.STEEL_PLATE, 1),
                 "null"
@@ -1865,7 +1976,7 @@ public class ModCrafting{
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
-                        emptyAir,emptyAir,hotChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
                         emptyAir,emptyAir,cleanaxehead,emptyAir,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },

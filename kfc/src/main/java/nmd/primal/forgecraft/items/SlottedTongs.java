@@ -1,20 +1,18 @@
 package nmd.primal.forgecraft.items;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
 import net.minecraft.tileentity.TileEntity;
-//TODO remove wildcard import
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -25,7 +23,6 @@ import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import nmd.primal.core.api.PrimalAPI;
@@ -43,7 +40,6 @@ import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 import nmd.primal.forgecraft.util.AnvilHandler;
-import org.lwjgl.Sys;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -57,7 +53,6 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
 
     @CapabilityInject(IItemHandler.class)
     public static Capability<IItemHandler> ITEM_HANDLER;
-    //public static CapabilityItemHandler ITEM_HANDLER;
 
     public SlottedTongs(String unlocalizedName) {
         this.setUnlocalizedName(unlocalizedName);
@@ -70,219 +65,216 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
             @SideOnly(Side.CLIENT)
             public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-
-
-                IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
-                ItemStack slotStack = inventory.getStackInSlot(0);
-
+                NonNullList<ItemStack> renderList = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
                 if(stack.getTagCompound() != null){
-                    System.out.println(slotStack);
-                }
-                    //System.out.println(slotStack);
 
-                if (stack.getItem() instanceof SlottedTongs) {
-                    if (slotStack.getItem() instanceof ItemNBTCrucible) {
-                        /***Render Empty Crucible***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 0){
-                            return 0.99f;
+                ItemStackHelper.loadAllItems(stack.getTagCompound(), renderList);
+                ItemStack slotStack = renderList.get(0);
+
+                    if (stack.getItem() instanceof SlottedTongs) {
+                        if (slotStack.getItem() instanceof ItemNBTCrucible) {
+                            /***Render Empty Crucible***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 0) {
+                                return 0.99f;
+                            }
+                            /***Render Level 1***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 1) {
+                                return 0.011f;
+                            }
+                            /***Render Level 2***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 2) {
+                                return 0.012f;
+                            }
+                            /***Render Level 3***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 3) {
+                                return 0.013f;
+                            }
+                            /***Render Level 4***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 4) {
+                                return 0.014f;
+                            }
+                            /***Render Level 5***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 5) {
+                                return 0.015f;
+                            }
+                            /***Render Level Cooked***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 6) {
+                                return 0.016f;
+                            }
+                            /***Render Failed***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 7) {
+                                return 0.017f;
+                            }
+                            /***Render Hot***/
+                            if (slotStack.getSubCompound("BlockEntityTag").getInteger("hot") == 15) {
+                                return 0.025f;
+                            }
                         }
-                        /***Render Level 1***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 1){
-                            return 0.011f;
-                        }
-                        /***Render Level 2***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 2){
-                            return 0.012f;
-                        }
-                        /***Render Level 3***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 3){
-                            return 0.013f;
-                        }
-                        /***Render Level 4***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 4){
-                            return 0.014f;
-                        }
-                        /***Render Level 5***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 5){
-                            return 0.015f;
-                        }
-                        /***Render Level Cooked***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 6){
-                            return 0.016f;
-                        }
-                        /***Render Failed***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 7){
-                            return 0.017f;
-                        }
-                        /***Render Hot***/
-                        if(inventory.getStackInSlot(0).getSubCompound("BlockEntityTag").getInteger("hot") == 15){
-                            return 0.025f;
-                        }
-                    }
-                    if(slotStack.getItem() instanceof ToolPart){
-                        ToolPart toolPart = (ToolPart) inventory.getStackInSlot(0).getItem();
-                        if(toolPart.getID() == "pickaxe"){
-                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
-                                if (slotStack.getSubCompound("tags").getBoolean("hot")) {
-                                    return 0.03f;
+                        if (slotStack.getItem() instanceof ToolPart) {
+                            ToolPart toolPart = (ToolPart) slotStack.getItem();
+                            if (toolPart.getID() == "pickaxe") {
+                                if (slotStack.getSubCompound("tags") != null) {
+                                    if (slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        return 0.03f;
+                                    }
+                                    if (!slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON) {
+                                            return 0.04f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON) {
+                                            return 0.05f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL) {
+                                            return 0.06f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL) {
+                                            return 0.07f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE) {
+                                            return 0.08f;
+                                        }
+                                    }
                                 }
-                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
-                                        return 0.04f;
+                            }
+                            if (toolPart.getID() == "axe") {
+                                if (slotStack.getSubCompound("tags") != null) {
+                                    if (slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        return 0.09f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
-                                        return 0.05f;
+                                    if (!slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON) {
+                                            return 0.10f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON) {
+                                            return 0.11f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL) {
+                                            return 0.12f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL) {
+                                            return 0.13f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE) {
+                                            return 0.14f;
+                                        }
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
-                                        return 0.06f;
+                                }
+                            }
+                            if (toolPart.getID() == "shovel") {
+                                if (slotStack.getSubCompound("tags") != null) {
+                                    if (slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        return 0.15f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL){
-                                        return 0.07f;
+                                    if (!slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON) {
+                                            return 0.16f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON) {
+                                            return 0.17f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL) {
+                                            return 0.18f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL) {
+                                            return 0.19f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE) {
+                                            return 0.20f;
+                                        }
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE){
-                                        return 0.08f;
+                                }
+                            }
+                            if (toolPart.getID() == "hoe") {
+                                if (slotStack.getSubCompound("tags") != null) {
+                                    if (slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        return 0.21f;
+                                    }
+                                    if (!slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON) {
+                                            return 0.22f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON) {
+                                            return 0.23f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL) {
+                                            return 0.24f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL) {
+                                            return 0.25f;
+                                        }
+                                        if (toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE) {
+                                            return 0.26f;
+                                        }
                                     }
                                 }
                             }
                         }
-                        if(toolPart.getID() == "axe"){
-                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
-                                if (slotStack.getSubCompound("tags").getBoolean("hot")) {
-                                    return 0.09f;
-                                }
-                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
-                                        return 0.10f;
+                        if (slotStack.getItem() instanceof BaseMultiItem) {
+                            Item slotItem = slotStack.getItem();
+                            if (slotStack.getTagCompound() != null) {
+                                if (!slotStack.getTagCompound().getBoolean("hot")) {
+                                    if (slotItem.equals(ModItems.bronzeingotball)) {
+                                        return 0.27f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
-                                        return 0.11f;
+                                    if (slotItem.equals(ModItems.ironingotball)) {
+                                        return 0.28f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
-                                        return 0.12f;
+                                    if (slotItem.equals(ModItems.ironcleaningotball)) {
+                                        return 0.29f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL){
-                                        return 0.13f;
+                                    if (slotItem.equals(ModItems.steelingotball)) {
+                                        return 0.30f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE){
-                                        return 0.14f;
+                                    if (slotItem.equals(ModItems.wootzingotball)) {
+                                        return 0.31f;
                                     }
-                                }
-                            }
-                        }
-                        if(toolPart.getID() == "shovel"){
-                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
-                                if (slotStack.getSubCompound("tags").getBoolean("hot")) {
-                                    return 0.15f;
-                                }
-                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
-                                        return 0.16f;
+                                    if (slotItem.equals(ModItems.bronzechunk)) {
+                                        return 0.32f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
-                                        return 0.17f;
+                                    if (slotItem.equals(ModItems.wroughtironchunk)) {
+                                        return 0.33f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
-                                        return 0.18f;
+                                    if (slotItem.equals(ModItems.ironcleanchunk)) {
+                                        return 0.34f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL){
-                                        return 0.19f;
+                                    if (slotItem.equals(ModItems.steelchunk)) {
+                                        return 0.35f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE){
-                                        return 0.20f;
+                                    if (slotItem.equals(ModItems.wootzchunk)) {
+                                        return 0.36f;
                                     }
                                 }
-                            }
-                        }
-                        if(toolPart.getID() == "hoe"){
-                            if (inventory.getStackInSlot(0).getSubCompound("tags") != null) {
-                                if (slotStack.getSubCompound("tags").getBoolean("hot")) {
-                                    return 0.21f;
-                                }
-                                if (!inventory.getStackInSlot(0).getSubCompound("tags").getBoolean("hot")) {
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
-                                        return 0.22f;
+                                if (slotStack.getTagCompound().getBoolean("hot")) {
+                                    if (slotItem.equals(ModItems.bronzeingotball)) {
+                                        return 0.37f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
-                                        return 0.23f;
+                                    if (slotItem.equals(ModItems.ironingotball)) {
+                                        return 0.38f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
-                                        return 0.24f;
+                                    if (slotItem.equals(ModItems.ironcleaningotball)) {
+                                        return 0.39f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL){
-                                        return 0.25f;
+                                    if (slotItem.equals(ModItems.steelingotball)) {
+                                        return 0.40f;
                                     }
-                                    if(toolPart.getMaterial() == PrimalAPI.ToolMaterials.TOOL_BRONZE){
-                                        return 0.26f;
+                                    if (slotItem.equals(ModItems.wootzingotball)) {
+                                        return 0.41f;
                                     }
-                                }
-                            }
-                        }
-                    }
-                    if(slotStack.getItem() instanceof BaseMultiItem){
-                        Item slotItem = slotStack.getItem();
-                        if (slotStack.getTagCompound() != null) {
-                            if (!slotStack.getTagCompound().getBoolean("hot")) {
-                                if (slotItem.equals(ModItems.bronzeingotball)) {
-                                    return 0.27f;
-                                }
-                                if (slotItem.equals(ModItems.ironingotball)) {
-                                    return 0.28f;
-                                }
-                                if (slotItem.equals(ModItems.ironcleaningotball)) {
-                                    return 0.29f;
-                                }
-                                if (slotItem.equals(ModItems.steelingotball)) {
-                                    return 0.30f;
-                                }
-                                if (slotItem.equals(ModItems.wootzingotball)) {
-                                    return 0.31f;
-                                }
-                                if (slotItem.equals(ModItems.bronzechunk)) {
-                                    return 0.32f;
-                                }
-                                if (slotItem.equals(ModItems.wroughtironchunk)) {
-                                    return 0.33f;
-                                }
-                                if (slotItem.equals(ModItems.ironcleanchunk)) {
-                                    return 0.34f;
-                                }
-                                if (slotItem.equals(ModItems.steelchunk)) {
-                                    return 0.35f;
-                                }
-                                if (slotItem.equals(ModItems.wootzchunk)) {
-                                    return 0.36f;
-                                }
-                            }
-                            if (slotStack.getTagCompound().getBoolean("hot")) {
-                                if (slotItem.equals(ModItems.bronzeingotball)) {
-                                    return 0.37f;
-                                }
-                                if (slotItem.equals(ModItems.ironingotball)) {
-                                    return 0.38f;
-                                }
-                                if (slotItem.equals(ModItems.ironcleaningotball)) {
-                                    return 0.39f;
-                                }
-                                if (slotItem.equals(ModItems.steelingotball)) {
-                                    return 0.40f;
-                                }
-                                if (slotItem.equals(ModItems.wootzingotball)) {
-                                    return 0.41f;
-                                }
-                                if (slotItem.equals(ModItems.bronzechunk)) {
-                                    return 0.42f;
-                                }
-                                if (slotItem.equals(ModItems.wroughtironchunk)) {
-                                    return 0.43f;
-                                }
-                                if (slotItem.equals(ModItems.ironcleanchunk)) {
-                                    return 0.44f;
-                                }
-                                if (slotItem.equals(ModItems.steelchunk)) {
-                                    return 0.45f;
-                                }
-                                if (slotItem.equals(ModItems.wootzchunk)) {
-                                    return 0.46f;
+                                    if (slotItem.equals(ModItems.bronzechunk)) {
+                                        return 0.42f;
+                                    }
+                                    if (slotItem.equals(ModItems.wroughtironchunk)) {
+                                        return 0.43f;
+                                    }
+                                    if (slotItem.equals(ModItems.ironcleanchunk)) {
+                                        return 0.44f;
+                                    }
+                                    if (slotItem.equals(ModItems.steelchunk)) {
+                                        return 0.45f;
+                                    }
+                                    if (slotItem.equals(ModItems.wootzchunk)) {
+                                        return 0.46f;
+                                    }
                                 }
                             }
                         }
@@ -349,6 +341,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                 ItemStack tempStack = slotStack;
                                 PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                 inventory.extractItem(0, 1, false);
+                                itemstackItem.markDirty(itemstack);
                                 return EnumActionResult.SUCCESS;
                             }
 
@@ -367,6 +360,7 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                         ItemStack tempStack = slotStack.copy();
                                         tempStack.getTagCompound().setBoolean("hot", false);
                                         inventory.extractItem(0, 1, false);
+                                        itemstackItem.markDirty(itemstack);
                                         PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                         world.playSound(null, pos, SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
                                         return EnumActionResult.SUCCESS;
@@ -379,12 +373,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                          DROPS the Ingots into the World
                          *****/
                         if (!slotStack.isEmpty()) {
-                            System.out.println("Tongs isn't empty");
                             if (slotStack.getItem() instanceof BaseMultiItem) {
                                 ItemStack tempStack = slotStack.copy();
                                 PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                 inventory.extractItem(0, 1, false);
-                                System.out.println(inventory.getStackInSlot(0));
+                                itemstackItem.markDirty(itemstack);
                                 return EnumActionResult.SUCCESS;
                             }
                             if (!(slotStack.getItem() instanceof BaseMultiItem)) {
@@ -392,25 +385,28 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                                     ItemStack tempStack = slotStack.copy();
                                     PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                     inventory.extractItem(0, 1, false);
+                                    itemstackItem.markDirty(itemstack);
                                     return EnumActionResult.SUCCESS;
                                 }
                                 if (RecipeHelper.isOreName(slotStack.getItem(), "nuggetIron")) {
                                     ItemStack tempStack = slotStack.copy();
                                     PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                     inventory.extractItem(0, 1, false);
+                                    itemstackItem.markDirty(itemstack);
                                     return EnumActionResult.SUCCESS;
                                 }
                                 if (RecipeHelper.isOreName(slotStack.getItem(), "ingotSteel")) {
                                     ItemStack tempStack = slotStack.copy();
                                     PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                     inventory.extractItem(0, 1, false);
+                                    itemstackItem.markDirty(itemstack);
                                     return EnumActionResult.SUCCESS;
                                 }
                                 if (RecipeHelper.isOreName(slotStack.getItem(), "nuggetSteel")) {
                                     ItemStack tempStack = slotStack.copy();
                                     PlayerHelper.spawnItemOnGround(world, pos, tempStack);
                                     inventory.extractItem(0, 1, false);
-                                    //inventory.insertItem(0, ItemStack.EMPTY, false);
+                                    itemstackItem.markDirty(itemstack);
                                     return EnumActionResult.SUCCESS;
                                 }
                             }
@@ -524,8 +520,6 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     @Override
     public NBTTagCompound getNBTShareTag(ItemStack stack)
     {
-        System.out.println("Does getNBT ever run");
-
         ItemStackHandler h = (ItemStackHandler)stack.getCapability(ITEM_HANDLER, null);
         if(stack.getTagCompound() != null) {
             NBTTagCompound tag = stack.getTagCompound().copy();
@@ -542,7 +536,6 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     @Override
     public void readNBTShareTag(ItemStack stack, @Nullable NBTTagCompound nbt)
     {
-        System.out.println("Does readNBT ever run");
         if (nbt != null)
         {
             ItemStackHandler h = (ItemStackHandler)stack.getCapability(ITEM_HANDLER, null);
@@ -558,21 +551,28 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
     @Override
     public boolean getShareTag()
     {
-        System.out.println("Getting share tag");
         return true;
     }
 
     @Override
     public boolean updateItemStackNBT(NBTTagCompound nbt)
     {
-        System.out.println("Update NBT");
-
         return true;
     }
 
-    public void markDirty(ItemStack stack){
+    public void markDirty(ItemStack stack) {
         NBTTagCompound tag = stack.getTagCompound();
-        tag.setInteger("changeNumber", tag.getInteger("changeNumber") + 1);
+        IItemHandler inventory = stack.getCapability(ITEM_HANDLER, null);
+        NonNullList<ItemStack> sendList = NonNullList.<ItemStack>withSize(1, inventory.getStackInSlot(0));
+        if (stack.getTagCompound() != null) {
+            stack.getTagCompound().setInteger("changeNumber", tag.getInteger("changeNumber") + 1);
+            ItemStackHelper.saveAllItems(stack.getTagCompound(), sendList);
+        } else {
+            NBTTagCompound tagCompound = new NBTTagCompound();
+            tagCompound.setInteger("changeNumber", 0);
+            ItemStackHelper.saveAllItems(tagCompound, sendList);
+            stack.setTagCompound(tagCompound);
+        }
     }
 
 }

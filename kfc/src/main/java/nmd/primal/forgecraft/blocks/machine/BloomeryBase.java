@@ -202,6 +202,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
                 IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
                 ItemStack slotStack = inventory.getStackInSlot(0).copy();
+                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
                 //SlottedTongs temp = (SlottedTongs) pItem.getItem();
                 if (!pItem.isEmpty() && tile.isItemValidForSlot(1, slotStack)) {
@@ -212,8 +213,8 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
                         ItemStack place_stack = slotStack.copy();
                         //if (tile.putStack(slot, place_stack))
-                        tile.setSlotStack(1, place_stack);
-                        inventory.insertItem(0, ItemStack.EMPTY, false);
+                        tile.setSlotStack(1, inventory.extractItem(0, 1, false));
+                        itemstackItem.markDirty(pItem);
                         return true;
                     }
                 }
@@ -223,6 +224,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
 
                 IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
                 ItemStack slotStack = inventory.getStackInSlot(0).copy();
+                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
                 //SlottedTongs temp = (SlottedTongs) pItem.getItem();
 
@@ -235,6 +237,7 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                         if(inventory.getStackInSlot(0).isEmpty()){
                             inventory.insertItem(0, place_stack, false);
                             tile.setSlotStack(1, ItemStack.EMPTY);
+                            itemstackItem.markDirty(pItem);
                             return true;
                         }
                     }

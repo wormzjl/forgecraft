@@ -10,6 +10,7 @@ import net.minecraftforge.items.IItemHandler;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
@@ -109,12 +110,14 @@ public interface ForgeHandler {
         if (pItem.getItem().equals(ModItems.slottedtongs)) {
             IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
             ItemStack tongsStack = inventory.getStackInSlot(0).copy();
+            SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
             if (tongsStack.isEmpty()) {
                 if (!tile.getSlotStack(counter).isEmpty()) {
                     ItemStack tempStack = tile.getSlotStack(counter).copy();
                     inventory.insertItem(0, tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
             }
@@ -124,6 +127,7 @@ public interface ForgeHandler {
                     ItemStack tempStack = tongsStack.copy();
                     tile.setSlotStack(counter, tempStack);
                     inventory.extractItem(0, 1, false);
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
             }

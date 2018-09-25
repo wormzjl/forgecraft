@@ -11,44 +11,18 @@ make a copy of it somewhere, it doenst need to be instantiated or anything, the 
 for your setRecipeName include your mod id like .setRecipeName(KFC.MOD_ID, "soft_crucible"));
 you'll need to update the annotation @GameRegistry.ObjectHolder(ModInfo.MOD_ID)  with your mod id also
 
+- [x] Fix Plate Crafting
+- [x] Longbow animation
+- [x] Fix Forge Cool Down
+- [x] Fix Forge StackTagCompound management
+- [x] ForgeHammer Recipes
+
 - [ ] Leather Helmet Inventory Model
 - [ ] Config Usage
 - [ ] Craft Tweaker Support
 - [ ] Apply Forge turn off logic to Bloomery
 - [ ] Copper Tools
 - [ ] Config for lowering fortune multiplier
-- [x] Bronze Plate Cast
-- [x] JEI Support
-- [x] Update SoftCrucible Model
-- [x] Crucibles were returning input ingredients even after cooked
-- [x] Hot Crucible doesn't have hot molten layer
-- [x] Can't add upgrades to the anvil
-- [x] Steel Plate Recipe #37
-- [x] Damascus Recipes
-- [x] Damascus Weapons
-- [x] Need Recipe for Soft Crucible
-- [x] Make Wootz Weapons
-- [x] Crucible is not resetting after iron is removed.
-- [x] Chunk and Ball stacking
-- [x] Delete unused models, blockstates, and textures
-- [x] Inventory version of balls have the same texture
-- [x] Wootz Chunk Model
-- [x] Casting Mud Texture
-- [x] Adobe Bloomery Texture
-- [x] Adobe Forge Texture
-- [x] Update nbt Crucible Models with open top
-- [x] Update all slotted tong models
-- [x] Inventory model for nbtCrucible
-- [x] Tongs hot Texture
-- [x] Casting Block line 103
-- [x] Bloomery rendering all messed up
-- [x] Update Casting recipes to use new slotted tongs and nbtCrucible
-- [x] NBT Crucible
-- [x] NBT Crucible Recipes
-- [x] Slotted Tongs
-- [x] Item Crucible
-- [x] NBTCrucible to ItemCrucible transformer
-- [x] StoneTongs ItemCrucible to NBTCrucible transformer
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -81,6 +55,38 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Bronze Plate Cast
+- [x] JEI Support
+- [x] Update SoftCrucible Model
+- [x] Crucibles were returning input ingredients even after cooked
+- [x] Hot Crucible doesn't have hot molten layer
+- [x] Can't add upgrades to the anvil
+- [x] Steel Plate Recipe #37
+- [x] Damascus Recipes
+- [x] Damascus Weapons
+- [x] Need Recipe for Soft Crucible
+- [x] Make Wootz Weapons
+- [x] Crucible is not resetting after iron is removed.
+- [x] Chunk and Ball stacking
+- [x] Delete unused models, blockstates, and textures
+- [x] Inventory version of balls have the same texture
+- [x] Wootz Chunk Model
+- [x] Casting Mud Texture
+- [x] Adobe Bloomery Texture
+- [x] Adobe Forge Texture
+- [x] Update nbt Crucible Models with open top
+- [x] Update all slotted tong models
+- [x] Inventory model for nbtCrucible
+- [x] Tongs hot Texture
+- [x] Casting Block line 103
+- [x] Bloomery rendering all messed up
+- [x] Update Casting recipes to use new slotted tongs and nbtCrucible
+- [x] NBT Crucible
+- [x] NBT Crucible Recipes
+- [x] Slotted Tongs
+- [x] Item Crucible
+- [x] NBTCrucible to ItemCrucible transformer
+- [x] StoneTongs ItemCrucible to NBTCrucible transformer
 - [x] BlockBreaker Support for copper dust and tin dust
 - [x] picking up raw bronze crucible returns some other shit
 - [x] Tool breaking should return tool head

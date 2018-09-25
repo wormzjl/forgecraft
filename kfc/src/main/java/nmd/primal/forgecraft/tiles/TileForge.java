@@ -85,12 +85,15 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     if(randomCheck(1000)) {
                         makeSmoke(world, pos);
                     }
-                    this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
-                }
 
+                }
                 //slotZeroManager(world);
                 craftingManager();
             }
+            if(this.iteration == 299){
+                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
+            }
+
         }
     }
 
@@ -194,7 +197,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
 
             ForgeCrafting recipe = ForgeCrafting.getRecipe(stack.getItem());
             if (recipe != null) {
-                NBTTagCompound stackCompound = null;
+                NBTTagCompound stackCompound = new NBTTagCompound();
                 if(stack.hasTagCompound()){
                     stackCompound=stack.getTagCompound().copy();
                 }
@@ -207,9 +210,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        outputStack.setItemDamage(stack.getItemDamage());
-                        outputStack.setTagCompound(stackCompound);
-                        outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        if(stack.hasTagCompound()){
+                            outputStack.setItemDamage(stack.getItemDamage());
+                            outputStack.setTagCompound(stackCompound);
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
@@ -223,9 +228,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter3 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        outputStack.setItemDamage(stack.getItemDamage());
-                        outputStack.setTagCompound(stackCompound);
-                        outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        if(stack.hasTagCompound()){
+                            outputStack.setItemDamage(stack.getItemDamage());
+                            outputStack.setTagCompound(stackCompound);
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
                         this.setSlotStack(i, outputStack);
 
                         cookCounter3 = 0;
@@ -240,9 +247,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        outputStack.setItemDamage(stack.getItemDamage());
-                        outputStack.setTagCompound(stackCompound);
-                        outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        if(stack.hasTagCompound()){
+                            outputStack.setItemDamage(stack.getItemDamage());
+                            outputStack.setTagCompound(stackCompound);
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter4 = 0;
                     }
@@ -256,9 +265,11 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter5 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        outputStack.setItemDamage(stack.getItemDamage());
-                        outputStack.setTagCompound(stackCompound);
-                        outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        if(stack.hasTagCompound()){
+                            outputStack.setItemDamage(stack.getItemDamage());
+                            outputStack.setTagCompound(stackCompound);
+                            outputStack.getSubCompound("tags").setBoolean("hot", true);
+                        }
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
                     }

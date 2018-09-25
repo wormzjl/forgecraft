@@ -189,7 +189,7 @@ public class BaseMultiItem extends BaseItem {
                 if (stack.getTagCompound().getBoolean("hot")) {
                     player.setFire(1);
                 }
-                if (PrimalAPI.randomCheck(50)) {
+                if (PrimalAPI.randomCheck(10)) {
                     stack.getTagCompound().setBoolean("hot", false);
                     player.getEntityWorld().playSound(null, player.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
                 }
@@ -200,22 +200,32 @@ public class BaseMultiItem extends BaseItem {
     @Override
     public boolean onEntityItemUpdate(net.minecraft.entity.item.EntityItem entityItem)
     {
-        if(entityItem.isWet()){
-            if(entityItem.getItem().hasTagCompound()) {
-                if(entityItem.getItem().getTagCompound().getBoolean("hot")){
-                    entityItem.getItem().getTagCompound().setBoolean("hot", false);
-                    entityItem.getEntityWorld().playSound(null, entityItem.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
+        if(!entityItem.getEntityWorld().isRemote) {
+            if (entityItem.getItem().hasTagCompound()) {
+                if (entityItem.isWet()) {
+                    if (entityItem.getItem().getTagCompound().getBoolean("hot")) {
+                        entityItem.getItem().getTagCompound().setBoolean("hot", false);
+                        entityItem.getEntityWorld().playSound(null, entityItem.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
+                        return true;
+                    }
+                }
+            /*
+            if (!entityItem.isWet()) {
+                if (entityItem.getItem().getTagCompound().getBoolean("hot")) {
+                    FireHelper.setFire(entityItem.getEntityWorld(), entityItem.getPosition());
                     return true;
                 }
             }
-        }
-        if(!entityItem.isWet()){
-            if(entityItem.getItem().getTagCompound().getBoolean("hot")) {
-                FireHelper.setFire(entityItem.getEntityWorld(), entityItem.getPosition());
-                return true;
+            */
+                if (PrimalAPI.randomCheck(10)) {
+                    if (entityItem.getItem().getTagCompound().getBoolean("hot")) {
+                        entityItem.getItem().getTagCompound().setBoolean("hot", false);
+                        entityItem.getEntityWorld().playSound(null, entityItem.getPosition(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.AMBIENT, 1.0F, PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F);
+                        return true;
+                    }
+                }
             }
         }
-
         return false;
     }
 

@@ -255,7 +255,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
     public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
         worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-        System.out.println(placer.getHorizontalFacing());
+        //System.out.println(placer.getHorizontalFacing());
     }
 
     @Override

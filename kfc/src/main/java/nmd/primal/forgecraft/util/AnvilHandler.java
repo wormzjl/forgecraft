@@ -18,6 +18,7 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
+import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
@@ -69,8 +70,6 @@ public interface AnvilHandler {
             if (ThreadLocalRandom.current().nextInt(0, 2) == 0) {
 
                 if (recipe.getOutput().getItem() instanceof ToolPart) {
-
-                    System.out.println(tile.getSlotStack(12).getTagCompound());
 
                     if (!tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem()) ) {
 
@@ -243,21 +242,22 @@ public interface AnvilHandler {
 
                 IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
                 ItemStack tongStack = inventory.getStackInSlot(0).copy();
+                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
                 if (tongStack.isEmpty()) {
                     if (!tile.getSlotStack(counter).isEmpty()) {
                         ItemStack tempStack = tile.getSlotStack(counter).copy();
                         inventory.insertItem(0,tempStack, false);
                         tile.setSlotStack(counter, ItemStack.EMPTY);
+                        itemstackItem.markDirty(pItem);
                         return true;
                     }
                 }
 
                 if (!tongStack.isEmpty()) {
                     if (tile.getSlotStack(counter).isEmpty()) {
-                        //ItemStack tempStack = tongStack.copy();
                         tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
-                        //System.out.println(tile.getSlotStack(counter).getTagCompound());
+                        itemstackItem.markDirty(pItem);
                         return true;
                     }
                 }

@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
  */
 public class Longbow extends BaseItem {
 
-    int mod=5;
+    int mod=15;
     int time=0;
 
     public Longbow(String name) {
