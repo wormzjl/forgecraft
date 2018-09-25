@@ -12,6 +12,8 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.items.BaseMultiItem;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
@@ -210,11 +212,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter2 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        if(stack.hasTagCompound()){
-                            outputStack.setItemDamage(stack.getItemDamage());
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
+                        outputNBTManager(stack, outputStack, stackCompound);
                         this.setSlotStack(i, outputStack);
                         cookCounter2 = 0;
                     }
@@ -228,11 +226,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter3 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        if(stack.hasTagCompound()){
-                            outputStack.setItemDamage(stack.getItemDamage());
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
+                        outputNBTManager(stack, outputStack, stackCompound);
                         this.setSlotStack(i, outputStack);
 
                         cookCounter3 = 0;
@@ -247,11 +241,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter4 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        if(stack.hasTagCompound()){
-                            outputStack.setItemDamage(stack.getItemDamage());
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
+                        outputNBTManager(stack, outputStack, stackCompound);
                         this.setSlotStack(i, outputStack);
                         cookCounter4 = 0;
                     }
@@ -265,17 +255,31 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                     if (cookCounter5 >= recipe.getIdealTime()) {
                         ItemStack outputStack = recipe.getOutput().copy();
-                        if(stack.hasTagCompound()){
-                            outputStack.setItemDamage(stack.getItemDamage());
-                            outputStack.setTagCompound(stackCompound);
-                            outputStack.getSubCompound("tags").setBoolean("hot", true);
-                        }
+                        outputNBTManager(stack, outputStack, stackCompound);
                         this.setSlotStack(i, outputStack);
                         cookCounter5 = 0;
                     }
                 }
             }
         }
+    }
+
+    private ItemStack outputNBTManager(ItemStack stack, ItemStack outputStack, NBTTagCompound stackCompound){
+        if(stack.hasTagCompound()){
+            if(stack.getItem() instanceof ToolPart) {
+                outputStack.setItemDamage(stack.getItemDamage());
+                outputStack.setTagCompound(stackCompound);
+                outputStack.getSubCompound("tags").setBoolean("hot", true);
+                return outputStack;
+            }
+            if(stack.getItem() instanceof BaseMultiItem) {
+                outputStack.setItemDamage(stack.getItemDamage());
+                outputStack.setTagCompound(stackCompound);
+                outputStack.getTagCompound().setBoolean("hot", true);
+                return outputStack;
+            }
+        }
+        return null;
     }
 
     public int getHeat(){

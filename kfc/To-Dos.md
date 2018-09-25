@@ -3,7 +3,7 @@
 ## Bugs
 
 ## Current Feature
-
+- [ ] FIX LONGBOW
 - [ ] Copper Tools
 - [ ] Craft Tweaker Support
 - [ ] Config Usage
