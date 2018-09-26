@@ -184,7 +184,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         if(state.getValue(PrimalAPI.States.ACTIVE) == true){
-            return 15;
+            return 5;
         }
         return 0;
     }

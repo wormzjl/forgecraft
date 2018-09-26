@@ -3,7 +3,12 @@
 ## Bugs
 
 ## Current Feature
-- [ ] FIX LONGBOW
+- [x] Forge Light Level
+- [ ] Check Forge Textures for lit
+- [ ] Diamond + Redstone no texture
+- [ ] Longbow Fire Speed
+- [ ] Bloomery Print out 
+- [ ] Anvil cool down items
 - [ ] Copper Tools
 - [ ] Craft Tweaker Support
 - [ ] Config Usage
