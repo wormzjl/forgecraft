@@ -272,18 +272,8 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
 
             }
 
-            //this.setDamage(item, this.getMaxDamage(item) -2);
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-
-                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON){
-                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenwroughtirontool, 1));
-                }
-                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON){
-                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokencleanirontool, 1));
-                }
-                if(this.toolMaterial == PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL){
-                    PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokensteeltool, 1));
-                }
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(this.drop, 1));
                 ((EntityPlayer) player).inventory.deleteStack(item);
             }
 
@@ -327,13 +317,13 @@ public class CustomPickaxe extends ItemPickaxe implements ToolNBT{
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
                 if( getDiamondLevel(itemstack) > 0 ){
-                    //itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
+                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
                     itemstack.getItem().setHarvestLevel("pickaxe", 3);
                 }
-                /*if( getRedstoneLevel(itemstack) > 0 ){
+                if( getRedstoneLevel(itemstack) > 0 ){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
                     //System.out.println(itemstack.getEnchantmentTagList());
-                }*/
+                }
                 if ( getLapisLevel(itemstack) > 0) {
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), getLapisLevel(itemstack));
                 }

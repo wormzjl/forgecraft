@@ -1452,6 +1452,30 @@ public class ModCrafting{
                 "null"
         );
 
+        /*** Bucket ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,hotCleanChunk,emptyAir,hotCleanChunk,emptyAir,
+                        emptyAir,hotCleanChunk,emptyAir,hotCleanChunk,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
+                new ItemStack(Items.BUCKET, 1),
+                "null"
+        );
+
+        /*** Bucket ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,hotSteelChunk,emptyAir,hotSteelChunk,emptyAir,
+                        emptyAir,hotSteelChunk,emptyAir,hotSteelChunk,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
+                new ItemStack(Items.BUCKET, 1),
+                "null"
+        );
+
         /*** Primal Plate ***/
         AnvilCrafting.addRecipe(
                 new ItemStack [] {

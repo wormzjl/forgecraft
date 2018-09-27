@@ -1,16 +1,18 @@
-package nmd.primal.forgecraft.items.tools;
+package nmd.primal.forgecraft.items.tools.bronze;
 
+import com.google.common.collect.Sets;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.material.Material;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemSpade;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -20,22 +22,24 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.init.ModConfig;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- * Created by mminaie on 6/25/17.
+ * Created by mminaie on 3/21/17.
  */
-public class BronzeAxe extends ItemAxe implements ToolNBT {
+public class BronzeShovel extends ItemSpade implements ToolNBT {
 
-    Item drop;
+    private static final Set<Block> EFFECTIVE_ON = Sets.newHashSet(new Block[] {Blocks.CLAY, Blocks.DIRT, Blocks.FARMLAND, Blocks.GRASS, Blocks.GRAVEL, Blocks.MYCELIUM, Blocks.SAND, Blocks.SNOW, Blocks.SNOW_LAYER, Blocks.SOUL_SAND, Blocks.GRASS_PATH});
+Item drop;
 
-    public BronzeAxe(String name, Item.ToolMaterial material, Item damageDrop) {
-        super(material, 5, -2f);
+    public BronzeShovel(String name, ToolMaterial material, Item damageDrop) {
+        super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
@@ -126,10 +130,10 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
+
             }
-            //this.setDamage(item, this.getMaxDamage(item) -2);
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenbronzetool, 1));
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(this.drop, 1));
                 ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
@@ -153,10 +157,10 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
                     tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
                 }
                 if (getRedstoneLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + "1" );
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
                 }
                 if (getLapisLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + "5" );
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + Integer.toString(ModConfig.Features.BRONZE_LAPIS_MULTIPLIER));
                 }
                 tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
@@ -168,16 +172,13 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            //System.out.println(world.getBlockState(pos).getBlock());
-            if(itemstack.getItem() instanceof CustomAxe){
+
+            if(itemstack.getItem() instanceof BronzeShovel){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
                 }
-                /*if( getDiamondLevel(itemstack) > 0 ){
-                    itemstack.getItem().setHarvestLevel("pickaxe", 3);
-                }*/
                 if ( getLapisLevel(itemstack) > 0) {
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), 5);
+                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), ModConfig.Features.BRONZE_LAPIS_MULTIPLIER);
                 }
             }
         }
@@ -237,15 +238,12 @@ public class BronzeAxe extends ItemAxe implements ToolNBT {
     @Override
     public float getDestroySpeed(ItemStack stack, IBlockState state)
     {
-        Material material = state.getMaterial();
-        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
-
-        if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
-            return  super.getDestroySpeed(stack, state);
-        } else {
-            return this.efficiency + 1;
+        for (String type : getToolClasses(stack))
+        {
+            if (state.getBlock().isToolEffective(type, state))
+                return efficiency;
         }
-
+        return this.efficiency + 1;
     }
 
     @SideOnly(Side.CLIENT)

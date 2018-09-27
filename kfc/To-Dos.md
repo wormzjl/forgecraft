@@ -4,14 +4,21 @@
 
 ## Current Feature
 - [x] Forge Light Level
-- [ ] Check Forge Textures for lit
-- [ ] Diamond + Redstone no texture
-- [ ] Longbow Fire Speed
-- [ ] Bloomery Print out 
-- [ ] Anvil cool down items
-- [ ] Copper Tools
-- [ ] Craft Tweaker Support
+- [x] Check Forge Textures for lit
+- [x] Forge not cooling down
+- [x] Steel Chunk stop reading upgrades
+- [x] Casting Form broken
+- [x] Anvil cool down items
+- [x] Longbow Fire Speed
+- [x] More Crafting for buckets
+
 - [ ] Config Usage
+- [ ] Copper Tools
+- [ ] Copper Tool Casting
+- [ ] Copper Tool Assets
+
+- [ ] Craft Tweaker Support
+
 - [ ] Config for lowering fortune multiplier
 - [ ] Hardened Leather Helmet Inventory Model
 
@@ -27,10 +34,12 @@
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Bloomery Print out
+- [ ] Random Floats for hot texture
+- [ ] Diamond + Redstone no texture
 - [ ] Mass Ore Production
 - [ ] Silver/Lead Production
 - [ ] Sparks to forging
-- [x] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield

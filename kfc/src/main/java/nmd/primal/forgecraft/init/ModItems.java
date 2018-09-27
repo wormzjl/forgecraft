@@ -15,6 +15,10 @@ import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeAxe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeHoe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzePickaxe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeShovel;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
 import nmd.primal.forgecraft.items.weapons.Longbow;
@@ -23,6 +27,7 @@ import nmd.primal.forgecraft.items.weapons.SlayerSword;
 /**
  * Created by kitsu on 11/26/2016.
  */
+
 public class ModItems {
 
     //public static Item test;
@@ -46,6 +51,17 @@ public class ModItems {
     public static Item steelchunk;
     public static Item wootzingotball;
     public static Item wootzchunk;
+
+    public static Item copperpickaxehead;
+    public static Item copperaxehead;
+    public static Item coppershovelhead;
+    public static Item copperhoehead;
+
+    public static Item copperpickaxe;
+    public static Item copperaxe;
+    public static Item coppershovel;
+    public static Item copperhoe;
+
 
     public static Item pickaxehead;
     public static Item ironaxehead;
@@ -154,6 +170,18 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
+        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
+            copperpickaxehead;
+            copperaxehead;
+            coppershovelhead;
+            copperhoehead;
+
+            copperpickaxe;
+            copperaxe;
+            coppershovel;
+            copperhoe;
+        }
+
         bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
         bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
         bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
@@ -183,27 +211,27 @@ public class ModItems {
          TOOLS
          **********/
         bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzepickaxehead);
-        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead);
+        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead, 5, -2.4f);
         bronzeshovel = new BronzeShovel("bronzeshovel", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeshovelhead);
         bronzehoe = new BronzeHoe("bronzehoe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzehoehead);
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, pickaxehead);
-        ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead);
+        ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead, 5, -3.6f);
         ironshovel = new CustomShovel("ironshovel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
         ironhoe = new CustomHoe("ironhoe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironhoehead);
 
         cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
-        cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead);
+        cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead, 6, -3.2f);
         cleanironshovel = new CustomShovel("cleanironshovel", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
         cleanironhoe = new CustomHoe("cleanironhoe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
 
         steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
-        steelaxe = new CustomAxe("steelaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelaxehead);
+        steelaxe = new CustomAxe("steelaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelaxehead, 7, -2.8f);
         steelshovel = new CustomShovel("steelshovel", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelshovelhead);
         steelhoe = new CustomHoe("steelhoe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelhoehead);
 
         wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
-        wootzaxe = new CustomAxe("wootzaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzaxehead);
+        wootzaxe = new CustomAxe("wootzaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzaxehead, 8, -2.4f);
         wootzshovel = new CustomShovel("wootzshovel", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
         wootzhoe = new CustomHoe("wootzhoe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
 

@@ -8,6 +8,10 @@ import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import nmd.primal.forgecraft.items.parts.BronzeToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.*;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeAxe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeHoe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzePickaxe;
+import nmd.primal.forgecraft.items.tools.bronze.BronzeShovel;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 /**

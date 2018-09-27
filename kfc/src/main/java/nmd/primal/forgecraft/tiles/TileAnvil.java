@@ -5,6 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.NonNullList;
 import net.minecraft.world.World;
+import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.forgecraft.items.BaseMultiItem;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 
 /**
  * Created by mminaie on 3/4/17.
@@ -44,39 +47,27 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
         if (!world.isRemote) {
             IBlockState state = world.getBlockState(this.pos);
 
-
-            /***
-             Cooling Code
-             */
-            /*if ( ThreadLocalRandom.current().nextInt(0,10000) == 0 ) {
+            if(PrimalAPI.randomCheck(1800)){
                 for(int i=0; i<this.getSlotListSize(); i++){
-                    if(this.getSlotStack(i).getItem() == tempironball){
-                        if(ThreadLocalRandom.current().nextInt(0,1000) == 1){
-                            this.setSlotStack(i, new ItemStack(ModBlocks.ironchunk, 1));
-                            this.updateBlock();
-                            this.markDirty();
+                    ItemStack slotStack = this.getSlotStack(i).copy();
+                    if(!slotStack.isEmpty()){
+                        if(slotStack.getItem() instanceof ToolPart){
+                            if(slotStack.hasTagCompound()){
+                                if(slotStack.getSubCompound("tags").getBoolean("hot")){
+                                    this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", false);
+                                }
+                            }
                         }
-                    }
-                    if(this.getSlotStack(i).getItem() == ModItems.ironingotballhot){
-                        if(ThreadLocalRandom.current().nextInt(0,1000) == 2){
-                            this.setSlotStack(i, new ItemStack(ModBlocks.ironball, 1));
-                            this.updateBlock();
-                            this.markDirty();
-                        }
-                    }
-                    if(this.getSlotStack(i).getItem() instanceof ToolPart){
-                        if(ThreadLocalRandom.current().nextInt(0,1000) == 3){
-                            ((ToolPart) this.getSlotStack(i).getItem()).setHot(this.getSlotStack(i), false);
-                            this.updateBlock();
-                            this.markDirty();
+                        if(slotStack.getItem() instanceof BaseMultiItem){
+                            if(slotStack.hasTagCompound()){
+                                if(slotStack.getTagCompound().getBoolean("hot")){
+                                    this.getSlotStack(i).getTagCompound().setBoolean("hot", false);
+                                }
+                            }
                         }
                     }
                 }
             }
-            */
-
         }
     }
-
-
 }

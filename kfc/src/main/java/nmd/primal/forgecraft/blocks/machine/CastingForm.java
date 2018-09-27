@@ -60,13 +60,12 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
             TileCastingForm tile = (TileCastingForm)  world.getTileEntity(pos);
             ItemStack pItem = player.inventory.getCurrentItem();
 
-            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
-            ItemStack slotStack = inventory.getStackInSlot(0).copy();
-
             if(pItem.getItem() != ModItems.slottedtongs) {
                 doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
             }
             if(pItem.getItem().equals(ModItems.slottedtongs)){
+                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+                ItemStack slotStack = inventory.getStackInSlot(0).copy();
                 SlottedTongs tongs = (SlottedTongs) pItem.getItem();
                 if(slotStack.getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
                     ItemStack tongsStack = slotStack.copy();

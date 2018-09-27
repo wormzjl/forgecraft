@@ -15,6 +15,7 @@ import nmd.primal.forgecraft.crafting.ForgeCrafting;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
+import scala.Int;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
@@ -61,23 +62,17 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
             Block block = world.getBlockState(abovePos).getBlock();
             if (world.getBlockState(this.getPos()).getValue(PrimalAPI.States.ACTIVE)) {
 
-                if (this.iteration == 100) {
-                    RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
-                    if(randomCheck(1000)) {
-                        makeSmoke(world, pos);
-                    }
-                }
                 if (this.iteration == 200) {
                     RecipeHelper.fuelManager(world, this, this.getSlotStack(0));
-                    if(randomCheck(1000)) {
+                    if(randomCheck(800)) {
                         makeSmoke(world, pos);
                     }
                 }
-
+                if(this.iteration == 250){
+                    setHeat(this.getHeat()-50);
+                }
                 if (this.iteration == 300) {
-                    this.iteration = 0;
-
-
+                    this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
                     if (this.getSlotStack(0) == ItemStack.EMPTY) {
                         world.setBlockState(this.getPos(), state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
                         this.markDirty();
@@ -89,12 +84,13 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
 
                 }
-                //slotZeroManager(world);
+                if(this.iteration >=301){
+                    iteration =0;
+                }
                 craftingManager();
             }
-            if(this.iteration == 299){
-                this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);
-            }
+
+
 
         }
     }
@@ -144,7 +140,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                 if(h > 0) {
                     this.setHeat(h - 25);
                 }
-                if(h < 10 ){
+                if(h < 50 ){
                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
                 }
             }

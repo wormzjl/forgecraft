@@ -179,12 +179,14 @@ public class Longbow extends BaseItem {
 
     public static float getArrowVelocity(int charge)
     {
-        float f = (float)charge / 5.0F;
-        f = (f * f + f * 2.0F);
+        float f = (float)charge / 120;
 
         if (f > 1.0F)
         {
             f = 1.0F;
+        }
+        if(f < 0.1){
+            f =0.1f;
         }
 
         return f;

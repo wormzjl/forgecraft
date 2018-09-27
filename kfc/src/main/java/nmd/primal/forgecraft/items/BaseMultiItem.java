@@ -142,7 +142,7 @@ public class BaseMultiItem extends BaseItem {
         {
             if (item.hasTagCompound())
             {
-                tooltip.add(ChatFormatting.GRAY + "Upgrades: " + item.getTagCompound().getString("upgrades"));
+                //tooltip.add(ChatFormatting.GRAY + "Upgrades: " + item.getTagCompound().getString("upgrades"));
                 /*
                 tooltip.add(ChatFormatting.GRAY + "Upgrades: " + (3 - getModifiers(item)) );
                 if (getEmerald(item) == true) {

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items.tools;
+package nmd.primal.forgecraft.items.tools.bronze;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.block.material.Material;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.init.ModConfig;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -131,7 +131,7 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
 
             }
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
-                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(ModItems.brokenbronzetool, 1));
+                PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(this.drop, 1));
                 ((EntityPlayer) player).inventory.deleteStack(item);
             }
         }
@@ -139,27 +139,30 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
 
     //public void onItemTooltip(ItemTooltipEvent event){
 
-    @Override
+   @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
-        if(item.hasTagCompound())
+        if(!item.isEmpty())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (1 - getModifiers(item)) );
-            if (getEmerald(item) == true) {
-                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+            if (item.hasTagCompound())
+            {
+                tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (1 - getModifiers(item)) );
+                if (getEmerald(item) == true) {
+                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+                }
+                if (getDiamondLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+                }
+                if (getRedstoneLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
+                }
+                if (getLapisLevel(item) > 0) {
+                    int lapisOutput = Integer.valueOf(ModConfig.Features.BRONZE_LAPIS_MULTIPLIER) ;
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + Integer.toString(lapisOutput*1));
+                }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
-            if (getDiamondLevel(item) > 0) {
-                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
-            }
-            if (getRedstoneLevel(item) > 0) {
-                tooltip.add(ChatFormatting.RED + "Redstone Level: " + 1 );
-            }
-            if (getLapisLevel(item) > 0) {
-                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + 5 );
-            }
-            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
         }
     }
 
@@ -178,7 +181,7 @@ public class BronzePickaxe extends ItemPickaxe implements ToolNBT{
                     itemstack.getItem().setHarvestLevel("pickaxe", 3);
                 }*/
                 if ( getLapisLevel(itemstack) > 0) {
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), 5);
+                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), ModConfig.Features.BRONZE_LAPIS_MULTIPLIER);
                 }
             }
         }
