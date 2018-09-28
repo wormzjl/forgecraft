@@ -9,7 +9,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
+import net.minecraft.item.ItemPickaxe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
@@ -25,18 +25,18 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
-public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
+public abstract class AbstractPickaxe extends ItemPickaxe implements ToolNBT {
+    private Item drop;
 
-    Item drop;
-
-    public AbstractAxe(String name, ToolMaterial material, Item damageDrop, Integer damage, Float speed) {
-        super(material, damage, speed);
+    public AbstractPickaxe(String name, Item.ToolMaterial material, Item damageDrop) {
+        super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
         this.setMaxStackSize(1);
         this.setNoRepair();
-        this.drop = damageDrop;
+        this.drop=damageDrop;
+        //this.toolClass = "pickaxe";
 
         this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
@@ -82,21 +82,20 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
     public void onCreated(ItemStack item, World world, EntityPlayer playerIn) {
 
         if(!world.isRemote) {
-            item.setItemDamage(item.getMaxDamage()-5);
             if (!item.hasTagCompound()) {
                 item.setTagCompound(new NBTTagCompound());
                 NBTTagCompound tags = new NBTTagCompound();
 
                 item.getTagCompound().setTag("tags", tags);
 
-                /*setHot(item, false);
+                setHot(item, false);
 
                 setHot(item, false);
                 setEmerald(item, false);
                 setDiamondLevel(item, 0);
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
-                setModifiers(item, 0);*/
+                setModifiers(item, 0);
             }
         }
 
@@ -105,6 +104,7 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         if(!world.isRemote) {
+            //item.setItemDamage(item.getMaxDamage()-2);
 
             if (!item.hasTagCompound()) {
                 item.setTagCompound(new NBTTagCompound());
@@ -118,12 +118,14 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
                 setRedstoneLevel(item, 0);
                 setLapisLevel(item, 0);
                 setModifiers(item, 0);
+
             }
 
             if( this.getMaxDamage(item) - this.getDamage(item) <= 1 ){
                 PlayerHelper.spawnItemOnPlayer(world, (EntityPlayer) player, new ItemStack(this.drop, 1));
                 ((EntityPlayer) player).inventory.deleteStack(item);
             }
+
         }
     }
 
@@ -133,54 +135,28 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(!item.isEmpty())
+        //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
+        if(item.hasTagCompound())
         {
-            if (item.hasTagCompound())
-            {
-                tooltip.add(ChatFormatting.GRAY + "Upgrades added: " + (getModifiers(item)) );
-                if (getEmerald(item) == true) {
-                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
-                }
-                if (getDiamondLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
-                }
-                if (getRedstoneLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
-                }
-                if (getLapisLevel(item) > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
-                }
-                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (3 - getModifiers(item)) );
+            if (getEmerald(item) == true) {
+                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
+            if (getDiamondLevel(item) > 0) {
+                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+            }
+            if (getRedstoneLevel(item) > 0) {
+                tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
+            }
+            if (getLapisLevel(item) > 0) {
+                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
+            }
+            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
         }
     }
-/*
-    @Override
-    public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
-    {
-        if(!player.world.isRemote){
-            World world = player.getEntityWorld();
-            if(itemstack.getItem() instanceof CustomAxe){
-                if( getEmerald(itemstack)){
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
-                }
-                if( getDiamondLevel(itemstack) > 0 ){
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
-                    //itemstack.getItem().setHarvestLevel("pickaxe", 3);
-                }
-                if( getRedstoneLevel(itemstack) > 0 ){
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(32), getRedstoneLevel(itemstack));
-                    //System.out.println(itemstack.getEnchantmentTagList());
-                }
-                if ( getLapisLevel(itemstack) > 0) {
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), getLapisLevel(itemstack));
-                }
-            }
-        }
 
-        return false;
-    }
-*/
+
+
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase target, EntityLivingBase attacker)
     {
@@ -224,24 +200,12 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
                 entityLiving.renderBrokenItemStack(stack);
                 stack.shrink(1);
+                player.inventory.markDirty();
+                //player.inventory.inventoryChanged = true;
             }
         }
 
         return true;
-    }
-
-    @Override
-    public float getDestroySpeed(ItemStack stack, IBlockState state)
-    {
-        Material material = state.getMaterial();
-        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
-
-        if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
-            return  super.getDestroySpeed(stack, state);
-        } else {
-            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ));
-        }
-
     }
 
     @SideOnly(Side.CLIENT)
@@ -260,6 +224,20 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
     public int getItemEnchantability(ItemStack stack)
     {
         return 0;
+    }
+
+    @Override
+    public float getDestroySpeed(ItemStack stack, IBlockState state)
+    {
+        Material material = state.getMaterial();
+        //return material != Material.IRON && material != Material.ANVIL && material != Material.ROCK ? super.getStrVsBlock(stack, state) : this.efficiencyOnProperMaterial;
+
+        if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
+            return  super.getDestroySpeed(stack, state);
+        } else {
+            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
+        }
+
     }
 
 }

@@ -1,7 +1,6 @@
 package nmd.primal.forgecraft.init;
 
 import net.minecraftforge.common.config.Config;
-import nmd.primal.forgecraft.ForgeCraft;
 import nmd.primal.forgecraft.ModInfo;
 
 @Config(modid = ModInfo.MOD_ID, name = ModInfo.MOD_CONFIG, category = "")
@@ -10,9 +9,9 @@ import nmd.primal.forgecraft.ModInfo;
 
 public final class ModConfig
 {
-    static {
-        ForgeCraft.LOGGER.info("Loading Config File: " + ModInfo.MOD_CONFIG + ".cfg");
-    }
+    //static {
+    //    ForgeCraft.LOGGER.info("Loading Config File: " + ModInfo.MOD_CONFIG + ".cfg");
+    //}
 
     /**
      *  Main Config Sections
@@ -44,6 +43,7 @@ public final class ModConfig
         public static boolean ENABLE_COPPER_TOOLS = false;
 
         @Config.Comment({"Bronze Tool Lapis Bonus do not go greater than 5"})
+        @Config.RangeInt(min = 0, max = 5)
         public static int BRONZE_LAPIS_MULTIPLIER = 5;
 
         @Config.Comment({"Copper Tools Emerald Upgrade"})

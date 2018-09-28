@@ -15,7 +15,6 @@ import nmd.primal.forgecraft.crafting.ForgeCrafting;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.util.ToolNBT;
-import scala.Int;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
 import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
@@ -69,7 +68,7 @@ public class TileForge extends TileBaseSlot implements ITickable, ToolNBT{
                     }
                 }
                 if(this.iteration == 250){
-                    setHeat(this.getHeat()-50);
+                    setHeat(this.getHeat()-25);
                 }
                 if (this.iteration == 300) {
                     this.heatManager(this.getHeat(), state, this.getSlotStack(0), world, pos);

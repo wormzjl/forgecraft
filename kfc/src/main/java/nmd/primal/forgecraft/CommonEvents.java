@@ -5,9 +5,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import nmd.primal.forgecraft.items.parts.BronzeToolPart;
+import nmd.primal.forgecraft.items.parts.SimpleToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.*;
+import nmd.primal.forgecraft.items.tools.CustomAxe;
+import nmd.primal.forgecraft.items.tools.CustomHoe;
+import nmd.primal.forgecraft.items.tools.CustomPickaxe;
+import nmd.primal.forgecraft.items.tools.CustomShovel;
 import nmd.primal.forgecraft.items.tools.bronze.BronzeAxe;
 import nmd.primal.forgecraft.items.tools.bronze.BronzeHoe;
 import nmd.primal.forgecraft.items.tools.bronze.BronzePickaxe;
@@ -31,7 +34,7 @@ public class CommonEvents implements ToolNBT {
 
                     if (event.craftMatrix.getStackInSlot(i) != null) { // If there is an item
                         ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
-                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof BronzeToolPart) {
+                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof SimpleToolPart) {
                             tempTag = a.getSubCompound("tags").copy();
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
@@ -46,7 +49,7 @@ public class CommonEvents implements ToolNBT {
 
                     if (event.craftMatrix.getStackInSlot(i) != null) { // If there is an item
                         ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
-                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof BronzeToolPart) {
+                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof SimpleToolPart) {
                             tempTag = a.getSubCompound("tags").copy();
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
@@ -61,7 +64,7 @@ public class CommonEvents implements ToolNBT {
 
                     if (event.craftMatrix.getStackInSlot(i) != null) { // If there is an item
                         ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
-                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof BronzeToolPart) {
+                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof SimpleToolPart) {
                             tempTag = a.getSubCompound("tags").copy();
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
@@ -76,7 +79,7 @@ public class CommonEvents implements ToolNBT {
 
                     if (event.craftMatrix.getStackInSlot(i) != null) { // If there is an item
                         ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
-                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof BronzeToolPart) {
+                        if (a.getItem() instanceof ToolPart || a.getItem() instanceof SimpleToolPart) {
                             tempTag = a.getSubCompound("tags").copy();
                             event.crafting.getTagCompound().setTag("tags", tempTag);
                             event.crafting.getItem().updateItemStackNBT(event.crafting.getTagCompound());
@@ -85,7 +88,7 @@ public class CommonEvents implements ToolNBT {
                     }
                 }
             }
-            if (event.crafting.getItem() instanceof ToolPart || event.crafting.getItem() instanceof BronzeToolPart) {
+            if (event.crafting.getItem() instanceof ToolPart || event.crafting.getItem() instanceof SimpleToolPart) {
                 NBTTagCompound tempTag = new NBTTagCompound();
                 for (int i = 0; i < event.craftMatrix.getSizeInventory(); i++) { // Checks all the slots
 

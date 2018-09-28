@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items.tools.bronze;
+package nmd.primal.forgecraft.items.tools.copper;
 
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.Enchantment;
@@ -13,9 +13,9 @@ import nmd.primal.forgecraft.util.ToolNBT;
 /**
  * Created by mminaie on 3/21/17.
  */
-public class BronzeShovel extends AbstractShovel implements ToolNBT {
+public class CopperShovel extends AbstractShovel implements ToolNBT {
 
-    public BronzeShovel(String name, ToolMaterial material, Item damageDrop) {
+    public CopperShovel(String name, ToolMaterial material, Item damageDrop) {
         super(name, material, damageDrop);
     }
 
@@ -25,12 +25,11 @@ public class BronzeShovel extends AbstractShovel implements ToolNBT {
     {
         if(!player.world.isRemote){
 
-            if(itemstack.getItem() instanceof BronzeShovel){
-                if( getEmerald(itemstack)){
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
-                }
-                if ( getLapisLevel(itemstack) > 0) {
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), ModConfig.Features.BRONZE_LAPIS_MULTIPLIER);
+            if(itemstack.getItem() instanceof CopperShovel){
+                if(ModConfig.Features.ENABLE_COPPER_EMERALD) {
+                    if (getEmerald(itemstack)) {
+                        itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
+                    }
                 }
             }
         }

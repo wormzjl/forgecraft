@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.items;
 
-import com.mojang.realmsclient.gui.ChatFormatting;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,7 +15,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.forgecraft.init.ModItems;
 
 import javax.annotation.Nullable;

@@ -12,13 +12,20 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
-import nmd.primal.forgecraft.items.parts.BronzeToolPart;
+import nmd.primal.forgecraft.items.parts.SimpleToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.tools.*;
+import nmd.primal.forgecraft.items.tools.CustomAxe;
+import nmd.primal.forgecraft.items.tools.CustomHoe;
+import nmd.primal.forgecraft.items.tools.CustomPickaxe;
+import nmd.primal.forgecraft.items.tools.CustomShovel;
 import nmd.primal.forgecraft.items.tools.bronze.BronzeAxe;
 import nmd.primal.forgecraft.items.tools.bronze.BronzeHoe;
 import nmd.primal.forgecraft.items.tools.bronze.BronzePickaxe;
 import nmd.primal.forgecraft.items.tools.bronze.BronzeShovel;
+import nmd.primal.forgecraft.items.tools.copper.CopperAxe;
+import nmd.primal.forgecraft.items.tools.copper.CopperHoe;
+import nmd.primal.forgecraft.items.tools.copper.CopperPickaxe;
+import nmd.primal.forgecraft.items.tools.copper.CopperShovel;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
 import nmd.primal.forgecraft.items.weapons.Longbow;
@@ -129,6 +136,7 @@ public class ModItems {
     public static Item steelslayer;
     public static Item wootzslayer;
 
+    public static Item brokencoppertool;
     public static Item brokenbronzetool;
     public static Item brokenwroughtirontool;
     public static Item brokencleanirontool;
@@ -171,21 +179,21 @@ public class ModItems {
          TOOL PARTS
          **********/
         if(ModConfig.Features.ENABLE_COPPER_TOOLS){
-            copperpickaxehead;
-            copperaxehead;
-            coppershovelhead;
-            copperhoehead;
+            copperpickaxehead = new SimpleToolPart("copperpickaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "pickaxe");
+            copperaxehead = new SimpleToolPart("copperaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "axe");
+            coppershovelhead= new SimpleToolPart("coppershovelhead", PrimalAPI.ToolMaterials.TOOL_COPPER, "shovel");
+            copperhoehead = new SimpleToolPart("copperhoehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "hoe");
 
-            copperpickaxe;
-            copperaxe;
-            coppershovel;
-            copperhoe;
+            copperpickaxe = new CopperPickaxe("copperpickaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+            copperaxe = new CopperAxe("copperaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool, 4, -2.6F);
+            coppershovel = new CopperShovel("coppershovel", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+            copperhoe = new CopperHoe("copperhoe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
         }
 
-        bronzepickaxehead = new BronzeToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
-        bronzeaxehead = new BronzeToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
-        bronzeshovelhead = new BronzeToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
-        bronzehoehead = new BronzeToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "hoe");
+        bronzepickaxehead = new SimpleToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
+        bronzeaxehead = new SimpleToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
+        bronzeshovelhead = new SimpleToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
+        bronzehoehead = new SimpleToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "hoe");
 
         pickaxehead = new ToolPart("ironpickaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "pickaxe");
         ironaxehead = new ToolPart("ironaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "axe");
@@ -276,6 +284,7 @@ public class ModItems {
         //forgingmanual = new ItemForgingManual();
         //test = new ItemTest("ironsword");
 
+        brokencoppertool = new BaseItem("brokencoppertool");
         brokenbronzetool = new BaseItem("brokenbronzetool");
         brokenwroughtirontool = new BaseItem("brokenwroughtirontool");
         brokencleanirontool = new BaseItem("brokencleanirontool");
@@ -316,6 +325,18 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
+        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
+            ForgeRegistries.ITEMS.register(copperpickaxehead);
+            ForgeRegistries.ITEMS.register(copperaxehead);
+            ForgeRegistries.ITEMS.register(coppershovelhead);
+            ForgeRegistries.ITEMS.register(copperhoehead);
+
+            ForgeRegistries.ITEMS.register(copperpickaxe);
+            ForgeRegistries.ITEMS.register(copperaxe);
+            ForgeRegistries.ITEMS.register(coppershovel);
+            ForgeRegistries.ITEMS.register(copperhoe);
+        }
+
         ForgeRegistries.ITEMS.register(bronzepickaxehead);
         ForgeRegistries.ITEMS.register(bronzeaxehead);
         ForgeRegistries.ITEMS.register(bronzeshovelhead);
@@ -437,6 +458,19 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
+
+        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
+            registerRender(copperpickaxehead);
+            registerRender(copperaxehead);
+            registerRender(coppershovelhead);
+            registerRender(copperhoehead);
+
+            registerRender(copperpickaxe);
+            registerRender(copperaxe);
+            registerRender(coppershovel);
+            registerRender(copperhoe);
+        }
+
         registerRender(bronzepickaxehead);
         registerRender(bronzeaxehead);
         registerRender(bronzeshovelhead);

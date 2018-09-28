@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items.tools.bronze;
+package nmd.primal.forgecraft.items.tools.copper;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,11 +13,11 @@ import nmd.primal.forgecraft.util.ToolNBT;
 /**
  * Created by mminaie on 3/14/17.
  */
-public class BronzePickaxe extends AbstractPickaxe implements ToolNBT {
+public class CopperPickaxe extends AbstractPickaxe implements ToolNBT {
 
     private Item drop;
 
-    public BronzePickaxe(String name, ToolMaterial material, Item damageDrop) {
+    public CopperPickaxe(String name, ToolMaterial material, Item damageDrop) {
         super(name, material, damageDrop);
     }
 
@@ -27,17 +27,9 @@ public class BronzePickaxe extends AbstractPickaxe implements ToolNBT {
     {
         if(!player.world.isRemote){
             World world = player.getEntityWorld();
-            //System.out.println(world.getBlockState(pos).getBlock());
-            if(itemstack.getItem() instanceof BronzePickaxe){
-                if( getEmerald(itemstack)){
+            if(ModConfig.Features.ENABLE_COPPER_EMERALD) {
+                if (getEmerald(itemstack)) {
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);
-                }
-                /*if( getDiamondLevel(itemstack) > 0 ){
-                    //itemstack.addEnchantment(Enchantment.getEnchantmentByID(34), getDiamondLevel(itemstack));
-                    itemstack.getItem().setHarvestLevel("pickaxe", 3);
-                }*/
-                if ( getLapisLevel(itemstack) > 0) {
-                    itemstack.addEnchantment(Enchantment.getEnchantmentByID(35), ModConfig.Features.BRONZE_LAPIS_MULTIPLIER);
                 }
             }
         }

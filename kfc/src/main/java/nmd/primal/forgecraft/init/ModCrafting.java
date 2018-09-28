@@ -30,7 +30,6 @@ public class ModCrafting{
 
         NBTTagCompound newTag = new NBTTagCompound();
 
-
         NBTTagCompound setHot = new NBTTagCompound();
         setHot.setBoolean("hot",  true);
 
@@ -174,15 +173,16 @@ public class ModCrafting{
 
 
         for(ItemStack temp : toolArray) {
-            NBTTagCompound tags = new NBTTagCompound();
-            temp.getTagCompound().setTag("tags", tags);
+            NBTTagCompound tags = temp.getTagCompound();
+            tags.setTag("tags", tags);
 
-            temp.getSubCompound("tags").setBoolean("hot", false);
-            temp.getSubCompound("tags").setBoolean("emerald", false);
-            temp.getSubCompound("tags").setInteger("diamond", 0);
-            temp.getSubCompound("tags").setInteger("redstone", 0);
-            temp.getSubCompound("tags").setInteger("lapis", 0);
-            temp.getSubCompound("tags").setInteger("modifiers", 0);
+            tags.getCompoundTag("tags").setBoolean("hot", false);
+            tags.getCompoundTag("tags").setBoolean("emerald", false);
+            tags.getCompoundTag("tags").setInteger("diamond", 0);
+            tags.getCompoundTag("tags").setInteger("redstone", 0);
+            tags.getCompoundTag("tags").setInteger("lapis", 0);
+            tags.getCompoundTag("tags").setInteger("modifiers", 0);
+            temp.setTagCompound(tags);
         }
 
         bronzepickaxehead = toolArray[0];
@@ -393,20 +393,6 @@ public class ModCrafting{
                 800,
                 600);
 
-
-        /*CrucibleCrafting.addRecipe(
-                new OreIngredient("oreBronze"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                defaultBronze,
-                1100,
-                800,
-                600);
-                */
-
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
                 Ingredient.EMPTY,
@@ -419,10 +405,6 @@ public class ModCrafting{
                 800,
                 600);
 
-        //NBTTagCompound tag = new NBTTagCompound();
-        //tag.setString("upgrades", "redstone");
-        //ItemStack redBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        //redBronze.setTagCompound(tag.copy());
         ItemStack redBronze = defaultBronze.copy();
         redBronze.getTagCompound().setString("upgrades", "redstone");
         CrucibleCrafting.addRecipe(
@@ -469,7 +451,7 @@ public class ModCrafting{
         lapisBronze.getTagCompound().setString("upgrades", "lapis");
         CrucibleCrafting.addRecipe(
                 new OreIngredient("ingotBronze"),
-                new OreIngredient("dustLapis"),
+                new OreIngredient("gemLapis"),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,

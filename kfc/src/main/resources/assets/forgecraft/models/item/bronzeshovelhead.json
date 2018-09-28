@@ -7,10 +7,10 @@
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_1"},
-    {"predicate": {"type": 0.2},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_2"},
-    {"predicate": {"type": 0.3},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_3"},
-    {"predicate": {"type": 0.4},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_4"}
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_4"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_3"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_2"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/shovelhead/bronze/bronzeshovelhead_1"}
 
   ]
 }

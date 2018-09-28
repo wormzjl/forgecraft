@@ -31,7 +31,7 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.SlottedTongs;
-import nmd.primal.forgecraft.items.parts.BronzeToolPart;
+import nmd.primal.forgecraft.items.parts.SimpleToolPart;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 import nmd.primal.forgecraft.util.ToolNBT;
@@ -64,11 +64,14 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                 doInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
             }
             if(pItem.getItem().equals(ModItems.slottedtongs)){
+
                 IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
-                ItemStack slotStack = inventory.getStackInSlot(0).copy();
+                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
+                ItemStack tongsStack = inventory.getStackInSlot(0).copy();
+
                 SlottedTongs tongs = (SlottedTongs) pItem.getItem();
-                if(slotStack.getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
-                    ItemStack tongsStack = slotStack.copy();
+                if(tongsStack.getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
+
                     NBTTagCompound tag = tongsStack.getTagCompound().copy();
 
                     if(tag != null){
@@ -86,7 +89,8 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                 CastingCrafting casting = CastingCrafting.getRecipe(tongsStack, tempArray);
                                 if(casting != null){
                                     NBTTagCompound tagOutput = casting.getOutput().getTagCompound();
-                                    //System.out.println(tagOutput);
+                                    NBTTagCompound crucibleOutput = crucibleRecipe.getDropsCooked().getTagCompound();
+
                                     if(tagOutput != null) {
                                         ItemStack dropStack = casting.getOutput();
                                         dropStack.setTagCompound(new NBTTagCompound());
@@ -94,45 +98,38 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
 
                                         dropStack.getTagCompound().setTag("tags", tags);
                                         setHot(dropStack, false);
-                                        if (tagOutput.getString("upgrades") == "emerald") {
+                                        if (crucibleOutput.getString("upgrades") == "emerald") {
                                             setEmerald(dropStack, true);
+                                            setModifiers(dropStack, 1);
                                         } else {
                                             setEmerald(dropStack, false);
                                         }
-                                        if (tagOutput.getString("upgrades") == "diamond") {
+                                        if (crucibleOutput.getString("upgrades") == "diamond") {
                                             setDiamondLevel(dropStack, 1);
+                                            setModifiers(dropStack, 1);
                                         } else {
                                             setDiamondLevel(dropStack, 0);
                                         }
-                                        if (tagOutput.getString("upgrades") == "redstone") {
+                                        if (crucibleOutput.getString("upgrades") == "redstone") {
                                             setRedstoneLevel(dropStack, 1);
+                                            setModifiers(dropStack, 1);
                                         } else {
                                             setRedstoneLevel(dropStack, 0);
                                         }
-                                        if (tagOutput.getString("upgrades") == "lapis") {
+                                        if (crucibleOutput.getString("upgrades") == "lapis") {
                                             setLapisLevel(dropStack, 1);
+                                            setModifiers(dropStack, 1);
                                         } else {
                                             setLapisLevel(dropStack, 0);
                                         }
-                                        setModifiers(dropStack, 1);
+
                                         CommonUtils.spawnItemEntityFromWorld(world, pos, dropStack);
                                         tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
                                         tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
                                         ItemStackHelper.saveAllItems(tag.getCompoundTag("BlockEntityTag"), ingListEmpty);
                                         inventory.getStackInSlot(0).setTagCompound(tag);
+                                        itemstackItem.markDirty(pItem);
                                         return true;
-                                    }
-                                    if(tagOutput == null){
-                                        System.out.println("Tag is null");
-                                        if( !(casting.getOutput().getItem() instanceof BronzeToolPart) ){
-                                            ItemStack dropStack = casting.getOutput();
-                                            CommonUtils.spawnItemEntityFromWorld(world, pos, dropStack);
-                                            tag.getCompoundTag("BlockEntityTag").setBoolean("status", false);
-                                            tag.getCompoundTag("BlockEntityTag").setInteger("hot", 0);
-                                            ItemStackHelper.saveAllItems(tag.getCompoundTag("BlockEntityTag"), ingListEmpty);
-                                            inventory.getStackInSlot(0).setTagCompound(tag);
-                                            return true;
-                                        }
                                     }
                                 }
                             }

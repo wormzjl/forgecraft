@@ -7,10 +7,11 @@
   },
   "overrides": [
     {"predicate": {"type": 0.0},"model": "forgecraft:item/hoe/bronze/bronzehoe_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/hoe/bronze/bronzehoe_1"},
-    {"predicate": {"type": 0.2},"model": "forgecraft:item/hoe/bronze/bronzehoe_2"},
-    {"predicate": {"type": 0.3},"model": "forgecraft:item/hoe/bronze/bronzehoe_3"},
-    {"predicate": {"type": 0.4},"model": "forgecraft:item/hoe/bronze/bronzehoe_4"}
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/hoe/bronze/bronzehoe_4"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/hoe/bronze/bronzehoe_3"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/hoe/bronze/bronzehoe_2"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/hoe/bronze/bronzehoe_1"}
+
 
   ]
 }

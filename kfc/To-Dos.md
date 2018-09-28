@@ -11,15 +11,15 @@
 - [x] Anvil cool down items
 - [x] Longbow Fire Speed
 - [x] More Crafting for buckets
+- [x] Config Usage
+- [x] Copper Tools
+- [x] Config for lowering fortune multiplier
 
-- [ ] Config Usage
-- [ ] Copper Tools
 - [ ] Copper Tool Casting
 - [ ] Copper Tool Assets
-
+- [ ] Emerald and redstone asset
+- [ ] Diamond + Redstone no texture
 - [ ] Craft Tweaker Support
-
-- [ ] Config for lowering fortune multiplier
 - [ ] Hardened Leather Helmet Inventory Model
 
 ## Feature Musket
@@ -36,7 +36,7 @@
 ## Backlog
 - [ ] Bloomery Print out
 - [ ] Random Floats for hot texture
-- [ ] Diamond + Redstone no texture
+
 - [ ] Mass Ore Production
 - [ ] Silver/Lead Production
 - [ ] Sparks to forging
