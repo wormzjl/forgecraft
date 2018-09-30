@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:item/axe",
+  "textures": {
+    "particle": "forgecraft:items/wootz/0.0001",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/wootz/0.0001"
+  }
+}

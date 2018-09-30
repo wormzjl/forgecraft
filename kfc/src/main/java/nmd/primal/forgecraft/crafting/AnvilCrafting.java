@@ -31,7 +31,6 @@ public class AnvilCrafting {
         this.input = input;
         this.output = output;
         this.upgradeType = upgrade;
-
     }
 
     // ***************************************************************************** //

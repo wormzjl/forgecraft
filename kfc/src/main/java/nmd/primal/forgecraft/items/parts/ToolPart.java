@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -13,10 +14,14 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.ColorHandlerEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.ToolMaterialMap;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -54,9 +59,6 @@ public class ToolPart extends Item implements ToolNBT{
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 if (item.hasTagCompound()) {
                     Float returnFloat = 0.0F;
-                    if(getHot(item)){
-                        returnFloat = returnFloat + 1.0F;
-                    }
                     if(getEmerald(item)){
                         returnFloat += 0.1F;
                     }
@@ -69,12 +71,19 @@ public class ToolPart extends Item implements ToolNBT{
                     if(getLapisLevel(item)>0){
                         returnFloat += (0.0001F * getLapisLevel(item));
                     }
+                    if(getHot(item)){
+                        returnFloat = 1.0F;
+                    }
                     return returnFloat;
                 }
                 return 0.0F;
             }
         });
+
+
+
     }
+
 
     public static boolean isHidden()
     {
@@ -86,9 +95,7 @@ public class ToolPart extends Item implements ToolNBT{
     }
     public ToolMaterial getMaterial() {return toolMaterial;}
 
-    @Override
-    public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
-
+    public void createDefaultNBT(ItemStack item){
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
             NBTTagCompound tags = new NBTTagCompound();
@@ -102,25 +109,19 @@ public class ToolPart extends Item implements ToolNBT{
             setLapisLevel(item, 0);
             setModifiers(item, 0);
         }
+    }
+
+    @Override
+    public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
+
+        createDefaultNBT(item);
 
     }
 
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         //System.out.println(item.getTagCompound());
-        if (!item.hasTagCompound()) {
-            item.setTagCompound(new NBTTagCompound());
-            NBTTagCompound tags = new NBTTagCompound();
-
-            item.getTagCompound().setTag("tags", tags);
-
-            setHot(item, false);
-            setEmerald(item, false);
-            setDiamondLevel(item, 0);
-            setRedstoneLevel(item, 0);
-            setLapisLevel(item, 0);
-            setModifiers(item, 0);
-        }
+        createDefaultNBT(item);
         if (item.hasTagCompound()) {
             if (item.getSubCompound("tags").getBoolean("hot")) {
                 player.setFire(1);
@@ -172,8 +173,8 @@ public class ToolPart extends Item implements ToolNBT{
     {
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades");
-            if  (getEmerald(item) == true) {
+            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get( this.getMaterial()) - getModifiers(item)));
+            if  (getEmerald(item)) {
                 tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
             if (getDiamondLevel(item) > 0) {

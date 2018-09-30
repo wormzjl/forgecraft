@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:item/pickaxe",
+  "textures": {
+    "particle": "forgecraft:items/clean_iron/0.102",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/clean_iron/0.102"
+  }
+}

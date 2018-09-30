@@ -7,10 +7,12 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.IItemPropertyGetter;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -36,6 +38,39 @@ public abstract class AbstractHoe extends ItemHoe implements ToolNBT {
         this.setMaxStackSize(1);
         this.setNoRepair();
         this.drop = damageDrop;
+        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
+
+            /***
+
+             hot | emerald | diamond | redstone | lapis
+             X.0 |   0.X   |   0.0X  |   0.00X  |  0.000X
+
+             ***/
+
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
+                if (item.hasTagCompound()) {
+                    Float returnFloat = 0.0F;
+                    if(getEmerald(item)){
+                        returnFloat += 0.1F;
+                    }
+                    if(getDiamondLevel(item)>0){
+                        returnFloat += (0.01F * getDiamondLevel(item));
+                    }
+                    if(getRedstoneLevel(item)>0){
+                        returnFloat += (0.001F * getRedstoneLevel(item));
+                    }
+                    if(getLapisLevel(item)>0){
+                        returnFloat += (0.0001F * getLapisLevel(item));
+                    }
+                    if(getHot(item)){
+                        returnFloat = 1.0F;
+                    }
+                    return returnFloat;
+                }
+                return 0.0F;
+            }
+        });
     }
 
     public static boolean isHidden()
@@ -91,32 +126,31 @@ public abstract class AbstractHoe extends ItemHoe implements ToolNBT {
         }
     }
 
-    //public void onItemTooltip(ItemTooltipEvent event){
-
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(item.hasTagCompound())
+        if(!item.isEmpty())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades: " + (getModifiers(item)) );
-            if (getEmerald(item) == true) {
-                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+            if (item.hasTagCompound())
+            {
+                tooltip.add(ChatFormatting.GRAY + "Upgrades added: " + (getModifiers(item)) );
+                if (getEmerald(item) == true) {
+                    tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+                }
+                if (getDiamondLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+                }
+                if (getRedstoneLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
+                }
+                if (getLapisLevel(item) > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
+                }
+                tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
             }
-            if (getDiamondLevel(item) > 0) {
-                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
-            }
-            if (getRedstoneLevel(item) > 0) {
-                tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item) );
-            }
-            if (getLapisLevel(item) > 0) {
-                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item) );
-            }
-            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
         }
-
     }
-
 
     @Override
     protected void setBlock(ItemStack stack, EntityPlayer player, World worldIn, BlockPos pos, IBlockState state)
@@ -204,6 +238,7 @@ public abstract class AbstractHoe extends ItemHoe implements ToolNBT {
         return false;
     }
 
+    @Override
     public int getItemEnchantability(ItemStack stack)
     {
         return 0;

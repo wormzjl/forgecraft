@@ -1,0 +1,19 @@
+{
+  "parent": "forgecraft:item/axe",
+  "textures": {
+    "particle": "forgecraft:items/finished_copper",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/finished_copper"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/axe/copper/copperaxe_0"},
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/axe/copper/copperaxe_0.0001"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/axe/copper/copperaxe_0.001"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/axe/copper/copperaxe_0.01"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/axe/copper/copperaxe_0.1"}
+  ]
+}
+
+
+
+

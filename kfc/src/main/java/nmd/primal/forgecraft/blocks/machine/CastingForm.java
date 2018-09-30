@@ -31,7 +31,6 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.SlottedTongs;
-import nmd.primal.forgecraft.items.parts.SimpleToolPart;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 import nmd.primal.forgecraft.util.ToolNBT;
@@ -69,7 +68,7 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                 SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
                 ItemStack tongsStack = inventory.getStackInSlot(0).copy();
 
-                SlottedTongs tongs = (SlottedTongs) pItem.getItem();
+                //SlottedTongs tongs = (SlottedTongs) pItem.getItem();
                 if(tongsStack.getItem().equals(Item.getItemFromBlock(ModBlocks.nbtCrucible))) {
 
                     NBTTagCompound tag = tongsStack.getTagCompound().copy();
@@ -78,21 +77,28 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                         NonNullList<ItemStack> ingList = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
                         NonNullList<ItemStack> ingListEmpty = NonNullList.<ItemStack>withSize(5, ItemStack.EMPTY);
                         ItemStackHelper.loadAllItems(tag.getCompoundTag("BlockEntityTag"), ingList);
+
                         CrucibleCrafting crucibleRecipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+
                         if(crucibleRecipe != null){
                             if(tag.getCompoundTag("BlockEntityTag").getBoolean("status") && tag.getCompoundTag("BlockEntityTag").getInteger("hot") == 15){
                                 Item[] tempArray = new Item[25];
                                 for(int i=0; i<25; i++){
                                     tempArray[i] = tile.getSlotStack(i).getItem();
                                 }
+                                System.out.println(crucibleRecipe.getDropsCooked());
 
-                                CastingCrafting casting = CastingCrafting.getRecipe(tongsStack, tempArray);
+                                CastingCrafting casting = CastingCrafting.getRecipe(crucibleRecipe.getDropsCooked(), tempArray);
                                 if(casting != null){
                                     NBTTagCompound tagOutput = casting.getOutput().getTagCompound();
                                     NBTTagCompound crucibleOutput = crucibleRecipe.getDropsCooked().getTagCompound();
 
                                     if(tagOutput != null) {
                                         ItemStack dropStack = casting.getOutput();
+
+                                        System.out.println(dropStack);
+                                        System.out.println(crucibleOutput);
+
                                         dropStack.setTagCompound(new NBTTagCompound());
                                         NBTTagCompound tags = new NBTTagCompound();
 

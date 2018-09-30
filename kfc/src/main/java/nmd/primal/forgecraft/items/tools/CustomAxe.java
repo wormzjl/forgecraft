@@ -5,7 +5,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 /**
@@ -23,7 +22,6 @@ public class CustomAxe extends AbstractAxe implements ToolNBT {
     public boolean onBlockStartBreak(ItemStack itemstack, BlockPos pos, EntityPlayer player)
     {
         if(!player.world.isRemote){
-            World world = player.getEntityWorld();
             if(itemstack.getItem() instanceof CustomAxe){
                 if( getEmerald(itemstack)){
                     itemstack.addEnchantment(Enchantment.getEnchantmentByID(33), 1);

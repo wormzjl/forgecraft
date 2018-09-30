@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:item/hoe",
+  "textures": {
+    "particle": "forgecraft:items/wootz/0.113",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/wootz/0.113"
+  }
+}

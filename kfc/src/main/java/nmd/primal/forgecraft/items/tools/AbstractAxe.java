@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.ToolMaterialMap;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -51,9 +52,6 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 if (item.hasTagCompound()) {
                     Float returnFloat = 0.0F;
-                    if(getHot(item)){
-                        returnFloat = returnFloat + 1.0F;
-                    }
                     if(getEmerald(item)){
                         returnFloat += 0.1F;
                     }
@@ -65,6 +63,9 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
                     }
                     if(getLapisLevel(item)>0){
                         returnFloat += (0.0001F * getLapisLevel(item));
+                    }
+                    if(getHot(item)){
+                        returnFloat = 1.0F;
                     }
                     return returnFloat;
                 }
@@ -137,8 +138,8 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
         {
             if (item.hasTagCompound())
             {
-                tooltip.add(ChatFormatting.GRAY + "Upgrades added: " + (getModifiers(item)) );
-                if (getEmerald(item) == true) {
+                tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
+                if (getEmerald(item)) {
                     tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
                 }
                 if (getDiamondLevel(item) > 0) {
@@ -239,7 +240,7 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
         if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
             return  super.getDestroySpeed(stack, state);
         } else {
-            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ));
+            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
         }
 
     }
@@ -257,6 +258,7 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
         return false;
     }
 
+    @Override
     public int getItemEnchantability(ItemStack stack)
     {
         return 0;

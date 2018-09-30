@@ -6,29 +6,20 @@
     "texture1": "forgecraft:items/iron_ingot"
   },
   "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/axehead/iron/ironaxehead_0"},
-    {"predicate": {"type": 0.0001},"model": "forgecraft:item/axehead/iron/ironaxehead_13"},
-    {"predicate": {"type": 0.0002},"model": "forgecraft:item/axehead/iron/ironaxehead_14"},
-    {"predicate": {"type": 0.0003},"model": "forgecraft:item/axehead/iron/ironaxehead_15"},
-    {"predicate": {"type": 0.001},"model": "forgecraft:item/axehead/iron/ironaxehead_10"},
-    {"predicate": {"type": 0.0012},"model": "forgecraft:item/axehead/iron/ironaxehead_19"},
-    {"predicate": {"type": 0.002},"model": "forgecraft:item/axehead/iron/ironaxehead_11"},
-    {"predicate": {"type": 0.0021},"model": "forgecraft:item/axehead/iron/ironaxehead_20"},
-    {"predicate": {"type": 0.003},"model": "forgecraft:item/axehead/iron/ironaxehead_12"},
-    {"predicate": {"type": 0.01},"model": "forgecraft:item/axehead/iron/ironaxehead_7"},
-    {"predicate": {"type": 0.0102},"model": "forgecraft:item/axehead/iron/ironaxehead_21"},
-    {"predicate": {"type": 0.0111},"model": "forgecraft:item/axehead/iron/ironaxehead_16"},
-    {"predicate": {"type": 0.012},"model": "forgecraft:item/axehead/iron/ironaxehead_18"},
-    {"predicate": {"type": 0.02},"model": "forgecraft:item/axehead/iron/ironaxehead_8"},
-    {"predicate": {"type": 0.021},"model": "forgecraft:item/axehead/iron/ironaxehead_17"},
-    {"predicate": {"type": 0.03},"model": "forgecraft:item/axehead/iron/ironaxehead_9"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/axehead/iron/ironaxehead_2"},
-    {"predicate": {"type": 0.102},"model": "forgecraft:item/axehead/iron/ironaxehead_6"},
-    {"predicate": {"type": 0.11},"model": "forgecraft:item/axehead/iron/ironaxehead_3"},
-    {"predicate": {"type": 0.111},"model": "forgecraft:item/axehead/iron/ironaxehead_5"},
-    {"predicate": {"type": 0.12},"model": "forgecraft:item/axehead/iron/ironaxehead_4"},
-    {"predicate": {"type": 1.0},"model": "forgecraft:item/axehead/iron/ironaxehead_1"}
-
+    {"predicate": {"type": 0},"model": "forgecraft:item/axehead/iron/ironaxehead_0"},
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/axehead/iron/ironaxehead_0.0001"},
+    {"predicate": {"type": 0.0002},"model": "forgecraft:item/axehead/iron/ironaxehead_0.0002"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/axehead/iron/ironaxehead_0.001"},
+    {"predicate": {"type": 0.0011},"model": "forgecraft:item/axehead/iron/ironaxehead_0.0011"},
+    {"predicate": {"type": 0.002},"model": "forgecraft:item/axehead/iron/ironaxehead_0.002"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/axehead/iron/ironaxehead_0.01"},
+    {"predicate": {"type": 0.0101},"model": "forgecraft:item/axehead/iron/ironaxehead_0.0101"},
+    {"predicate": {"type": 0.011},"model": "forgecraft:item/axehead/iron/ironaxehead_0.011"},
+    {"predicate": {"type": 0.02},"model": "forgecraft:item/axehead/iron/ironaxehead_0.02"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/axehead/iron/ironaxehead_0.1"},
+    {"predicate": {"type": 0.101},"model": "forgecraft:item/axehead/iron/ironaxehead_0.101"},
+    {"predicate": {"type": 0.11},"model": "forgecraft:item/axehead/iron/ironaxehead_0.11"},
+    {"predicate": {"type": 1},"model": "forgecraft:item/axehead/iron/ironaxehead_1"}
   ]
 }
 

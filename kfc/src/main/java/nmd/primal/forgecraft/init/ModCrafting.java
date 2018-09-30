@@ -9,6 +9,7 @@ import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
@@ -65,7 +66,7 @@ public class ModCrafting{
 
 
 
-        ItemStack[] toolArray = new ItemStack[20];
+        ItemStack[] toolArray = new ItemStack[24];
         ItemStack[] hotToolArray = new ItemStack[16];
 
         ItemStack bronzepickaxehead = new ItemStack(ModItems.bronzepickaxehead, 1);
@@ -133,6 +134,18 @@ public class ModCrafting{
         wootzhoehead.setTagCompound(newTag);
         toolArray[19] = wootzhoehead;
 
+        ItemStack copperpickaxehead = new ItemStack(ModItems.copperpickaxehead, 1);
+        copperpickaxehead.setTagCompound(newTag);
+        toolArray[20] = copperpickaxehead;
+        ItemStack copperaxehead = new ItemStack(ModItems.copperaxehead, 1);
+        copperaxehead.setTagCompound(newTag);
+        toolArray[21] = copperaxehead;
+        ItemStack coppershovelhead = new ItemStack(ModItems.coppershovelhead, 1);
+        coppershovelhead.setTagCompound(newTag);
+        toolArray[22] =coppershovelhead ;
+        ItemStack copperhoehead = new ItemStack(ModItems.copperhoehead, 1);
+        copperhoehead.setTagCompound(newTag);
+        toolArray[23] = copperhoehead;
 
         ItemStack hotpickaxehead = pickaxehead.copy();
         hotToolArray[0] =hotpickaxehead;
@@ -210,6 +223,11 @@ public class ModCrafting{
         wootzshovelhead = toolArray[18] ;
         wootzhoehead = toolArray[19];
 
+        copperpickaxehead = toolArray[20];
+        copperaxehead = toolArray[21];
+        coppershovelhead = toolArray[22];
+        copperhoehead = toolArray[23];
+
         for(ItemStack temp : hotToolArray) {
             //NBTTagCompound newTag = new NBTTagCompound();
             NBTTagCompound tags = new NBTTagCompound();
@@ -251,7 +269,6 @@ public class ModCrafting{
         /***********************/
         /***CRUCIBLE CRAFTING***/
         /***********************/
-
 
         CrucibleCrafting.addRecipe(
                 new OreIngredient("oreIron"),
@@ -373,8 +390,7 @@ public class ModCrafting{
                 1800,
                 1500);
 
-//TODO change plate recipe
-
+        /***BRONZE***/
         NBTTagCompound tagBronzeDefault = new NBTTagCompound();
         tagBronzeDefault.setString("upgrades", "");
         tagBronzeDefault.setBoolean("hot", false);
@@ -502,12 +518,149 @@ public class ModCrafting{
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustTin"),
-                new OreIngredient("dustLapis"),
+                new OreIngredient("gemLapis"),
                 new ItemStack(PrimalAPI.Items.SLAG, 1),
                 lapisBronze,
                 1100,
                 800,
                 600);
+
+
+        /***COPPER***/
+        NBTTagCompound tagCopperDefault = new NBTTagCompound();
+        tagCopperDefault.setString("upgrades", "");
+        tagCopperDefault.setBoolean("hot", false);
+        ItemStack defaultCopper = new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1);
+        defaultCopper.setTagCompound(tagCopperDefault.copy());
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreCopper"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                defaultCopper,
+                900,
+                800,
+                600);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotCopper"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                defaultCopper,
+                900,
+                750,
+                550);
+
+        ItemStack redCopper = defaultCopper.copy();
+        redCopper.getTagCompound().setString("upgrades", "redstone");
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotCopper"),
+                new OreIngredient("dustRedstone"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                redCopper,
+                900,
+                750,
+                550);
+
+        ItemStack diamondCopper = defaultCopper.copy();
+        diamondCopper.getTagCompound().setString("upgrades", "diamond");
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotCopper"),
+                new OreIngredient("flakeDiamond"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                diamondCopper,
+                900,
+                750,
+                550);
+
+        ItemStack emeraldCopper = defaultCopper.copy();
+        emeraldCopper.getTagCompound().setString("upgrades", "emerald");
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotCopper"),
+                new OreIngredient("flakeEmerald"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                emeraldCopper,
+                900,
+                750,
+                550);
+
+        ItemStack lapisCopper = defaultCopper.copy();
+        lapisCopper.getTagCompound().setString("upgrades", "lapis");
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("ingotCopper"),
+                new OreIngredient("gemLapis"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                lapisCopper,
+                900,
+                750,
+                550);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreCopper"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("dustRedstone"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                redCopper,
+                900,
+                750,
+                550);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreCopper"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("flakeDiamond"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                diamondCopper,
+                900,
+                750,
+                550);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreCopper"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("flakeEmerald"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                emeraldCopper,
+                900,
+                750,
+                550);
+
+        CrucibleCrafting.addRecipe(
+                new OreIngredient("oreCopper"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("gemLapis"),
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                new ItemStack(PrimalAPI.Items.SLAG, 1),
+                lapisCopper,
+                900,
+                750,
+                550);
+
 
 
         /***CASTING FORM***/
@@ -595,27 +748,27 @@ public class ModCrafting{
          ***************************************************************/
 
         /***Pickaxe Crafting***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironpickaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.pickaxehead, 1, OreDictionary.WILDCARD_VALUE), //new ItemStack( 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironpickaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelpickaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzpickaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzpickaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.wootzpickaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
@@ -625,27 +778,27 @@ public class ModCrafting{
                 ('S'), Items.STICK);
 
         /***Axe Crafting***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironaxehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelaxehead,1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzaxe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzaxe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.wootzaxehead,1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
@@ -655,27 +808,27 @@ public class ModCrafting{
                 ('S'), Items.STICK);
 
         /***Shovel Crafting***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeshovel, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzeshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironshovel, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironshovel, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelshovel, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzshovel, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzshovel, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.wootzshovelhead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
@@ -685,27 +838,27 @@ public class ModCrafting{
                 ('S'), Items.STICK);
 
         /***Hoe Crafting***/
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzehoe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.bronzehoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironhoe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.ironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.cleanironhoe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.cleanironhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.steelhoe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.steelhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzhoe, 1, OreDictionary.WILDCARD_VALUE), "T", "C", "S",
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzhoe, 1), "T", "C", "S",
                 ('T'), new ItemStack(ModItems.wootzhoehead, 1, OreDictionary.WILDCARD_VALUE),
                 ('S'),  "stickTreatedWood",
                 ('C'), "cordageGeneral");
@@ -721,7 +874,7 @@ public class ModCrafting{
         //RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.ironaxehead, 1, OreDictionary.WILDCARD_VALUE),
         //        "   ", " X ", "   ", 'X', ModItems.ironaxe);
 
-        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxehead, 1, OreDictionary.WILDCARD_VALUE),
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzeaxehead, 1),
                 true, "X", ('X'), new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE));
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bronzepickaxehead, 1, OreDictionary.WILDCARD_VALUE),
@@ -786,241 +939,6 @@ public class ModCrafting{
                 true, "X", ('X'), new ItemStack(ModItems.wootzhoe, 1, OreDictionary.WILDCARD_VALUE));
 
 
-        /***************************************************************/
-
-        /***Bloomery Crafting***/
-/*
-//Makes the Empty Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModItems.softcrucible, 1),
-                new ItemStack(ModBlocks.emptycruciblehot, 1),
-                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
-                new ItemStack(ModBlocks.emptycrucible, 1),
-                2000,
-                1600,
-                600,
-                0.25f,
-                0.25f);
-
-//Makes the Cracked Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.emptycruciblehot, 1),
-                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
-                new ItemStack(ModBlocks.emptycruciblecrackedhot, 1),
-                new ItemStack(ModBlocks.emptycruciblecracked, 1),
-                2250,
-                9000,
-                600,
-                0.0f,
-                0.0f);
-
-        /*
-//Makes the Hot Iron Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawironcrucible, 1),
-                new ItemStack(ModBlocks.hotironcrucible, 1),
-                new ItemStack(ModBlocks.hotironcrucible, 1),
-                new ItemStack(ModBlocks.rawironcrucible, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-                );
-
-//Makes the Finished Hot Iron Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotironcrucible, 1),
-                new ItemStack(ModBlocks.hotcookedironcrucible, 1),
-                new ItemStack(ModBlocks.failedironcruciblehot, 1),
-                new ItemStack(ModBlocks.coolironcrucible, 1),
-                1400,
-                1200,
-                800,
-                0.33f,
-                0.5f
-        );
-
-//Makes the Hot Clean Iron Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawcleanironcrucible, 1),
-                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
-                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
-                new ItemStack(ModBlocks.rawcleanironcrucible, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Clean Iron Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotcleanironcrucible, 1),
-                new ItemStack(ModBlocks.hotcookedcleanironcrucible, 1),
-                new ItemStack(ModBlocks.failedcleanironcrucible, 1),
-                new ItemStack(ModBlocks.coolcleanironcrucible, 1),
-                1550,
-                1200,
-                800,
-                0.33f,
-                0.5f
-        );
-
-        //Makes the Hot Steel Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawsteelcrucible, 1),
-                new ItemStack(ModBlocks.hotsteelcrucible, 1),
-                new ItemStack(ModBlocks.hotsteelcrucible, 1),
-                new ItemStack(ModBlocks.rawsteelcrucible, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Steel Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotsteelcrucible, 1),
-                new ItemStack(ModBlocks.hotcookedsteelcrucible, 1),
-                new ItemStack(ModBlocks.failedsteelcrucible, 1),
-                new ItemStack(ModBlocks.coolsteelcrucible, 1),
-                2100,
-                1500,
-                1000,
-                0.2f,
-                0.25f
-        );
-        */
-        /*
-        //Makes the Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawbronzecrucible, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotbronzecrucible, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible, 1),
-                1100,
-                800,
-                600,
-                0.5f,
-                0.5f
-        );
-
-        //Makes the Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
-                800,
-                800,
-                500,
-                0.5f,
-                0.5f
-        );
-
-//Makes the Finished Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_diamond, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_diamond, 1),
-                1100,
-                1100,
-                600,
-                0.5f,
-                0.5f
-        );
-        //Makes the Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_redstone, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_redstone, 1),
-                1100,
-                1100,
-                600,
-                0.5f,
-                0.5f
-        );
-//Makes the Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_emerald, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_emerald, 1),
-                1100,
-                1100,
-                600,
-                0.5f,
-                0.5f
-        );
-        //Makes the Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
-                800,
-                20,
-                500,
-                0.5f,
-                0.0f
-        );
-
-//Makes the Finished Hot Bronze Crucible
-        BloomeryCrafting.addRecipe(
-                new ItemStack(ModBlocks.hotbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.hotcookedbronzecrucible_lapis, 1),
-                new ItemStack(ModBlocks.rawbronzecrucible_lapis, 1),
-                1100,
-                1100,
-                600,
-                0.5f,
-                0.5f
-        );
-        */
 
 
         /******************************************************************************
@@ -1101,6 +1019,80 @@ public class ModCrafting{
                         muddd,muddd,muddd,muddd,muddd },
                 new ItemStack(PrimalAPI.Items.BRONZE_PLATE, 1)
         );
+
+        //Casting Pickaxe
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        muddd, muddd, muddd, muddd, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        empty, muddd, muddd, muddd, empty,
+                        muddd, muddd, muddd, muddd, muddd,
+                        muddd, muddd, muddd, muddd, muddd},
+                copperpickaxehead
+        );
+
+        //Casting Shovel
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        muddd, muddd, muddd, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, muddd, empty, muddd},
+                coppershovelhead
+        );
+
+        //Casting Axe
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        muddd, empty, empty, muddd, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, muddd, muddd, muddd,
+                        muddd, muddd, muddd, muddd, muddd},
+                copperaxehead
+        );
+
+        //Casting Hoe
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        muddd, muddd, muddd, empty, empty,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, empty, muddd, muddd, muddd,
+                        empty, muddd, muddd, muddd, muddd,
+                        muddd, muddd, muddd, muddd, muddd},
+                copperhoehead
+        );
+/*
+        //Casting Gladius
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[] {
+                        muddd,muddd,muddd,muddd,muddd,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,muddd,empty,muddd,muddd,
+                        muddd,empty,empty,empty,muddd,
+                        muddd,muddd,empty,muddd,muddd },
+                new ItemStack(ModItems.coppergladius, 1)
+        );
+*/
+
+            //Casting Bronze Plate
+            CastingCrafting.addRecipe(
+                    new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                    new Item[]{
+                            muddd, muddd, muddd, muddd, muddd,
+                            muddd, empty, empty, empty, muddd,
+                            muddd, empty, empty, empty, muddd,
+                            muddd, empty, empty, empty, muddd,
+                            muddd, muddd, muddd, muddd, muddd},
+                    new ItemStack(PrimalAPI.Items.COPPER_PLATE, 1)
+            );
+
 
         /******************************************************************************
           FORGING

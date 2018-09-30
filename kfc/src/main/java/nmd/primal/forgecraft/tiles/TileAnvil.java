@@ -38,6 +38,7 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
         return reverseZ[z];
     }
 
+    private int iterate =0;
 
     public NonNullList<ItemStack> slotList = NonNullList.<ItemStack>withSize(100, ItemStack.EMPTY);
 
@@ -47,27 +48,31 @@ public class TileAnvil extends TileBaseSlot implements ITickable {
         if (!world.isRemote) {
             IBlockState state = world.getBlockState(this.pos);
 
-            if(PrimalAPI.randomCheck(1800)){
-                for(int i=0; i<this.getSlotListSize(); i++){
-                    ItemStack slotStack = this.getSlotStack(i).copy();
-                    if(!slotStack.isEmpty()){
-                        if(slotStack.getItem() instanceof ToolPart){
-                            if(slotStack.hasTagCompound()){
-                                if(slotStack.getSubCompound("tags").getBoolean("hot")){
-                                    this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", false);
+            if(iterate == 200) {
+                if (PrimalAPI.randomCheck(1800)) {
+                    for (int i = 0; i < this.getSlotListSize(); i++) {
+                        ItemStack slotStack = this.getSlotStack(i).copy();
+                        if (!slotStack.isEmpty()) {
+                            if (slotStack.getItem() instanceof ToolPart) {
+                                if (slotStack.hasTagCompound()) {
+                                    if (slotStack.getSubCompound("tags").getBoolean("hot")) {
+                                        this.getSlotStack(i).getSubCompound("tags").setBoolean("hot", false);
+                                    }
                                 }
                             }
-                        }
-                        if(slotStack.getItem() instanceof BaseMultiItem){
-                            if(slotStack.hasTagCompound()){
-                                if(slotStack.getTagCompound().getBoolean("hot")){
-                                    this.getSlotStack(i).getTagCompound().setBoolean("hot", false);
+                            if (slotStack.getItem() instanceof BaseMultiItem) {
+                                if (slotStack.hasTagCompound()) {
+                                    if (slotStack.getTagCompound().getBoolean("hot")) {
+                                        this.getSlotStack(i).getTagCompound().setBoolean("hot", false);
+                                    }
                                 }
                             }
                         }
                     }
+                    iterate =0;
                 }
             }
+            iterate ++;
         }
     }
 }

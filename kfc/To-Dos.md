@@ -11,16 +11,25 @@
 - [x] Anvil cool down items
 - [x] Longbow Fire Speed
 - [x] More Crafting for buckets
-- [x] Config Usage
 - [x] Copper Tools
-- [x] Config for lowering fortune multiplier
-
-- [ ] Copper Tool Casting
-- [ ] Copper Tool Assets
-- [ ] Emerald and redstone asset
-- [ ] Diamond + Redstone no texture
+- [x] Copper Tool Assets
+- [x] Copper Ingots
+- [x] Copper Tool Recipes
+- [x] Tool Class Refactor into 1 with value for modifiers
+- [x] Copper and Bronze have 1 upgrades
+- [x] Wrought has 2 upgrades
+- [x] Clean has 3 upgrades
+- [x] Steel has 4 upgrades
+- [x] Wootz has 5 upgrades
+- [x] NBTCrucible Molten Crucible moved
+- [x] Modifiers Print out for tool part
+- [x] Copper Tools and Parts need names
+- [x] When upgrading past max item dissapears
+- [x] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
+- [x] Tongs Rendering
+- [ ] Copper Gladius
 - [ ] Craft Tweaker Support
-- [ ] Hardened Leather Helmet Inventory Model
+
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -34,9 +43,10 @@
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Hardened Leather Helmet Inventory Model
+- [ ] Add Achievements
 - [ ] Bloomery Print out
 - [ ] Random Floats for hot texture
-
 - [ ] Mass Ore Production
 - [ ] Silver/Lead Production
 - [ ] Sparks to forging
@@ -44,7 +54,6 @@
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
 - [ ] Gold Smelting
-- [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 
 ### Tid-Bits

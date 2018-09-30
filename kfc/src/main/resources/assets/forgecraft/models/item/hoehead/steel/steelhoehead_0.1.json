@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:item/hoehead",
+  "textures": {
+    "particle": "forgecraft:items/steel/0.1",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/steel/0.1"
+  }
+}

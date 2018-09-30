@@ -55,9 +55,6 @@ public class AbstractShovel extends ItemSpade implements ToolNBT {
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 if (item.hasTagCompound()) {
                     Float returnFloat = 0.0F;
-                    if(getHot(item)){
-                        returnFloat = returnFloat + 1.0F;
-                    }
                     if(getEmerald(item)){
                         returnFloat += 0.1F;
                     }
@@ -69,6 +66,9 @@ public class AbstractShovel extends ItemSpade implements ToolNBT {
                     }
                     if(getLapisLevel(item)>0){
                         returnFloat += (0.0001F * getLapisLevel(item));
+                    }
+                    if(getHot(item)){
+                        returnFloat = 1.0F;
                     }
                     return returnFloat;
                 }
@@ -211,7 +211,7 @@ public class AbstractShovel extends ItemSpade implements ToolNBT {
         for (String type : getToolClasses(stack))
         {
             if (state.getBlock().isToolEffective(type, state))
-                return efficiency;
+                return (efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1));
         }
         return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1)) : 1.0F;
     }
@@ -229,6 +229,7 @@ public class AbstractShovel extends ItemSpade implements ToolNBT {
         return false;
     }
 
+    @Override
     public int getItemEnchantability(ItemStack stack)
     {
         return 0;

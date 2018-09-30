@@ -1,0 +1,8 @@
+{
+  "parent": "forgecraft:item/shovelhead",
+  "textures": {
+    "particle": "forgecraft:items/wootz/0.0101",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/wootz/0.0101"
+  }
+}

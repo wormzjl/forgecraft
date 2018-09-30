@@ -12,20 +12,11 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
-import nmd.primal.forgecraft.items.parts.SimpleToolPart;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 import nmd.primal.forgecraft.items.tools.CustomShovel;
-import nmd.primal.forgecraft.items.tools.bronze.BronzeAxe;
-import nmd.primal.forgecraft.items.tools.bronze.BronzeHoe;
-import nmd.primal.forgecraft.items.tools.bronze.BronzePickaxe;
-import nmd.primal.forgecraft.items.tools.bronze.BronzeShovel;
-import nmd.primal.forgecraft.items.tools.copper.CopperAxe;
-import nmd.primal.forgecraft.items.tools.copper.CopperHoe;
-import nmd.primal.forgecraft.items.tools.copper.CopperPickaxe;
-import nmd.primal.forgecraft.items.tools.copper.CopperShovel;
 import nmd.primal.forgecraft.items.weapons.CustomShield;
 import nmd.primal.forgecraft.items.weapons.CustomSword;
 import nmd.primal.forgecraft.items.weapons.Longbow;
@@ -159,6 +150,7 @@ public class ModItems {
     //public static Item forgingmanual;
 
     public static void init() {
+
         //OBJLoader.INSTANCE.addDomain(ModInfo.MOD_ID);
         //pistonbellows = new ItemBellowsHandle("pistonbellows");
         itemnbtcrucible = new ItemNBTCrucible("itemnbtcrucible", ModBlocks.nbtCrucible);
@@ -178,22 +170,21 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
-            copperpickaxehead = new SimpleToolPart("copperpickaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "pickaxe");
-            copperaxehead = new SimpleToolPart("copperaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "axe");
-            coppershovelhead= new SimpleToolPart("coppershovelhead", PrimalAPI.ToolMaterials.TOOL_COPPER, "shovel");
-            copperhoehead = new SimpleToolPart("copperhoehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "hoe");
+        copperpickaxehead = new ToolPart("copperpickaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "pickaxe");
+        copperaxehead = new ToolPart("copperaxehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "axe");
+        coppershovelhead= new ToolPart("coppershovelhead", PrimalAPI.ToolMaterials.TOOL_COPPER, "shovel");
+        copperhoehead = new ToolPart("copperhoehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "hoe");
 
-            copperpickaxe = new CopperPickaxe("copperpickaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-            copperaxe = new CopperAxe("copperaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool, 4, -2.6F);
-            coppershovel = new CopperShovel("coppershovel", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-            copperhoe = new CopperHoe("copperhoe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-        }
+        copperpickaxe = new CustomPickaxe("copperpickaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+        copperaxe = new CustomAxe("copperaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool, 4, -2.6F);
+        coppershovel = new CustomShovel("coppershovel", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+        copperhoe = new CustomHoe("copperhoe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
 
-        bronzepickaxehead = new SimpleToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
-        bronzeaxehead = new SimpleToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
-        bronzeshovelhead = new SimpleToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
-        bronzehoehead = new SimpleToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "hoe");
+
+        bronzepickaxehead = new ToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
+        bronzeaxehead = new ToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
+        bronzeshovelhead = new ToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
+        bronzehoehead = new ToolPart("bronzehoehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "hoe");
 
         pickaxehead = new ToolPart("ironpickaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "pickaxe");
         ironaxehead = new ToolPart("ironaxehead", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, "axe");
@@ -218,10 +209,10 @@ public class ModItems {
         /**********
          TOOLS
          **********/
-        bronzepickaxe = new BronzePickaxe("bronzepickaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzepickaxehead);
-        bronzeaxe = new BronzeAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead, 5, -2.4f);
-        bronzeshovel = new BronzeShovel("bronzeshovel", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeshovelhead);
-        bronzehoe = new BronzeHoe("bronzehoe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzehoehead);
+        bronzepickaxe = new CustomPickaxe("bronzepickaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzepickaxehead);
+        bronzeaxe = new CustomAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead, 5, -2.4f);
+        bronzeshovel = new CustomShovel("bronzeshovel", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeshovelhead);
+        bronzehoe = new CustomHoe("bronzehoe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzehoehead);
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, pickaxehead);
         ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead, 5, -3.6f);
@@ -325,17 +316,17 @@ public class ModItems {
         /**********
          TOOL PARTS
          **********/
-        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
-            ForgeRegistries.ITEMS.register(copperpickaxehead);
-            ForgeRegistries.ITEMS.register(copperaxehead);
-            ForgeRegistries.ITEMS.register(coppershovelhead);
-            ForgeRegistries.ITEMS.register(copperhoehead);
 
-            ForgeRegistries.ITEMS.register(copperpickaxe);
-            ForgeRegistries.ITEMS.register(copperaxe);
-            ForgeRegistries.ITEMS.register(coppershovel);
-            ForgeRegistries.ITEMS.register(copperhoe);
-        }
+        ForgeRegistries.ITEMS.register(copperpickaxehead);
+        ForgeRegistries.ITEMS.register(copperaxehead);
+        ForgeRegistries.ITEMS.register(coppershovelhead);
+        ForgeRegistries.ITEMS.register(copperhoehead);
+
+        ForgeRegistries.ITEMS.register(copperpickaxe);
+        ForgeRegistries.ITEMS.register(copperaxe);
+        ForgeRegistries.ITEMS.register(coppershovel);
+        ForgeRegistries.ITEMS.register(copperhoe);
+
 
         ForgeRegistries.ITEMS.register(bronzepickaxehead);
         ForgeRegistries.ITEMS.register(bronzeaxehead);
@@ -459,17 +450,16 @@ public class ModItems {
          TOOL PARTS
          **********/
 
-        if(ModConfig.Features.ENABLE_COPPER_TOOLS){
-            registerRender(copperpickaxehead);
-            registerRender(copperaxehead);
-            registerRender(coppershovelhead);
-            registerRender(copperhoehead);
+        registerRender(copperpickaxehead);
+        registerRender(copperaxehead);
+        registerRender(coppershovelhead);
+        registerRender(copperhoehead);
 
-            registerRender(copperpickaxe);
-            registerRender(copperaxe);
-            registerRender(coppershovel);
-            registerRender(copperhoe);
-        }
+        registerRender(copperpickaxe);
+        registerRender(copperaxe);
+        registerRender(coppershovel);
+        registerRender(copperhoe);
+
 
         registerRender(bronzepickaxehead);
         registerRender(bronzeaxehead);
