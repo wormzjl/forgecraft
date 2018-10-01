@@ -3,33 +3,10 @@
 ## Bugs
 
 ## Current Feature
-- [x] Forge Light Level
-- [x] Check Forge Textures for lit
-- [x] Forge not cooling down
-- [x] Steel Chunk stop reading upgrades
-- [x] Casting Form broken
-- [x] Anvil cool down items
-- [x] Longbow Fire Speed
-- [x] More Crafting for buckets
-- [x] Copper Tools
-- [x] Copper Tool Assets
-- [x] Copper Ingots
-- [x] Copper Tool Recipes
-- [x] Tool Class Refactor into 1 with value for modifiers
-- [x] Copper and Bronze have 1 upgrades
-- [x] Wrought has 2 upgrades
-- [x] Clean has 3 upgrades
-- [x] Steel has 4 upgrades
-- [x] Wootz has 5 upgrades
-- [x] NBTCrucible Molten Crucible moved
-- [x] Modifiers Print out for tool part
-- [x] Copper Tools and Parts need names
-- [x] When upgrading past max item dissapears
-- [x] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
-- [x] Tongs Rendering
+- [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron
 - [ ] Copper Gladius
 - [ ] Craft Tweaker Support
-
+- [ ] oreDict support for Forge Recipes
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
