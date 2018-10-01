@@ -13,6 +13,7 @@ import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.compat.JEI.AbstractCategory;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 
 import javax.annotation.Nonnull;
 
@@ -98,7 +99,11 @@ public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
         //items.set(0, recipe.getIngredient(0));
 
         for(int i =0; i < 25; i++){
-            items.set(i, recipe.getIngredient(i));
+            if(recipe.getIngredient(i).getItem() instanceof ToolPart) {
+                items.set(i, new ItemStack(recipe.getIngredient(i).getItem(), 1));
+            } else {
+                items.set(i, recipe.getIngredient(i));
+            }
         }
 
         /***OUTPUTS***/

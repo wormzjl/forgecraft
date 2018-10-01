@@ -3,10 +3,11 @@
 ## Bugs
 
 ## Current Feature
+- [ ] Craft Tweaker Support
 - [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron
 - [ ] Copper Gladius
-- [ ] Craft Tweaker Support
 - [ ] oreDict support for Forge Recipes
+- [ ] drop a tool handle when crafting
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)

@@ -101,6 +101,11 @@ public interface AnvilHandler extends ToolMaterialMap {
 
                         if (recipe.getUpgrade() == "repair") {
                             CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                            for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                if (!tile.getSlotStack(i).isEmpty()) {
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                }
+                            }
                             return true;
                         }
 
