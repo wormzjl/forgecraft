@@ -2,22 +2,27 @@ package nmd.primal.forgecraft.crafting;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.core.common.recipes.AbstractRecipe;
+import nmd.primal.forgecraft.ModInfo;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by mminaie on 11/11/17.
  */
-public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
+public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //extends AbstractCrafting<CrucibleCrafting> {
 
     // ***************************************************************************** //
     //  Recipe Handler CrucibleHandler
     // ***************************************************************************** //
 
-    //public static final String RECIPE_PREFIX = "crucible";
-    //public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTINGS;
-    //public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
+    public static final String RECIPE_PREFIX = "crucible";
+    public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTING;
+    public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
 
     public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
         return crucibleCrafting;
@@ -91,7 +96,7 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     public CrucibleCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
                             ItemStack outputRaw, ItemStack outputCooked,
                             Integer temp, Integer cookTime, Integer coolTime){
-        //super();
+        super();
         this.ing0 = i0;
         this.ing1 = i1;
         this.ing2 = i2;
@@ -168,18 +173,16 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     }
 
 
-/*
-    /// forge registries require a unique REGISTRY_NAME ///
+
+
     @Override
-    public String getRecipePrefix()
-    {
-        return RECIPE_PREFIX;
+    public Collection<CrucibleCrafting> getRecipes() {
+        return RECIPES;
     }
 
     @Override
-    public Collection<CrucibleCrafting> getRecipes()
-    {
-        return RECIPES;
+    public String getRecipePrefix() {
+        return RECIPE_PREFIX;
     }
 
     /**
@@ -187,11 +190,9 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
      * @param recipe_name basic recipe name, no prefix or mod id
      * @return Recipe object
      */
-/*
     @Nullable
     public static CrucibleCrafting getRecipe(String recipe_name)
     {
         return REGISTRY.getValue(getFullRecipeName(RECIPE_PREFIX, recipe_name));
     }
-*/
 }
