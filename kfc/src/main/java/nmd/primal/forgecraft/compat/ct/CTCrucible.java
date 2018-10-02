@@ -8,6 +8,7 @@ import crafttweaker.annotations.ZenRegister;
 import crafttweaker.api.item.IIngredient;
 import crafttweaker.api.item.IItemStack;
 import crafttweaker.api.item.IngredientStack;
+import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import crafttweaker.api.oredict.IngredientOreDict;
 import net.minecraft.item.ItemStack;
@@ -22,6 +23,7 @@ import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @ZenClass("mods.forgecraft.NBTCrucible")
 @ModOnly(ModInfo.MOD_ID)
@@ -48,7 +50,8 @@ public class CTCrucible {
                                  int coolTime,
                                  String recipe_name)
     {
-        CraftTweakerAPI.apply(new Add( ing0,
+        CraftTweakerAPI.apply(new Add(
+                ing0.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList()),
                 ing1,
                 ing2,
                 ing3,
@@ -81,92 +84,19 @@ public class CTCrucible {
         private final ItemStack dropsRaw;
         private boolean isDisabled, isHidden;
 
-        public Add(IIngredient I0, IIngredient I1, IIngredient I2, IIngredient I3, IIngredient I4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime, String recipe_name)
+        public Add(Ingredient I0, Ingredient I1, Ingredient I2, Ingredient I3, Ingredient I4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime, String recipe_name)
         {
-            Ingredient temp0 = null;
-            NonNullList<ItemStack> list0 = NonNullList.create();
-            Ingredient temp1 = null;
-            List<ItemStack> list1 = NonNullList.create();
-            Ingredient temp2 = null;
-            List<ItemStack> list2 = NonNullList.create();
-            Ingredient temp3 = null;
-            List<ItemStack> list3 = NonNullList.create();
-            Ingredient temp4 = null;
-            List<ItemStack> list4 = NonNullList.create();
-            List<IItemStack> zeroIList = I0.getItems();
-            List<IItemStack> oneIList = I1.getItems();
-            List<IItemStack> twoIList = I2.getItems();
-            List<IItemStack> threeIList = I3.getItems();
-            List<IItemStack> fourIList = I4.getItems();
-            System.out.println(I0.getItems());
-            if(I1.getInternal() == new OreIngredient("oreIron") ){
-                System.out.println("This is an IoreDictEntry");
-            }
-            if(I1.getInternal() instanceof IngredientOreDict){
-                System.out.println("This is an IngredientOreDict");
-            }
-            System.out.println(I1);
-            System.out.println(I1.getInternal());
 
-            System.out.println(I2.getItems());
-            System.out.println(I3.getItems());
-            System.out.println(I4.getItems());
-            System.out.println(zeroIList);
-            System.out.println(oneIList.size());
-            System.out.println(twoIList);
-            System.out.println(threeIList);
-            System.out.println(fourIList);
-
-            for (int i=0; i < zeroIList.size(); i++) {
-                list0.add(i, (ItemStack)zeroIList.get(i).getInternal());
-            }
-            for (int i=0; i < list0.size(); i++) {
-                temp0.fromStacks(list0.get(i));
-            }
-
-
-            //instanceof IOreDictEntry
-            if(I1 instanceof IOreDictEntry){
-                temp1 = new OreIngredient((String) I1.getInternal());
-            } else {
-                for (int i = 0; i < oneIList.size(); i++) {
-                    temp1.apply((ItemStack) zeroIList.get(i).getInternal());
-                }
-                for (int i = 0; i < list1.size(); i++) {
-                    temp1.fromStacks(list1.get(i));
-                }
-            }
-
-            for (int i=0; i < twoIList.size(); i++) {
-                list2.add(i, (ItemStack)twoIList.get(i).getInternal());
-            }
-            for (int i=0; i < list2.size(); i++) {
-                temp2.fromStacks(list2.get(i));
-            }
-
-            for (int i=0; i < threeIList.size(); i++) {
-                list3.add(i, (ItemStack)threeIList.get(i).getInternal());
-            }
-            for (int i=0; i < list3.size(); i++) {
-                temp3.fromStacks(list3.get(i));
-            }
-
-            for (int i=0; i < fourIList.size(); i++) {
-                list4.add(i, (ItemStack)fourIList.get(i).getInternal());
-            }
-            for (int i=0; i < list4.size(); i++) {
-                temp4.fromStacks(list4.get(i));
-            }
 
             this.recipe_name = recipe_name;
             this.cookTemp = cookTemp;
             this.cookTime = cookTime;
             this.coolTime = coolTime;
-            this.ing0 = temp0;
-            this.ing1 = temp1;
-            this.ing2 = temp2;
-            this.ing3 = temp3;
-            this.ing4 = temp4;
+            this.ing0 = I0;
+            this.ing1 = I1;
+            this.ing2 = I2;
+            this.ing3 = I3;
+            this.ing4 = I4;
             this.dropsCooked = dropsCooked;
             this.dropsRaw = dropsRaw;
             this.isDisabled = false;

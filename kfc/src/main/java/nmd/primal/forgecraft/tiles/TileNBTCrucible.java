@@ -69,7 +69,7 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         if (!world.isRemote) {
             World world = this.getWorld();
             IBlockState state = world.getBlockState(this.pos);
-            //dropsManager();
+            dropsManager();
             coolManager(this.pos, world, state);
         }
     }

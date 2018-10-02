@@ -1,5 +1,6 @@
 package nmd.primal.forgecraft.crafting;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
@@ -119,9 +120,49 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
         this.coolTime = coolTime;
     }
 
+    public static boolean compare(Ingredient ingredient, ItemStack stack){
+        if(stack == null){
+            stack = new ItemStack(Items.AIR, 1);
+        }
+        if(ingredient == null && stack.isEmpty()) {
+            return true;
+        }
+
+        if (ingredient.test(ItemStack.EMPTY)) {
+            if (stack.isEmpty()) {
+                return true;
+            }
+        }
+
+        if(ingredient.apply(stack)){
+            return true;
+        }
+
+        return false;
+    }
+
     public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
         for(CrucibleCrafting recipe : RECIPES){
-            if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
+            if(i0 == null){
+                i0 = ItemStack.EMPTY;
+            }
+            if(i1 == null){
+                i1 = ItemStack.EMPTY;
+            }
+            if(i2 == null){
+                i2 = ItemStack.EMPTY;
+            }
+            if(i3 == null){
+                i3 = ItemStack.EMPTY;
+            }
+            if(i4 == null){
+                i4 = ItemStack.EMPTY;
+            }
+            if(compare(recipe.ing0, i0) &&
+                    compare(recipe.ing1, i1) &&
+                    compare(recipe.ing2, i2) &&
+                    compare(recipe.ing3, i3) &&
+                    compare(recipe.ing4, i4) ){
                 return true;
             }
         }
@@ -130,7 +171,23 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
 
     public static CrucibleCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
         for(CrucibleCrafting recipe : RECIPES){
-            System.out.println(i0 + " : " + i1 + " : " + i2 + " : " + i3 + " : " + i4);
+
+            if(i0 == null){
+                i0 = ItemStack.EMPTY;
+            }
+            if(i1 == null){
+                i1 = ItemStack.EMPTY;
+            }
+            if(i2 == null){
+                i2 = ItemStack.EMPTY;
+            }
+            if(i3 == null){
+                i3 = ItemStack.EMPTY;
+            }
+            if(i4 == null){
+                i4 = ItemStack.EMPTY;
+            }
+
             if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
                 return recipe;
             }
