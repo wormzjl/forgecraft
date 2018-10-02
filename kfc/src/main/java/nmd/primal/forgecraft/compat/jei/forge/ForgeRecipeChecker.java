@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.forge;
+package nmd.primal.forgecraft.compat.jei.forge;
 
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.casting;
+package nmd.primal.forgecraft.compat.jei.casting;
 
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;

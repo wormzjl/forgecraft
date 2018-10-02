@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.casting;
+package nmd.primal.forgecraft.compat.jei.anvil;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -7,27 +7,30 @@ import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.compat.JEI.AbstractCategory;
+import nmd.primal.forgecraft.compat.jei.AbstractCategory;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.parts.ToolPart;
 
 import javax.annotation.Nonnull;
 
 /**
  * Created by mminaie on 9/16/18.
  */
-public class CastingRecipeCategory extends AbstractCategory<CastingRecipeWrapper>
+public class AnvilRecipeCategory extends AbstractCategory<AnvilRecipeWrapper>
 {
-    public static String CATEGORY = CommonUtils.prefix("casting");
+    public static String CATEGORY = CommonUtils.prefix("anvil");
 
-    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/casting.png");
+    private static ResourceLocation gui_background = new ResourceLocation(ModInfo.MOD_ID,"textures/gui/jei/anvil.png");
     private final IDrawable background;
 
-    public CastingRecipeCategory(IGuiHelper guiHelper)
+    public AnvilRecipeCategory(IGuiHelper guiHelper)
     {
         //background = guiHelper.createDrawable(gui_background, 0, 0, 134, 144, 0, 0, 0, 0);
-        background = guiHelper.createDrawable(gui_background, 0,0,256,96);
+        background = guiHelper.createDrawable(gui_background, 0,0,160,96);
     }
 
     @Nonnull
@@ -41,7 +44,7 @@ public class CastingRecipeCategory extends AbstractCategory<CastingRecipeWrapper
     @Override
     public String getTitle()
     {
-        return I18n.format("jei.category.forgecraft.casting");
+        return I18n.format("jei.category.forgecraft.anvil");
     }
 
     @Nonnull
@@ -58,7 +61,7 @@ public class CastingRecipeCategory extends AbstractCategory<CastingRecipeWrapper
     }
 
     @Override
-    public void setRecipe(IRecipeLayout layout, CastingRecipeWrapper recipe, IIngredients ingredients)
+    public void setRecipe(IRecipeLayout layout, AnvilRecipeWrapper recipe, IIngredients ingredients)
     {
         IGuiItemStackGroup items = layout.getItemStacks();
 
@@ -96,17 +99,21 @@ public class CastingRecipeCategory extends AbstractCategory<CastingRecipeWrapper
         //items.set(0, recipe.getIngredient(0));
 
         for(int i =0; i < 25; i++){
-            items.set(i, recipe.getIngredient(i));
+            if(recipe.getIngredient(i).getItem() instanceof ToolPart) {
+                items.set(i, new ItemStack(recipe.getIngredient(i).getItem(), 1));
+            } else {
+                items.set(i, recipe.getIngredient(i));
+            }
         }
 
         /***OUTPUTS***/
-        items.init(26, false, 133, 77);
-        items.set(26, recipe.output);
+        items.init(25, false, 133, 40);
+        items.set(25, recipe.output);
 
         /***EXTRAS***/
-        //items.init(26, false, 105, 28);
-        //ItemStack hammerStack = new ItemStack(ModItems.forgehammer, 1);
-        //items.set(26, hammerStack);
+        items.init(26, false, 105, 28);
+        ItemStack hammerStack = new ItemStack(ModItems.forgehammer, 1);
+        items.set(26, hammerStack);
 
         //items.init(7, false, 58, 96);
         //ItemStack bloomeryStack = new ItemStack(ModBlocks.bloomery_brick, 1, 0);

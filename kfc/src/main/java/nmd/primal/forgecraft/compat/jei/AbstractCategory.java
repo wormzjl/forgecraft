@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI;
+package nmd.primal.forgecraft.compat.jei;
 
 import com.google.common.collect.ImmutableList;
 import mezz.jei.api.gui.IDrawable;

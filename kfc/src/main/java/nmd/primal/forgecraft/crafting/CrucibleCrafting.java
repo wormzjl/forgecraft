@@ -22,13 +22,18 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
 
     public static final String RECIPE_PREFIX = "crucible";
     public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTING;
-    public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
 
-    public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
-        return crucibleCrafting;
+    public static Collection<CrucibleCrafting> getRECIPES() {
+        return RECIPES;
     }
 
-    private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
+    public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
+
+    //public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
+        //return crucibleCrafting;
+    //}
+
+    //private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
 
     private int cookTemp;
     private int cookTime;
@@ -114,15 +119,8 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
         this.coolTime = coolTime;
     }
 
-    public static void addRecipe(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
-                                 ItemStack outputRaw, ItemStack outputCooked,
-                                 Integer temp, Integer cookTime, Integer coolTime)
-    {
-        crucibleCrafting.add(new CrucibleCrafting(i0, i1, i2, i3, i4, outputRaw, outputCooked, temp, cookTime, coolTime));
-    }
-
     public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
-        for(CrucibleCrafting recipe : crucibleCrafting){
+        for(CrucibleCrafting recipe : RECIPES){
             if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
                 return true;
             }
@@ -131,7 +129,7 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
     }
 
     public static CrucibleCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
-        for(CrucibleCrafting recipe : crucibleCrafting){
+        for(CrucibleCrafting recipe : RECIPES){
             if(recipe.ing0.test(i0) && recipe.ing1.test(i1) && recipe.ing2.test(i2) && recipe.ing3.test(i3) && recipe.ing4.test(i4) ){
                 return recipe;
             }
@@ -140,7 +138,7 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
     }
 
     public static boolean isValidIngredient(ItemStack checkStack){
-        for(CrucibleCrafting recipe : crucibleCrafting) {
+        for(CrucibleCrafting recipe : RECIPES) {
             if (recipe.ing0.apply(checkStack) ||
                     recipe.ing1.apply(checkStack) ||
                     recipe.ing2.apply(checkStack) ||

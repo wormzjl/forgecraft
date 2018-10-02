@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.crucible;
+package nmd.primal.forgecraft.compat.jei.crucible;
 
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 
@@ -12,8 +12,12 @@ public class CrucibleRecipeChecker {
 
     public static List<CrucibleCrafting> getRecipes() {
         List<CrucibleCrafting> recipes = new ArrayList<>();
-        for (CrucibleCrafting recipe : CrucibleCrafting.getCrucibleCrafting()) {
-            recipes.add(recipe);
+        for (CrucibleCrafting recipe : CrucibleCrafting.getRECIPES()) {
+            if(!recipe.isDisabled()) {
+                if(!recipe.isHidden()) {
+                    recipes.add(recipe);
+                }
+            }
         }
         return recipes;
     }

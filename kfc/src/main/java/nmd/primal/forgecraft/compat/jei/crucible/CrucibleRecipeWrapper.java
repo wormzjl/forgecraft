@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.crucible;
+package nmd.primal.forgecraft.compat.jei.crucible;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;

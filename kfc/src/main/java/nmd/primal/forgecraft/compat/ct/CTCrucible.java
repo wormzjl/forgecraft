@@ -1,12 +1,10 @@
-package nmd.primal.forgecraft.compat.CT;
+package nmd.primal.forgecraft.compat.ct;
 
 
 import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
-import crafttweaker.api.item.IIngredient;
-import crafttweaker.api.item.IItemStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import nmd.primal.core.common.PrimalCore;
@@ -15,9 +13,7 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
 
-import java.util.List;
-
-@ZenClass("mods.primal.NBTCrucible")
+@ZenClass("mods.forgecraft.NBTCrucible")
 @ModOnly(ModInfo.MOD_ID)
 @ZenRegister
 public class CTCrucible {

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.anvil;
+package nmd.primal.forgecraft.compat.jei.anvil;
 
 import mezz.jei.api.recipe.IRecipeWrapper;
 import mezz.jei.api.recipe.IRecipeWrapperFactory;

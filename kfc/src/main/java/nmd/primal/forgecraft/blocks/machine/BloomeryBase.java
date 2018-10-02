@@ -121,23 +121,26 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                             ItemStackHelper.loadAllItems(tag, dropList);
                             CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
                             if (recipe != null) {
-                                Integer minTemp = recipe.getCookTemp();
-                                Integer cookCounter = tile.getCookCounter();
-                                Integer idealTime = recipe.getCookTime();
-                                Integer remainingTime = idealTime - cookCounter;
+                                if(!recipe.isHidden()) {
+                                    if (!recipe.isDisabled()) {
+                                        Integer minTemp = recipe.getCookTemp();
+                                        Integer cookCounter = tile.getCookCounter();
+                                        Integer idealTime = recipe.getCookTime();
+                                        Integer remainingTime = idealTime - cookCounter;
 
-                                String display1 =
-                                        "Cooking: " + tileItem1.getDisplayName() +
-                                                " Target Temp: " + minTemp.toString() +
-                                                " Time Left: " + remainingTime.toString();
-                                String display2 = tileItem1.getDisplayName() + "finished.";
-                                ITextComponent itextcomponent1 = null;
-                                if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
-                                    itextcomponent1 = new TextComponentString(display2);
-                                } else itextcomponent1 = new TextComponentString(display1);
+                                        String display1 =
+                                                "Cooking: " + tileItem1.getDisplayName() +
+                                                        " Target Temp: " + minTemp.toString() +
+                                                        " Time Left: " + remainingTime.toString();
+                                        String display2 = tileItem1.getDisplayName() + "finished.";
+                                        ITextComponent itextcomponent1 = null;
+                                        if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
+                                            itextcomponent1 = new TextComponentString(display2);
+                                        } else itextcomponent1 = new TextComponentString(display1);
 
-                                player.sendStatusMessage(itextcomponent1, false);
-
+                                        player.sendStatusMessage(itextcomponent1, false);
+                                    }
+                                }
                             }
                             return true;
                         }

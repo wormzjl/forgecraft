@@ -1,32 +1,31 @@
-package nmd.primal.forgecraft.compat.JEI.casting;
+package nmd.primal.forgecraft.compat.jei.anvil;
 
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeWrapper;
 import net.minecraft.client.Minecraft;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import nmd.primal.forgecraft.crafting.CastingCrafting;
+import nmd.primal.forgecraft.crafting.AnvilCrafting;
 
 import javax.annotation.Nonnull;
-import java.awt.*;
 
 /**
  * Created by mminaie on 9/16/18.
  */
-public class CastingRecipeWrapper implements IRecipeWrapper {
+public class AnvilRecipeWrapper implements IRecipeWrapper {
 
-    protected final CastingCrafting recipe;
+    protected final AnvilCrafting recipe;
 
-    protected Item[] input;
-    protected ItemStack source;
+    protected ItemStack[] input;
+    protected String upgradeType;
     protected ItemStack output;
 
-    public CastingRecipeWrapper(CastingCrafting recipe) {
+    public AnvilRecipeWrapper(AnvilCrafting recipe) {
 
         this.recipe = recipe;
         this.input = recipe.getInput();
+        this.upgradeType = recipe.getUpgrade();
         this.output = recipe.getOutput();
-        this.source =recipe.getSource();
+
     }
 
 
@@ -42,14 +41,13 @@ public class CastingRecipeWrapper implements IRecipeWrapper {
     }
 
     public ItemStack getIngredient(int a){
-        return new ItemStack(input[a], 1);
+        return input[a];
     }
 
     @Override
     public void drawInfo(@Nonnull Minecraft minecraft, int recipeWidth, int recipeHeight, int mouseX, int mouseY)
     {
-        String tempString = new String("To an empty crucible add: " + recipe.getSource().getDisplayName() + ". For details reference the appropriate crucible recipe. Pick up the hot crucible with Stonetongs and right click your casting block.");
-        minecraft.fontRenderer.drawSplitString(tempString, 97, 0, 150, Color.black.getRGB());
+        //minecraft.fontRenderer.drawString(recipe.getDropsCooked().getDisplayName() + " Recipe", 20, 5, Color.black.getRGB());
     }
 
 }

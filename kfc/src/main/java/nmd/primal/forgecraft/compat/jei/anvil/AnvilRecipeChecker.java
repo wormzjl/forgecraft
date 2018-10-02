@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.anvil;
+package nmd.primal.forgecraft.compat.jei.anvil;
 
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 

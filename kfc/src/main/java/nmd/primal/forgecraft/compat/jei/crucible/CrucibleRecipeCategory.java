@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.compat.JEI.crucible;
+package nmd.primal.forgecraft.compat.jei.crucible;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.compat.JEI.AbstractCategory;
+import nmd.primal.forgecraft.compat.jei.AbstractCategory;
 import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;
