@@ -213,7 +213,7 @@ public class AbstractShovel extends ItemSpade implements ToolNBT {
             if (state.getBlock().isToolEffective(type, state))
                 return (efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1));
         }
-        return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1)) : 1.0F;
+        return this.EFFECTIVE_ON.contains(state.getBlock()) ? (this.efficiency + ( (this.getRedstoneLevel(stack) * 1.25F ))) : 1.0F;
     }
 
     @SideOnly(Side.CLIENT)

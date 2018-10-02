@@ -19,6 +19,8 @@ import nmd.primal.forgecraft.blocks.machine.BloomeryBase;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
+import javax.annotation.Nullable;
+
 /**
  * Created by mminaie on 1/22/17.
  */
@@ -76,7 +78,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             //System.out.println(tag);
             ItemStackHelper.loadAllItems(tag, ingList);
             ItemStackHelper.loadAllItems(tag, dropList);
-            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+            @Nullable CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
             if (recipe != null) {
                 if(!recipe.isDisabled()) {
                     if (this.getHeat() >= recipe.getCookTemp() &&

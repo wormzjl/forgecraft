@@ -236,7 +236,7 @@ public abstract class AbstractPickaxe extends ItemPickaxe implements ToolNBT {
         if(material != Material.IRON && material != Material.ANVIL && material != Material.ROCK){
             return  super.getDestroySpeed(stack, state);
         } else {
-            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
+            return this.efficiency + ( (this.getRedstoneLevel(stack) * 1.5F ));
         }
 
     }

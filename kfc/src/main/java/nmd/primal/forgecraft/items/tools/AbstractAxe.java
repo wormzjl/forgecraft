@@ -240,7 +240,7 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
         if(material != Material.WOOD && material != Material.PLANTS && material != Material.VINE){
             return  super.getDestroySpeed(stack, state);
         } else {
-            return this.efficiency * ( (this.getRedstoneLevel(stack) * 2 ) + 1);
+            return this.efficiency + ( (this.getRedstoneLevel(stack) * 1.5F ));
         }
 
     }

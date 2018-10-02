@@ -3,6 +3,7 @@
 ## Bugs
 
 ## Current Feature
+- [ ] Hardness and Resistance calculation for durability damage
 - [ ] Craft Tweaker Support
 - [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron
 - [ ] Copper Gladius
