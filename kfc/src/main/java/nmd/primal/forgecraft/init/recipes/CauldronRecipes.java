@@ -33,22 +33,5 @@ public class CauldronRecipes
         lapisBronze.getSubCompound("tags").setInteger("lapis", 1);
         lapisBronze.getSubCompound("tags").setBoolean("modified", true);
 
-
-
-
-
-/*
-        recipes.register(new CauldronRecipe(
-                5,
-                FluidRegistry.getFluidStack("water", 1000),
-                FluidRegistry.getFluidStack("water", 1000),
-                new ItemStack(ModItems.rawbronzegladius, 1),
-                new ItemStack(Items.DYE, 1, 4),
-                ItemStack.EMPTY,
-                ItemStack.EMPTY,
-                lapisBronze,
-                ItemStack.EMPTY).setRecipeName("finishedGladius")
-                );
-                */
     }
 }

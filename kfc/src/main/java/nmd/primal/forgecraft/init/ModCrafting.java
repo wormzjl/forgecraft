@@ -269,7 +269,7 @@ public class ModCrafting{
         /***********************/
         /***CRUCIBLE CRAFTING***/
         /***********************/
-
+/*
         CrucibleCrafting.addRecipe(
                 new OreIngredient("oreIron"),
                 Ingredient.EMPTY,
@@ -389,8 +389,9 @@ public class ModCrafting{
                 2100,
                 1800,
                 1500);
-
+*/
         /***BRONZE***/
+/*
         NBTTagCompound tagBronzeDefault = new NBTTagCompound();
         tagBronzeDefault.setString("upgrades", "");
         tagBronzeDefault.setBoolean("hot", false);
@@ -525,8 +526,9 @@ public class ModCrafting{
                 800,
                 600);
 
-
+*/
         /***COPPER***/
+        /*
         NBTTagCompound tagCopperDefault = new NBTTagCompound();
         tagCopperDefault.setString("upgrades", "");
         tagCopperDefault.setBoolean("hot", false);
@@ -660,7 +662,7 @@ public class ModCrafting{
                 900,
                 750,
                 550);
-
+*/
 
 
         /***CASTING FORM***/

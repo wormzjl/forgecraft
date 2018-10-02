@@ -29,18 +29,18 @@ public class CTCrucible {
 
     @ZenMethod
     public static void addRecipe(String recipe_name,
-                                 int cookTemp,
-                                 int cookTime,
-                                 int coolTime,
                                  Ingredient ing0,
                                  Ingredient ing1,
                                  Ingredient ing2,
                                  Ingredient ing3,
                                  Ingredient ing4,
-                                 ItemStack dropsCooked,
-                                 ItemStack dropsRaw)
+                                 int cookTemp,
+                                 int cookTime,
+                                 int coolTime,
+                                 ItemStack dropsRaw,
+                                 ItemStack dropsCooked)
     {
-        CraftTweakerAPI.apply(new Add(recipe_name, cookTemp, cookTime, coolTime, ing0, ing1, ing2, ing3, ing4, dropsCooked, dropsRaw) );
+        CraftTweakerAPI.apply(new Add(recipe_name, ing0, ing1, ing2, ing3, ing4, dropsRaw, dropsCooked, cookTemp, cookTime, coolTime) );
     }
 
     @ZenMethod
@@ -57,9 +57,6 @@ public class CTCrucible {
 
     private static class Add implements IAction
     {
-
-
-
         private final String recipe_name;
         private final int cookTemp;
         private final int cookTime;
@@ -74,7 +71,7 @@ public class CTCrucible {
         //private final int cook_time;
         //private boolean is_disabled, is_hidden;
 
-        public Add(String recipe_name, int cookTemp, int cookTime, int coolTime, Ingredient ing0, Ingredient ing1, Ingredient ing2, Ingredient ing3, Ingredient ing4,ItemStack dropsCooked, ItemStack dropsRaw)
+        public Add(String recipe_name, Ingredient ing0, Ingredient ing1, Ingredient ing2, Ingredient ing3, Ingredient ing4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime)
         {
             this.recipe_name = recipe_name;
             this.cookTemp = cookTemp;
@@ -85,7 +82,7 @@ public class CTCrucible {
             this.ing2 = ing2;
             this.ing3 = ing3;
             this.ing4 =ing4;
-            this.dropsCooked = dropsCooked
+            this.dropsCooked = dropsCooked;
             this.dropsRaw = dropsRaw;
             this.isDisabled = false;
             this.isHidden = false;
@@ -95,7 +92,17 @@ public class CTCrucible {
         public void apply()
         {
             PrimalCore.LOGGER.info("Add CraftTweaker Recipe: " + this.recipe_name);
-            CrucibleCrafting.REGISTRY.register(new CrucibleCrafting(this.cook_time, this.ingredients, this.output).setRecipeName(this.recipe_name));
+            CrucibleCrafting.REGISTRY.register(new CrucibleCrafting(
+                    this.ing0,
+                    this.ing1,
+                    this.ing2,
+                    this.ing3,
+                    this.ing4,
+                    this.dropsRaw,
+                    this.dropsCooked,
+                    this.cookTemp,
+                    this.cookTime,
+                    this.coolTime).setRecipeName(this.recipe_name));
         }
 
         @Override
@@ -139,7 +146,7 @@ public class CTCrucible {
         @Override
         public void apply()
         {
-            for (HibachiRecipe recipe : HibachiRecipe.RECIPES)
+            for (CrucibleCrafting recipe : CrucibleCrafting.RECIPES)
             {
                 if (!recipe.isHidden())
                     recipe.setDisabled(true);
@@ -149,9 +156,8 @@ public class CTCrucible {
         @Override
         public String describe()
         {
-            return "[" + ModInfo.MOD_NAME + "] Removing Crafting Tweaker recipe for:" + HibachiRecipe.RECIPE_PREFIX;
+            return "[" + ModInfo.MOD_NAME + "] Removing Crafting Tweaker recipe for:" + CrucibleCrafting.RECIPE_PREFIX;
         }
     }
 }
 
-}

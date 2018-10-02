@@ -2,7 +2,6 @@ package nmd.primal.forgecraft.crafting.CraftingRegistery;
 
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
@@ -16,7 +15,6 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.util.ToolNBT;
 
 @GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 @Mod.EventBusSubscriber
@@ -280,10 +278,10 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.ironingotball, 1),
                 1400,
                         1200,
-                        800).setRecipeName("wroughtIron"));
+                        800).setRecipeName("wroughtIron1"));
 
-        recipes.register (new CrucibleCrafting(
-                new OreIngredient("dustIron"),
+    recipes.register (new CrucibleCrafting(
+            new OreIngredient("dustIron"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -292,9 +290,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.ironingotball, 1),
                 1250,
                         1100,
-                        800).setRecipeName("wroughtIron"));
+                        800).setRecipeName("wroughtIron2"));
 
-        CrucibleCrafting.addRecipe(
+    recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokenwroughtirontool, 1)),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -304,9 +302,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.ironingotball, 1),
                 1250,
                         1100,
-                        800);
+                        800).setRecipeName("wroughtIron3"));
 
-        CrucibleCrafting.addRecipe(
+    recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustIron"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
     Ingredient.EMPTY,
@@ -316,9 +314,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.ironcleaningotball, 1),
                 1550,
                         1200,
-                        800);
+                        800).setRecipeName("cleanIron1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokencleanirontool, 1)),
             new OreIngredient("nuggetIron"),
     Ingredient.EMPTY,
@@ -328,9 +326,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.ironcleaningotball, 1),
                 1550,
                         1200,
-                        800);
+                        800).setRecipeName("cleanIron2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.ironcleaningotball, 1)),
             Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH, 1)),
     Ingredient.EMPTY,
@@ -340,9 +338,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.steelingotball, 1),
                 2100,
                         1500,
-                        1000);
+                        1000).setRecipeName("steel1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokensteeltool, 1)),
             new OreIngredient("nuggetSteel"),
     Ingredient.EMPTY,
@@ -352,9 +350,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.steelingotball, 1),
                 2100,
                         1500,
-                        1000);
+                        1000).setRecipeName("steel2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustMagnetite"),
                 Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1,BlockPlanks.EnumType.JUNGLE.getMetadata())),
             Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
@@ -364,9 +362,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.wootzingotball, 1),
                 2100,
                         1800,
-                        1500);
+                        1500).setRecipeName("wootz1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("magnetite"),
                 Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
             Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
@@ -376,9 +374,9 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.wootzingotball, 1),
                 2100,
                         1800,
-                        1500);
+                        1500).setRecipeName("wootz2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokenwootztool, 1)),
             new OreIngredient("nuggetWootz"),
     Ingredient.EMPTY,
@@ -388,7 +386,7 @@ public final class CrucibleCraftingRegister{
                 new ItemStack(ModItems.wootzingotball, 1),
                 2100,
                         1800,
-                        1500);
+                        1500).setRecipeName("wootz3"));
 
     /***BRONZE***/
     NBTTagCompound tagBronzeDefault = new NBTTagCompound();
@@ -397,7 +395,7 @@ public final class CrucibleCraftingRegister{
     ItemStack defaultBronze = new ItemStack(ModItems.bronzeingotball, 1);
         defaultBronze.setTagCompound(tagBronzeDefault.copy());
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -407,9 +405,9 @@ public final class CrucibleCraftingRegister{
     defaultBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("bronze1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotBronze"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -419,11 +417,11 @@ public final class CrucibleCraftingRegister{
     defaultBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("bronze2"));
 
     ItemStack redBronze = defaultBronze.copy();
         redBronze.getTagCompound().setString("upgrades", "redstone");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("dustRedstone"),
     Ingredient.EMPTY,
@@ -433,11 +431,11 @@ public final class CrucibleCraftingRegister{
     redBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("redBronze1"));
 
     ItemStack diamondBronze = defaultBronze.copy();
         diamondBronze.getTagCompound().setString("upgrades", "diamond");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("flakeDiamond"),
     Ingredient.EMPTY,
@@ -447,11 +445,11 @@ public final class CrucibleCraftingRegister{
     diamondBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("diamondBronze1"));
 
     ItemStack emeraldBronze = defaultBronze.copy();
         emeraldBronze.getTagCompound().setString("upgrades", "emerald");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("flakeEmerald"),
     Ingredient.EMPTY,
@@ -461,11 +459,11 @@ public final class CrucibleCraftingRegister{
     emeraldBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("emeraldBronze1"));
 
     ItemStack lapisBronze = defaultBronze.copy();
         lapisBronze.getTagCompound().setString("upgrades", "lapis");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotBronze"),
                 new OreIngredient("gemLapis"),
     Ingredient.EMPTY,
@@ -475,9 +473,9 @@ public final class CrucibleCraftingRegister{
     lapisBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("lapisBronze1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -487,9 +485,9 @@ public final class CrucibleCraftingRegister{
     redBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("redBronze2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -499,9 +497,9 @@ public final class CrucibleCraftingRegister{
     diamondBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("diamondBronze2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -511,9 +509,9 @@ public final class CrucibleCraftingRegister{
     emeraldBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("emeraldBronze2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
                 new OreIngredient("dustCopper"),
@@ -523,7 +521,7 @@ public final class CrucibleCraftingRegister{
     lapisBronze,
             1100,
             800,
-            600);
+            600).setRecipeName("lapisBronze2"));
 
 
     /***COPPER***/
@@ -533,7 +531,7 @@ public final class CrucibleCraftingRegister{
     ItemStack defaultCopper = new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1);
         defaultCopper.setTagCompound(tagCopperDefault.copy());
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
     Ingredient.EMPTY,
@@ -543,9 +541,9 @@ public final class CrucibleCraftingRegister{
     defaultCopper,
             900,
             800,
-            600);
+            600).setRecipeName("copper1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotCopper"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -555,11 +553,11 @@ public final class CrucibleCraftingRegister{
     defaultCopper,
             900,
             750,
-            550);
+            550).setRecipeName("copper2"));
 
     ItemStack redCopper = defaultCopper.copy();
         redCopper.getTagCompound().setString("upgrades", "redstone");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotCopper"),
                 new OreIngredient("dustRedstone"),
     Ingredient.EMPTY,
@@ -569,11 +567,11 @@ public final class CrucibleCraftingRegister{
     redCopper,
             900,
             750,
-            550);
+            550).setRecipeName("redCopper1"));
 
     ItemStack diamondCopper = defaultCopper.copy();
         diamondCopper.getTagCompound().setString("upgrades", "diamond");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotCopper"),
                 new OreIngredient("flakeDiamond"),
     Ingredient.EMPTY,
@@ -583,11 +581,11 @@ public final class CrucibleCraftingRegister{
     diamondCopper,
             900,
             750,
-            550);
+            550).setRecipeName("diamondCopper1"));
 
     ItemStack emeraldCopper = defaultCopper.copy();
         emeraldCopper.getTagCompound().setString("upgrades", "emerald");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotCopper"),
                 new OreIngredient("flakeEmerald"),
     Ingredient.EMPTY,
@@ -597,11 +595,11 @@ public final class CrucibleCraftingRegister{
     emeraldCopper,
             900,
             750,
-            550);
+            550).setRecipeName("emeraldCopper1"));
 
     ItemStack lapisCopper = defaultCopper.copy();
         lapisCopper.getTagCompound().setString("upgrades", "lapis");
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("ingotCopper"),
                 new OreIngredient("gemLapis"),
     Ingredient.EMPTY,
@@ -611,9 +609,9 @@ public final class CrucibleCraftingRegister{
     lapisCopper,
             900,
             750,
-            550);
+            550).setRecipeName("lapisCopper1"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
             new OreIngredient("dustRedstone"),
@@ -623,9 +621,9 @@ public final class CrucibleCraftingRegister{
     redCopper,
             900,
             750,
-            550);
+            550).setRecipeName("redCopper2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
             new OreIngredient("flakeDiamond"),
@@ -635,9 +633,9 @@ public final class CrucibleCraftingRegister{
     diamondCopper,
             900,
             750,
-            550);
+            550).setRecipeName("diamondCopper2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
             new OreIngredient("flakeEmerald"),
@@ -647,9 +645,9 @@ public final class CrucibleCraftingRegister{
     emeraldCopper,
             900,
             750,
-            550);
+            550).setRecipeName("emeraldCopper2"));
 
-        CrucibleCrafting.addRecipe(
+        recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
                 Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
             new OreIngredient("gemLapis"),
@@ -659,7 +657,7 @@ public final class CrucibleCraftingRegister{
     lapisCopper,
             900,
             750,
-            550);
+            550).setRecipeName("lapisCopper2"));
 
-
+    }
 }
