@@ -18,7 +18,7 @@ import nmd.primal.forgecraft.init.ModItems;
 
 @GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 @Mod.EventBusSubscriber
-public final class CrucibleCraftingRegister{
+public final class RecipesCrucible {
     @SubscribeEvent
     public static void registerRecipes(RegistryEvent.Register<CrucibleCrafting> event) {
         PrimalAPI.logger(7, "Registering Recipes: " + CrucibleCrafting.RECIPE_PREFIX);

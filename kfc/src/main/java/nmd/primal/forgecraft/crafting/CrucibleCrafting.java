@@ -21,7 +21,7 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
     // ***************************************************************************** //
 
     public static final String RECIPE_PREFIX = "crucible";
-    public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTINGS;
+    public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTING;
     public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
 
     public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
