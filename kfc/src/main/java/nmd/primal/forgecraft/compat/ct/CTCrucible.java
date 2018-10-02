@@ -5,18 +5,30 @@ import crafttweaker.CraftTweakerAPI;
 import crafttweaker.IAction;
 import crafttweaker.annotations.ModOnly;
 import crafttweaker.annotations.ZenRegister;
+import crafttweaker.api.item.IIngredient;
+import crafttweaker.api.item.IItemStack;
+import crafttweaker.api.item.IngredientStack;
+import crafttweaker.api.oredict.IOreDictEntry;
+import crafttweaker.api.oredict.IngredientOreDict;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.util.NonNullList;
+import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.common.PrimalCore;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import stanhebben.zenscript.annotations.Optional;
 import stanhebben.zenscript.annotations.ZenClass;
 import stanhebben.zenscript.annotations.ZenMethod;
+
+import java.util.List;
 
 @ZenClass("mods.forgecraft.NBTCrucible")
 @ModOnly(ModInfo.MOD_ID)
 @ZenRegister
 public class CTCrucible {
+
+
 
     static
     {
@@ -24,19 +36,26 @@ public class CTCrucible {
     }
 
     @ZenMethod
-    public static void addRecipe(String recipe_name,
-                                 Ingredient ing0,
-                                 Ingredient ing1,
-                                 Ingredient ing2,
-                                 Ingredient ing3,
-                                 Ingredient ing4,
+    public static void addRecipe(IIngredient ing0,
+                                 IIngredient ing1,
+                                 IIngredient ing2,
+                                 IIngredient ing3,
+                                 IIngredient ing4,
+                                 IItemStack dropsRaw,
+                                 IItemStack dropsCooked,
                                  int cookTemp,
                                  int cookTime,
                                  int coolTime,
-                                 ItemStack dropsRaw,
-                                 ItemStack dropsCooked)
+                                 String recipe_name)
     {
-        CraftTweakerAPI.apply(new Add(recipe_name, ing0, ing1, ing2, ing3, ing4, dropsRaw, dropsCooked, cookTemp, cookTime, coolTime) );
+        CraftTweakerAPI.apply(new Add( ing0,
+                ing1,
+                ing2,
+                ing3,
+                ing4,
+                (ItemStack) dropsRaw.getInternal(),
+                (ItemStack) dropsCooked.getInternal(),
+                cookTemp, cookTime, coolTime, recipe_name) );
     }
 
     @ZenMethod
@@ -62,22 +81,92 @@ public class CTCrucible {
         private final ItemStack dropsRaw;
         private boolean isDisabled, isHidden;
 
-        //private final List<ItemStack> ingredients;
-        //private final ItemStack output;
-        //private final int cook_time;
-        //private boolean is_disabled, is_hidden;
-
-        public Add(String recipe_name, Ingredient ing0, Ingredient ing1, Ingredient ing2, Ingredient ing3, Ingredient ing4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime)
+        public Add(IIngredient I0, IIngredient I1, IIngredient I2, IIngredient I3, IIngredient I4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime, String recipe_name)
         {
+            Ingredient temp0 = null;
+            NonNullList<ItemStack> list0 = NonNullList.create();
+            Ingredient temp1 = null;
+            List<ItemStack> list1 = NonNullList.create();
+            Ingredient temp2 = null;
+            List<ItemStack> list2 = NonNullList.create();
+            Ingredient temp3 = null;
+            List<ItemStack> list3 = NonNullList.create();
+            Ingredient temp4 = null;
+            List<ItemStack> list4 = NonNullList.create();
+            List<IItemStack> zeroIList = I0.getItems();
+            List<IItemStack> oneIList = I1.getItems();
+            List<IItemStack> twoIList = I2.getItems();
+            List<IItemStack> threeIList = I3.getItems();
+            List<IItemStack> fourIList = I4.getItems();
+            System.out.println(I0.getItems());
+            if(I1.getInternal() == new OreIngredient("oreIron") ){
+                System.out.println("This is an IoreDictEntry");
+            }
+            if(I1.getInternal() instanceof IngredientOreDict){
+                System.out.println("This is an IngredientOreDict");
+            }
+            System.out.println(I1);
+            System.out.println(I1.getInternal());
+
+            System.out.println(I2.getItems());
+            System.out.println(I3.getItems());
+            System.out.println(I4.getItems());
+            System.out.println(zeroIList);
+            System.out.println(oneIList.size());
+            System.out.println(twoIList);
+            System.out.println(threeIList);
+            System.out.println(fourIList);
+
+            for (int i=0; i < zeroIList.size(); i++) {
+                list0.add(i, (ItemStack)zeroIList.get(i).getInternal());
+            }
+            for (int i=0; i < list0.size(); i++) {
+                temp0.fromStacks(list0.get(i));
+            }
+
+
+            //instanceof IOreDictEntry
+            if(I1 instanceof IOreDictEntry){
+                temp1 = new OreIngredient((String) I1.getInternal());
+            } else {
+                for (int i = 0; i < oneIList.size(); i++) {
+                    temp1.apply((ItemStack) zeroIList.get(i).getInternal());
+                }
+                for (int i = 0; i < list1.size(); i++) {
+                    temp1.fromStacks(list1.get(i));
+                }
+            }
+
+            for (int i=0; i < twoIList.size(); i++) {
+                list2.add(i, (ItemStack)twoIList.get(i).getInternal());
+            }
+            for (int i=0; i < list2.size(); i++) {
+                temp2.fromStacks(list2.get(i));
+            }
+
+            for (int i=0; i < threeIList.size(); i++) {
+                list3.add(i, (ItemStack)threeIList.get(i).getInternal());
+            }
+            for (int i=0; i < list3.size(); i++) {
+                temp3.fromStacks(list3.get(i));
+            }
+
+            for (int i=0; i < fourIList.size(); i++) {
+                list4.add(i, (ItemStack)fourIList.get(i).getInternal());
+            }
+            for (int i=0; i < list4.size(); i++) {
+                temp4.fromStacks(list4.get(i));
+            }
+
             this.recipe_name = recipe_name;
             this.cookTemp = cookTemp;
             this.cookTime = cookTime;
             this.coolTime = coolTime;
-            this.ing0 = ing0;
-            this.ing1 = ing1;
-            this.ing2 = ing2;
-            this.ing3 = ing3;
-            this.ing4 =ing4;
+            this.ing0 = temp0;
+            this.ing1 = temp1;
+            this.ing2 = temp2;
+            this.ing3 = temp3;
+            this.ing4 = temp4;
             this.dropsCooked = dropsCooked;
             this.dropsRaw = dropsRaw;
             this.isDisabled = false;
@@ -107,6 +196,7 @@ public class CTCrucible {
             return "[" + ModInfo.MOD_NAME + "] Adding Crafting Tweaker recipe for: "  + CrucibleCrafting.RECIPE_PREFIX;
         }
     }
+
 
     private static class Remove implements IAction
     {

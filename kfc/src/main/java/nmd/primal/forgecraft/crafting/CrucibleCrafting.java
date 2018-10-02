@@ -130,13 +130,13 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
 
     public static CrucibleCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
         for(CrucibleCrafting recipe : RECIPES){
-            if(recipe.ing0.test(i0) && recipe.ing1.test(i1) && recipe.ing2.test(i2) && recipe.ing3.test(i3) && recipe.ing4.test(i4) ){
+            System.out.println(i0 + " : " + i1 + " : " + i2 + " : " + i3 + " : " + i4);
+            if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
                 return recipe;
             }
         }
         return null;
     }
-
     public static boolean isValidIngredient(ItemStack checkStack){
         for(CrucibleCrafting recipe : RECIPES) {
             if (recipe.ing0.apply(checkStack) ||
