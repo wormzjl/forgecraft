@@ -60,7 +60,7 @@ public interface AnvilHandler extends ToolMaterialMap {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
             if (pItem.getItem() instanceof Gallagher) {
-                pItem.damageItem(15, player);
+                pItem.damageItem(10, player);
             }
             if (pItem.getItem() instanceof ForgeHammer) {
                 pItem.damageItem(1, player);
@@ -87,6 +87,11 @@ public interface AnvilHandler extends ToolMaterialMap {
 
                         tempStack.getSubCompound("tags").setInteger("modifiers", 0);
                         CommonUtils.spawnItemEntityFromWorld(world, pos, tempStack);
+                        for (int i = 0; i < tile.getSlotListSize(); i++) {
+                            if (!tile.getSlotStack(i).isEmpty()) {
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                            }
+                        }
                         return true;
                     }
 
