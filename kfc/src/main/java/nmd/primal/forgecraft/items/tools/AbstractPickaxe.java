@@ -19,6 +19,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.ToolMaterialMap;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -138,7 +139,7 @@ public abstract class AbstractPickaxe extends ItemPickaxe implements ToolNBT {
         //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades Left: " + (3 - getModifiers(item)) );
+            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
             if (getEmerald(item) == true) {
                 tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
@@ -185,8 +186,9 @@ public abstract class AbstractPickaxe extends ItemPickaxe implements ToolNBT {
     {
         if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
         {
+            stack.getTagCompound().removeTag("ench");
             if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
-                stack.getTagCompound().removeTag("ench");
+                //stack.getTagCompound().removeTag("ench");
                 if(getDiamondLevel(stack) > 0) {
                     if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
                         stack.damageItem(1, entityLiving);

@@ -1,6 +1,7 @@
 # To-Dos
 
 ## Bugs
+- [ ] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
 
 ## Current Feature
 - [ ] Hardness and Resistance calculation for durability damage

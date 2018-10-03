@@ -210,8 +210,9 @@ public abstract class AbstractAxe extends ItemAxe implements ToolNBT {
     {
         if (!world.isRemote && (double)state.getBlockHardness(world, pos) != 0.0D)
         {
+            stack.getTagCompound().removeTag("ench");
             if(stack.getMaxDamage() - stack.getItemDamage() >1 ) {
-                stack.getTagCompound().removeTag("ench");
+                //stack.getTagCompound().removeTag("ench");
                 if(getDiamondLevel(stack) > 0) {
                     if(ThreadLocalRandom.current().nextInt(0, getDiamondLevel(stack)) == 0) {
                         stack.damageItem(1, entityLiving);
