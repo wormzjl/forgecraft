@@ -11,6 +11,7 @@ import crafttweaker.api.item.IngredientStack;
 import crafttweaker.api.minecraft.CraftTweakerMC;
 import crafttweaker.api.oredict.IOreDictEntry;
 import crafttweaker.api.oredict.IngredientOreDict;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.util.NonNullList;
@@ -24,6 +25,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @ZenClass("mods.forgecraft.NBTCrucible")
 @ModOnly(ModInfo.MOD_ID)
@@ -50,8 +52,7 @@ public class CTCrucible {
                                  int coolTime,
                                  String recipe_name)
     {
-        CraftTweakerAPI.apply(new Add(
-                ing0.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList()),
+        CraftTweakerAPI.apply(new Add( ing0,
                 ing1,
                 ing2,
                 ing3,
@@ -84,19 +85,71 @@ public class CTCrucible {
         private final ItemStack dropsRaw;
         private boolean isDisabled, isHidden;
 
-        public Add(Ingredient I0, Ingredient I1, Ingredient I2, Ingredient I3, Ingredient I4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime, String recipe_name)
+        public Add(IIngredient I0, IIngredient I1, IIngredient I2, IIngredient I3, IIngredient I4, ItemStack dropsRaw, ItemStack dropsCooked, int cookTemp, int cookTime, int coolTime, String recipe_name)
         {
 
+            ItemStack[] array0 = null;
+            ItemStack[] array1 = null;
+            ItemStack[] array2 = null;
+            ItemStack[] array3 = null;
+            ItemStack[] array4 = null;
+            ItemStack[] emptyArray = new ItemStack[1];
+            emptyArray[0] = ItemStack.EMPTY;
+
+            if(I0 != null) {
+                Ingredient temp0 = null;
+                List<ItemStack> zeroIList = I0.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList());
+                array0 = zeroIList.stream().toArray(ItemStack[]::new);
+            }
+            if(I0 == null) {
+                array0 = emptyArray;
+            }
+
+            if(I1 != null) {
+                Ingredient temp1 = null;
+                List<ItemStack> oneIList = I1.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList());
+                array1 = oneIList.stream().toArray(ItemStack[]::new);
+            }
+            if(I1 == null) {
+                array1 = emptyArray;
+            }
+
+            if(I2 != null) {
+                Ingredient temp2 = null;
+                List<ItemStack> twoIList = I2.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList());
+                array2 = twoIList.stream().toArray(ItemStack[]::new);
+            }
+            if(I2 == null) {
+                array2 = emptyArray;
+            }
+
+            if(I3 != null) {
+                Ingredient temp3 = null;
+                List<ItemStack> threeIList = I3.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList());
+                array3 = threeIList.stream().toArray(ItemStack[]::new);
+            }
+            if(I3 == null) {
+                array3 = emptyArray;
+            }
+
+            if(I4 != null) {
+                Ingredient temp4 = null;
+                List<ItemStack> fourIList = I4.getItems().stream().map(CraftTweakerMC::getItemStack).collect(Collectors.toList());
+                array4 = fourIList.stream().toArray(ItemStack[]::new);
+            }
+            if(I4 == null) {
+                array4 = emptyArray;
+            }
 
             this.recipe_name = recipe_name;
             this.cookTemp = cookTemp;
             this.cookTime = cookTime;
             this.coolTime = coolTime;
-            this.ing0 = I0;
-            this.ing1 = I1;
-            this.ing2 = I2;
-            this.ing3 = I3;
-            this.ing4 = I4;
+            this.ing0 = Ingredient.fromStacks(array0);
+            this.ing1 = Ingredient.fromStacks(array1);
+            this.ing2 = Ingredient.fromStacks(array2);
+            this.ing3 = Ingredient.fromStacks(array3);
+            this.ing4 = Ingredient.fromStacks(array4);
             this.dropsCooked = dropsCooked;
             this.dropsRaw = dropsRaw;
             this.isDisabled = false;
