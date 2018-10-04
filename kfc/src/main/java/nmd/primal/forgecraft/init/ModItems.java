@@ -9,6 +9,9 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.compat.ModDictionary;
+import nmd.primal.core.common.items.tools.Gallagher;
+import nmd.primal.core.common.recipes.irecipe.ToolCraftingRecipe;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
@@ -49,6 +52,8 @@ public class ModItems {
     public static Item steelchunk;
     public static Item wootzingotball;
     public static Item wootzchunk;
+
+    public static Item IRON_SLEDGE_HAMMER;
 
     public static Item copperpickaxehead;
     public static Item copperaxehead;
@@ -218,6 +223,7 @@ public class ModItems {
         ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead, 5, -3.6f);
         ironshovel = new CustomShovel("ironshovel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
         ironhoe = new CustomHoe("ironhoe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironhoehead);
+        IRON_SLEDGE_HAMMER = new SledgeHammer("ironsledgehammer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
         cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
         cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead, 6, -3.2f);
@@ -337,6 +343,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(ironaxehead);
         ForgeRegistries.ITEMS.register(ironshovelhead);
         ForgeRegistries.ITEMS.register(ironhoehead);
+        ForgeRegistries.ITEMS.register(IRON_SLEDGE_HAMMER);
 
         ForgeRegistries.ITEMS.register(cleanironpickaxehead);
         ForgeRegistries.ITEMS.register(cleanironaxehead);
@@ -498,6 +505,7 @@ public class ModItems {
         registerRender(ironaxe);
         registerRender(ironshovel);
         registerRender(ironhoe);
+        registerRender(IRON_SLEDGE_HAMMER);
 
         registerRender(cleanironpickaxe);
         registerRender(cleanironaxe);

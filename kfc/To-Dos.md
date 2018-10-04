@@ -2,8 +2,11 @@
 
 ## Bugs
 - [ ] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
+- [ ] Hot Crucible block form missing texture
 
 ## Current Feature
+- [ ] SledgeHammer and Chisel
+- [ ] Play a sound when bloomery or forge finishes
 - [ ] Hardness and Resistance calculation for durability damage
 - [ ] Craft Tweaker Support
 - [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron

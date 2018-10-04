@@ -1,0 +1,7 @@
+{
+  "parent": "forgecraft:item/sledgehammer_model",
+  "textures": {
+    "particle": "forgecraft:items/iron/0",
+    "texture": "forgecraft:items/iron/0"
+  }
+}
