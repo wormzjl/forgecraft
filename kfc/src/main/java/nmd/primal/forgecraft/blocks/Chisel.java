@@ -9,6 +9,7 @@ import net.minecraft.client.renderer.RenderGlobal;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -30,13 +31,69 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Chisel extends CustomFacing {
 
-    public AxisAlignedBB boundBox = new AxisAlignedBB(0.4375D, 0.0D, 0.4375D, 0.5625D, 0.875D, 0.5625D);
+    private AxisAlignedBB boundBoxDown = new AxisAlignedBB(
+            0.4375D, 0.0D, 0.4375D,
+            0.5625D, 0.875D, 0.5625D);
+    private AxisAlignedBB boundBoxDownActive = new AxisAlignedBB(
+            0.4375D, 0.0D, 0.4375D,
+            0.5625D, 0.375D, 0.5625D);
+    private AxisAlignedBB boundBoxUp = new AxisAlignedBB(
+            0.4375D, 0.125D, 0.4375D,
+            0.5625D, 1.0, 0.5625D);
+    private AxisAlignedBB boundBoxUpActive = new AxisAlignedBB
+            (0.4375D, 0.625D, 0.4375D,
+             0.5625D, 1.0D, 0.5625D);
+    private AxisAlignedBB boundBoxEast = new AxisAlignedBB(
+            0.125D, 0.4375D, 0.4375D,
+            1.0D, 0.5625D, 0.5625D);
+    private AxisAlignedBB boundBoxEastActive = new AxisAlignedBB(
+            0.625D, 0.4375D, 0.4375D,
+            1.0D, 0.5625D, 0.5625D);
+    private AxisAlignedBB boundBoxWest = new AxisAlignedBB(
+            0.0D, 0.4375D, 0.0D,
+            1.0D, 0.5625D, 1.0D);
+    private AxisAlignedBB boundBoxWestActive = new AxisAlignedBB(
+            0.0D, 0.4375D, 0.0D,
+            1.0D, 0.5625D, 1.0D);
 
-    public Chisel(Material material, String name) {
+    private Item.ToolMaterial realMaterial;
+
+    public Chisel(Material material, String name, Item.ToolMaterial realMaterial) {
         super(material, name);
         this.setHardness(8.0f);
         this.setResistance(8.0f);
+        this.realMaterial = realMaterial;
         this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)));
+    }
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+    {
+        if(state.getValue(FACING)==EnumFacing.UP && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxUp;
+        }
+        if(state.getValue(FACING)==EnumFacing.UP && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxUpActive;
+        }
+        if(state.getValue(FACING)==EnumFacing.DOWN && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxDown;
+        }
+        if(state.getValue(FACING)==EnumFacing.DOWN && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxDownActive;
+        }
+        if(state.getValue(FACING)==EnumFacing.EAST && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxEast;
+        }
+        if(state.getValue(FACING)==EnumFacing.EAST && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxEastActive;
+        }
+        if(state.getValue(FACING)==EnumFacing.WEST && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxWest;
+        }
+        if(state.getValue(FACING)==EnumFacing.WEST && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxWestActive;
+        }
+        return boundBoxDown;
     }
 
     @Override
@@ -51,12 +108,11 @@ public class Chisel extends CustomFacing {
     {
         return new BlockStateContainer(this, new IProperty[] {FACING, PrimalAPI.States.ACTIVE});
     }
-
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-    {
-        return boundBox;
+    public Item.ToolMaterial getRealMaterial() {
+        return realMaterial;
     }
+
+
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
@@ -89,7 +145,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((a - 1), (1), (i - 1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }
@@ -119,7 +175,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((a - 1), (-1), (i - 1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }
@@ -148,7 +204,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((a - 1), (i - 1), (1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }
@@ -177,7 +233,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((a - 1), (i - 1), (-1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }
@@ -206,7 +262,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((1), (i - 1), (a - 1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }
@@ -235,7 +291,7 @@ public class Chisel extends CustomFacing {
                                     for (int i = 0; i < 3; i++) {
                                         for (int a = 0; a < 3; a++) {
                                             BlockPos movePos = pos.add((-1), (i - 1), (a - 1));
-                                            if (world.getBlockState(movePos).getBlock() != ModBlocks.chisel) {
+                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
                                                 IBlockState breakState = world.getBlockState(movePos);
                                                 doDamaging(world, movePos, breakState, player);
                                             }

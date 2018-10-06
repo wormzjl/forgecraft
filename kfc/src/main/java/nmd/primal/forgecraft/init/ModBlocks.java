@@ -10,6 +10,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.Chisel;
@@ -59,12 +60,12 @@ public class ModBlocks {
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
 
-        copperchisel = new Chisel(Material.IRON, "copperchisel");
-        ironchisel = new Chisel(Material.IRON, "ironchisel");
-        bronzechisel = new Chisel(Material.IRON, "bronzechisel");
-        cleanironchisel = new Chisel(Material.IRON, "cleanironchisel");
-        steelchisel = new Chisel(Material.IRON, "steelchisel");
-        wootzchisel = new Chisel(Material.IRON, "wootzchisel");
+        copperchisel = new Chisel(Material.IRON, "copperchisel", PrimalAPI.ToolMaterials.TOOL_COPPER);
+        bronzechisel = new Chisel(Material.IRON, "bronzechisel", PrimalAPI.ToolMaterials.TOOL_BRONZE);
+        ironchisel = new Chisel(Material.IRON, "ironchisel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        cleanironchisel = new Chisel(Material.IRON, "cleanironchisel", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        steelchisel = new Chisel(Material.IRON, "steelchisel", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        wootzchisel = new Chisel(Material.IRON, "wootzchisel", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");

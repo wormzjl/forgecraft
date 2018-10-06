@@ -4,12 +4,15 @@
 - [x] Hot Crucible block form missing texture
 - [x] Soft Crucible drop from tongs
 - [x] Pickaxe upgrades printout
-- [ ] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
+- [x] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
 
 ## Current Feature
 - [x] SledgeHammer and Chisel item and blocks
 - [ ] Chisel Bounding Box changes
-- [ ] SledgeHammer and Chisel crafting
+- [ ] SledgeHammer Supid Damage Modifier
+- [x] SledgeHammer and Chisel crafting
+- [x] SledgeHammer and Chisel assets
+- [ ] SoftCrucible Color Issues
 - [ ] Play a sound when bloomery or forge finishes
 - [ ] Hardness and Resistance calculation for durability damage
 - [ ] Craft Tweaker Support

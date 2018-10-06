@@ -264,407 +264,6 @@ public class ModCrafting{
         hotwootzshovelhead = hotToolArray[14] ;
         hotwootzhoehead = hotToolArray[15];
 
-        //RecipeHandler.addSmelting(ModItems.softcrucible, new ItemStack(ModBlocks.nbtCrucible, 1));
-
-        /***********************/
-        /***CRUCIBLE CRAFTING***/
-        /***********************/
-/*
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreIron"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(Blocks.IRON_ORE, 1),
-                new ItemStack(ModItems.ironingotball, 1),
-                1400,
-                1200,
-                800);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustIron"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(Blocks.IRON_ORE, 1),
-                new ItemStack(ModItems.ironingotball, 1),
-                1250,
-                1100,
-                800);
-
-        CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(ModItems.brokenwroughtirontool, 1)),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.ironingotball, 1),
-                1250,
-                1100,
-                800);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustIron"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.IRON_DUST, 1),
-                new ItemStack(ModItems.ironcleaningotball, 1),
-                1550,
-                1200,
-                800);
-
-        CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(ModItems.brokencleanirontool, 1)),
-                new OreIngredient("nuggetIron"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.ironcleaningotball, 1),
-                1550,
-                1200,
-                800);
-
-        CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(ModItems.ironcleaningotball, 1)),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_HIGH, 1)),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(ModItems.ironcleaningotball, 1),
-                new ItemStack(ModItems.steelingotball, 1),
-                2100,
-                1500,
-                1000);
-
-        CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(ModItems.brokensteeltool, 1)),
-                new OreIngredient("nuggetSteel"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.steelingotball, 1),
-                2100,
-                1500,
-                1000);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustMagnetite"),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
-                new ItemStack(ModItems.wootzingotball, 1),
-                2100,
-                1800,
-                1500);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("magnetite"),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-                new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
-                new ItemStack(ModItems.wootzingotball, 1),
-                2100,
-                1800,
-                1500);
-
-        CrucibleCrafting.addRecipe(
-                Ingredient.fromStacks(new ItemStack(ModItems.brokenwootztool, 1)),
-                new OreIngredient("nuggetWootz"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                new ItemStack(ModItems.wootzingotball, 1),
-                2100,
-                1800,
-                1500);
-*/
-        /***BRONZE***/
-/*
-        NBTTagCompound tagBronzeDefault = new NBTTagCompound();
-        tagBronzeDefault.setString("upgrades", "");
-        tagBronzeDefault.setBoolean("hot", false);
-        ItemStack defaultBronze = new ItemStack(ModItems.bronzeingotball, 1);
-        defaultBronze.setTagCompound(tagBronzeDefault.copy());
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustTin"),
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                defaultBronze,
-                1100,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotBronze"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                defaultBronze,
-                1100,
-                800,
-                600);
-
-        ItemStack redBronze = defaultBronze.copy();
-        redBronze.getTagCompound().setString("upgrades", "redstone");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotBronze"),
-                new OreIngredient("dustRedstone"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                redBronze,
-                1100,
-                800,
-                600);
-
-        ItemStack diamondBronze = defaultBronze.copy();
-        diamondBronze.getTagCompound().setString("upgrades", "diamond");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotBronze"),
-                new OreIngredient("flakeDiamond"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                diamondBronze,
-                1100,
-                800,
-                600);
-
-        ItemStack emeraldBronze = defaultBronze.copy();
-        emeraldBronze.getTagCompound().setString("upgrades", "emerald");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotBronze"),
-                new OreIngredient("flakeEmerald"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                emeraldBronze,
-                1100,
-                800,
-                600);
-
-        ItemStack lapisBronze = defaultBronze.copy();
-        lapisBronze.getTagCompound().setString("upgrades", "lapis");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotBronze"),
-                new OreIngredient("gemLapis"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                lapisBronze,
-                1100,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustTin"),
-                new OreIngredient("dustRedstone"),
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                redBronze,
-                1100,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustTin"),
-                new OreIngredient("flakeDiamond"),
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                diamondBronze,
-                1100,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustTin"),
-                new OreIngredient("flakeEmerald"),
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                emeraldBronze,
-                1100,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustCopper"),
-                new OreIngredient("dustTin"),
-                new OreIngredient("gemLapis"),
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                lapisBronze,
-                1100,
-                800,
-                600);
-
-*/
-        /***COPPER***/
-        /*
-        NBTTagCompound tagCopperDefault = new NBTTagCompound();
-        tagCopperDefault.setString("upgrades", "");
-        tagCopperDefault.setBoolean("hot", false);
-        ItemStack defaultCopper = new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1);
-        defaultCopper.setTagCompound(tagCopperDefault.copy());
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                defaultCopper,
-                900,
-                800,
-                600);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotCopper"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                defaultCopper,
-                900,
-                750,
-                550);
-
-        ItemStack redCopper = defaultCopper.copy();
-        redCopper.getTagCompound().setString("upgrades", "redstone");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotCopper"),
-                new OreIngredient("dustRedstone"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                redCopper,
-                900,
-                750,
-                550);
-
-        ItemStack diamondCopper = defaultCopper.copy();
-        diamondCopper.getTagCompound().setString("upgrades", "diamond");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotCopper"),
-                new OreIngredient("flakeDiamond"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                diamondCopper,
-                900,
-                750,
-                550);
-
-        ItemStack emeraldCopper = defaultCopper.copy();
-        emeraldCopper.getTagCompound().setString("upgrades", "emerald");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotCopper"),
-                new OreIngredient("flakeEmerald"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                emeraldCopper,
-                900,
-                750,
-                550);
-
-        ItemStack lapisCopper = defaultCopper.copy();
-        lapisCopper.getTagCompound().setString("upgrades", "lapis");
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("ingotCopper"),
-                new OreIngredient("gemLapis"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                lapisCopper,
-                900,
-                750,
-                550);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                new OreIngredient("dustRedstone"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                redCopper,
-                900,
-                750,
-                550);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                new OreIngredient("flakeDiamond"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                diamondCopper,
-                900,
-                750,
-                550);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                new OreIngredient("flakeEmerald"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                emeraldCopper,
-                900,
-                750,
-                550);
-
-        CrucibleCrafting.addRecipe(
-                new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
-                new OreIngredient("gemLapis"),
-                Ingredient.EMPTY,
-                Ingredient.EMPTY,
-                new ItemStack(PrimalAPI.Items.SLAG, 1),
-                lapisCopper,
-                900,
-                750,
-                550);
-*/
-
-
         /***CASTING FORM***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.castingform, 1),
                 true, new Object[]{" S ", "S S", " S ",
@@ -1095,11 +694,57 @@ public class ModCrafting{
                     new ItemStack(PrimalAPI.Items.COPPER_PLATE, 1)
             );
 
+        /***CASTING SLEDGEHAMMER***/
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        empty, empty, empty, empty, empty,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd},
+                new ItemStack(ModItems.coppersledgehammer, 1)
+        );
+        /***CASTING SLEDGEHAMMER***/
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.BRONZE_INGOT, 1),
+                new Item[]{
+                        empty, empty, empty, empty, empty,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd},
+                new ItemStack(ModItems.bronzesledgehammer, 1)
+        );
+
+        /***CASTING CHISEL***/
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
+                new Item[]{
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd},
+                new ItemStack(ModBlocks.copperchisel, 1)
+        );
+        /***CASTING CHISEL***/
+        CastingCrafting.addRecipe(
+                new ItemStack(PrimalAPI.Items.BRONZE_INGOT, 1),
+                new Item[]{
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, muddd, empty, muddd, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd,
+                        muddd, empty, empty, empty, muddd},
+                new ItemStack(ModBlocks.bronzechisel, 1)
+        );
 
         /******************************************************************************
           FORGING
          ******************************************************************************/
 
+        //TODO allow oreDict checks against my Item Ingots
 //Makes a Hot Iron Ingot
         ForgeCrafting.addRecipe(
                 ModItems.ironingotball,
@@ -1366,7 +1011,101 @@ public class ModCrafting{
                ANVILING
          ******************************************************************************/
 
+        /*** SLEDGEHAMMER ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        hotChunk,hotChunk,hotIronIngot,hotChunk,hotChunk,
+                        emptyAir,hotChunk,hotIronIngot,hotChunk,emptyAir,
+                        emptyAir,emptyAir,hotChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.ironsledgehammer, 1),
+                "null"
+        );
 
+        /*** SLEDGEHAMMER ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        hotCleanChunk,hotCleanChunk,hotCleanIronIngot,hotCleanChunk,hotCleanChunk,
+                        emptyAir,hotCleanChunk,hotCleanIronIngot,hotCleanChunk,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.cleanironsledgehammer, 1),
+                "null"
+        );
+
+        /*** SLEDGEHAMMER ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        hotSteelChunk,hotSteelChunk,hotSteelIngot,hotSteelChunk,hotSteelChunk,
+                        emptyAir,hotSteelChunk,hotSteelIngot,hotSteelChunk,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.steelsledgehammer, 1),
+                "null"
+        );
+
+        /*** SLEDGEHAMMER ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        hotWootzChunk,hotWootzChunk,hotWootzIngot,hotWootzChunk,hotWootzChunk,
+                        emptyAir,hotWootzChunk,hotWootzIngot,hotWootzChunk,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir },
+                new ItemStack(ModItems.wootzsledgehammer, 1),
+                "null"
+        );
+
+        /*** CHISEL ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,hotChunk,emptyAir,emptyAir,
+                        emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
+                        emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
+                        emptyAir,emptyAir,hotIronIngot,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotIronIngot,emptyAir,emptyAir },
+                new ItemStack(ModBlocks.ironchisel, 1),
+                "null"
+        );
+
+        /*** CHISEL ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
+                        emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
+                        emptyAir,emptyAir,hotCleanIronIngot,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotCleanIronIngot,emptyAir,emptyAir },
+                new ItemStack(ModBlocks.cleanironchisel, 1),
+                "null"
+        );
+
+        /*** CHISEL ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
+                        emptyAir,emptyAir,hotSteelIngot,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotSteelIngot,emptyAir,emptyAir },
+                new ItemStack(ModBlocks.steelchisel, 1),
+                "null"
+        );
+
+        /*** CHISEL ***/
+        AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
+                        emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir },
+                new ItemStack(ModBlocks.wootzchisel, 1),
+                "null"
+        );
 
         /*** ForgeHammer ***/
         AnvilCrafting.addRecipe(

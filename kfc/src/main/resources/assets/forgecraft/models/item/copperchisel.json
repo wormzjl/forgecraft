@@ -1,0 +1,8 @@
+{
+	"forge_marker":1,
+	"textures": {
+		"particle": "forgecraft:items/copper/0",
+		"texture": "forgecraft:items/copper/0"
+	},
+	"parent": "forgecraft:block/chisel_model"
+}

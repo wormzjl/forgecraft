@@ -45,6 +45,9 @@ public class SledgeHammer extends BaseItem implements ToolMaterialMap {
                 }
             }
         }
+        if(isSelected){
+            entity.setSprinting(false);
+        }
     }
 
     @Override
