@@ -18,6 +18,7 @@ import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.ForgeHammer;
+import nmd.primal.forgecraft.items.SledgeHammer;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
@@ -273,128 +274,127 @@ public interface AnvilHandler extends ToolMaterialMap {
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
 
+        if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
-            if (pItem.getItem().equals(ModItems.slottedtongs)) {
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            ItemStack tongStack = inventory.getStackInSlot(0).copy();
+            SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
-                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
-                ItemStack tongStack = inventory.getStackInSlot(0).copy();
-                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
-
-                if (tongStack.isEmpty()) {
-                    if (!tile.getSlotStack(counter).isEmpty()) {
-                        ItemStack tempStack = tile.getSlotStack(counter).copy();
-                        inventory.insertItem(0,tempStack, false);
-                        tile.setSlotStack(counter, ItemStack.EMPTY);
-                        itemstackItem.markDirty(pItem);
-                        return true;
-                    }
-                }
-
-                if (!tongStack.isEmpty()) {
-                    if (tile.getSlotStack(counter).isEmpty()) {
-                        tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
-                        itemstackItem.markDirty(pItem);
-                        return true;
-                    }
-                }
-            }
-
-
-            if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
-
-                if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+            if (tongStack.isEmpty()) {
+                if (!tile.getSlotStack(counter).isEmpty()) {
+                    ItemStack tempStack = tile.getSlotStack(counter).copy();
+                    inventory.insertItem(0,tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-
-                if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-
-                if (tile.getSlotStack(counter).getItem() instanceof BaseMultiItem) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-            }
-            if(tile.getSlotStack(counter).getItem() instanceof ToolPart){
-                if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
             }
 
-            if (pItem.getItem().equals(Items.DIAMOND)) {
+            if (!tongStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
+                    tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
+            }
+        }
+
+
+        if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
+
+            if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
 
-            if (pItem.getItem().equals(Items.EMERALD)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+            if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
 
-            if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+            if (tile.getSlotStack(counter).getItem() instanceof BaseMultiItem) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
+        }
+        if(tile.getSlotStack(counter).getItem() instanceof ToolPart){
+            if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+        }
 
-            if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(Items.DIAMOND)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
 
-            if (pItem.getItem().equals(Items.REDSTONE)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(Items.EMERALD)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
 
-            if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
+
+        if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
+            }
+        }
+
+        if (pItem.getItem().equals(Items.REDSTONE)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
+            }
+        }
+
+        if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                pItem.shrink(1);
+                return true;
+            }
+        }
 
         return false;
     }
@@ -409,7 +409,6 @@ public interface AnvilHandler extends ToolMaterialMap {
                         double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        System.out.println(stack);
                         EntityItem itemDrop = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
                         itemDrop.setDefaultPickupDelay();
                         world.spawnEntity(itemDrop);

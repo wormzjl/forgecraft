@@ -8,13 +8,14 @@
 
 ## Current Feature
 - [x] SledgeHammer and Chisel item and blocks
-- [ ] Chisel Bounding Box changes
-- [ ] SledgeHammer Supid Damage Modifier
+- [x] ToolTip rawLongbow
+- [x] Update Recipes with oreDict for slackLime
+- [x] Chisel Bounding Box changes
+- [x] SledgeHammer Supid Damage Modifier
 - [x] SledgeHammer and Chisel crafting
 - [x] SledgeHammer and Chisel assets
-- [ ] SoftCrucible Color Issues
-- [ ] Play a sound when bloomery or forge finishes
-- [ ] Hardness and Resistance calculation for durability damage
+- [x] SoftCrucible Color Issues
+- [ ] Add heat version of sledgehammer
 - [ ] Craft Tweaker Support
 - [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron
 - [ ] Copper Gladius
@@ -33,6 +34,8 @@
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Play a sound when bloomery or forge finishes
+- [ ] Hardness and Resistance calculation for durability damage
 - [ ] Hardened Leather Helmet Inventory Model
 - [ ] Add Achievements
 - [ ] Bloomery Print out

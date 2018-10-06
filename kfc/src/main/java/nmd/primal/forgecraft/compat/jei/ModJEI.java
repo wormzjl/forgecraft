@@ -100,5 +100,7 @@ public class ModJEI implements IModPlugin
         //registry.addIngredientInfo(new OreIngredient("oreIron"), OreIngredient.class, "jei.info.forgecraft.oreiron");
         registry.addIngredientInfo(new ItemStack(ModBlocks.castingform, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.casting");
         registry.addIngredientInfo(new ItemStack(ModBlocks.stoneanvil, 1, OreDictionary.WILDCARD_VALUE), ItemStack.class, "jei.info.forgecraft.anvil");
+
+
     }
 }

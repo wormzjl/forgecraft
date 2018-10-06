@@ -228,6 +228,12 @@ public class ModCrafting{
         coppershovelhead = toolArray[22];
         copperhoehead = toolArray[23];
 
+        ItemStack ironsledgehammer = new ItemStack(ModItems.ironsledgehammer, 1);
+        ItemStack cleanironsledgehammer = new ItemStack(ModItems.cleanironsledgehammer, 1);
+        ItemStack steelsledgehammer = new ItemStack(ModItems.steelsledgehammer, 1);
+        ItemStack wootzsledgehammer = new ItemStack(ModItems.wootzsledgehammer, 1);
+
+
         for(ItemStack temp : hotToolArray) {
             //NBTTagCompound newTag = new NBTTagCompound();
             NBTTagCompound tags = new NBTTagCompound();

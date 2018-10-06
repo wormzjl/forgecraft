@@ -11,6 +11,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.SledgeHammer;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
@@ -34,7 +35,6 @@ public class AnvilStone extends AnvilBase {
         ItemStack stack12 = tile.getSlotStack(12).copy();
         if (!world.isRemote) {
             if (hand.equals(hand.MAIN_HAND)) {
-
                 if (!stack12.isEmpty()) {
                     if (tile != null) {
                         if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
@@ -113,15 +113,16 @@ public class AnvilStone extends AnvilBase {
                         }
                     }
                 }
-                if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
-                    ItemStack[] tempArray = new ItemStack[25];
-                    for (int i = 0; i < 25; i++) {
-                        tempArray[i] = tile.getSlotStack(i);
+                //if(! (pItem.getItem() instanceof SledgeHammer) ) {
+                    if ((pItem.getItem() instanceof Gallagher) || (pItem.getItem() == ModItems.forgehammer)) {
+                        ItemStack[] tempArray = new ItemStack[25];
+                        for (int i = 0; i < 25; i++) {
+                            tempArray[i] = tile.getSlotStack(i);
+                        }
+                        doAnvilRecipe(pItem, stack12, tempArray, world, tile, pos, player);
+                        return true;
                     }
-                    doAnvilRecipe(pItem, stack12, tempArray, world, tile, pos, player);
-                    return true;
-                }
-
+                //}
 
                 doAnvilInventoryManager(pItem, world, tile, pos, hitx, hity, hitz, state, player);
                 return true;

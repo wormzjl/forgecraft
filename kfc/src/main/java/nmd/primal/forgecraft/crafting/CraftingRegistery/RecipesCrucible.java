@@ -306,7 +306,7 @@ public final class RecipesCrucible {
 
     recipes.register (new CrucibleCrafting(
                 new OreIngredient("dustIron"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -533,7 +533,7 @@ public final class RecipesCrucible {
 
         recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -613,7 +613,7 @@ public final class RecipesCrucible {
 
         recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
             new OreIngredient("dustRedstone"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -625,7 +625,7 @@ public final class RecipesCrucible {
 
         recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
             new OreIngredient("flakeDiamond"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -637,7 +637,7 @@ public final class RecipesCrucible {
 
         recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
             new OreIngredient("flakeEmerald"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
@@ -649,7 +649,7 @@ public final class RecipesCrucible {
 
         recipes.register (new CrucibleCrafting(
                 new OreIngredient("oreCopper"),
-                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CARBONATE_SLACK, 1)),
+                new OreIngredient("slackLime"),
             new OreIngredient("gemLapis"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,

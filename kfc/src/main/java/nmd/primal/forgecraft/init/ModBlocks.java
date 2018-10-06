@@ -75,7 +75,7 @@ public class ModBlocks {
         pistonbellowsacacia = new PistonBellows(Material.WOOD, "pistonbellowsacacia");
 
         stoneanvil = new AnvilStone(Material.ANVIL, "stoneanvil", 5.0f, true);
-        ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
+        //ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
 
         yewstave = new YewStave(Material.WOOD, "yewstave", 3.0F);
 
@@ -106,7 +106,7 @@ public class ModBlocks {
         registerBlockWithItem(pistonbellowsacacia);
 
         registerBlockWithItem(stoneanvil);
-        registerBlockWithItem(ironanvil);
+        //registerBlockWithItem(ironanvil);
 
         registerBlockWithItem(yewstave);
     }
@@ -137,7 +137,7 @@ public class ModBlocks {
         registerRender(bloomery_adobe);
 
         registerRender(stoneanvil);
-        registerRender(ironanvil);
+        //registerRender(ironanvil);
 
         registerRender(yewstave);
 

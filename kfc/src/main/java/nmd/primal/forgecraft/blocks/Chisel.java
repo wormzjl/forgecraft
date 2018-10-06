@@ -50,11 +50,23 @@ public class Chisel extends CustomFacing {
             0.625D, 0.4375D, 0.4375D,
             1.0D, 0.5625D, 0.5625D);
     private AxisAlignedBB boundBoxWest = new AxisAlignedBB(
-            0.0D, 0.4375D, 0.0D,
-            1.0D, 0.5625D, 1.0D);
+            0.0D, 0.4375D, 0.4375D,
+            0.875D, 0.5625D, 0.5625D);
     private AxisAlignedBB boundBoxWestActive = new AxisAlignedBB(
-            0.0D, 0.4375D, 0.0D,
-            1.0D, 0.5625D, 1.0D);
+            0.0D, 0.4375D, 0.4375D,
+            0.375D, 0.5625D, 0.5625D);
+    private AxisAlignedBB boundBoxNorth = new AxisAlignedBB(
+            0.4375D, 0.4375D, 0.0D,
+            0.5625D, 0.5625D, 0.875D);
+    private AxisAlignedBB boundBoxNorthActive = new AxisAlignedBB(
+            0.4375D, 0.4375D, 0.0D,
+            0.5625D, 0.5625D, 0.375D);
+    private AxisAlignedBB boundBoxSouth = new AxisAlignedBB(
+            0.4375D, 0.4375D, 0.125D,
+            0.5625D, 0.5625D, 1.0D);
+    private AxisAlignedBB boundBoxSouthActive = new AxisAlignedBB(
+            0.4375D, 0.4375D, 0.625D,
+            0.5625D, 0.5625D, 1.0D);
 
     private Item.ToolMaterial realMaterial;
 
@@ -92,6 +104,18 @@ public class Chisel extends CustomFacing {
         }
         if(state.getValue(FACING)==EnumFacing.WEST && state.getValue(PrimalAPI.States.ACTIVE)){
             return boundBoxWestActive;
+        }
+        if(state.getValue(FACING)==EnumFacing.NORTH && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxNorth;
+        }
+        if(state.getValue(FACING)==EnumFacing.NORTH && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxNorthActive;
+        }
+        if(state.getValue(FACING)==EnumFacing.SOUTH && !state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxSouth;
+        }
+        if(state.getValue(FACING)==EnumFacing.SOUTH && state.getValue(PrimalAPI.States.ACTIVE)){
+            return boundBoxSouthActive;
         }
         return boundBoxDown;
     }
@@ -372,7 +396,10 @@ public class Chisel extends CustomFacing {
     private void doBreaking(World world, BlockPos movePos, IBlockState state, EntityPlayer player){
         if (!(state.getBlock().equals(Blocks.AIR))) {
             if(world.getBlockState(movePos).getBlock().getBlockHardness(state, world, movePos)>0) {
-                world.destroyBlock(movePos, player.canHarvestBlock(state));
+
+                ItemStack playerStack = player.inventory.getCurrentItem();
+                int toolHarvestLevel = playerStack.getItem().getHarvestLevel(playerStack, "pickaxe", player, state);
+                world.destroyBlock(movePos, compareHarvestLevel(toolHarvestLevel, state.getBlock().getHarvestLevel(state)));
                 world.sendBlockBreakProgress(player.getEntityId()+PrimalAPI.getRandom().nextInt(100), movePos, 0);
             }
         }
@@ -384,6 +411,12 @@ public class Chisel extends CustomFacing {
                 world.sendBlockBreakProgress(player.getEntityId() + PrimalAPI.getRandom().nextInt(100), movePos, PrimalAPI.getRandom().nextInt(3,10));
             }
         }
+    }
+
+    private boolean compareHarvestLevel(int inputLevel, int compareHarvest){
+        if(inputLevel >= compareHarvest){
+            return true;
+        } else return false;
     }
 
     private void makeParticles(World world, BlockPos pos, EnumParticleTypes particle, EnumFacing facing){
