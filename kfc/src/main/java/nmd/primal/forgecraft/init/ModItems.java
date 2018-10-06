@@ -223,7 +223,7 @@ public class ModItems {
         ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead, 5, -3.6f);
         ironshovel = new CustomShovel("ironshovel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
         ironhoe = new CustomHoe("ironhoe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironhoehead);
-        IRON_SLEDGE_HAMMER = new SledgeHammer("ironsledgehammer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        IRON_SLEDGE_HAMMER = new SledgeHammer("ironsledgehammer", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
 
         cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
         cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead, 6, -3.2f);

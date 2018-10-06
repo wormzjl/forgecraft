@@ -3,6 +3,8 @@
 ## Bugs
 - [ ] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
 - [ ] Hot Crucible block form missing texture
+- [ ] Soft Crucible drop from tongs
+- [ ] Pickaxe upgrades printout
 
 ## Current Feature
 - [ ] SledgeHammer and Chisel

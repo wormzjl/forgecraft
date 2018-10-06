@@ -54,7 +54,7 @@ public class ModBlocks {
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
 
-        chisel = new Chisel(Material.IRON, "chisel", 5.0f);
+        chisel = new Chisel(Material.IRON, "chisel");
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");

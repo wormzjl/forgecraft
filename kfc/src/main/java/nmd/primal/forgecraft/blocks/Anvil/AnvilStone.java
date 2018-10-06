@@ -57,6 +57,7 @@ public class AnvilStone extends AnvilBase {
                             tempwootzchunk.getTagCompound().setBoolean("hot", true);
 
                             if (stack12.getItem().equals(ModItems.ironingotball) && stack12.getTagCompound().getBoolean("hot")) {
+                                world.playEvent(1031, pos, 0);
                                 tile.setSlotStack(6, tempironchunk);
                                 tile.setSlotStack(7, tempironchunk);
                                 tile.setSlotStack(8, tempironchunk);
@@ -70,6 +71,7 @@ public class AnvilStone extends AnvilBase {
                                 return true;
                             }
                             if (stack12.getItem().equals(ModItems.ironcleaningotball) && stack12.getTagCompound().getBoolean("hot")) {
+                                world.playEvent(1031, pos, 0);
                                 tile.setSlotStack(6, tempironcleanchunk);
                                 tile.setSlotStack(7, tempironcleanchunk);
                                 tile.setSlotStack(8, tempironcleanchunk);
@@ -83,6 +85,7 @@ public class AnvilStone extends AnvilBase {
                                 return true;
                             }
                             if (stack12.getItem().equals(ModItems.steelingotball) && stack12.getTagCompound().getBoolean("hot")) {
+                                world.playEvent(1031, pos, 0);
                                 tile.setSlotStack(6, tempsteelchunk);
                                 tile.setSlotStack(7, tempsteelchunk);
                                 tile.setSlotStack(8, tempsteelchunk);
@@ -95,6 +98,7 @@ public class AnvilStone extends AnvilBase {
                                 return true;
                             }
                             if (stack12.getItem().equals(ModItems.wootzingotball) && stack12.getTagCompound().getBoolean("hot")) {
+                                world.playEvent(1031, pos, 0);
                                 tile.setSlotStack(6, tempwootzchunk);
                                 tile.setSlotStack(7, tempwootzchunk);
                                 tile.setSlotStack(8, tempwootzchunk);
