@@ -53,7 +53,12 @@ public class ModItems {
     public static Item wootzingotball;
     public static Item wootzchunk;
 
-    public static Item IRON_SLEDGE_HAMMER;
+    public static Item ironsledgehammer;
+    public static Item coppersledgehammer;
+    public static Item bronzesledgehammer;
+    public static Item cleanironsledgehammer;
+    public static Item steelsledgehammer;
+    public static Item wootzsledgehammer;
 
     public static Item copperpickaxehead;
     public static Item copperaxehead;
@@ -180,12 +185,6 @@ public class ModItems {
         coppershovelhead= new ToolPart("coppershovelhead", PrimalAPI.ToolMaterials.TOOL_COPPER, "shovel");
         copperhoehead = new ToolPart("copperhoehead", PrimalAPI.ToolMaterials.TOOL_COPPER, "hoe");
 
-        copperpickaxe = new CustomPickaxe("copperpickaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-        copperaxe = new CustomAxe("copperaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool, 4, -2.6F);
-        coppershovel = new CustomShovel("coppershovel", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-        copperhoe = new CustomHoe("copperhoe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
-
-
         bronzepickaxehead = new ToolPart("bronzepickaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "pickaxe");
         bronzeaxehead = new ToolPart("bronzeaxehead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "axe");
         bronzeshovelhead = new ToolPart("bronzeshovelhead", PrimalAPI.ToolMaterials.TOOL_BRONZE, "shovel");
@@ -214,31 +213,41 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        copperpickaxe = new CustomPickaxe("copperpickaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+        copperaxe = new CustomAxe("copperaxe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool, 4, -2.6F);
+        coppershovel = new CustomShovel("coppershovel", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+        copperhoe = new CustomHoe("copperhoe", PrimalAPI.ToolMaterials.TOOL_COPPER, brokencoppertool);
+        coppersledgehammer = new SledgeHammer("coppersledgehammer", PrimalAPI.ToolMaterials.TOOL_COPPER);
+
         bronzepickaxe = new CustomPickaxe("bronzepickaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzepickaxehead);
         bronzeaxe = new CustomAxe("bronzeaxe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeaxehead, 5, -2.4f);
         bronzeshovel = new CustomShovel("bronzeshovel", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzeshovelhead);
         bronzehoe = new CustomHoe("bronzehoe", PrimalAPI.ToolMaterials.TOOL_BRONZE, bronzehoehead);
+        bronzesledgehammer = new SledgeHammer("bronzesledgehammer", PrimalAPI.ToolMaterials.TOOL_BRONZE);
 
         ironpickaxe = new CustomPickaxe("ironpickaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, pickaxehead);
         ironaxe = new CustomAxe("ironaxe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironaxehead, 5, -3.6f);
         ironshovel = new CustomShovel("ironshovel", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironshovelhead);
         ironhoe = new CustomHoe("ironhoe", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, ironhoehead);
-        IRON_SLEDGE_HAMMER = new SledgeHammer("ironsledgehammer", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
+        ironsledgehammer = new SledgeHammer("ironsledgehammer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
         cleanironpickaxe = new CustomPickaxe("cleanironpickaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironpickaxehead);
         cleanironaxe = new CustomAxe("cleanironaxe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironaxehead, 6, -3.2f);
         cleanironshovel = new CustomShovel("cleanironshovel", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironshovelhead);
         cleanironhoe = new CustomHoe("cleanironhoe", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, cleanironhoehead);
+        cleanironsledgehammer = new SledgeHammer("cleanironsledgehammer", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
 
         steelpickaxe = new CustomPickaxe("steelpickaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelpickaxehead);
         steelaxe = new CustomAxe("steelaxe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelaxehead, 7, -2.8f);
         steelshovel = new CustomShovel("steelshovel", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelshovelhead);
         steelhoe = new CustomHoe("steelhoe", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, steelhoehead);
+        steelsledgehammer = new SledgeHammer("steelsledgehammer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
 
         wootzpickaxe = new CustomPickaxe("wootzpickaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzpickaxehead);
         wootzaxe = new CustomAxe("wootzaxe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzaxehead, 8, -2.4f);
         wootzshovel = new CustomShovel("wootzshovel", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzshovelhead);
         wootzhoe = new CustomHoe("wootzhoe", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, wootzhoehead);
+        wootzsledgehammer = new SledgeHammer("wootzsledgehammer", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
 
         /**********
          WEAPONS
@@ -328,12 +337,6 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(coppershovelhead);
         ForgeRegistries.ITEMS.register(copperhoehead);
 
-        ForgeRegistries.ITEMS.register(copperpickaxe);
-        ForgeRegistries.ITEMS.register(copperaxe);
-        ForgeRegistries.ITEMS.register(coppershovel);
-        ForgeRegistries.ITEMS.register(copperhoe);
-
-
         ForgeRegistries.ITEMS.register(bronzepickaxehead);
         ForgeRegistries.ITEMS.register(bronzeaxehead);
         ForgeRegistries.ITEMS.register(bronzeshovelhead);
@@ -343,7 +346,6 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(ironaxehead);
         ForgeRegistries.ITEMS.register(ironshovelhead);
         ForgeRegistries.ITEMS.register(ironhoehead);
-        ForgeRegistries.ITEMS.register(IRON_SLEDGE_HAMMER);
 
         ForgeRegistries.ITEMS.register(cleanironpickaxehead);
         ForgeRegistries.ITEMS.register(cleanironaxehead);
@@ -363,30 +365,41 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        ForgeRegistries.ITEMS.register(copperpickaxe);
+        ForgeRegistries.ITEMS.register(copperaxe);
+        ForgeRegistries.ITEMS.register(coppershovel);
+        ForgeRegistries.ITEMS.register(copperhoe);
+        ForgeRegistries.ITEMS.register(coppersledgehammer);
+
         ForgeRegistries.ITEMS.register(bronzepickaxe);
         ForgeRegistries.ITEMS.register(bronzeaxe);
         ForgeRegistries.ITEMS.register(bronzeshovel);
         ForgeRegistries.ITEMS.register(bronzehoe);
+        ForgeRegistries.ITEMS.register(bronzesledgehammer);
 
         ForgeRegistries.ITEMS.register(ironpickaxe);
         ForgeRegistries.ITEMS.register(ironaxe);
         ForgeRegistries.ITEMS.register(ironshovel);
         ForgeRegistries.ITEMS.register(ironhoe);
+        ForgeRegistries.ITEMS.register(ironsledgehammer);
 
         ForgeRegistries.ITEMS.register(cleanironpickaxe);
         ForgeRegistries.ITEMS.register(cleanironaxe);
         ForgeRegistries.ITEMS.register(cleanironshovel);
         ForgeRegistries.ITEMS.register(cleanironhoe);
+        ForgeRegistries.ITEMS.register(cleanironsledgehammer);
 
         ForgeRegistries.ITEMS.register(steelpickaxe);
         ForgeRegistries.ITEMS.register(steelaxe);
         ForgeRegistries.ITEMS.register(steelshovel);
         ForgeRegistries.ITEMS.register(steelhoe);
+        ForgeRegistries.ITEMS.register(steelsledgehammer);
 
         ForgeRegistries.ITEMS.register(wootzpickaxe);
         ForgeRegistries.ITEMS.register(wootzaxe);
         ForgeRegistries.ITEMS.register(wootzshovel);
         ForgeRegistries.ITEMS.register(wootzhoe);
+        ForgeRegistries.ITEMS.register(wootzsledgehammer);
 
         /**********
          WEAPONS
@@ -462,12 +475,6 @@ public class ModItems {
         registerRender(coppershovelhead);
         registerRender(copperhoehead);
 
-        registerRender(copperpickaxe);
-        registerRender(copperaxe);
-        registerRender(coppershovel);
-        registerRender(copperhoe);
-
-
         registerRender(bronzepickaxehead);
         registerRender(bronzeaxehead);
         registerRender(bronzeshovelhead);
@@ -496,31 +503,41 @@ public class ModItems {
         /**********
          TOOLS
          **********/
+        registerRender(copperpickaxe);
+        registerRender(copperaxe);
+        registerRender(coppershovel);
+        registerRender(copperhoe);
+        registerRender(coppersledgehammer);
+
         registerRender(bronzepickaxe);
         registerRender(bronzeaxe);
         registerRender(bronzeshovel);
         registerRender(bronzehoe);
+        registerRender(bronzesledgehammer);
 
         registerRender(ironpickaxe);
         registerRender(ironaxe);
         registerRender(ironshovel);
         registerRender(ironhoe);
-        registerRender(IRON_SLEDGE_HAMMER);
+        registerRender(ironsledgehammer);
 
         registerRender(cleanironpickaxe);
         registerRender(cleanironaxe);
         registerRender(cleanironshovel);
         registerRender(cleanironhoe);
+        registerRender(cleanironsledgehammer);
 
         registerRender(steelpickaxe);
         registerRender(steelaxe);
         registerRender(steelshovel);
         registerRender(steelhoe);
+        registerRender(steelsledgehammer);
 
         registerRender(wootzpickaxe);
         registerRender(wootzaxe);
         registerRender(wootzshovel);
         registerRender(wootzhoe);
+        registerRender(wootzsledgehammer);
 
         /**********
          WEAPONS

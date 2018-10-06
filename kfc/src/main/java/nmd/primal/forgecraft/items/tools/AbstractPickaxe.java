@@ -136,11 +136,10 @@ public abstract class AbstractPickaxe extends ItemPickaxe implements ToolNBT {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
-            if (getEmerald(item) == true) {
+            tooltip.add(ChatFormatting.GRAY + "Total Allowed: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) ));
+            if (getEmerald(item)) {
                 tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
             if (getDiamondLevel(item) > 0) {

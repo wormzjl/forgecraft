@@ -287,7 +287,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         }
         if(index == 1){
             if (stack.getItem() == ModItems.softcrucible) {
-                return true;
+                return false;
             }
             if(Block.getBlockFromItem(stack.getItem()) instanceof NBTCrucible ){
                 return true;

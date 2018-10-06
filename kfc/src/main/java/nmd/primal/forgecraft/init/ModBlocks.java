@@ -30,7 +30,12 @@ public class ModBlocks {
     public static Block blockbreaker;
     public static Block castingform;
 
-    public static Block chisel;
+    public static Block bronzechisel;
+    public static Block copperchisel;
+    public static Block ironchisel;
+    public static Block cleanironchisel;
+    public static Block steelchisel;
+    public static Block wootzchisel;
 
     public static Block pistonbellowsoak;
     public static Block pistonbellowsjungle;
@@ -54,7 +59,12 @@ public class ModBlocks {
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
 
-        chisel = new Chisel(Material.IRON, "chisel");
+        copperchisel = new Chisel(Material.IRON, "copperchisel");
+        ironchisel = new Chisel(Material.IRON, "ironchisel");
+        bronzechisel = new Chisel(Material.IRON, "bronzechisel");
+        cleanironchisel = new Chisel(Material.IRON, "cleanironchisel");
+        steelchisel = new Chisel(Material.IRON, "steelchisel");
+        wootzchisel = new Chisel(Material.IRON, "wootzchisel");
 
         pistonbellowsoak = new PistonBellows(Material.WOOD, "pistonbellowsoak");
         pistonbellowsjungle = new PistonBellows(Material.WOOD, "pistonbellowsjungle");
@@ -80,7 +90,12 @@ public class ModBlocks {
         registerBlockWithItem(blockbreaker);
         registerBlockWithItem(castingform);
 
-        registerBlockWithItem(chisel);
+        registerBlockWithItem(copperchisel);
+        registerBlockWithItem(bronzechisel);
+        registerBlockWithItem(ironchisel);
+        registerBlockWithItem(cleanironchisel);
+        registerBlockWithItem(steelchisel);
+        registerBlockWithItem(wootzchisel);
 
         registerBlockWithItem(pistonbellowsoak);
         registerBlockWithItem(pistonbellowsjungle);
@@ -102,7 +117,12 @@ public class ModBlocks {
         registerRender(forge_adobe);
         registerRender(castingform);
 
-        registerRender(chisel);
+        registerRender(copperchisel);
+        registerRender(bronzechisel);
+        registerRender(ironchisel);
+        registerRender(cleanironchisel);
+        registerRender(steelchisel);
+        registerRender(wootzchisel);
 
         registerRender(blockbreaker);
         registerRender(pistonbellowsoak);

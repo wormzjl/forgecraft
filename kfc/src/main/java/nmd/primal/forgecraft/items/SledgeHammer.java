@@ -1,5 +1,7 @@
 package nmd.primal.forgecraft.items;
 
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
@@ -10,8 +12,13 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.util.ToolMaterialMap;
+
+import javax.annotation.Nullable;
+import java.util.List;
 
 public class SledgeHammer extends BaseItem implements ToolMaterialMap {
 
@@ -45,7 +52,8 @@ public class SledgeHammer extends BaseItem implements ToolMaterialMap {
     {
         if(!world.isRemote) {
             if (!player.isSwingInProgress) {
-                player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, (100/materialModifiers.get(this.getMaterial()) / (player.getActivePotionEffect(MobEffects.STRENGTH).getAmplifier()+1)), 100));
+                int tempInt = 0;
+                player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, (100/(materialModifiers.get(this.getMaterial())+tempInt)), 100));
                 player.swingArm(hand);
                 return new ActionResult<ItemStack>(EnumActionResult.PASS, player.getHeldItem(hand));
             }
@@ -56,4 +64,12 @@ public class SledgeHammer extends BaseItem implements ToolMaterialMap {
     public ToolMaterial getMaterial() {
         return material;
     }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+    }
+
 }
