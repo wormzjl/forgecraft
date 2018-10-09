@@ -358,23 +358,11 @@ public final class RecipesCrucible {
             Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
             Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
             Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-            new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
+            new ItemStack(PrimalAPI.Items.ORE_CLUSTER_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
                 2100,
                         1800,
                         1500).setRecipeName("wootz1"));
-
-        recipes.register (new CrucibleCrafting(
-                new OreIngredient("magnetite"),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-            Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-            Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-            Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-            new ItemStack(PrimalAPI.Blocks.ORE_MAGNETITE, 1),
-                new ItemStack(ModItems.wootzingotball, 1),
-                2100,
-                        1800,
-                        1500).setRecipeName("wootz2"));
 
         recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokenwootztool, 1)),

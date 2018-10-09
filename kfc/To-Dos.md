@@ -1,10 +1,8 @@
 # To-Dos
 
 ## Bugs
-- [ ] Magnetitie drop from failed crucible
 
 ## Current Feature
-- [ ] New Line Time Left
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker

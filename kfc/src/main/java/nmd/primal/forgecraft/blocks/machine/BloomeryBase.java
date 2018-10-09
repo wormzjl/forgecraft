@@ -34,10 +34,12 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
+import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
+import static org.jline.utils.InfoCmp.Capability.newline;
 
 /**
  * Created by mminaie on 6/11/17.
@@ -105,13 +107,12 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
             if(pItem.isEmpty()) {
 
                 if(!player.isSneaking()){
-                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true){
+                    if(world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE)){
 
                         Integer bloomeryHeat = tile.getHeat();
-                        String display =  "\n" + "Current Temp: " + bloomeryHeat.toString() +
-                                " Fuel Remaining: " + tileItem.getCount();
+                        String display =  "Fuel Remaining: " + tileItem.getCount() + "\n" + "Current Temp: " + bloomeryHeat.toString();
                         ITextComponent itextcomponent = new TextComponentString(display);
-                        player.sendStatusMessage(itextcomponent, false);
+
                         NBTTagCompound tag = tile.getSlotStack(1).getSubCompound("BlockEntityTag");
 
                         if(tag != null) {
@@ -128,21 +129,36 @@ public class BloomeryBase extends CustomContainerFacing implements ITileEntityPr
                                         Integer idealTime = recipe.getCookTime();
                                         Integer remainingTime = idealTime - cookCounter;
 
-                                        String display1 =
-                                                "Cooking: " + tileItem1.getDisplayName() +
-                                                        " Target Temp: " + minTemp.toString() +
-                                                        " Time Left: " + remainingTime.toString();
-                                        String display2 = tileItem1.getDisplayName() + "finished.";
-                                        ITextComponent itextcomponent1 = null;
-                                        if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
-                                            itextcomponent1 = new TextComponentString(display2);
-                                        } else itextcomponent1 = new TextComponentString(display1);
 
-                                        player.sendStatusMessage(itextcomponent1, false);
+                                        String display1 = "Cooking: " + recipe.getDropsCooked().getItem().getItemStackDisplayName(recipe.getDropsCooked());
+                                        String display2 = "Target Temp: " + minTemp.toString();
+                                        String display3 = "Time Left: " + remainingTime.toString() + "\n";
+                                        String display4 = "Finished";
+                                        //String display5 = "Current Temp: " + tile.getHeat();
+
+
+                                        ITextComponent cookingText = new TextComponentString(display1);
+                                        ITextComponent targetTempText = new TextComponentString(display2);
+                                        ITextComponent timeLeftText = new TextComponentString(display3);
+                                        ITextComponent finishedText = new TextComponentString(display4);
+                                        //ITextComponent itextcomponent5 = new TextComponentString(display5);
+                                        if (tileItem1.getSubCompound("BlockEntityTag").getBoolean("status")) {
+                                            player.sendMessage(finishedText);
+                                        } else {
+                                            player.sendMessage(cookingText);
+                                            player.sendMessage(itextcomponent);
+                                            player.sendMessage(targetTempText);
+                                            player.sendMessage(timeLeftText);
+                                        }
                                     }
                                 }
                             }
                             return true;
+                        }
+                        else {
+                            String noRecipe =  "Fuel Remaining: " + tileItem.getCount() + "\n" + "Current Temp: " + bloomeryHeat.toString() + "\n";
+                            ITextComponent noRecipeText = new TextComponentString(noRecipe);
+                            player.sendMessage(noRecipeText);
                         }
                     }
                 }
