@@ -9,9 +9,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.compat.ModDictionary;
-import nmd.primal.core.common.items.tools.Gallagher;
-import nmd.primal.core.common.recipes.irecipe.ToolCraftingRecipe;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
@@ -150,6 +147,7 @@ public class ModItems {
     public static Item rawlongbow;
     public static Item unstrunglongbow;
     public static Item longbow;
+    public static Item wootzworkblade;
 
     public static Item leatherhelmet;
     //public static Item testleggings;
@@ -173,6 +171,8 @@ public class ModItems {
         unstrunglongbow = new BaseItem("unstrunglongbow");
         longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
+        wootzworkblade = new Workblade("wootzworkblade", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, -1.0F).setFireProof(true);
+
 
         /**********
          TOOL PARTS
@@ -309,7 +309,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(castingmud);
         ForgeRegistries.ITEMS.register(bellowshandle);
         ForgeRegistries.ITEMS.register(softcrucible);
-        //ForgeRegistries.ITEMS.register(stonetongs);
+        ForgeRegistries.ITEMS.register(wootzworkblade);
         ForgeRegistries.ITEMS.register(forgehammer);
 
         ForgeRegistries.ITEMS.register(bronzeingotball);
@@ -448,7 +448,7 @@ public class ModItems {
         registerRender(bellowshandle);
         registerRender(softcrucible);
         registerRender(forgehammer);
-
+        registerRender(wootzworkblade);
 
         registerRender(bronzeingotball);
         registerRender(bronzechunk);

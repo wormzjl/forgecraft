@@ -15,7 +15,6 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -23,12 +22,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.core.common.recipes.irecipe.ToolCraftingRecipe;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
-import nmd.primal.forgecraft.blocks.Chisel;
 import nmd.primal.forgecraft.util.ToolMaterialMap;
 
 import javax.annotation.Nullable;
@@ -92,13 +89,6 @@ public class SledgeHammer extends Gallagher implements ToolMaterialMap {
         return material;
     }
 
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
-    {
-        tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
-    }
-
     @SideOnly(Side.CLIENT)
     @Override
     public boolean hasEffect(ItemStack stack)
@@ -129,6 +119,14 @@ public class SledgeHammer extends Gallagher implements ToolMaterialMap {
         }
 
         return multimap;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(ChatFormatting.GRAY + "Place a chisel and right click it");
+        tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+
     }
 
 }

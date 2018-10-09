@@ -142,6 +142,8 @@ item.ironsledgehammer.name=Wrough Iron SledgeHammer
 item.bronzesledgehammer.name=Bronze SledgeHammer
 item.coppersledgehammer.name=Copper SledgeHammer
 
+item.wootzworkblade.name=Damascus Work Blade
+
 # -- configuration -- #
 forgecraft.config.title=ForgeCraft Config
 

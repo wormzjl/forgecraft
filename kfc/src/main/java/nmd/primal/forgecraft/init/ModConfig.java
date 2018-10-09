@@ -24,8 +24,11 @@ public final class ModConfig
      */
     public static class Compatibility
     {
-        //@Config.Comment({"Ore Dictionary Wootz steel for compatibility with common mod steel"})
-        //public static boolean COMPAT_DICTIONARY_WOOTZ_STEEL;
+        @Config.Comment({"Ore Dictionary Wrought Iron to common Iron"})
+        public static boolean COMPAT_DICTIONARY_WROUGHT_IRON = true;
+
+        //@Config.Comment({"Ore Dictionary Damascus Steel to common Steel"})
+        //public static boolean COMPAT_DICTIONARY_DAMASCUS_STEEL = true;
     }
 
     /**

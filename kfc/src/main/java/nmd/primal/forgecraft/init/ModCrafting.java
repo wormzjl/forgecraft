@@ -1,20 +1,15 @@
 package nmd.primal.forgecraft.init;
 
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
-import net.minecraftforge.oredict.OreIngredient;
-import net.minecraftforge.oredict.ShapedOreRecipe;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
-import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.crafting.ForgeCrafting;
 
 import java.util.Random;
@@ -751,7 +746,7 @@ public class ModCrafting{
          ******************************************************************************/
 
         //TODO allow oreDict checks against my Item Ingots
-//Makes a Hot Iron Ingot
+        /**Makes a Hot Iron Ingot**/
         ForgeCrafting.addRecipe(
                 ModItems.ironingotball,
                 //800, 200
@@ -762,7 +757,7 @@ public class ModCrafting{
                 1.0f,
                 1.0f
         );
-//Makes a Hot Clean Iron Ingot
+        /**Makes a Hot Clean Iron Ingot**/
         ForgeCrafting.addRecipe(
                 ModItems.ironcleaningotball,
                 hotCleanIronIngot,

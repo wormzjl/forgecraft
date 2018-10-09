@@ -11,7 +11,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.SledgeHammer;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
 /**
@@ -55,7 +54,7 @@ public class AnvilStone extends AnvilBase {
                             ItemStack tempwootzchunk = new ItemStack(ModItems.wootzchunk, 1);
                             tempwootzchunk.setTagCompound(tempTag);
                             tempwootzchunk.getTagCompound().setBoolean("hot", true);
-
+                            world.playEvent(1031, pos, 0);
                             if (stack12.getItem().equals(ModItems.ironingotball) && stack12.getTagCompound().getBoolean("hot")) {
                                 world.playEvent(1031, pos, 0);
                                 tile.setSlotStack(6, tempironchunk);

@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import nmd.primal.forgecraft.commands.CommandShowWiki;
-import nmd.primal.forgecraft.compat.ModDictionary;
 import nmd.primal.forgecraft.gui.GuiHandler;
 import nmd.primal.forgecraft.init.*;
 import nmd.primal.forgecraft.proxy.CommonProxy;

@@ -11,7 +11,6 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilIron;
 import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.Chisel;
 import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;

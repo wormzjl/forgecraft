@@ -5,6 +5,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
@@ -18,7 +20,7 @@ import nmd.primal.forgecraft.util.ToolNBT;
 public class CommonEvents implements ToolNBT {
 
 
-    @SubscribeEvent(priority= EventPriority.LOWEST, receiveCanceled=true)
+    @SubscribeEvent(priority= EventPriority.HIGHEST, receiveCanceled=true)
     public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
 
         if(!event.player.getEntityWorld().isRemote) {
@@ -43,15 +45,19 @@ public class CommonEvents implements ToolNBT {
                         ItemStack a = event.craftMatrix.getStackInSlot(i); // Gets the item
                         if (a.getItem() instanceof CustomAxe) {
                             doQuickNBT(event, i, a);
+                            PlayerHelper.spawnItemOnPlayer(event.player.world, event.player, new ItemStack(PrimalAPI.Items.LACQUER_STICK, 1));
                         }
                         if (a.getItem() instanceof CustomPickaxe) {
                             doQuickNBT(event, i, a);
+                            PlayerHelper.spawnItemOnPlayer(event.player.world, event.player, new ItemStack(PrimalAPI.Items.LACQUER_STICK, 1));
                         }
                         if (a.getItem() instanceof CustomShovel) {
                             doQuickNBT(event, i, a);
+                            PlayerHelper.spawnItemOnPlayer(event.player.world, event.player, new ItemStack(PrimalAPI.Items.LACQUER_STICK, 1));
                         }
                         if (a.getItem() instanceof CustomHoe) {
                             doQuickNBT(event, i, a);
+                            PlayerHelper.spawnItemOnPlayer(event.player.world, event.player, new ItemStack(PrimalAPI.Items.LACQUER_STICK, 1));
                         }
                     }
                 }

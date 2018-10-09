@@ -19,8 +19,6 @@ import nmd.primal.forgecraft.blocks.machine.BloomeryBase;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 
-import javax.annotation.Nullable;
-
 /**
  * Created by mminaie on 1/22/17.
  */

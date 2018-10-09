@@ -1,26 +1,13 @@
 # To-Dos
 
 ## Bugs
-- [x] Hot Crucible block form missing texture
-- [x] Soft Crucible drop from tongs
-- [x] Pickaxe upgrades printout
-- [x] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
+- [ ] Magnetitie drop from failed crucible
 
 ## Current Feature
-- [x] SledgeHammer and Chisel item and blocks
-- [x] ToolTip rawLongbow
-- [x] Update Recipes with oreDict for slackLime
-- [x] Chisel Bounding Box changes
-- [x] SledgeHammer Supid Damage Modifier
-- [x] SledgeHammer and Chisel crafting
-- [x] SledgeHammer and Chisel assets
-- [x] SoftCrucible Color Issues
-- [ ] Add heat version of sledgehammer
+- [ ] New Line Time Left
+- [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
-- [ ] Config to map only wrought iron to vanilla iron or wrought iron to another iron
-- [ ] Copper Gladius
-- [ ] oreDict support for Forge Recipes
-- [ ] drop a tool handle when crafting
+- [ ] Recipe Handler for Block Breaker
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -57,6 +44,26 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Check on disable for soft crucible in bloomery 
+- [x] Correct Tooltip for RawLongbow
+- [x] Add tooltip to Chisel and SledgeHammer
+- [x] Damascus workblade
+- [x] Config to map only wrought iron to vanilla iron or wrought iron to another iron
+- [x] Config to map damascus steel to generic mod steel
+- [x] If blockbreaker charge is 0 shift right click will remove the gallagher
+- [x] drop a tool handle when crafting
+- [x] Hot Crucible block form missing texture
+- [x] Soft Crucible drop from tongs
+- [x] Pickaxe upgrades printout
+- [x] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
+- [x] SledgeHammer and Chisel item and blocks
+- [x] ToolTip rawLongbow
+- [x] Update Recipes with oreDict for slackLime
+- [x] Chisel Bounding Box changes
+- [x] SledgeHammer Supid Damage Modifier
+- [x] SledgeHammer and Chisel crafting
+- [x] SledgeHammer and Chisel assets
+- [x] SoftCrucible Color Issues
 - [x] Apply Forge turn off logic to Bloomery
 - [x] Soft Crucible Hibachi Recipe
 - [x] Fix Plate Crafting

@@ -21,7 +21,7 @@ public class RawLongbow extends BaseItem {
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
 
-        tooltip.add(ChatFormatting.GRAY + "Stack two Yew Staves in-world and Sneak right-click the bottom Yew Stave with a Work Blade");
+        tooltip.add(ChatFormatting.GRAY + "Stack two Yew Staves in-world and right-click the bottom Yew Stave with a Work Blade");
 
     }
 

@@ -57,7 +57,8 @@ public class ForgeCrafting {
         public static ForgeCrafting getRecipe(Item item)
         {
             for(ForgeCrafting recipe : forgeRecipes) {
-                if (item.equals(recipe.input))
+
+                if (item.equals(recipe.getInput()))
                     return recipe;
             }
             return null;

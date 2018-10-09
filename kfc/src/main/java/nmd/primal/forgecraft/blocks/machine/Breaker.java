@@ -19,6 +19,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
@@ -49,40 +50,44 @@ public class Breaker extends CustomContainerFacing implements BreakerHandler {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitx, float hity, float hitz) {
 
         if(!world.isRemote){
-            TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
-            ItemStack pItem = player.inventory.getCurrentItem();
+            if (hand.equals(player.getActiveHand())) {
+                TileBreaker tile = (TileBreaker) world.getTileEntity(pos);
+                ItemStack pItem = player.inventory.getCurrentItem();
 
-            if(state.getValue(PrimalAPI.States.ACTIVE) == true && player.isSneaking() && pItem.isEmpty()){
+                if (state.getValue(PrimalAPI.States.ACTIVE) && player.isSneaking() && pItem.isEmpty()) {
 
-                doBreaking(world, state, pos, tile);
-                world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, false));
+                    doBreaking(world, state, pos, tile);
+                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, false));
 
-                tile.setCharge(0);
-                return true;
-            }
-            if(!player.isSneaking() && pItem.isEmpty()) {
-                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                    tile.setCharge(0);
                     return true;
                 }
-                if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    if (tile.getCharge() < 181) {
-                        tile.setCharge(tile.getCharge() + 2.0f);
-                        tile.updateBlock();
-                        //System.out.println(tile.charge);
+                if (!state.getValue(PrimalAPI.States.ACTIVE) && player.isSneaking() && pItem.isEmpty() && tile.getCharge() == 0) {
+                    PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(0));
+                    tile.setSlotStack(0, ItemStack.EMPTY);
+                    return true;
+                }
+                if (!player.isSneaking() && pItem.isEmpty()) {
+                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
                         return true;
                     }
+                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                        if (tile.getCharge() < 181) {
+                            tile.setCharge(tile.getCharge() + 2.0f);
+                            tile.updateBlock();
+                            //System.out.println(tile.charge);
+                            return true;
+                        }
+                    }
+                }
+
+                if (pItem.getItem() instanceof Gallagher) {
+                    tile.setSlotStack(0, player.inventory.getCurrentItem());
+                    player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                    return true;
                 }
             }
-
-            if(pItem.getItem() instanceof Gallagher){
-                tile.setSlotStack(0, player.inventory.getCurrentItem());
-                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                return true;
-            }
-
-
-
         }
 
         return false;
