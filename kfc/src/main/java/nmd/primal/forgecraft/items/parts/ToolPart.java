@@ -169,7 +169,7 @@ public class ToolPart extends Item implements ToolNBT{
     {
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get( this.getMaterial()) - getModifiers(item)));
+            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
             if  (getEmerald(item)) {
                 tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }

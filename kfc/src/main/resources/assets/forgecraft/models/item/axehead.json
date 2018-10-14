@@ -1,11 +1,11 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "forgecraft:items/iron_ingot",
+		"particle": "items/iron_ingot",
 		"texture": "blocks/planks_oak",
-		"texture1": "forgecraft:items/iron_ingot"
+		"texture1": "items/iron_ingot"
 	},
-	"elements": [
+	"elements": [ 	 
 		{
 			"__comment": "Cube6",
 			"from": [ 8, 0, 6.5 ],
@@ -80,6 +80,9 @@
 			"rotation":  [ 90, 0, 0 ],
 			"translation":  [ -0.25, 0, 8 ],
 			"scale":  [ 2, 2, 2 ]
+		},
+		"head": {
+			"translation":  [ 0, 14.4, -5.2 ]
 		},
 		"ground": {
 			"translation":  [ 0, 4, 0 ]

@@ -7,14 +7,18 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.MobEffects;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -22,10 +26,11 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.SledgeHammer;
+import nmd.primal.forgecraft.util.ToolMaterialMap;
 
 import javax.annotation.Nullable;
 
-public class Chisel extends CustomFacing {
+public class Chisel extends CustomFacing implements ToolMaterialMap {
 
     private AxisAlignedBB boundBoxDown = new AxisAlignedBB(
             0.4375D, 0.0D, 0.4375D,
@@ -139,191 +144,197 @@ public class Chisel extends CustomFacing {
 
         if(!world.isRemote){
             ItemStack playerStack = player.inventory.getCurrentItem();
-            if (hand.equals(hand.MAIN_HAND)) {
+            ItemStack offStack = player.inventory.offHandInventory.get(0);
+            int toolHarvestLevel = playerStack.getItem().getHarvestLevel(playerStack, "pickaxe", player, state);
+            if (hand.equals(hand.MAIN_HAND) && offStack == ItemStack.EMPTY) {
                 if(!player.isSwingInProgress) {
-                    if (playerStack.getItem() instanceof SledgeHammer) {
-                        world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.CHISEL_HIT, SoundCategory.BLOCKS, 0.8F, 0.3F / (PrimalAPI.getRandom().nextFloat() * 0.4F + 0.8F));
-                        playerStack.damageItem(1, player);
+                    if(player.getActivePotionEffect(MobEffects.MINING_FATIGUE ) == null){
+                        if (playerStack.getItem() instanceof SledgeHammer) {
+                            SledgeHammer playerItem = (SledgeHammer) playerStack.getItem();
+                            world.playSound(null, player.posX, player.posY, player.posZ, ModSounds.CHISEL_HIT, SoundCategory.BLOCKS, (float) (PrimalAPI.getRandom().nextDouble(0.5D, 0.8D)), (float) (PrimalAPI.getRandom().nextDouble(0.3D, 1.0D)));
+                            playerStack.damageItem(1, player);
+                            player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, (100 - ((materialModifiers.get(playerItem.getMaterial()) * 8) + (materialModifiers.get(this.getRealMaterial()) * 8))), 100));
+                            if (PrimalAPI.getRandom().nextInt(1, 10) != 1) {
 
-                        if(PrimalAPI.getRandom().nextInt(1,10)!=1) {
-                            if (state.getValue(FACING) == EnumFacing.UP) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (1), (i - 1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
-                                            }
-                                        }
-                                    }
-                                    world.setBlockState(pos.up(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
-                                }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (1), (i - 1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.UP) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (1), (i - 1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (1), (i - 1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
+                                            }
+                                        }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
+                                    }
                                 }
-                            }
 
-                            if (state.getValue(FACING) == EnumFacing.DOWN) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (-1), (i - 1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
-                                            }
-                                        }
-                                    }
-                                    world.setBlockState(pos.down(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
-                                }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (-1), (i - 1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.DOWN) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (-1), (i - 1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
-                                }
-                            }
-                            if (state.getValue(FACING) == EnumFacing.SOUTH) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (i - 1), (1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (-1), (i - 1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
                                     }
-                                    world.setBlockState(pos.south(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
                                 }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (i - 1), (1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.SOUTH) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (i - 1), (1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
-                                }
-                            }
-                            if (state.getValue(FACING) == EnumFacing.NORTH) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (i - 1), (-1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (i - 1), (1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
                                     }
-                                    world.setBlockState(pos.north(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
                                 }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((a - 1), (i - 1), (-1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.NORTH) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (i - 1), (-1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
-                                }
-                            }
-                            if (state.getValue(FACING) == EnumFacing.EAST) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((1), (i - 1), (a - 1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((a - 1), (i - 1), (-1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
                                     }
-                                    world.setBlockState(pos.east(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
                                 }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((1), (i - 1), (a - 1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.EAST) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((1), (i - 1), (a - 1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
-                                }
-                            }
-                            if (state.getValue(FACING) == EnumFacing.WEST) {
-                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((-1), (i - 1), (a - 1));
-                                            IBlockState breakState = world.getBlockState(movePos);
-                                            if (state.getValue(PrimalAPI.States.ACTIVE)) {
-                                                doBreaking(world, movePos, breakState, player);
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((1), (i - 1), (a - 1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
                                     }
-                                    world.setBlockState(pos.west(), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
-                                    world.setBlockToAir(pos);
-                                    return true;
                                 }
-                                if (!state.getValue(PrimalAPI.States.ACTIVE)) {
-                                    for (int i = 0; i < 3; i++) {
-                                        for (int a = 0; a < 3; a++) {
-                                            BlockPos movePos = pos.add((-1), (i - 1), (a - 1));
-                                            if (! (world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                if (state.getValue(FACING) == EnumFacing.WEST) {
+                                    if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((-1), (i - 1), (a - 1));
                                                 IBlockState breakState = world.getBlockState(movePos);
-                                                doDamaging(world, movePos, breakState, player);
+                                                if (state.getValue(PrimalAPI.States.ACTIVE)) {
+                                                    doBreaking(world, movePos, breakState, player);
+                                                }
                                             }
                                         }
+                                        doMoving(world, pos, toolHarvestLevel, state, state.getValue(FACING));
+                                        return true;
                                     }
-                                    world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
-                                    return true;
+                                    if (!state.getValue(PrimalAPI.States.ACTIVE)) {
+                                        for (int i = 0; i < 3; i++) {
+                                            for (int a = 0; a < 3; a++) {
+                                                BlockPos movePos = pos.add((-1), (i - 1), (a - 1));
+                                                if (!(world.getBlockState(movePos).getBlock() instanceof Chisel)) {
+                                                    IBlockState breakState = world.getBlockState(movePos);
+                                                    doDamaging(world, movePos, breakState, player);
+                                                }
+                                            }
+                                        }
+                                        world.setBlockState(pos, state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, true), 2);
+                                        return true;
+                                    }
                                 }
                             }
                         }
                     }
                 }
+            }
+            if(offStack != ItemStack.EMPTY) {
+                String printout = "Is your offhand empty?";
+                ITextComponent text = new TextComponentString(printout);
+                player.sendStatusMessage(text, true);
+                return false;
             }
         }
         return false;
@@ -389,6 +400,20 @@ public class Chisel extends CustomFacing {
         return true;
     }
 
+    private void doMoving(World world, BlockPos pos, int toolHarvestLevel, IBlockState state, EnumFacing facing){
+        if( (world.getBlockState(pos.offset(facing, 2)).getBlock() != Blocks.AIR) ) {
+            if ((compareHarvestLevel(toolHarvestLevel, world.getBlockState(pos.offset(facing, 1)).getBlock().getHarvestLevel(world.getBlockState(pos.offset(facing, 1))))) ||
+                    (world.getBlockState(pos.offset(facing, 1)).getBlock() == Blocks.AIR)) {
+                //if(state.getBlock().getBlockHardness(state, world, pos.offset(facing, 1)) > 0) {
+                    world.setBlockState(pos.offset(facing, 1), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+                    world.setBlockToAir(pos);
+                //}
+            }
+        } else {
+            world.destroyBlock(pos, true);
+        }
+    }
+
     private void doBreaking(World world, BlockPos movePos, IBlockState state, EntityPlayer player){
         if (!(state.getBlock().equals(Blocks.AIR))) {
             if(world.getBlockState(movePos).getBlock().getBlockHardness(state, world, movePos)>0) {
@@ -403,14 +428,14 @@ public class Chisel extends CustomFacing {
 
     private void doDamaging(World world, BlockPos movePos, IBlockState state, EntityPlayer player){
         if (!(state.getBlock().equals(Blocks.AIR))) {
-            if(world.getBlockState(movePos).getBlock().getBlockHardness(state, world, movePos)>0) {
+            if(world.getBlockState(movePos).getBlock().blockHardness>0) {
                 world.sendBlockBreakProgress(player.getEntityId() + PrimalAPI.getRandom().nextInt(100), movePos, PrimalAPI.getRandom().nextInt(3,10));
             }
         }
     }
 
     private boolean compareHarvestLevel(int inputLevel, int compareHarvest){
-        if(inputLevel >= compareHarvest){
+        if(inputLevel >= compareHarvest && compareHarvest > 0){
             return true;
         } else return false;
     }

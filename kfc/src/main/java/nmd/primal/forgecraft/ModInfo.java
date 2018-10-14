@@ -7,6 +7,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
 
@@ -21,7 +22,7 @@ public class ModInfo {
     //public static final String MOD_PREFIX = MOD_ID + ":";
     public static final String MOD_CHANNEL = MOD_ID;
 
-    public static final String MOD_VERSION = "1.6.23";
+    public static final String MOD_VERSION = "1.6.25";
     public static final String MC_VERSIONS = "[1.12.0, 1.13.0)";
     public static final String DEPENDENCIES = "required-after:forge@[14.21.1.2400,);" + "required-after:primal@[0.6.69,);";
 
@@ -55,7 +56,7 @@ public class ModInfo {
     {
         // In-World Recipes
         public static final IForgeRegistry<CrucibleCrafting> CRUCIBLE_CRAFTING = GameRegistry.findRegistry(CrucibleCrafting.class);
-
+        public static final IForgeRegistry<WorkbenchCrafting> WORKBENCH_CRAFTING = GameRegistry.findRegistry(WorkbenchCrafting.class);
     }
 
 }

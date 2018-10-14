@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.Chisel;
-import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
 import nmd.primal.forgecraft.blocks.YewStave;
+import nmd.primal.forgecraft.blocks.anvil.AnvilStone;
+import nmd.primal.forgecraft.blocks.NBTCrucible;
 import nmd.primal.forgecraft.blocks.machine.*;
 
 /**
@@ -47,6 +47,8 @@ public class ModBlocks {
     public static Block stoneanvil;
     public static Block ironanvil;
 
+    public static Block workbench;
+
     public static Block yewstave;
 
     public static void init() {
@@ -75,6 +77,8 @@ public class ModBlocks {
 
         stoneanvil = new AnvilStone(Material.ANVIL, "stoneanvil", 5.0f, true);
         //ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
+
+        workbench = new Workbench(Material.WOOD, "toolbench");
 
         yewstave = new YewStave(Material.WOOD, "yewstave", 3.0F);
 
@@ -107,6 +111,8 @@ public class ModBlocks {
         registerBlockWithItem(stoneanvil);
         //registerBlockWithItem(ironanvil);
 
+        registerBlockWithItem(workbench);
+
         registerBlockWithItem(yewstave);
     }
 
@@ -137,6 +143,7 @@ public class ModBlocks {
 
         registerRender(stoneanvil);
         //registerRender(ironanvil);
+        registerRender(workbench);
 
         registerRender(yewstave);
 

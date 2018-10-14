@@ -34,12 +34,10 @@ import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.items.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
-import java.awt.*;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
-import static org.jline.utils.InfoCmp.Capability.newline;
 
 /**
  * Created by mminaie on 6/11/17.

@@ -1,8 +1,17 @@
 # To-Dos
 
 ## Bugs
+- [ ] Texture mismatch for 4diamond 1 redstone
+- [ ] ForgeHammer extend Gallagher
+- [x] Check dict name for cluster
+- [x] Check block break code for NBTCrucible
+- [x] Cooldown for sledgehammer not working
+- [x] tune volume down on sledgehammer
+- [x] when placing crucibles on the side of a block it replaces the block above
+- [ ] Placement bug for crucible from tongs
 
 ## Current Feature
+- [x] WorkBench
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
@@ -35,6 +44,8 @@
 - [ ] Add forgehammer to oreDict
 
 ### Tid-Bits
+NonNullList<ItemStack> tempDrops = NonNullList.<ItemStack>create();
+ItemStack iron_gear = RecipeHelper.getFirstDictionaryMatch("gearIron", 1);
 ```
 sed -i -- 's/iron/steel/g' *
 rm *.json--

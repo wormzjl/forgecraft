@@ -32,8 +32,8 @@ import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.tiles.AbstractTileTank;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
-import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
+import nmd.primal.forgecraft.blocks.anvil.AnvilBase;
+import nmd.primal.forgecraft.blocks.NBTCrucible;
 import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
@@ -308,9 +308,11 @@ public class SlottedTongs extends Item implements IPickup, AnvilHandler{
                     if (!(block instanceof Forge)) {
                         if (slotStack.isEmpty()) {
                             if (block instanceof NBTCrucible) {
+                                TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
                                 ItemStack tempStack = takeBlock(world, pos, state, face, player, block).copy();
                                 inventory.insertItem(0, tempStack, false);
                                 world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                                world.markTileEntityForRemoval(tile);
                                 //itemstack.getItem().updateItemStackNBT(itemstack.getTagCompound());
                                 itemstackItem.markDirty(itemstack);
                                 return EnumActionResult.SUCCESS;

@@ -1,6 +1,5 @@
 package nmd.primal.forgecraft.crafting.CraftingRegistery;
 
-import net.minecraft.block.BlockPlanks;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -353,20 +352,20 @@ public final class RecipesCrucible {
                         1000).setRecipeName("steel2"));
 
         recipes.register (new CrucibleCrafting(
-                new OreIngredient("dustMagnetite"),
-                Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1,BlockPlanks.EnumType.JUNGLE.getMetadata())),
-            Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-            Ingredient.fromStacks(new ItemStack(Blocks.LEAVES, 1, BlockPlanks.EnumType.JUNGLE.getMetadata())),
-            Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
-            new ItemStack(PrimalAPI.Items.ORE_CLUSTER_MAGNETITE, 1),
+                new OreIngredient("oreClusterMagnetite"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                new OreIngredient("oreClusterMagnetite"),
+                Ingredient.fromStacks(new ItemStack(PrimalAPI.Items.CHARCOAL_PURE, 1)),
+                new OreIngredient("specialCarbon"),
+                new ItemStack(PrimalAPI.Items.ORE_CLUSTER_MAGNETITE, 1),
                 new ItemStack(ModItems.wootzingotball, 1),
                 2100,
-                        1800,
-                        1500).setRecipeName("wootz1"));
+                1800,
+                1500).setRecipeName("wootz2"));
 
         recipes.register (new CrucibleCrafting(
                 Ingredient.fromStacks(new ItemStack(ModItems.brokenwootztool, 1)),
-            new OreIngredient("nuggetWootz"),
+                new OreIngredient("nuggetWootz"),
     Ingredient.EMPTY,
     Ingredient.EMPTY,
     Ingredient.EMPTY,

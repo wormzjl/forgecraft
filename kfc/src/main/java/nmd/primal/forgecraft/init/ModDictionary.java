@@ -29,8 +29,8 @@ public class ModDictionary {/***************************************************
             OreDictionary.registerOre("ingotBronze", ModItems.bronzeingotball);
             OreDictionary.registerOre("nuggetBronze", ModItems.bronzechunk);
             //if(COMPAT_DICTIONARY_DAMASCUS_STEEL) {
-            //    OreDictionary.registerOre("ingotSteel", ModItems.wootzingotball);
-            //    OreDictionary.registerOre("nuggetSteel", ModItems.wootzchunk);
+            OreDictionary.registerOre("ingotWootz", ModItems.wootzingotball);
+            OreDictionary.registerOre("nuggetWootz", ModItems.wootzchunk);
             //}
         }
 }

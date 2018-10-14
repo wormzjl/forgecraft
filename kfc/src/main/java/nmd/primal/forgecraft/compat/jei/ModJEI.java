@@ -17,10 +17,10 @@ import nmd.primal.forgecraft.compat.jei.crucible.CrucibleRecipeHandler;
 import nmd.primal.forgecraft.compat.jei.forge.ForgeRecipeCategory;
 import nmd.primal.forgecraft.compat.jei.forge.ForgeRecipeChecker;
 import nmd.primal.forgecraft.compat.jei.forge.ForgeRecipeHandler;
-import nmd.primal.forgecraft.crafting.AnvilCrafting;
-import nmd.primal.forgecraft.crafting.CastingCrafting;
-import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-import nmd.primal.forgecraft.crafting.ForgeCrafting;
+import nmd.primal.forgecraft.compat.jei.workbench.WorkbenchRecipeCategory;
+import nmd.primal.forgecraft.compat.jei.workbench.WorkbenchRecipeChecker;
+import nmd.primal.forgecraft.compat.jei.workbench.WorkbenchRecipeHandler;
+import nmd.primal.forgecraft.crafting.*;
 import nmd.primal.forgecraft.init.ModBlocks;
 
 import javax.annotation.Nonnull;
@@ -51,7 +51,7 @@ public class ModJEI implements IModPlugin
         registry.addRecipeCategories(new CrucibleRecipeCategory(guiHelper));
         registry.addRecipeCategories(new AnvilRecipeCategory(guiHelper));
         registry.addRecipeCategories(new CastingRecipeCategory(guiHelper));
-
+        registry.addRecipeCategories(new WorkbenchRecipeCategory(guiHelper));
     }
 
     @Override
@@ -88,7 +88,12 @@ public class ModJEI implements IModPlugin
         registry.addRecipes(CastingRecipeChecker.getRecipes(), CastingRecipeCategory.CATEGORY);
         registry.addRecipeCatalyst(new ItemStack(ModBlocks.castingform), CastingRecipeCategory.CATEGORY);
 
-
+        //
+        //  Workbench
+        //
+        registry.handleRecipes(WorkbenchCrafting.class, new WorkbenchRecipeHandler(), WorkbenchRecipeCategory.CATEGORY);
+        registry.addRecipes(WorkbenchRecipeChecker.getRecipes(), WorkbenchRecipeCategory.CATEGORY);
+        registry.addRecipeCatalyst(new ItemStack(ModBlocks.workbench), WorkbenchRecipeCategory.CATEGORY);
 
 
 

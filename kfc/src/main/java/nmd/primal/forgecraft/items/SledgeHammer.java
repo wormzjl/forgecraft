@@ -3,29 +3,18 @@ package nmd.primal.forgecraft.items;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.mojang.realmsclient.gui.ChatFormatting;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.core.common.recipes.irecipe.ToolCraftingRecipe;
 import nmd.primal.forgecraft.ModInfo;
-import nmd.primal.forgecraft.blocks.Anvil.AnvilBase;
 import nmd.primal.forgecraft.util.ToolMaterialMap;
 
 import javax.annotation.Nullable;
@@ -49,7 +38,7 @@ public class SledgeHammer extends Gallagher implements ToolMaterialMap {
         this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
     }
 
-    @Override
+    /*@Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int itemSlot, boolean isSelected) {
         if(!world.isRemote){
             EntityPlayer player = (EntityPlayer) entity;
@@ -78,12 +67,12 @@ public class SledgeHammer extends Gallagher implements ToolMaterialMap {
                     int tempInt = 0;
                     player.addPotionEffect(new PotionEffect(MobEffects.MINING_FATIGUE, (100 - ((materialModifiers.get(this.getMaterial()) * 13) + tempInt)), 100));
                     player.swingArm(hand);
-                    return EnumActionResult.PASS;
+                    return EnumActionResult.SUCCESS;
                 }
             }
         }
-        return EnumActionResult.PASS;
-    }
+        return EnumActionResult.FAIL;
+    }*/
 
     public ToolMaterial getMaterial() {
         return material;

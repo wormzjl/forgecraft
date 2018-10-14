@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks.Anvil;
+package nmd.primal.forgecraft.blocks.anvil;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

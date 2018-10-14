@@ -27,7 +27,7 @@ import javax.annotation.Nullable;
  */
 public class Longbow extends BaseItem {
 
-    int mod=15;
+    int mod=10;
     int time=0;
 
     public Longbow(String name) {
@@ -140,7 +140,8 @@ public class Longbow extends BaseItem {
                     {
                         ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
                         EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 6.0F, 1.0F);
+                        entityarrow.setDamage(entityarrow.getDamage()+(entityarrow.getDamage()*f));
+                        entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 6.0F, 0.5F);
 
                         if (f >= 1.0F)
                         {
@@ -179,7 +180,7 @@ public class Longbow extends BaseItem {
 
     public static float getArrowVelocity(int charge)
     {
-        float f = (float)charge / 120;
+        float f = (float)charge / 90;
 
         if (f > 1.0F)
         {
