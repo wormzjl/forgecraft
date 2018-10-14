@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks.anvil;
+package nmd.primal.forgecraft.blocks;
 
 /**
  * Created by mminaie on 6/10/17.

@@ -13,7 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.Chisel;
 import nmd.primal.forgecraft.blocks.YewStave;
-import nmd.primal.forgecraft.blocks.anvil.AnvilStone;
+import nmd.primal.forgecraft.blocks.AnvilStone;
 import nmd.primal.forgecraft.blocks.NBTCrucible;
 import nmd.primal.forgecraft.blocks.machine.*;
 
