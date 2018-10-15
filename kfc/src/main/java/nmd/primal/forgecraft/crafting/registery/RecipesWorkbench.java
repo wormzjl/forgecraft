@@ -6,12 +6,15 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 import net.minecraftforge.oredict.OreIngredient;
 import net.minecraftforge.registries.IForgeRegistry;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
 import nmd.primal.forgecraft.init.ModItems;
+
+import java.lang.reflect.WildcardType;
 
 @GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 @Mod.EventBusSubscriber
@@ -34,7 +37,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.copperaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.copperaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.copperaxehead, 1)).setRecipeName("copperaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -48,7 +51,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.copperhoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.copperhoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.copperhoehead, 1)).setRecipeName("copperhoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -62,7 +65,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.copperpickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.copperpickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.copperpickaxehead, 1)).setRecipeName("copperpickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -76,7 +79,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.coppershovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.coppershovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.coppershovelhead, 1)).setRecipeName("coppershovelsplit"));
 
         /***BRONZE***/
@@ -92,7 +95,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.bronzeaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.bronzeaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.bronzeaxehead, 1)).setRecipeName("bronzeaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -106,7 +109,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.bronzehoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.bronzehoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.bronzehoehead, 1)).setRecipeName("bronzehoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -120,7 +123,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.bronzepickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.bronzepickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.bronzepickaxehead, 1)).setRecipeName("bronzepickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -134,7 +137,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.bronzeshovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.bronzeshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.bronzeshovelhead, 1)).setRecipeName("bronzeshovelsplit"));
 
 
@@ -151,7 +154,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.ironaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.ironaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.ironaxehead, 1)).setRecipeName("ironaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -165,7 +168,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.ironhoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.ironhoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.ironhoehead, 1)).setRecipeName("ironhoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -179,7 +182,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.ironpickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.ironpickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.pickaxehead, 1)).setRecipeName("ironpickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -193,7 +196,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.ironshovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.ironshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.ironshovelhead, 1)).setRecipeName("ironshovelsplit"));
 
 
@@ -210,7 +213,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.cleanironaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.cleanironaxehead, 1)).setRecipeName("cleanironaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -224,7 +227,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.cleanironhoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironhoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.cleanironhoehead, 1)).setRecipeName("cleanironhoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -238,7 +241,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.cleanironpickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironpickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.cleanironpickaxehead, 1)).setRecipeName("cleanironpickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -252,7 +255,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.cleanironshovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.cleanironshovelhead, 1)).setRecipeName("cleanironshovelsplit"));
 
 
@@ -269,7 +272,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.steelaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.steelaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.steelaxehead, 1)).setRecipeName("steelaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -283,7 +286,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.steelhoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.steelhoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.steelhoehead, 1)).setRecipeName("steelhoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -297,7 +300,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.steelpickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.steelpickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.steelpickaxehead, 1)).setRecipeName("steelpickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -311,7 +314,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.steelshovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.steelshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.steelshovelhead, 1)).setRecipeName("steelshovelsplit"));
 
 
@@ -328,7 +331,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.wootzaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.wootzaxehead, 1)).setRecipeName("wootzaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -342,7 +345,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.wootzhoe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzhoe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.wootzhoehead, 1)).setRecipeName("wootzhoesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -356,7 +359,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.wootzpickaxe, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzpickaxe, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.wootzpickaxehead, 1)).setRecipeName("wootzpickaxesplit"));
 
         recipes.register (new WorkbenchCrafting(
@@ -370,7 +373,7 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
-                Ingredient.fromStacks(new ItemStack(ModItems.wootzshovel, 1)),
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.wootzshovelhead, 1)).setRecipeName("wootzshovelsplit"));
         
     }

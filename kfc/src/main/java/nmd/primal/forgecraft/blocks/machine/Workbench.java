@@ -104,6 +104,7 @@ public class Workbench extends CustomContainerFacing {
                                         tile.clearSlot(3);
                                         tile.clearSlot(4);
                                         tile.clearSlot(5);
+                                        playerStack.damageItem(1, player);
                                         return true;
                                     }
                                 }
@@ -113,12 +114,14 @@ public class Workbench extends CustomContainerFacing {
                                         ItemStack drops = recipe.getOutput();
                                         if (slot5.hasTagCompound()) {
                                             drops.setTagCompound(slot5.getTagCompound());
+                                            drops.setItemDamage(slot5.getItemDamage());
                                         }
                                         PlayerHelper.spawnItemOnPlayer(world, player, drops);
                                         tile.clearSlot(2);
                                         tile.clearSlot(3);
                                         tile.clearSlot(4);
                                         tile.clearSlot(5);
+                                        playerStack.damageItem(1, player);
                                         return true;
                                     }
                                 }

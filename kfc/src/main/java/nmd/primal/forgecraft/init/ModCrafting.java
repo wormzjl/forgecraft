@@ -343,6 +343,8 @@ public class ModCrafting{
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.stoneanvil, 1),
                 "   ", " I ", " S ", 'I', "ingotIron", 'S', Blocks.STONE);
 
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.workbench, 1),
+                "ss ", "rrr", "f f", 's', "slabWood", 'r', Blocks.STONE_SLAB, 'f', "fenceWood");
 
         /******************************************************************************
          CASTING
