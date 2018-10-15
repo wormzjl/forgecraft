@@ -3,15 +3,11 @@
 ## Bugs
 - [ ] Texture mismatch for 4diamond 1 redstone
 - [ ] ForgeHammer extend Gallagher
-- [x] Check dict name for cluster
-- [x] Check block break code for NBTCrucible
-- [x] Cooldown for sledgehammer not working
-- [x] tune volume down on sledgehammer
-- [x] when placing crucibles on the side of a block it replaces the block above
 - [ ] Placement bug for crucible from tongs
 
 ## Current Feature
 - [x] WorkBench
+- [ ] Longbow change NBT management
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
@@ -53,6 +49,11 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Check dict name for cluster
+- [x] Check block break code for NBTCrucible
+- [x] Cooldown for sledgehammer not working
+- [x] tune volume down on sledgehammer
+- [x] when placing crucibles on the side of a block it replaces the block above
 - [x] Check on disable for soft crucible in bloomery 
 - [x] Correct Tooltip for RawLongbow
 - [x] Add tooltip to Chisel and SledgeHammer

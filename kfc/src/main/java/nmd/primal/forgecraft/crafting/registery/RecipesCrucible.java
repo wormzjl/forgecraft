@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.crafting.CraftingRegistery;
+package nmd.primal.forgecraft.crafting.registery;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
