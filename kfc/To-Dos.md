@@ -6,8 +6,7 @@
 - [ ] Placement bug for crucible from tongs
 
 ## Current Feature
-- [x] WorkBench
-- [ ] Longbow change NBT management
+
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
@@ -49,6 +48,8 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] WorkBench
+- [x] Longbow change NBT management
 - [x] Check dict name for cluster
 - [x] Check block break code for NBTCrucible
 - [x] Cooldown for sledgehammer not working

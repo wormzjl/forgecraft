@@ -1,5 +1,8 @@
 package nmd.primal.forgecraft.items.weapons;
 
+import com.google.common.collect.ImmutableMap;
+import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -7,105 +10,69 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Enchantments;
 import net.minecraft.init.Items;
-import net.minecraft.item.EnumAction;
-import net.minecraft.item.IItemPropertyGetter;
-import net.minecraft.item.ItemArrow;
-import net.minecraft.item.ItemStack;
+import net.minecraft.item.*;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
 import net.minecraft.world.World;
+import net.minecraftforge.common.animation.ITimeValue;
+import net.minecraftforge.common.animation.TimeValues;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.model.animation.CapabilityAnimation;
+import net.minecraftforge.common.model.animation.IAnimationStateMachine;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.BaseItem;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+import java.util.List;
 
 /**
  * Created by mminaie on 7/2/17.
  */
-public class Longbow extends BaseItem {
-
-    int mod=10;
-    int time=0;
+public class Longbow extends ItemBow {
 
     public Longbow(String name) {
-        super(name);
         this.setMaxDamage(9000);
         this.setMaxStackSize(1);
         this.setNoRepair();
+        this.setRegistryName(name);
+        this.setUnlocalizedName(name);
+        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
 
-        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
-
+        this.addPropertyOverride(new ResourceLocation("pull"), new IItemPropertyGetter()
+        {
             @SideOnly(Side.CLIENT)
-            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase playerin) {
-
-                    if (time < 1 * mod) {
-                        return 0.0F;
-                    }
-                    if (time >= 1 * mod && time < 2 * mod) {
-                        return 0.1F;
-                    }
-                    if (time >= 2 * mod && time < 3 * mod) {
-                        return 0.2F;
-                    }
-                    if (time >= 3 * mod && time < 4 * mod) {
-                        return 0.3F;
-                    }
-                    if (time >= 4 * mod && time < 5 * mod) {
-                        return 0.4F;
-                    }
-                    if (time >= 5 * mod && time < 6 * mod) {
-                        return 0.5F;
-                    }
-                    if (time >= 6 * mod && time < 7 * mod) {
-                        return 0.6F;
-                    }
-                    if (time >= 7 * mod && time < 8 * mod) {
-                        return 0.7F;
-                    }
-                    if (time >= 8 * mod && time < 72000) {
-                        return 0.8F;
-                    }
-
-                return 0.0f;
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
+            {
+                if (entityIn == null)
+                {
+                    return 0.0F;
+                }
+                else
+                {
+                    return entityIn.getActiveItemStack().getItem() != ModItems.longbow? 0.0F : (float)(stack.getMaxItemUseDuration() - entityIn.getItemInUseCount()) / 75.0F;
+                }
             }
         });
-    }
-
-    @Override
-    public void onUpdate(ItemStack item, World world, Entity playerin, int itemSlot, boolean isSelected) {
-
-        EntityPlayer player = (EntityPlayer) playerin;
-        if(player.inventory.getCurrentItem().getItem() == ModItems.longbow) {
-            time = item.getMaxItemUseDuration() - player.getItemInUseCount();
-        }
-
-    }
-
-    private ItemStack findAmmo(EntityPlayer player)
-    {
-
-        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+        this.addPropertyOverride(new ResourceLocation("pulling"), new IItemPropertyGetter()
         {
-            ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-            if (this.isArrow(itemstack))
+            @SideOnly(Side.CLIENT)
+            public float apply(ItemStack stack, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
             {
-                return itemstack;
+                return entityIn != null && entityIn.isHandActive() && entityIn.getActiveItemStack() == stack ? 1.0F : 0.0F;
             }
-        }
-
-        return ItemStack.EMPTY;
+        });
 
     }
 
-    protected boolean isArrow(ItemStack stack)
-    {
-        return stack.getItem() instanceof ItemArrow;
+    public String getName() {
+        return this.getRegistryName().toString();
     }
-
     /**
      * Called when the player stops using an Item (stops holding the right mouse button).
      */
@@ -140,10 +107,11 @@ public class Longbow extends BaseItem {
                     {
                         ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
                         EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
+                        System.out.println(f);
                         entityarrow.setDamage(entityarrow.getDamage()+(entityarrow.getDamage()*f));
                         entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 6.0F, 0.5F);
 
-                        if (f >= 1.0F)
+                        if (f >= 0.5F)
                         {
                             entityarrow.setIsCritical(true);
                         }
@@ -175,48 +143,9 @@ public class Longbow extends BaseItem {
     }
 
     /**
-     * Gets the velocity of the arrow entity from the bow's charge
-     */
-
-    public static float getArrowVelocity(int charge)
-    {
-        float f = (float)charge / 90;
-
-        if (f > 1.0F)
-        {
-            f = 1.0F;
-        }
-        if(f < 0.1){
-            f =0.1f;
-        }
-
-        return f;
-    }
-
-    /**
-     * How long it takes to use or consume an item
-     */
-    @Override
-    public int getMaxItemUseDuration(ItemStack stack)
-    {
-        return 72000;
-    }
-
-
-
-    /**
-     * returns the action that specifies what animation to play when the items is being used
-     */
-    @Override
-    public EnumAction getItemUseAction(ItemStack stack)
-    {
-        return EnumAction.BOW;
-    }
-
-    /**
      * Called when the equipped item is right clicked.
      */
-    @Override
+    /*@Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
     {
         ItemStack itemstack = playerIn.getHeldItem(handIn);
@@ -234,6 +163,42 @@ public class Longbow extends BaseItem {
             playerIn.setActiveHand(handIn);
             return new ActionResult(EnumActionResult.SUCCESS, itemstack);
         }
+    }*/
+/*
+    private ItemStack findAmmo(EntityPlayer player)
+    {
+
+        for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+        {
+            ItemStack itemstack = player.inventory.getStackInSlot(i);
+
+            if (this.isArrow(itemstack))
+            {
+                return itemstack;
+            }
+        }
+
+        return ItemStack.EMPTY;
+
+    }
+/*
+    /**
+     * Gets the velocity of the arrow entity from the bow's charge
+     */
+
+    public static float getArrowVelocity(int charge)
+    {
+        float f = (float)charge / 60;
+
+        if (f > 1.0F)
+        {
+            f = 1.0F;
+        }
+        if(f < 0.1){
+            f =0.1f;
+        }
+
+        return f;
     }
 
     @Override
@@ -241,4 +206,39 @@ public class Longbow extends BaseItem {
     {
         return 0;
     }
+    private ItemStack findAmmo(EntityPlayer player)
+    {
+        if (this.isArrow(player.getHeldItem(EnumHand.OFF_HAND)))
+        {
+            return player.getHeldItem(EnumHand.OFF_HAND);
+        }
+        else if (this.isArrow(player.getHeldItem(EnumHand.MAIN_HAND)))
+        {
+            return player.getHeldItem(EnumHand.MAIN_HAND);
+        }
+        else
+        {
+            for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
+            {
+                ItemStack itemstack = player.inventory.getStackInSlot(i);
+
+                if (this.isArrow(itemstack))
+                {
+                    return itemstack;
+                }
+            }
+
+            return ItemStack.EMPTY;
+        }
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    {
+        if(!stack.isEmpty()) {
+            tooltip.add(ChatFormatting.GRAY + "The longbow will increase the damage and the velocity of the arrow it shoots relative to how far its drawn.");
+        }
+    }
+
 }
