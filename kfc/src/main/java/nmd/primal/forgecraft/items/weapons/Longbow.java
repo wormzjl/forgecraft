@@ -107,7 +107,6 @@ public class Longbow extends ItemBow {
                     {
                         ItemArrow itemarrow = (ItemArrow)((ItemArrow)(itemstack.getItem() instanceof ItemArrow ? itemstack.getItem() : Items.ARROW));
                         EntityArrow entityarrow = itemarrow.createArrow(worldIn, itemstack, entityplayer);
-                        System.out.println(f);
                         entityarrow.setDamage(entityarrow.getDamage()+(entityarrow.getDamage()*f));
                         entityarrow.shoot(entityplayer, entityplayer.rotationPitch, entityplayer.rotationYaw, 0.0F, f * 6.0F, 0.5F);
 

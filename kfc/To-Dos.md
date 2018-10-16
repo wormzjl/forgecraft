@@ -1,12 +1,10 @@
 # To-Dos
 
 ## Bugs
-- [ ] Texture mismatch for 4diamond 1 redstone
-- [ ] ForgeHammer extend Gallagher
 - [ ] Placement bug for crucible from tongs
 
 ## Current Feature
-
+- [ ] weapon upgrades
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
