@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft;
 
 import net.minecraft.init.Items;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -8,10 +9,15 @@ import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.api.events.CauldronEvent;
+import nmd.primal.core.api.events.CauldronRecipeEvent;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.helper.RecipeHelper;
+import nmd.primal.core.common.recipes.tile.CauldronRecipe;
+import nmd.primal.core.common.tiles.machines.TileCauldron;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
@@ -20,59 +26,92 @@ import nmd.primal.forgecraft.items.tools.CustomHoe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 import nmd.primal.forgecraft.items.tools.CustomShovel;
 import nmd.primal.forgecraft.util.ToolNBT;
+import nmd.primal.forgecraft.util.WeaponNBT;
+
+import java.util.List;
 
 /**
  * Created by mminaie on 3/15/17.
  */
-public class CommonEvents implements ToolNBT {
+public class CommonEvents implements WeaponNBT {
 
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
-    public void onItemCrafted(CauldronEvent event){
+    public void onItemCrafted(CauldronRecipeEvent.Pre event){
 
-        NonNullList<ItemStack> inputs = NonNullList.<ItemStack>withSize(6,ItemStack.EMPTY);
-        inputs.set(0, event.getTile().getInputHandler().getStackInSlot(0));
-        inputs.set(1, event.getTile().getInputHandler().getStackInSlot(1));
-        inputs.set(2, event.getTile().getInputHandler().getStackInSlot(2));
-        inputs.set(3, event.getTile().getInputHandler().getStackInSlot(3));
-        inputs.set(4, event.getTile().getInputHandler().getStackInSlot(4));
-        inputs.set(5, event.getTile().getInputHandler().getStackInSlot(5));
+        CauldronRecipe recipe = event.getRecipe();
 
-        NonNullList<ItemStack> outputs = NonNullList.<ItemStack>withSize(6,ItemStack.EMPTY);
-        outputs.set(0, event.getTile().getOutputHandler().getStackInSlot(0));
-        outputs.set(1, event.getTile().getOutputHandler().getStackInSlot(1));
-        outputs.set(2, event.getTile().getOutputHandler().getStackInSlot(2));
-        outputs.set(3, event.getTile().getOutputHandler().getStackInSlot(3));
-        outputs.set(4, event.getTile().getOutputHandler().getStackInSlot(4));
-        outputs.set(5, event.getTile().getOutputHandler().getStackInSlot(5));
+        if (recipe.matches("rawbronzegladiussmite", "rawbronzegladiusbane", "rawbronzegladiuslapis")){
 
-        //System.out.println(inputs. + ":" + outputs.stream());
+            NonNullList<ItemStack> inputList = NonNullList.<ItemStack>withSize(6, ItemStack.EMPTY);
+            inputList.set(0, event.getTile().getInputHandler().getStackInSlot(0));
+            inputList.set(1, event.getTile().getInputHandler().getStackInSlot(1));
+            inputList.set(2, event.getTile().getInputHandler().getStackInSlot(2));
+            inputList.set(3, event.getTile().getInputHandler().getStackInSlot(3));
+            inputList.set(4, event.getTile().getInputHandler().getStackInSlot(4));
+            inputList.set(5, event.getTile().getInputHandler().getStackInSlot(5));
 
-        if(getMatchingStacks(inputs, outputs).get(0) != ItemStack.EMPTY){
+            TileCauldron tile = event.getTile();
+            ItemStack inputStack = tile.getInputStack(event.getOutputs().get(0));
+            Item inputStackItem = null;
+            if(inputStack.getItem() instanceof WeaponPart){
+               inputStackItem = inputStack.getItem();
+            }
+            ItemStack modStack = ItemStack.EMPTY;
+            ItemStack outputStack = event.getOutputs().get(0);
 
-            System.out.println(getMatchingStacks(inputs, outputs).get(0) + " : " + getMatchingStacks(inputs, outputs).get(1));
+            modStack = getOppositeStack(inputList, inputStack);
+
+            if (inputStack.hasTagCompound()) {
+                if (inputStack.getSubCompound("tags") != null) {
+                    NBTTagCompound tags = inputStack.getTagCompound().copy();
+                    if(inputStackItem != null) {
+                        if (getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
+                            if (RecipeHelper.isOreName(modStack, "dustSilver")) {
+                                setSmiteLevel(outputStack, getSmiteLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "foodPoison")) {
+                                setBaneLevel(outputStack, getBaneLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "dustBlaze")) {
+                                setFireLevel(outputStack, getFireLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "gemLapis")) {
+                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "boneWithered")) {
+                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "dustWitheredBone")) {
+                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                            if (RecipeHelper.isOreName(modStack, "skullWithered")) {
+                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                                setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            }
+                        }
+                    }
+                }
+            }
         }
-
     }
 
-    private NonNullList<ItemStack> getMatchingStacks(NonNullList<ItemStack> input, NonNullList<ItemStack> output){
-        ItemStack inputStack = ItemStack.EMPTY;
-        ItemStack outputStack = ItemStack.EMPTY;
-        NonNullList<ItemStack> returnList = NonNullList.<ItemStack>withSize(2, ItemStack.EMPTY);
-        for (int i = 0; i < input.size(); i++) {
-            if(input.get(i).getItem() instanceof WeaponPart){
-                inputStack = input.get(i);
+    private ItemStack getOppositeStack(NonNullList<ItemStack> inputList, ItemStack inputStack){
+        ItemStack modStack = ItemStack.EMPTY;
+
+        for (int i = 0; i < inputList.size(); i++) {
+            if(inputList.get(i) != ItemStack.EMPTY && !(inputList.get(i).getItem() instanceof WeaponPart) ){
+                System.out.println(inputList.get(i));
+                modStack = inputList.get(i);
             }
         }
-        for (int i = 0; i < output.size(); i++) {
-            if(output.get(i).getItem() instanceof WeaponPart){
-                outputStack = output.get(i);
-            }
-        }
-        if(inputStack != null && outputStack != null && inputStack.equals(outputStack)){
-            returnList.set(0, inputStack);
-            returnList.set(1, outputStack);
-        }
-        return returnList;
+        System.out.println(modStack);
+        return modStack;
     }
 
     /*@SubscribeEvent(priority= EventPriority.HIGHEST, receiveCanceled=true)

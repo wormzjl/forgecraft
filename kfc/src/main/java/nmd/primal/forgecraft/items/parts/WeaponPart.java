@@ -1,6 +1,9 @@
 package nmd.primal.forgecraft.items.parts;
 
 import com.mojang.realmsclient.gui.ChatFormatting;
+import net.minecraft.block.Block;
+import net.minecraft.block.state.BlockStateContainer;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -12,7 +15,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
@@ -45,8 +50,8 @@ public class WeaponPart extends Item implements WeaponNBT {
 
             /***
 
-             smite| bane |  fire | fortune | leech
-             X.0  | 0.X  | 0.0X  |  0.00X  | 0.000X
+             HOT | SMITE | BANE  |  FIRE  | FORTUNE | leech
+             X.0 |  0.X  | 0.0X  | 0.00X  | 0.000X  | 0.0000X
 
              ***/
 
@@ -58,27 +63,26 @@ public class WeaponPart extends Item implements WeaponNBT {
                         returnFloat += 0.1F;
                     }
                     if(getBaneLevel(item)>0){
-                        returnFloat += (0.01F * getBaneLevel(item));
+                        returnFloat += (0.01F);
                     }
                     if(getFireLevel(item)>0){
-                        returnFloat += (0.001F * getFireLevel(item));
+                        returnFloat += (0.001F);
                     }
                     if(getFortuneLevel(item)>0){
-                        returnFloat += (0.0001F * getFortuneLevel(item));
+                        returnFloat += (0.0001F);
                     }
                     if(getLeechLevel(item)>0){
-                        returnFloat += (0.0001F * getLeechLevel(item));
+                        returnFloat += (0.00001F);
+                    }
+                    if(getHot(item)){
+                        returnFloat += 1.0F;
                     }
                     return returnFloat;
                 }
                 return 0.0F;
             }
         });
-
-
-
     }
-
 
     public static boolean isHidden()
     {
@@ -87,51 +91,52 @@ public class WeaponPart extends Item implements WeaponNBT {
 
     public ToolMaterial getMaterial() {return toolMaterial;}
 
-    public void createDefaultNBT(ItemStack item){
-        if (!item.hasTagCompound()) {
-            item.setTagCompound(new NBTTagCompound());
-            NBTTagCompound tags = new NBTTagCompound();
 
-            item.getTagCompound().setTag("tags", tags);
 
-            setSmiteLevel(item, 0);
-            setBaneLevel(item, 0);
-            setFireLevel(item, 0);
-            setFortuneLevel(item, 0);
-            setLeechLevel(item, 0);
-            setSweepingLevel(item, 0);
-            setSharpnessLevel(item, 0);
-            setModifiers(item, 0);
+    @Override
+    public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
+        //System.out.println(item.getTagCompound());
+        if(!item.hasTagCompound()) {
+            WeaponNBT.setDefaultNBT(item);
         }
     }
 
     @Override
     public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
 
-        createDefaultNBT(item);
+        if(!item.hasTagCompound()) {
+            WeaponNBT.setDefaultNBT(item);
+        }
 
     }
 
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
-        if(item.hasTagCompound())
-        {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (WeaponNBT.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
-            /*if  (getEmerald(item)) {
-                tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
+        if(stack.hasTagCompound()) {
+            if (stack.getSubCompound("tags") != null) {
+                tooltip.add(ChatFormatting.GRAY + "Upgrades left: " + (WeaponNBT.materialModifiers.get(this.toolMaterial) - getModifiers(stack)));
             }
-            if (getDiamondLevel(item) > 0) {
-                tooltip.add(ChatFormatting.AQUA + "Diamond Level: " + getDiamondLevel(item));
+            if (getSmiteLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.GOLD + "Holy: " + getSmiteLevel(stack));
             }
-            if (getRedstoneLevel(item) > 0) {
-                tooltip.add(ChatFormatting.RED + "Redstone Level: " + getRedstoneLevel(item));
+            if (getBaneLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.GREEN + "Spider Killing: " + getBaneLevel(stack));
             }
-            if (getLapisLevel(item) > 0) {
-                tooltip.add(ChatFormatting.BLUE + "Lapis Level: " + getLapisLevel(item));
-            }*/
+            if (getFireLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.RED + "Flame: " + getFireLevel(stack));
+            }
+            if (getFortuneLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.BLUE + "Thieving: " + getFortuneLevel(stack));
+            }
+            if (getLeechLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.BLACK + "Life Steal: " + getLeechLevel(stack));
+            }
+            if(getSharpnessLevel(stack)>0){
+                tooltip.add(ChatFormatting.WHITE + "Sharpness: " + getSharpnessLevel(stack));
+            }
         }
     }
 }

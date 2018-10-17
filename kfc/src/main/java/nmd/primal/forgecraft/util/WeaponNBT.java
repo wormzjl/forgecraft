@@ -1,9 +1,14 @@
 package nmd.primal.forgecraft.util;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.parts.WeaponPart;
 
 import java.util.Hashtable;
 
@@ -156,11 +161,26 @@ public interface WeaponNBT {
         return null;
     }
 
-    static void setDefaultNBT(ItemStack stack){
+    default boolean getHot(ItemStack stack){
 
-        NBTTagCompound tags = new NBTTagCompound();
-        stack.setTagCompound(tags);
-        stack.getTagCompound().setTag("tags", tags);
+        if(!stack.isEmpty()){
+            if(stack.hasTagCompound()){
+                if(stack.getSubCompound("tags") !=null){
+                    return stack.getSubCompound("tags").getBoolean("hot");
+                }
+            }
+        }
+
+        return false;
+    }
+
+    default void setHot(ItemStack stack){
+
+    }
+
+    static void setDefaultNBT(ItemStack stack) {
+
+        stack.getOrCreateSubCompound("tags");
         stack.getSubCompound("tags").setInteger("smite", 0);
         stack.getSubCompound("tags").setInteger("bane", 0);
         stack.getSubCompound("tags").setInteger("fire", 0);
@@ -168,7 +188,8 @@ public interface WeaponNBT {
         stack.getSubCompound("tags").setInteger("leech", 0);
         stack.getSubCompound("tags").setInteger("sweeping", 0);
         stack.getSubCompound("tags").setInteger("sharpness", 0);
-
+        stack.getSubCompound("tags").setInteger("modifiers", 0);
+        stack.getSubCompound("tags").setBoolean("hot", false);
     }
 
     Hashtable<Item.ToolMaterial, Integer> materialModifiers = new Hashtable<Item.ToolMaterial, Integer>(){{
@@ -180,6 +201,12 @@ public interface WeaponNBT {
         put(PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 7);
         put(PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL, 8);
         put(PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, 9);
+
+    }};
+
+    Hashtable<Ingredient, String> StackToUpgrade = new Hashtable<Ingredient, String>(){{
+
+        put(new OreIngredient("dustSilver"), "bane");
 
     }};
 

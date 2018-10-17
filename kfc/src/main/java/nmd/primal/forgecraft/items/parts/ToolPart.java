@@ -127,7 +127,6 @@ public class ToolPart extends Item implements ToolNBT{
                 }
             }
         }
-
     }
 
     @Override

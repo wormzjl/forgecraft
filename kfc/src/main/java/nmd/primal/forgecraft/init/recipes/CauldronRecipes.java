@@ -28,17 +28,80 @@ public class CauldronRecipes
 
         ItemStack defaultBronzeGladius = new ItemStack(ModItems.rawbronzegladius, 1);
 
-        //WeaponNBT.setDefaultNBT(defaultBronzeGladius);
-        NonNullList<ItemStack> tempList1 = NonNullList.<ItemStack>create();
-        tempList1.add(0, new ItemStack(ModItems.rawbronzegladius, 1));
+        defaultBronzeGladius.getOrCreateSubCompound("tags");
+        defaultBronzeGladius.getSubCompound("tags").setInteger("smite", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("bane", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("fire", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("fortune", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("leech", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("sweeping", 0);
+        defaultBronzeGladius.getSubCompound("tags").setInteger("sharpness", 0);
+        defaultBronzeGladius.getSubCompound("tags").setBoolean("hot", false);
+
         recipes.register(new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
-                RecipeHelper.getOreStack("gemLapis", 1),
-                tempList1,
+                RecipeHelper.getOreStack("dustSilver", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
                 defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName("rawbronzegladiuslapis"));
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiussmite"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("foodPoison", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusbane"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("dustBlaze", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusfire"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("gemLapis", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiuslapis"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("boneWithered", 1),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech0"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("dustWitheredBone", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech1"));
+
+        recipes.register(new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("skullWithered", 2),
+                RecipeHelper.buildList(defaultBronzeGladius),
+                defaultBronzeGladius,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech2"));
+
+
 
     }
 }
