@@ -103,7 +103,7 @@ public class CauldronRecipes
                 ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("fortune"));
     }
 
-    static CauldronRecipe genLeechRecipe(ItemStack stack) {
+    /*static CauldronRecipe genLeechRecipe(ItemStack stack) {
         return new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
@@ -112,14 +112,7 @@ public class CauldronRecipes
                 RecipeHelper.buildList(stack),
                 stack,
                 ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("leech"));
-    }
-    static void genRecipesForStack(ItemStack stack){
-        genSmiteRecipe(stack);
-        genBaneRecipe(stack);
-        genFireRecipe(stack);
-        genFortuneRecipe(stack);
-        genLeechRecipe(stack);
-    }
+    }*/
 
     static void genRecipesForList(List<ItemStack> list, IForgeRegistry<CauldronRecipe> recipes){
         for(ItemStack s : list){
@@ -127,7 +120,6 @@ public class CauldronRecipes
             recipes.register(genBaneRecipe(s));
             recipes.register(genFireRecipe(s));
             recipes.register(genFortuneRecipe(s));
-            recipes.register(genLeechRecipe(s));
         }
     }
 

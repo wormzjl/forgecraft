@@ -1,0 +1,8 @@
+{
+	"forge_marker":1,
+	"textures": {
+		"particle": "forgecraft:items/steel/0",
+		"texture": "forgecraft:items/steel/0"
+	},
+	"parent": "forgecraft:item/rawgladius"
+}

@@ -429,7 +429,7 @@ public class Chisel extends CustomFacing implements ToolMaterialMap {
     private void doDamaging(World world, BlockPos movePos, IBlockState state, EntityPlayer player){
         if (!(state.getBlock().equals(Blocks.AIR))) {
             if(world.getBlockState(movePos).getBlock().blockHardness>0) {
-                world.sendBlockBreakProgress(player.getEntityId() + PrimalAPI.getRandom().nextInt(100), movePos, PrimalAPI.getRandom().nextInt(3,10));
+                world.sendBlockBreakProgress(player.getEntityId() - PrimalAPI.getRandom().nextInt(100), movePos, PrimalAPI.getRandom().nextInt(3,10));
             }
         }
     }

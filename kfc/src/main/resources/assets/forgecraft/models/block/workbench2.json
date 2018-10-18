@@ -4,9 +4,9 @@
 		"particle": "blocks/planks_oak",
 		"texture": "blocks/planks_oak",
 		"texture1": "blocks/planks_big_oak",
-		"texture2": "forgecraft:blocks/stone_slab"
+		"texture2": "blocks/stone_slab"
 	},
-	"elements": [
+	"elements": [ 	 
 		{
 			"__comment": "Box11",
 			"from": [ 0, 8, 0 ],

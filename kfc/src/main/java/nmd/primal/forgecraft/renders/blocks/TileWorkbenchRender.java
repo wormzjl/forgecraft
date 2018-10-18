@@ -86,7 +86,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.4375, 0.71875D, 0.26D);
+                    GL11.glTranslated(0.4375, 0.65625D, 0.26D);
                     GL11.glScalef(0.7F, 1F, 0.55F);
                     GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -98,7 +98,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.37D, 0.27D, 0.21D);
+                    GL11.glTranslated(0.37D, 0.2075D, 0.21D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -110,7 +110,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.85, 0.71875D, 0.25D);
+                    GL11.glTranslated(0.85, 0.65625D, 0.25D);
                     GL11.glScalef(0.3F, 0.3F, 0.3F);
                     GL11.glRotated(45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -122,7 +122,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.48D, 0.3D, -0.15D);
+                    GL11.glTranslated(0.48D, 0.20625D, -0.15D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
@@ -167,7 +167,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
 
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.5625, 0.71875D, 0.7925D);
+                    GL11.glTranslated(0.5625, 0.65625D, 0.7925D);
                     GL11.glScalef(0.7F, 1F, 0.55F);
                     GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -179,7 +179,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.55, 0.27D, 0.77D);
+                    GL11.glTranslated(0.55, 0.2075D, 0.77D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -191,7 +191,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.175, 0.71875D, 0.78D);
+                    GL11.glTranslated(0.175, 0.65625D, 0.78D);
                     GL11.glScalef(0.3F, 0.3F, 0.3F);
                     GL11.glRotated(45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -203,7 +203,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.52D, 0.3D, 1.15D);
+                    GL11.glTranslated(0.52D, 0.20625D, 1.15D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
@@ -248,7 +248,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.7925D, 0.71875D, 0.4375);
+                    GL11.glTranslated(0.7925D, 0.65625D, 0.4375);
                     GL11.glScalef(0.55F, 1F, 0.7F);
                     GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -260,7 +260,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.75, 0.27D, 0.4D);
+                    GL11.glTranslated(0.75, 0.2075D, 0.4D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -272,7 +272,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.755, 0.71875D, 0.8D);
+                    GL11.glTranslated(0.755, 0.65625D, 0.8D);
                     GL11.glScalef(0.3F, 0.3F, 0.3F);
                     GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -284,7 +284,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(1.15D, 0.3D, 0.485D);
+                    GL11.glTranslated(1.15D, 0.20625D, 0.485D);
                     GL11.glScalef(1F, 1F, 1F);
                     GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
@@ -327,7 +327,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.255D, 0.71875D, 0.565);
+                    GL11.glTranslated(0.255D, 0.65625D, 0.565);
                     GL11.glScalef(0.55F, 1F, 0.7F);
                     GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -339,7 +339,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.235, 0.27D, 0.6D);
+                    GL11.glTranslated(0.235, 0.2075D, 0.6D);
                     GL11.glScalef(1F, 1F, 1F);
                     //GL11.glRotated(-180.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -351,7 +351,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.2175, 0.71875D, 0.185D);
+                    GL11.glTranslated(0.2175, 0.65625D, 0.185D);
                     GL11.glScalef(0.3F, 0.3F, 0.3F);
                     GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
@@ -363,7 +363,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(-0.138D, 0.3D, 0.52D);
+                    GL11.glTranslated(-0.138D, 0.20625D, 0.52D);
                     GL11.glScalef(1F, 1F, 1F);
                     //GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
