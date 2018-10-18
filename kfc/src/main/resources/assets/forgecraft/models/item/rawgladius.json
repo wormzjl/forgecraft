@@ -2,8 +2,7 @@
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
 		"particle": "items/finished_bronze",
-		"texture": "items/finished_bronze",
-		"texture1": "blocks/planks_oak"
+		"texture": "items/finished_bronze"
 	},
 	"elements": [ 	 
 		{

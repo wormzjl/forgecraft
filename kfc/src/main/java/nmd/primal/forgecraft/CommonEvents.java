@@ -82,16 +82,8 @@ public class CommonEvents implements WeaponNBT {
                                 setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
                                 setModifiers(outputStack, getModifiers(inputStack) + 1);
                             }
-                            if (RecipeHelper.isOreName(modStack, "boneWithered")) {
-                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "dustWitheredBone")) {
-                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "skullWithered")) {
-                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                            if (RecipeHelper.isOreName(modStack, "boneWithered", "dustWitheredBone", "skullWithered")) {
+                                setLeechLevel(outputStack, getLeechLevel(inputStack) + 1);
                                 setModifiers(outputStack, getModifiers(inputStack) + 1);
                             }
                         }

@@ -17,6 +17,8 @@ import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.util.WeaponNBT;
 
+import java.util.List;
+
 @GameRegistry.ObjectHolder(ModInfo.MOD_ID)
 @Mod.EventBusSubscriber
 public class CauldronRecipes
@@ -27,89 +29,106 @@ public class CauldronRecipes
         final IForgeRegistry<CauldronRecipe> recipes = event.getRegistry();
 
         ItemStack defaultBronzeGladius = new ItemStack(ModItems.rawbronzegladius, 1);
+        ItemStack defaultCopperGladius = new ItemStack(ModItems.rawcoppergladius, 1);
+        ItemStack defaultWroughtIronGladius = new ItemStack(ModItems.rawwroughtirongladius, 1);
+        ItemStack defaultCleanIronGladius = new ItemStack(ModItems.rawcleanirongladius, 1);
+        ItemStack defaultSteelGladius = new ItemStack(ModItems.rawsteelgladius, 1);
+        ItemStack defaultWootzGladius = new ItemStack(ModItems.rawwootzgladius, 1);
 
-        defaultBronzeGladius.getOrCreateSubCompound("tags");
-        defaultBronzeGladius.getSubCompound("tags").setInteger("smite", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("bane", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("fire", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("fortune", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("leech", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("sweeping", 0);
-        defaultBronzeGladius.getSubCompound("tags").setInteger("sharpness", 0);
-        defaultBronzeGladius.getSubCompound("tags").setBoolean("hot", false);
+        setDefaultNBT(defaultBronzeGladius);
+        setDefaultNBT(defaultCopperGladius);
+        setDefaultNBT(defaultWroughtIronGladius);
+        setDefaultNBT(defaultCleanIronGladius);
+        setDefaultNBT(defaultSteelGladius);
+        setDefaultNBT(defaultWootzGladius);
 
-        recipes.register(new CauldronRecipe(
+        List<ItemStack> recipeList = RecipeHelper.buildList(defaultBronzeGladius, defaultCopperGladius, defaultWroughtIronGladius, defaultCleanIronGladius, defaultSteelGladius, defaultWootzGladius);
+
+        genRecipesForList(recipeList, recipes);
+
+    }
+
+    static void setDefaultNBT(ItemStack stack){
+        stack.getOrCreateSubCompound("tags");
+        stack.getSubCompound("tags").setInteger("smite", 0);
+        stack.getSubCompound("tags").setInteger("bane", 0);
+        stack.getSubCompound("tags").setInteger("fire", 0);
+        stack.getSubCompound("tags").setInteger("fortune", 0);
+        stack.getSubCompound("tags").setInteger("leech", 0);
+        stack.getSubCompound("tags").setInteger("sweeping", 0);
+        stack.getSubCompound("tags").setInteger("sharpness", 0);
+        stack.getSubCompound("tags").setBoolean("hot", false);
+    }
+
+    static CauldronRecipe genSmiteRecipe(ItemStack stack) {
+        return new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("dustSilver", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiussmite"));
-
-        recipes.register(new CauldronRecipe(
+                RecipeHelper.buildList(stack),
+                stack,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("smite"));
+    }
+    static CauldronRecipe genBaneRecipe(ItemStack stack) {
+        return new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("foodPoison", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusbane"));
+                RecipeHelper.buildList(stack),
+                stack,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("bane"));
+    }
 
-        recipes.register(new CauldronRecipe(
+    static CauldronRecipe genFireRecipe(ItemStack stack) {
+        return new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("dustBlaze", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusfire"));
+                RecipeHelper.buildList(stack),
+                stack,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("fire"));
+    }
 
-        recipes.register(new CauldronRecipe(
+    static CauldronRecipe genFortuneRecipe(ItemStack stack) {
+        return new CauldronRecipe(
                 5,
                 new FluidStack(FluidRegistry.WATER, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("gemLapis", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiuslapis"));
-
-        recipes.register(new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
-                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
-                RecipeHelper.getOreStack("boneWithered", 1),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech0"));
-
-        recipes.register(new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
-                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
-                RecipeHelper.getOreStack("dustWitheredBone", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech1"));
-
-        recipes.register(new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
-                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
-                RecipeHelper.getOreStack("skullWithered", 2),
-                RecipeHelper.buildList(defaultBronzeGladius),
-                defaultBronzeGladius,
-                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, "rawbronzegladiusleech2"));
-
-
-
+                RecipeHelper.buildList(stack),
+                stack,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("fortune"));
     }
-}
 
-//int cook_time,
-// FluidStack fluid_input,
-// FluidStack fluid_output,
-// List<ItemStack> item_input_1,
-// List<ItemStack> item_input_2,
-// ItemStack item_output_1,
-// ItemStack item_output_2
+    static CauldronRecipe genLeechRecipe(ItemStack stack) {
+        return new CauldronRecipe(
+                5,
+                new FluidStack(FluidRegistry.WATER, 1000),
+                new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
+                RecipeHelper.getOreStack("dustWitheredBone", 1),
+                RecipeHelper.buildList(stack),
+                stack,
+                ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, stack.getUnlocalizedName().toString().concat("leech"));
+    }
+    static void genRecipesForStack(ItemStack stack){
+        genSmiteRecipe(stack);
+        genBaneRecipe(stack);
+        genFireRecipe(stack);
+        genFortuneRecipe(stack);
+        genLeechRecipe(stack);
+    }
+
+    static void genRecipesForList(List<ItemStack> list, IForgeRegistry<CauldronRecipe> recipes){
+        for(ItemStack s : list){
+            recipes.register(genSmiteRecipe(s));
+            recipes.register(genBaneRecipe(s));
+            recipes.register(genFireRecipe(s));
+            recipes.register(genFortuneRecipe(s));
+            recipes.register(genLeechRecipe(s));
+        }
+    }
+
+}

@@ -52,10 +52,10 @@ public class ForgeCraft
         ModBlocks.register();
         ModItems.init();
         ModItems.register();
-
+        ModDictionary.registerDictionaryNames();
         ModTiles.registerTileEntities();
         ModSounds.registerSounds();
-        ModEvents.registerCommonEvents();
+
         //ModEvents.registerClientEvents();
 //        ModItems.registerRenders();
         proxy.preInit();
@@ -67,7 +67,7 @@ public class ForgeCraft
     {
         //this.proxy.init(event);
         proxy.init();
-        ModDictionary.registerDictionaryNames();
+
         ModCrafting.register();
 
         //proxy.registerModelBakeryVariants();
@@ -76,7 +76,7 @@ public class ForgeCraft
     @EventHandler
     public void postInit(FMLPostInitializationEvent event)
     {
-        //this.proxy.postInit(event);
+        ModEvents.registerCommonEvents();
     }
 
     @EventHandler

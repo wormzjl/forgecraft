@@ -36,7 +36,7 @@ public class ModItems {
     //public static Item stonetongs;
     public static Item castingmud;
 
-    public static Item rawbronzegladius;
+
 
     public static Item bronzeingotball;
     public static Item bronzechunk;
@@ -117,6 +117,13 @@ public class ModItems {
     public static Item wootzaxe;
     public static Item wootzshovel;
     public static Item wootzhoe;
+
+    public static Item rawbronzegladius;
+    public static Item rawcoppergladius;
+    public static Item rawwroughtirongladius;
+    public static Item rawcleanirongladius;
+    public static Item rawsteelgladius;
+    public static Item rawwootzgladius;
 
     public static Item bronzegladius;
     public static Item wroughtirongladius;
@@ -252,6 +259,11 @@ public class ModItems {
          WEAPONS
          **********/
         rawbronzegladius = new WeaponPart("rawbronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE);
+        rawcoppergladius= new WeaponPart("rawcoppergladius", PrimalAPI.ToolMaterials.TOOL_COPPER);
+        rawwroughtirongladius= new WeaponPart("rawwroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        rawcleanirongladius= new WeaponPart("rawcleanirongladius", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        rawsteelgladius= new WeaponPart("rawsteelgladius", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        rawwootzgladius= new WeaponPart("rawwootzgladius", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
 
         bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5.5D, 2D);
         wroughtirongladius = new CustomSword("wroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
@@ -305,6 +317,8 @@ public class ModItems {
     }
 
     public static void register() {
+        //ForgeRegistries.ITEMS.register();
+
         ForgeRegistries.ITEMS.register(itemnbtcrucible);
         ForgeRegistries.ITEMS.register(slottedtongs);
         //ForgeRegistries.ITEMS.register(itemcrucible);
@@ -404,6 +418,11 @@ public class ModItems {
          WEAPONS
          **********/
         ForgeRegistries.ITEMS.register(rawbronzegladius);
+        ForgeRegistries.ITEMS.register(rawcoppergladius);
+        ForgeRegistries.ITEMS.register(rawwroughtirongladius);
+        ForgeRegistries.ITEMS.register(rawcleanirongladius);
+        ForgeRegistries.ITEMS.register(rawsteelgladius);
+        ForgeRegistries.ITEMS.register(rawwootzgladius);
 
         ForgeRegistries.ITEMS.register(wroughtirongladius);
         ForgeRegistries.ITEMS.register(bronzegladius);
@@ -544,6 +563,11 @@ public class ModItems {
         //registerRender(wroughtironshield);
 
         registerRender(rawbronzegladius);
+        registerRender(rawcoppergladius);
+        registerRender(rawwroughtirongladius);
+        registerRender(rawcleanirongladius);
+        registerRender(rawsteelgladius);
+        registerRender(rawwootzgladius);
 
         registerRender(bronzegladius);
         registerRender(wroughtirongladius);
