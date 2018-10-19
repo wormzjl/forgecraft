@@ -402,12 +402,10 @@ public class Chisel extends CustomFacing implements ToolMaterialMap {
 
     private void doMoving(World world, BlockPos pos, int toolHarvestLevel, IBlockState state, EnumFacing facing){
         if( (world.getBlockState(pos.offset(facing, 2)).getBlock() != Blocks.AIR) ) {
-            if ((compareHarvestLevel(toolHarvestLevel, world.getBlockState(pos.offset(facing, 1)).getBlock().getHarvestLevel(world.getBlockState(pos.offset(facing, 1))))) ||
+            if ((compareHarvestLevel(toolHarvestLevel, world.getBlockState(pos.offset(facing, 1)).getBlock().getHarvestLevel(world.getBlockState(pos.offset(facing, 1))))) &&
                     (world.getBlockState(pos.offset(facing, 1)).getBlock() == Blocks.AIR)) {
-                //if(state.getBlock().getBlockHardness(state, world, pos.offset(facing, 1)) > 0) {
                     world.setBlockState(pos.offset(facing, 1), state.withProperty(FACING, state.getValue(FACING)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
                     world.setBlockToAir(pos);
-                //}
             }
         } else {
             world.destroyBlock(pos, true);
@@ -435,7 +433,7 @@ public class Chisel extends CustomFacing implements ToolMaterialMap {
     }
 
     private boolean compareHarvestLevel(int inputLevel, int compareHarvest){
-        if(inputLevel >= compareHarvest && compareHarvest > 0){
+        if(inputLevel >= compareHarvest && inputLevel >=0){
             return true;
         } else return false;
     }
