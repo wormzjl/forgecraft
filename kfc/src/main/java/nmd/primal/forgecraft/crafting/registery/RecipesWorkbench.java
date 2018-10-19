@@ -375,6 +375,15 @@ public final class RecipesWorkbench {
                 Ingredient.EMPTY,
                 Ingredient.fromStacks(new ItemStack(ModItems.wootzshovel, 1, OreDictionary.WILDCARD_VALUE)),
                 new ItemStack(ModItems.wootzshovelhead, 1)).setRecipeName("wootzshovelsplit"));
-        
+
+        /*********WEAPONS********/
+
+        recipes.register (new WorkbenchCrafting(
+                new OreIngredient("weaponHandle"),
+                new OreIngredient("weaponGuard"),
+                Ingredient.fromStacks(new ItemStack(ModItems.rawbronzegladius, 1)),
+                Ingredient.EMPTY,
+                new ItemStack(ModItems.bronzegladius, 1)).setRecipeName("bronzegladius"));
+
     }
 }

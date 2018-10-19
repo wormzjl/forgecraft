@@ -13,6 +13,8 @@ import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
+import nmd.primal.forgecraft.items.parts.WeaponGuard;
+import nmd.primal.forgecraft.items.parts.WeaponHandle;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
@@ -117,6 +119,9 @@ public class ModItems {
     public static Item wootzaxe;
     public static Item wootzshovel;
     public static Item wootzhoe;
+
+    public static Item bonehandle;
+    public static Item boneguard;
 
     public static Item rawbronzegladius;
     public static Item rawcoppergladius;
@@ -258,6 +263,9 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
+        bonehandle = new WeaponHandle("bonehandle").setDictionaryNames("weaponHandle");
+        boneguard = new WeaponGuard("boneguard").setDictionaryNames("weaponGuard");
+
         rawbronzegladius = new WeaponPart("rawbronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE);
         rawcoppergladius= new WeaponPart("rawcoppergladius", PrimalAPI.ToolMaterials.TOOL_COPPER);
         rawwroughtirongladius= new WeaponPart("rawwroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
@@ -417,6 +425,9 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
+        ForgeRegistries.ITEMS.register(bonehandle);
+        ForgeRegistries.ITEMS.register(boneguard);
+
         ForgeRegistries.ITEMS.register(rawbronzegladius);
         ForgeRegistries.ITEMS.register(rawcoppergladius);
         ForgeRegistries.ITEMS.register(rawwroughtirongladius);
@@ -557,10 +568,13 @@ public class ModItems {
         registerRender(wootzhoe);
         registerRender(wootzsledgehammer);
 
+
         /**********
-         WEAPONS
+         WEAPON PARTS
          **********/
         //registerRender(wroughtironshield);
+        registerRender(bonehandle);
+        registerRender(boneguard);
 
         registerRender(rawbronzegladius);
         registerRender(rawcoppergladius);
@@ -568,6 +582,10 @@ public class ModItems {
         registerRender(rawcleanirongladius);
         registerRender(rawsteelgladius);
         registerRender(rawwootzgladius);
+
+        /**********
+         WEAPONS
+         **********/
 
         registerRender(bronzegladius);
         registerRender(wroughtirongladius);
