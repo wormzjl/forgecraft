@@ -39,8 +39,13 @@ public class CommonEvents implements WeaponNBT {
     public void onItemCrafted(CauldronRecipeEvent.Pre event){
 
         CauldronRecipe recipe = event.getRecipe();
-
-        if (recipe.matches("rawbronzegladiussmite", "rawbronzegladiusbane", "rawbronzegladiuslapis")){
+        System.out.println(recipe.getRecipeName());
+        if (recipe.matches("forgecraft:cauldron_item.rawcoppergladiussmite", "forgecraft:cauldron_item.rawcoppergladiusbane", "forgecraft:cauldron_item.rawcoppergladiusfire", "forgecraft:cauldron_item.rawcoppergladiusfortune",
+                "forgecraft:cauldron_item.rawbronzegladiussmite", "forgecraft:cauldron_item.rawbronzegladiusbane", "forgecraft:cauldron_item.rawbronzegladiusfire", "forgecraft:cauldron_item.rawbronzegladiusfortune",
+                "forgecraft:cauldron_item.rawwroughtirongladiussmite", "forgecraft:cauldron_item.rawwroughtirongladiusbane", "forgecraft:cauldron_item.rawwroughtirongladiusfire", "forgecraft:cauldron_item.rawwroughtirongladiusfortune",
+                "forgecraft:cauldron_item.rawclearnirongladiussmite", "forgecraft:cauldron_item.rawclearnirongladiusbane", "forgecraft:cauldron_item.rawclearnirongladiusfire", "forgecraft:cauldron_item.rawclearnirongladiusfortune",
+                "forgecraft:cauldron_item.rawsteelgladiussmite", "forgecraft:cauldron_item.rawsteelgladiusbane", "forgecraft:cauldron_item.rawsteelgladiusfire", "forgecraft:cauldron_item.rawsteelgladiusfortune",
+                "forgecraft:cauldron_item.rawwootzgladiussmite", "forgecraft:cauldron_item.rawwootzgladiusbane", "forgecraft:cauldron_item.rawwootzgladiusfire", "forgecraft:cauldron_item.rawwootzgladiusfortune")){
 
             NonNullList<ItemStack> inputList = NonNullList.<ItemStack>withSize(6, ItemStack.EMPTY);
             inputList.set(0, event.getTile().getInputHandler().getStackInSlot(0));
@@ -61,31 +66,27 @@ public class CommonEvents implements WeaponNBT {
 
             modStack = getOppositeStack(inputList, inputStack);
 
-            if (inputStack.hasTagCompound()) {
-                if (inputStack.getSubCompound("tags") != null) {
-                    NBTTagCompound tags = inputStack.getTagCompound().copy();
-                    if(inputStackItem != null) {
-                        if (getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
-                            if (RecipeHelper.isOreName(modStack, "dustSilver")) {
-                                setSmiteLevel(outputStack, getSmiteLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "foodPoison")) {
-                                setBaneLevel(outputStack, getBaneLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "dustBlaze")) {
-                                setFireLevel(outputStack, getFireLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "gemLapis")) {
-                                setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
-                            if (RecipeHelper.isOreName(modStack, "boneWithered", "dustWitheredBone", "skullWithered")) {
-                                setLeechLevel(outputStack, getLeechLevel(inputStack) + 1);
-                                setModifiers(outputStack, getModifiers(inputStack) + 1);
-                            }
+            if(inputStackItem != null) {
+                System.out.println("Stack is not null");
+                if (inputStack.hasTagCompound()) {
+                    System.out.println("Stack Has NBT");
+                    if (getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
+                        if (RecipeHelper.isOreName(modStack, "dustSilver")) {
+                            setSmiteLevel(outputStack, getSmiteLevel(inputStack) + 1);
+                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                        }
+                        if (RecipeHelper.isOreName(modStack, "foodPoison")) {
+                            setBaneLevel(outputStack, getBaneLevel(inputStack) + 1);
+                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                        }
+                        if (RecipeHelper.isOreName(modStack, "dustBlaze")) {
+                            setFireLevel(outputStack, getFireLevel(inputStack) + 1);
+                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                        }
+                        if (RecipeHelper.isOreName(modStack, "gemLapis")) {
+                            System.out.println("We are doign Gem Lapis Things");
+                            setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
+                            setModifiers(outputStack, getModifiers(inputStack) + 1);
                         }
                     }
                 }

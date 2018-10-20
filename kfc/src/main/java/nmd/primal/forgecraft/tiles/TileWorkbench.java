@@ -40,13 +40,12 @@ public class TileWorkbench extends TileBaseSlot{
             }
         }*/
         if(index == 3){
-            if ( (stack.getItem() instanceof ToolPart) || stack.getItem() instanceof WeaponGuard) {
+            if ( (stack.getItem() instanceof ToolPart) || stack.getItem() instanceof WeaponPart) {
                 return true;
             }
         }
         if(index == 4){
-            if ( (RecipeHelper.isOreName(stack.getItem(), "pinBasic")) ||
-            stack.getItem() instanceof WeaponPart) {
+            if ( (RecipeHelper.isOreName(stack.getItem(), "pinBasic")) || stack.getItem() instanceof WeaponGuard) {
                 return true;
             }
         }

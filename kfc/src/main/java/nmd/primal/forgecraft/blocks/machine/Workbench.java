@@ -12,9 +12,12 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.common.helper.PlayerHelper;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
+import nmd.primal.forgecraft.items.parts.ToolPart;
+import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
 
 import javax.annotation.Nullable;
@@ -92,8 +95,8 @@ public class Workbench extends CustomContainerFacing {
                             }
                             if(playerStack.getItem() instanceof Gallagher) {
                                 if (!slot2.isEmpty() && !slot3.isEmpty() && !slot4.isEmpty() && slot5.isEmpty()) {
+
                                     WorkbenchCrafting recipe = WorkbenchCrafting.getRecipe(slot2, slot3, slot4, slot5);
-                                    System.out.println(slot5);
                                     if (recipe != null) {
                                         ItemStack drops = recipe.getOutput();
                                         if (slot3.hasTagCompound()) {

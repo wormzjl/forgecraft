@@ -4,6 +4,7 @@ import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.recipes.AbstractRecipe;
 import nmd.primal.forgecraft.ModInfo;
 
@@ -102,17 +103,16 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
         if(ingredient == null && stack.isEmpty()) {
             return true;
         }
-
         if (ingredient.test(ItemStack.EMPTY)) {
             if (stack.isEmpty()) {
                 return true;
             }
         }
-
-        if(ingredient.apply(stack)){
+        ItemStack[] testArray = ingredient.getMatchingStacks();
+        List<ItemStack> testList = RecipeHelper.buildList(testArray);
+        if(testList.contains(stack)){
             return true;
         }
-
         return false;
     }
 

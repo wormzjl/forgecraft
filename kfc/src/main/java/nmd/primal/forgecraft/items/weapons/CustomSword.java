@@ -16,6 +16,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.WeaponNBT;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -23,11 +24,11 @@ import java.util.List;
 /**
  * Created by mminaie on 3/23/17.
  */
-public class CustomSword extends ItemSword {
+public class CustomSword extends ItemSword implements WeaponNBT {
 
     private double attack, speed;
-
-    public CustomSword(String name, Item.ToolMaterial material, double attackDamage, double attackSpeed) {
+    private ToolMaterial toolMaterial;
+    public CustomSword(String name, ToolMaterial material, double attackDamage, double attackSpeed) {
         super(material);
         this.setUnlocalizedName(name);
         this.setRegistryName(name);
@@ -36,7 +37,7 @@ public class CustomSword extends ItemSword {
         this.setNoRepair();
         this.attack = attackDamage;
         this.speed = attackSpeed;
-
+        this.toolMaterial= material;
     }
 
     @SideOnly(Side.CLIENT)
@@ -79,13 +80,30 @@ public class CustomSword extends ItemSword {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack item, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
+    public void addInformation(ItemStack stack, @Nullable World world, List<String> tooltip, ITooltipFlag flagIn)
     {
         //tooltip.add(ChatFormatting.GRAY + "Damage: " + item.getItemDamage() );
-        if(item.hasTagCompound())
+        if(stack.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades: " );
-            tooltip.add(ChatFormatting.LIGHT_PURPLE + "Damage: " + item.getItemDamage() );
+            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " + (WeaponNBT.materialModifiers.get(this.toolMaterial) - getModifiers(stack)));
+            if (getSmiteLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.GOLD + "Holy: " + getSmiteLevel(stack));
+            }
+            if (getBaneLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.GREEN + "Spider Killing: " + getBaneLevel(stack));
+            }
+            if (getFireLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.RED + "Flame: " + getFireLevel(stack));
+            }
+            if (getFortuneLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.BLUE + "Thieving: " + getFortuneLevel(stack));
+            }
+            if (getLeechLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.BLACK + "Life Steal: " + getLeechLevel(stack));
+            }
+            if (getSharpnessLevel(stack) > 0) {
+                tooltip.add(ChatFormatting.WHITE + "Sharpness: " + getSharpnessLevel(stack));
+            }
         }
     }
 
