@@ -34,6 +34,8 @@ import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
 import java.util.Random;
 
+import static net.minecraft.util.EnumHand.MAIN_HAND;
+
 
 /**
  * Created by mminaie on 11/11/17.
@@ -58,8 +60,14 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
-            if(hand.equals(hand.MAIN_HAND)) {
-                TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+
+            TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
+
+            if(hand.equals(MAIN_HAND)) {
+
+                System.out.println(player.inventory.getCurrentItem());
+                System.out.println(hand);
+
                 ItemStack pItem = player.inventory.getCurrentItem().copy();
                 pItem.setCount(1);
 
@@ -76,11 +84,15 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         return true;
                     }
                 }
+            }
 
-                /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
+            /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
+            if( player.inventory.getSlotFor(player.inventory.getCurrentItem()) != -1 ) {
+                ItemStack pItem = player.inventory.getCurrentItem().copy();
+                pItem.setCount(1);
                 if (!player.isSneaking()) {
                     if (!pItem.isEmpty()) {
-                        if(!tile.getStatus() || tile.getHot() == 15 || tile.getHot() == 6) {
+                        if (!tile.getStatus() || tile.getHot() == 15 || tile.getHot() == 6) {
                             if (pItem.getItem() instanceof SlottedTongs) {
                                 return false;
                             } else {
@@ -101,10 +113,13 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         }
                     }
                 }
-                /**CLEARS THE INVENTORY**/
+            }
+            /**CLEARS THE INVENTORY**/
+            if(hand.equals(MAIN_HAND)) {
                 if (player.isSneaking()) {
+                    ItemStack pItem = player.inventory.getCurrentItem().copy();
                     if (pItem.isEmpty()) {
-                        if (tile.getHot()!=15) {
+                        if (tile.getHot() != 15) {
                             if (!tile.getStatus()) {
                                 for (int i = 0; i < tile.ingList.size(); i++) {
                                     if (!tile.ingList.get(i).isEmpty()) {
@@ -122,10 +137,13 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         }
                     }
                 }
-                /**REMOVE COOKED ITEM**/
-                if (player.isSneaking() == true) {
+            }
+            /**REMOVE COOKED ITEM**/
+            if (player.isSneaking() == true) {
+                if (hand.equals(MAIN_HAND)) {
+                    ItemStack pItem = player.inventory.getCurrentItem().copy();
                     if (pItem.isEmpty()) {
-                        if (tile.getStatus() && tile.getHot()==6) {
+                        if (tile.getStatus() && tile.getHot() == 6) {
                             ItemStack dropStack = tile.getDrops().copy();
                             world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 0), 2);
                             tile.setHot(0);
@@ -142,7 +160,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         }
                     }
                 }
-                return true;
             }
         }
         return false;
