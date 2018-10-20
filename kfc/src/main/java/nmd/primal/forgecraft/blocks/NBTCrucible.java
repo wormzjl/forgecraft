@@ -114,7 +114,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                     }
                 }
             }
-                /**CLEARS THE INVENTORY**/
+            /**CLEARS THE INVENTORY**/
             if(hand.equals(MAIN_HAND)) {
                 if (player.isSneaking()) {
                     ItemStack pItem = player.inventory.getCurrentItem().copy();
@@ -138,7 +138,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                     }
                 }
             }
-                /**REMOVE COOKED ITEM**/
+/**REMOVE COOKED ITEM**/
             if (player.isSneaking() == true) {
                 if (hand.equals(MAIN_HAND)) {
                     ItemStack pItem = player.inventory.getCurrentItem().copy();

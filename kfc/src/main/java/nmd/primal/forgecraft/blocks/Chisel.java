@@ -122,10 +122,10 @@ public class Chisel extends CustomFacing implements ToolMaterialMap {
     }
 
     @Override
-    public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
+    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        if(!worldIn.isRemote) {
-            worldIn.setBlockState(pos, state.withProperty(FACING, reverseFacing(EnumFacing.getDirectionFromEntityLiving(pos, placer))).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
+        if(!world.isRemote) {
+            world.setBlockState(pos, state.withProperty(FACING, EnumFacing.getFacingFromVector((float)placer.getLookVec().x, (float)placer.getLookVec().y, (float)placer.getLookVec().z)).withProperty(PrimalAPI.States.ACTIVE, Boolean.valueOf(false)), 2);
         }
     }
 
