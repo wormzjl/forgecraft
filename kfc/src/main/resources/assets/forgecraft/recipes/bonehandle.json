@@ -1,0 +1,13 @@
+{
+  "type": "forge:ore_shaped",
+  "group": "forgecraft.bonehandle",
+  "result": { "item": "forgecraft.bonehandle", "count": 2 },
+  "pattern": [
+    "T",
+    "B"
+  ],
+  "key": {
+    "T": { "type": "forge:ore_dict", "ore": "toolSaw" },
+    "B": { "type": "forge:ore_dict", "ore": "bone" }
+  }
+}
