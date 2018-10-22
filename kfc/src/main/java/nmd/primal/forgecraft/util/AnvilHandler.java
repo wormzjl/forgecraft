@@ -30,7 +30,7 @@ import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
 /**
  * Created by mminaie on 6/10/17.
  */
-public interface AnvilHandler {
+public interface AnvilHandler extends ToolMaterialMap {
 
     double[] normalMin = {0.0625, 0.25, 0.4375, 0.625, 0.8125};
 
@@ -60,7 +60,7 @@ public interface AnvilHandler {
         AnvilCrafting recipe = AnvilCrafting.getRecipe(tempArray);
         if (recipe != null) {
             if (pItem.getItem() instanceof Gallagher) {
-                pItem.damageItem(15, player);
+                pItem.damageItem(10, player);
             }
             if (pItem.getItem() instanceof ForgeHammer) {
                 pItem.damageItem(1, player);
@@ -87,6 +87,12 @@ public interface AnvilHandler {
 
                         tempStack.getSubCompound("tags").setInteger("modifiers", 0);
                         CommonUtils.spawnItemEntityFromWorld(world, pos, tempStack);
+                        for (int i = 0; i < tile.getSlotListSize(); i++) {
+                            if (!tile.getSlotStack(i).isEmpty()) {
+                                tile.setSlotStack(i, ItemStack.EMPTY);
+                            }
+                        }
+                        return true;
                     }
 
                     if (tile.getSlotStack(12).getItem().equals(recipe.getOutput().getItem())) {
@@ -100,21 +106,32 @@ public interface AnvilHandler {
 
                         if (recipe.getUpgrade() == "repair") {
                             CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                            for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                if (!tile.getSlotStack(i).isEmpty()) {
+                                    tile.setSlotStack(i, ItemStack.EMPTY);
+                                }
+                            }
+                            return true;
                         }
 
-
-                        if (outputStack.getSubCompound("tags").getInteger("modifiers") < 3) {
+                        if (outputStack.getSubCompound("tags").getInteger("modifiers") < ToolMaterialMap.materialModifiers.get(((ToolPart) recipe.getOutput().getItem()).getMaterial()) ) {
 
                             //Upgrade emerald
                             if (recipe.getUpgrade() == "emerald") {
                                 if (outputStack.getSubCompound("tags").getInteger("lapis") == 0) {
-                                    if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
+                                    if (!outputStack.getSubCompound("tags").getBoolean("emerald")) {
                                         outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
                                         outputStack.getSubCompound("tags").setInteger("emerald",
                                                 (outputStack.getSubCompound("tags").getInteger("emerald") + 1));
                                         outputStack.getSubCompound("tags").setInteger("modifiers",
                                                 (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
                                         CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                                        for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                            if (!tile.getSlotStack(i).isEmpty()) {
+                                                tile.setSlotStack(i, ItemStack.EMPTY);
+                                            }
+                                        }
+                                        return true;
                                     }
                                 }
                             }
@@ -127,6 +144,12 @@ public interface AnvilHandler {
                                 outputStack.getSubCompound("tags").setInteger("modifiers",
                                         (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
                                 CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                                for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                    if (!tile.getSlotStack(i).isEmpty()) {
+                                        tile.setSlotStack(i, ItemStack.EMPTY);
+                                    }
+                                }
+                                return true;
                             }
 
                             //Upgrade redstone
@@ -137,31 +160,44 @@ public interface AnvilHandler {
                                 outputStack.getSubCompound("tags").setInteger("modifiers",
                                         (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
                                 CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                                for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                    if (!tile.getSlotStack(i).isEmpty()) {
+                                        tile.setSlotStack(i, ItemStack.EMPTY);
+                                    }
+                                }
+                                return true;
                             }
 
                             //Upgrade lapis
                             if (recipe.getUpgrade() == "lapis") {
                                 outputStack.setItemDamage(tile.getSlotStack(12).getItemDamage());
-                                if (outputStack.getSubCompound("tags").getBoolean("emerald") == false) {
+                                if (!outputStack.getSubCompound("tags").getBoolean("emerald")) {
                                     outputStack.getSubCompound("tags").setInteger("lapis",
                                             (outputStack.getSubCompound("tags").getInteger("lapis") + 1));
                                     outputStack.getSubCompound("tags").setInteger("modifiers",
                                             (outputStack.getSubCompound("tags").getInteger("modifiers") + 1));
                                     CommonUtils.spawnItemEntityFromWorld(world, pos, outputStack);
+                                    for (int i = 0; i < tile.getSlotListSize(); i++) {
+                                        if (!tile.getSlotStack(i).isEmpty()) {
+                                            tile.setSlotStack(i, ItemStack.EMPTY);
+                                        }
+                                    }
+                                    return true;
                                 }
                             }
                         }
+                        return false;
                     }
-                } else {
+                }
+                if (!(recipe.getOutput().getItem() instanceof ToolPart)) {
                     CommonUtils.spawnItemEntityFromWorld(world, pos, recipe.getOutput());
-                }
-                //world.playEvent(1031, pos, 0);
-                for (int i = 0; i < tile.getSlotListSize(); i++) {
-                    if (!tile.getSlotStack(i).isEmpty()) {
-                        tile.setSlotStack(i, ItemStack.EMPTY);
+                    for (int i = 0; i < tile.getSlotListSize(); i++) {
+                        if (!tile.getSlotStack(i).isEmpty()) {
+                            tile.setSlotStack(i, ItemStack.EMPTY);
+                        }
                     }
+                    return true;
                 }
-                return true;
             }
         }
         return false;
@@ -237,128 +273,127 @@ public interface AnvilHandler {
 
     static boolean doWork(ItemStack pItem, Integer counter, TileAnvil tile, World world, BlockPos pos, EntityPlayer player) {
 
+        if (pItem.getItem().equals(ModItems.slottedtongs)) {
 
-            if (pItem.getItem().equals(ModItems.slottedtongs)) {
+            IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
+            ItemStack tongStack = inventory.getStackInSlot(0).copy();
+            SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
 
-                IItemHandler inventory = pItem.getCapability(ITEM_HANDLER, null);
-                ItemStack tongStack = inventory.getStackInSlot(0).copy();
-                SlottedTongs itemstackItem = (SlottedTongs) pItem.getItem();
-
-                if (tongStack.isEmpty()) {
-                    if (!tile.getSlotStack(counter).isEmpty()) {
-                        ItemStack tempStack = tile.getSlotStack(counter).copy();
-                        inventory.insertItem(0,tempStack, false);
-                        tile.setSlotStack(counter, ItemStack.EMPTY);
-                        itemstackItem.markDirty(pItem);
-                        return true;
-                    }
-                }
-
-                if (!tongStack.isEmpty()) {
-                    if (tile.getSlotStack(counter).isEmpty()) {
-                        tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
-                        itemstackItem.markDirty(pItem);
-                        return true;
-                    }
-                }
-            }
-
-
-            if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
-
-                if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+            if (tongStack.isEmpty()) {
+                if (!tile.getSlotStack(counter).isEmpty()) {
+                    ItemStack tempStack = tile.getSlotStack(counter).copy();
+                    inventory.insertItem(0,tempStack, false);
                     tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-                if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-
-                if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-
-                if (tile.getSlotStack(counter).getItem() instanceof BaseMultiItem) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
-                    return true;
-                }
-            }
-            if(tile.getSlotStack(counter).getItem() instanceof ToolPart){
-                if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {
-                    CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
-                    tile.setSlotStack(counter, ItemStack.EMPTY);
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
             }
 
-            if (pItem.getItem().equals(Items.DIAMOND)) {
+            if (!tongStack.isEmpty()) {
                 if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
+                    tile.setSlotStack(counter, inventory.extractItem(0, 1, false));
+                    itemstackItem.markDirty(pItem);
                     return true;
                 }
+            }
+        }
+
+
+        if (pItem.getItem().equals(Items.AIR) && player.isSneaking()) {
+
+            if (tile.getSlotStack(counter).getItem().equals(Items.DIAMOND)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(Items.EMERALD)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+            if (tile.getSlotStack(counter).getItem().equals(Items.REDSTONE)) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
 
-            if (pItem.getItem().equals(Items.EMERALD)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+            if (tile.getSlotStack(counter).getItem().equals(Items.DYE) && tile.getSlotStack(counter).getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
 
-            if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+            if (tile.getSlotStack(counter).getItem() instanceof BaseMultiItem) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
             }
+        }
+        if(tile.getSlotStack(counter).getItem() instanceof ToolPart){
+            if (tile.getSlotStack(counter).getSubCompound("tags").getBoolean("hot") == false) {
+                CommonUtils.spawnItemEntityFromWorld(world, pos, tile.getSlotStack(counter));
+                tile.setSlotStack(counter, ItemStack.EMPTY);
+                return true;
+            }
+        }
 
-            if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(Items.DIAMOND)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
 
-            if (pItem.getItem().equals(Items.REDSTONE)) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(Items.EMERALD)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
 
-            if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
-                if (tile.getSlotStack(counter).isEmpty()) {
-                    tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
-                    pItem.shrink(1);
-                    return true;
-                }
+        if (pItem.getItem().equals(PrimalAPI.Items.EMERALD_KNAPP)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
             }
+        }
+
+        if (pItem.getItem().equals(PrimalAPI.Items.DIAMOND_KNAPP)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
+            }
+        }
+
+        if (pItem.getItem().equals(Items.REDSTONE)) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1));
+                pItem.shrink(1);
+                return true;
+            }
+        }
+
+        if (pItem.getItem().equals(Items.DYE) && pItem.getItemDamage() == EnumDyeColor.BLUE.getDyeDamage()) {
+            if (tile.getSlotStack(counter).isEmpty()) {
+                tile.setSlotStack(counter, new ItemStack(pItem.getItem(), 1, pItem.getItemDamage()));
+                pItem.shrink(1);
+                return true;
+            }
+        }
 
         return false;
     }
@@ -373,7 +408,6 @@ public interface AnvilHandler {
                         double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
                         double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
-                        System.out.println(stack);
                         EntityItem itemDrop = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
                         itemDrop.setDefaultPickupDelay();
                         world.spawnEntity(itemDrop);

@@ -1,8 +1,8 @@
 {
   "parent": "forgecraft:item/hoe",
   "textures": {
-    "particle": "forgecraft:items/iron_ingot_hot",
+    "particle": "forgecraft:items/iron/1",
     "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/iron_ingot_hot"
+    "texture1": "forgecraft:items/iron/1"
   }
 }

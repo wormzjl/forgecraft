@@ -1,8 +1,8 @@
 {
   "parent": "forgecraft:item/axehead",
   "textures": {
-    "particle": "forgecraft:items/steel_ingot",
+    "particle": "forgecraft:items/steel/0",
     "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/steel_ingot"
+    "texture1": "forgecraft:items/steel/0"
   }
 }

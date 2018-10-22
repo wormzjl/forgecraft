@@ -13,5 +13,17 @@
   "category": "block",
   "subtitle": "forgecraft.subtitle.bow_twang",
   "sounds": [ "forgecraft:bow_twang" ]
-}
+},
+
+  "chisel_hit": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.chisel_hit",
+    "sounds": [ "forgecraft:chisel_hit" ]
+  },
+
+  "chisel_hit_finished": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.chisel_hit_finishedg",
+    "sounds": [ "forgecraft:chisel_hit_finished" ]
+  }
 }

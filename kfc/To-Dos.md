@@ -1,14 +1,15 @@
 # To-Dos
 
 ## Bugs
+- [ ] Texture mismatch for 4diamond 1 redstone
+- [ ] ForgeHammer extend Gallagher
+- [ ] Placement bug for crucible from tongs
 
 ## Current Feature
-- [ ] FIX LONGBOW
-- [ ] Copper Tools
+
+- [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
-- [ ] Config Usage
-- [ ] Config for lowering fortune multiplier
-- [ ] Hardened Leather Helmet Inventory Model
+- [ ] Recipe Handler for Block Breaker
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -22,18 +23,24 @@
 - [ ] Create lock assembly item
 
 ## Backlog
+- [ ] Play a sound when bloomery or forge finishes
+- [ ] Hardness and Resistance calculation for durability damage
+- [ ] Hardened Leather Helmet Inventory Model
+- [ ] Add Achievements
+- [ ] Bloomery Print out
+- [ ] Random Floats for hot texture
 - [ ] Mass Ore Production
 - [ ] Silver/Lead Production
 - [ ] Sparks to forging
-- [x] Move Ingot break into chunks logic out of the block and into the ForgeHammer
 - [ ] Add Iron Ring Recipe
 - [ ] Add chainmail recipe
 - [ ] Add Iron Shield
 - [ ] Gold Smelting
-- [ ] Create a method which adds the types of NBT upgrades and creates a unique float instead of using magic numbers
 - [ ] Add forgehammer to oreDict
 
 ### Tid-Bits
+NonNullList<ItemStack> tempDrops = NonNullList.<ItemStack>create();
+ItemStack iron_gear = RecipeHelper.getFirstDictionaryMatch("gearIron", 1);
 ```
 sed -i -- 's/iron/steel/g' *
 rm *.json--
@@ -41,6 +48,33 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] WorkBench
+- [x] Longbow change NBT management
+- [x] Check dict name for cluster
+- [x] Check block break code for NBTCrucible
+- [x] Cooldown for sledgehammer not working
+- [x] tune volume down on sledgehammer
+- [x] when placing crucibles on the side of a block it replaces the block above
+- [x] Check on disable for soft crucible in bloomery 
+- [x] Correct Tooltip for RawLongbow
+- [x] Add tooltip to Chisel and SledgeHammer
+- [x] Damascus workblade
+- [x] Config to map only wrought iron to vanilla iron or wrought iron to another iron
+- [x] Config to map damascus steel to generic mod steel
+- [x] If blockbreaker charge is 0 shift right click will remove the gallagher
+- [x] drop a tool handle when crafting
+- [x] Hot Crucible block form missing texture
+- [x] Soft Crucible drop from tongs
+- [x] Pickaxe upgrades printout
+- [x] Can't put a crucible straight from creative inventory into bloomery and pull with tongs
+- [x] SledgeHammer and Chisel item and blocks
+- [x] ToolTip rawLongbow
+- [x] Update Recipes with oreDict for slackLime
+- [x] Chisel Bounding Box changes
+- [x] SledgeHammer Supid Damage Modifier
+- [x] SledgeHammer and Chisel crafting
+- [x] SledgeHammer and Chisel assets
+- [x] SoftCrucible Color Issues
 - [x] Apply Forge turn off logic to Bloomery
 - [x] Soft Crucible Hibachi Recipe
 - [x] Fix Plate Crafting

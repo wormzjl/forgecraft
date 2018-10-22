@@ -182,6 +182,20 @@ public interface ForgeHandler {
                     return true;
                 }
             }
+            if (RecipeHelper.isOreName(pItem, "ingotWootz")) {
+                if (tile.getSlotStack(counter).isEmpty()) {
+                    tile.setSlotStack(counter, new ItemStack(ModItems.wootzingotball, 1));
+                    player.inventory.getCurrentItem().shrink(1);
+                    return true;
+                }
+            }
+            if (RecipeHelper.isOreName(pItem, "nuggetWootz")) {
+                if (tile.getSlotStack(counter).isEmpty()) {
+                    tile.setSlotStack(counter, new ItemStack(ModItems.wootzchunk, 1));
+                    player.inventory.getCurrentItem().shrink(1);
+                    return true;
+                }
+            }
         }
 
         return false;

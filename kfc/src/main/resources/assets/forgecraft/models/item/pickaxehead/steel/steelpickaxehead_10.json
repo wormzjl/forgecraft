@@ -1,8 +1,0 @@
-{
-  "parent": "forgecraft:item/pickaxehead",
-  "textures": {
-    "particle": "forgecraft:items/steel_ingot",
-    "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/steel_ingot_redstone1"
-  }
-}

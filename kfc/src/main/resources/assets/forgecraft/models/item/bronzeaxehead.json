@@ -6,15 +6,14 @@
     "texture1": "forgecraft:items/finished_bronze"
   },
   "overrides": [
-    {"predicate": {"type": 0.0},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0"},
-    {"predicate": {"type": 0.1},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_1"},
-    {"predicate": {"type": 0.2},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_2"},
-    {"predicate": {"type": 0.3},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_3"},
-    {"predicate": {"type": 0.4},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_4"}
-
+    {"predicate": {"type": 0},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0"},
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0.0001"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0.001"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0.01"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_0.1"},
+    {"predicate": {"type": 1},"model": "forgecraft:item/axehead/bronze/bronzeaxehead_1"}
   ]
 }
-
 
 
 

@@ -29,6 +29,7 @@ import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileForge;
 import nmd.primal.forgecraft.util.ForgeHandler;
+import nmd.primal.forgecraft.util.SlotHelper;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -42,7 +43,7 @@ import static nmd.primal.core.common.helper.FireHelper.makeSmoke;
 /**
  * Created by kitsu on 11/26/2016.
  */
-public class Forge extends CustomContainerFacing implements ITileEntityProvider, ForgeHandler{
+public class Forge extends CustomContainerFacing implements ITileEntityProvider, ForgeHandler, SlotHelper {
 
     private int maxHeat;
     //public static final PropertyBool PrimalAPI.States.ACTIVE =  PropertyBool.create("PrimalAPI.States.ACTIVE");
@@ -97,7 +98,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                     ItemStack fuelItem = tile.getSlotStack(0);
 
                     /***********************
-                     FUEL SLOT CODE
+                     FUEL SLOT REMOVAL CODE
                      ***********************/
                     if (!tile.getSlotStack(0).isEmpty()) {
                         if (player.inventory.getCurrentItem().getItem() instanceof ItemSpade) {
@@ -107,6 +108,10 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                             return true;
                         }
                     }
+
+                    /***********************
+                     TEMP PRINT OUT CODE
+                     ***********************/
                     if (pItem.isEmpty()) {
                         if (!player.isSneaking()) {
                             if (world.getBlockState(pos).getValue(PrimalAPI.States.ACTIVE) == true) {
@@ -119,6 +124,9 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                             }
                         }
                     }
+                    /***********************
+                     Forge Activation Code
+                     ***********************/
                     if ((FireSource.useSource(world, pos, facing, player, hand, pItem, hitX, hitY, hitZ))) {
                         world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, true), 2);
                         tile.setHeat(100);
@@ -126,33 +134,48 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                         tile.updateBlock();
                         return true;
                     }
-                    if ((!pItem.isEmpty()) && tile.isItemValidForSlot(0, pItem)) {
-                        if (!fuelItem.isEmpty()) {
-                            if (pItem.getItem() == fuelItem.getItem()) {
-                                if (fuelItem.getCount() < 64) {
-                                    if (fuelItem.getCount() + pItem.getCount() <= 64) {
-                                        fuelItem.grow(pItem.getCount());
-                                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-                                        tile.markDirty();
-                                        tile.updateBlock();
-                                        return true;
-                                    }
-                                    if (fuelItem.getCount() + pItem.getCount() > 64) {
-                                        pItem.setCount(64 - pItem.getCount());
-                                        fuelItem.setCount(64);
-                                        tile.markDirty();
-                                        tile.updateBlock();
-                                        return true;
-                                    }
-                                }
-                            }
-                        }
-                        if (fuelItem.isEmpty()) {
-                            tile.setSlotStack(0, pItem);
+
+                /***********************
+                 FUEL SLOT MANAGEMENT Code
+                 ***********************/
+
+                     /***********************
+                     FUEL SLOT IS EMPTYT
+                     ***********************/
+                    if (tile.getSlotStack(0).isEmpty()) {
+                        if(tile.isItemValidForSlot(0, player.inventory.getCurrentItem())) {
+                            tile.setSlotStack(0, player.inventory.getCurrentItem());
                             player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                            tile.markDirty();
+                            tile.updateBlock();
                             return true;
                         }
                     }
+
+                    /***********************
+                     FUEL SLOT HAS STUFF
+                     ***********************/
+                    if(ItemStack.areItemsEqual(player.inventory.getCurrentItem(), tile.getSlotStack(0)) && !tile.getSlotStack(0).isEmpty()) {
+                        if (tile.getSlotStack(0).getCount() < 64) {
+                            if (tile.getSlotStack(0).getCount() + player.inventory.getCurrentItem().getCount() <= 64) {
+                                tile.getSlotStack(0).grow(pItem.getCount());
+                                player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                                tile.markDirty();
+                                tile.updateBlock();
+                                return true;
+                            }
+                            if (tile.getSlotStack(0).getCount() + player.inventory.getCurrentItem().getCount() > 64) {
+                                int count = 64 - tile.getSlotStack(0).getCount();
+                                tile.getSlotStack(0).grow(count);
+                                pItem.shrink(count);
+                                tile.markDirty();
+                                tile.updateBlock();
+                                return true;
+                            }
+                        }
+                    }
+
+
 
                     if (facing == EnumFacing.UP) {
                         doForgeInventoryManager(pItem, world, tile, pos, hitX, hitY, hitZ, state, player);
@@ -184,7 +207,7 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
     public int getLightValue(IBlockState state, IBlockAccess world, BlockPos pos)
     {
         if(state.getValue(PrimalAPI.States.ACTIVE) == true){
-            return 15;
+            return 5;
         }
         return 0;
     }

@@ -460,23 +460,3 @@ public class PistonBellows extends CustomContainerFacing {
 
 
 }
-
-
-/*
-            if(rand.nextInt(4) == 1){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-            }
-            if(rand.nextInt(4) == 2){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-            }
-            if(rand.nextInt(4) == 3){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-            }
-            if(rand.nextInt(4) == 4){
-                world.spawnParticle(EnumParticleTypes.FLAME, d0-d4, d1, d2-d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-                world.spawnParticle(EnumParticleTypes.FLAME, d0+d4, d1, d2+d4, 0.0D, (double) (rand.nextInt(2) + 1)/1000, 0.0D, new int[0]);
-            }
- */

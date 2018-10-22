@@ -1,8 +1,0 @@
-{
-  "parent": "forgecraft:item/axe",
-  "textures": {
-    "particle": "forgecraft:items/iron_ingot",
-    "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/iron_ingot_diamond2_redstone1"
-  }
-}

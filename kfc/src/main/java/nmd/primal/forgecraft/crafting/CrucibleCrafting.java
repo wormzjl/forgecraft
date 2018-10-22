@@ -1,29 +1,40 @@
 package nmd.primal.forgecraft.crafting;
 
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
+import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.core.common.recipes.AbstractRecipe;
+import nmd.primal.forgecraft.ModInfo;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
  * Created by mminaie on 11/11/17.
  */
-public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
+public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //extends AbstractCrafting<CrucibleCrafting> {
 
     // ***************************************************************************** //
     //  Recipe Handler CrucibleHandler
     // ***************************************************************************** //
 
-    //public static final String RECIPE_PREFIX = "crucible";
-    //public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTINGS;
-    //public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
+    public static final String RECIPE_PREFIX = "crucible";
+    public static final IForgeRegistry<CrucibleCrafting> REGISTRY = ModInfo.Registries.CRUCIBLE_CRAFTING;
 
-    public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
-        return crucibleCrafting;
+    public static Collection<CrucibleCrafting> getRECIPES() {
+        return RECIPES;
     }
 
-    private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
+    public static final Collection<CrucibleCrafting> RECIPES = REGISTRY.getValuesCollection();
+
+    //public static ArrayList<CrucibleCrafting> getCrucibleCrafting() {
+        //return crucibleCrafting;
+    //}
+
+    //private static ArrayList<CrucibleCrafting> crucibleCrafting = new ArrayList<>();
 
     private int cookTemp;
     private int cookTime;
@@ -91,7 +102,7 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     public CrucibleCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
                             ItemStack outputRaw, ItemStack outputCooked,
                             Integer temp, Integer cookTime, Integer coolTime){
-        //super();
+        super();
         this.ing0 = i0;
         this.ing1 = i1;
         this.ing2 = i2;
@@ -109,16 +120,49 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
         this.coolTime = coolTime;
     }
 
-    public static void addRecipe(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3, Ingredient i4,
-                                 ItemStack outputRaw, ItemStack outputCooked,
-                                 Integer temp, Integer cookTime, Integer coolTime)
-    {
-        crucibleCrafting.add(new CrucibleCrafting(i0, i1, i2, i3, i4, outputRaw, outputCooked, temp, cookTime, coolTime));
+    public static boolean compare(Ingredient ingredient, ItemStack stack){
+        if(stack == null){
+            stack = new ItemStack(Items.AIR, 1);
+        }
+        if(ingredient == null && stack.isEmpty()) {
+            return true;
+        }
+
+        if (ingredient.test(ItemStack.EMPTY)) {
+            if (stack.isEmpty()) {
+                return true;
+            }
+        }
+
+        if(ingredient.apply(stack)){
+            return true;
+        }
+
+        return false;
     }
 
     public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
-        for(CrucibleCrafting recipe : crucibleCrafting){
-            if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
+        for(CrucibleCrafting recipe : RECIPES){
+            if(i0 == null){
+                i0 = ItemStack.EMPTY;
+            }
+            if(i1 == null){
+                i1 = ItemStack.EMPTY;
+            }
+            if(i2 == null){
+                i2 = ItemStack.EMPTY;
+            }
+            if(i3 == null){
+                i3 = ItemStack.EMPTY;
+            }
+            if(i4 == null){
+                i4 = ItemStack.EMPTY;
+            }
+            if(compare(recipe.ing0, i0) &&
+                    compare(recipe.ing1, i1) &&
+                    compare(recipe.ing2, i2) &&
+                    compare(recipe.ing3, i3) &&
+                    compare(recipe.ing4, i4) ){
                 return true;
             }
         }
@@ -126,16 +170,32 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     }
 
     public static CrucibleCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack i4){
-        for(CrucibleCrafting recipe : crucibleCrafting){
-            if(recipe.ing0.test(i0) && recipe.ing1.test(i1) && recipe.ing2.test(i2) && recipe.ing3.test(i3) && recipe.ing4.test(i4) ){
+        for(CrucibleCrafting recipe : RECIPES){
+
+            if(i0 == null){
+                i0 = ItemStack.EMPTY;
+            }
+            if(i1 == null){
+                i1 = ItemStack.EMPTY;
+            }
+            if(i2 == null){
+                i2 = ItemStack.EMPTY;
+            }
+            if(i3 == null){
+                i3 = ItemStack.EMPTY;
+            }
+            if(i4 == null){
+                i4 = ItemStack.EMPTY;
+            }
+
+            if(recipe.ing0.apply(i0) && recipe.ing1.apply(i1) && recipe.ing2.apply(i2) && recipe.ing3.apply(i3) && recipe.ing4.apply(i4) ){
                 return recipe;
             }
         }
         return null;
     }
-
     public static boolean isValidIngredient(ItemStack checkStack){
-        for(CrucibleCrafting recipe : crucibleCrafting) {
+        for(CrucibleCrafting recipe : RECIPES) {
             if (recipe.ing0.apply(checkStack) ||
                     recipe.ing1.apply(checkStack) ||
                     recipe.ing2.apply(checkStack) ||
@@ -168,18 +228,16 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
     }
 
 
-/*
-    /// forge registries require a unique REGISTRY_NAME ///
+
+
     @Override
-    public String getRecipePrefix()
-    {
-        return RECIPE_PREFIX;
+    public Collection<CrucibleCrafting> getRecipes() {
+        return RECIPES;
     }
 
     @Override
-    public Collection<CrucibleCrafting> getRecipes()
-    {
-        return RECIPES;
+    public String getRecipePrefix() {
+        return RECIPE_PREFIX;
     }
 
     /**
@@ -187,11 +245,9 @@ public class CrucibleCrafting { //extends AbstractCrafting<CrucibleCrafting> {
      * @param recipe_name basic recipe name, no prefix or mod id
      * @return Recipe object
      */
-/*
     @Nullable
     public static CrucibleCrafting getRecipe(String recipe_name)
     {
         return REGISTRY.getValue(getFullRecipeName(RECIPE_PREFIX, recipe_name));
     }
-*/
 }

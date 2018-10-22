@@ -16,8 +16,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.ToolMaterialMap;
 import nmd.primal.forgecraft.util.ToolNBT;
 
 import javax.annotation.Nullable;
@@ -42,193 +42,44 @@ public class ToolPart extends Item implements ToolNBT{
         this.toolType = type;
         this.toolMaterial = material;
 
-        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter()
-        {
+        this.addPropertyOverride(new ResourceLocation("type"), new IItemPropertyGetter() {
 
             /***
 
-             hot . emerald . diamond . redstone . lapis
-             0  .    0    .    0    .     0    .   0
+             hot | emerald | diamond | redstone | lapis
+             X.0 |   0.X   |   0.0X  |   0.00X  |  0.000X
 
              ***/
 
             @SideOnly(Side.CLIENT)
-            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn)
-            {
+            public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 if (item.hasTagCompound()) {
-
-                    if (getHot(item) == false) {
-                        if (getModifiers(item) != 0) {
-                            if ( (getEmerald(item) == true) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.1F;
-                            }
-
-                            if ( (getEmerald(item) == true) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.11F;
-                            }
-
-                            if ( (getEmerald(item) == true) &&
-                                    (getDiamondLevel(item) == 2) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.12F;
-                            }
-
-                            if ( (getEmerald(item) == true) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.111F;
-                            }
-
-                            if ( (getEmerald(item) == true) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 2) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.102F;
-                            }
-
-                            // ============
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.01F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 2) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.02F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 3) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.03F;
-                            }
-
-                            //=======
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.001F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 2) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.002F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 3) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.003F;
-                            }
-
-                            //=========
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 1)) {
-                                return 0.0001F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 2)) {
-                                return 0.0002F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 3)) {
-                                return 0.0003F;
-                            }
-
-                            //=======
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 1)) {
-                                return 0.0111F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 2) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.021F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 2) &&
-                                    (getLapisLevel(item) == 0)) {
-                                return 0.012F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 2)) {
-                                return 0.0012F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 2) &&
-                                    (getLapisLevel(item) == 1)) {
-                                return 0.0021F;
-                            }
-
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 1) &&
-                                    (getRedstoneLevel(item) == 0) &&
-                                    (getLapisLevel(item) == 2) ) {
-                                return 0.0102F;
-                            }
-                            if ( (getEmerald(item) == false) &&
-                                    (getDiamondLevel(item) == 0) &&
-                                    (getRedstoneLevel(item) == 1) &&
-                                    (getLapisLevel(item) == 1) ) {
-                                return 0.0011F;
-                            }
-                        }
+                    Float returnFloat = 0.0F;
+                    if(getEmerald(item)){
+                        returnFloat += 0.1F;
                     }
-                    if (getHot(item) == true) {
-                        return 1.0F;
+                    if(getDiamondLevel(item)>0){
+                        returnFloat += (0.01F * getDiamondLevel(item));
                     }
-
-                    if (getHot(item) == false) {
-                        if (getModifiers(item) == 0) {
-                            return 0.0F;
-                        }
+                    if(getRedstoneLevel(item)>0){
+                        returnFloat += (0.001F * getRedstoneLevel(item));
                     }
+                    if(getLapisLevel(item)>0){
+                        returnFloat += (0.0001F * getLapisLevel(item));
+                    }
+                    if(getHot(item)){
+                        returnFloat = 1.0F;
+                    }
+                    return returnFloat;
                 }
                 return 0.0F;
             }
         });
 
+
+
     }
+
 
     public static boolean isHidden()
     {
@@ -240,9 +91,7 @@ public class ToolPart extends Item implements ToolNBT{
     }
     public ToolMaterial getMaterial() {return toolMaterial;}
 
-    @Override
-    public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
-
+    public void createDefaultNBT(ItemStack item){
         if (!item.hasTagCompound()) {
             item.setTagCompound(new NBTTagCompound());
             NBTTagCompound tags = new NBTTagCompound();
@@ -256,25 +105,19 @@ public class ToolPart extends Item implements ToolNBT{
             setLapisLevel(item, 0);
             setModifiers(item, 0);
         }
+    }
+
+    @Override
+    public void onCreated(ItemStack item, World worldIn, EntityPlayer playerIn) {
+
+        createDefaultNBT(item);
 
     }
 
     @Override
     public void onUpdate(ItemStack item, World world, Entity player, int itemSlot, boolean isSelected) {
         //System.out.println(item.getTagCompound());
-        if (!item.hasTagCompound()) {
-            item.setTagCompound(new NBTTagCompound());
-            NBTTagCompound tags = new NBTTagCompound();
-
-            item.getTagCompound().setTag("tags", tags);
-
-            setHot(item, false);
-            setEmerald(item, false);
-            setDiamondLevel(item, 0);
-            setRedstoneLevel(item, 0);
-            setLapisLevel(item, 0);
-            setModifiers(item, 0);
-        }
+        createDefaultNBT(item);
         if (item.hasTagCompound()) {
             if (item.getSubCompound("tags").getBoolean("hot")) {
                 player.setFire(1);
@@ -326,8 +169,8 @@ public class ToolPart extends Item implements ToolNBT{
     {
         if(item.hasTagCompound())
         {
-            tooltip.add(ChatFormatting.GRAY + "Upgrades");
-            if  (getEmerald(item) == true) {
+            tooltip.add(ChatFormatting.GRAY + "Upgrades left: " +  (ToolMaterialMap.materialModifiers.get(this.toolMaterial) - getModifiers(item)));
+            if  (getEmerald(item)) {
                 tooltip.add(ChatFormatting.DARK_GREEN + "Emerald");
             }
             if (getDiamondLevel(item) > 0) {

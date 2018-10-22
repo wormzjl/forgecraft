@@ -1,0 +1,21 @@
+{
+  "parent": "forgecraft:item/hoehead",
+  "textures": {
+    "particle": "forgecraft:items/finished_copper",
+    "texture": "blocks/planks_oak",
+    "texture1": "forgecraft:items/finished_copper"
+  },
+  "overrides": [
+    {"predicate": {"type": 0},"model": "forgecraft:item/hoehead/copper/copperhoehead_0"},
+    {"predicate": {"type": 0.0001},"model": "forgecraft:item/hoehead/copper/copperhoehead_0.0001"},
+    {"predicate": {"type": 0.001},"model": "forgecraft:item/hoehead/copper/copperhoehead_0.001"},
+    {"predicate": {"type": 0.01},"model": "forgecraft:item/hoehead/copper/copperhoehead_0.01"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/hoehead/copper/copperhoehead_0.1"},
+    {"predicate": {"type": 1},"model": "forgecraft:item/hoehead/copper/copperhoehead_1"}
+
+  ]
+}
+
+
+
+

@@ -59,7 +59,7 @@ public class CastingCrafting {
     public static CastingCrafting getRecipe(ItemStack source, Item[] array)
     {
         for(CastingCrafting recipe : castingRecipes) {
-            if (source.isItemEqualIgnoreDurability(source)) {
+            if (source.getItem() == recipe.getSource().getItem() ) {
                 if (Arrays.equals(array, recipe.input))
                     return recipe;
             }

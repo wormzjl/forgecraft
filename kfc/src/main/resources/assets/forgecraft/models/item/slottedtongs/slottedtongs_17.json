@@ -4,6 +4,6 @@
     "particle": "blocks/planks_oak",
     "texture": "blocks/planks_oak",
     "texture1": "forgecraft:blocks/stone_slab",
-    "texture2": "forgecraft:items/clean_iron_ingot"
+    "texture2": "forgecraft:items/clean_iron/0"
   }
 }

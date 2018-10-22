@@ -1,0 +1,18 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "blocks/planks_oak",
+      "texture": "blocks/planks_oak",
+      "texture1": "blocks/planks_big_oak",
+      "texture2": "forgecraft:blocks/stone_slab"
+    },
+    "parent": "forgecraft:workbench"
+  },
+  "variants": {
+    "facing=north": { "model": "forgecraft:workbench" },
+    "facing=east":  { "model": "forgecraft:workbench", "y": 90 },
+    "facing=south": { "model": "forgecraft:workbench", "y": 180 },
+    "facing=west":  { "model": "forgecraft:workbench", "y": 270 }
+  }
+}

@@ -14,7 +14,7 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.FireHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
-import nmd.primal.forgecraft.blocks.Crucibles.NBTCrucible;
+import nmd.primal.forgecraft.blocks.NBTCrucible;
 import nmd.primal.forgecraft.blocks.machine.BloomeryBase;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModItems;
@@ -76,32 +76,36 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
             //System.out.println(tag);
             ItemStackHelper.loadAllItems(tag, ingList);
             ItemStackHelper.loadAllItems(tag, dropList);
-            CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
-            if (recipe != null) {
-                if (this.getHeat() >= recipe.getCookTemp() &&
-                        !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
-                    cookCounter++;
-                    //this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
-                    //System.out.println("Cooking");
-                    this.updateBlock();
-                    this.markDirty();
-                }
-                if (cookCounter >= (recipe.getCookTime()/4) && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
-                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("hot", 15);
-                    //System.out.println("hot");
-                    this.updateBlock();
-                    this.markDirty();
-                }
-                if (cookCounter >= recipe.getCookTime() && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
-                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
-                    this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("heat", this.getHeat());
-                    cookCounter = 0;
-                    //System.out.println("Cooked");
-                    this.updateBlock();
-                    this.markDirty();
-                }
-                if (this.getSlotStack(1).isEmpty()) {
-                    this.cookCounter = 0;
+            if(CrucibleCrafting.isRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4))) {
+                CrucibleCrafting recipe = CrucibleCrafting.getRecipe(ingList.get(0), ingList.get(1), ingList.get(2), ingList.get(3), ingList.get(4));
+                if (recipe != null) {
+                    if (!recipe.isDisabled()) {
+                        if (this.getHeat() >= recipe.getCookTemp() &&
+                                !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
+                            cookCounter++;
+                            //this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("hot", true);
+                            //System.out.println("Cooking");
+                            this.updateBlock();
+                            this.markDirty();
+                        }
+                        if (cookCounter >= (recipe.getCookTime() / 4) && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
+                            this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("hot", 15);
+                            //System.out.println("hot");
+                            this.updateBlock();
+                            this.markDirty();
+                        }
+                        if (cookCounter >= recipe.getCookTime() && !this.getSlotStack(1).getSubCompound("BlockEntityTag").getBoolean("status")) {
+                            this.getSlotStack(1).getSubCompound("BlockEntityTag").setBoolean("status", true);
+                            this.getSlotStack(1).getSubCompound("BlockEntityTag").setInteger("heat", this.getHeat());
+                            cookCounter = 0;
+                            //System.out.println("Cooked");
+                            this.updateBlock();
+                            this.markDirty();
+                        }
+                        if (this.getSlotStack(1).isEmpty()) {
+                            this.cookCounter = 0;
+                        }
+                    }
                 }
             }
         }
@@ -281,7 +285,7 @@ public class TileBloomery extends TileBaseSlot implements ITickable {
         }
         if(index == 1){
             if (stack.getItem() == ModItems.softcrucible) {
-                return true;
+                return false;
             }
             if(Block.getBlockFromItem(stack.getItem()) instanceof NBTCrucible ){
                 return true;

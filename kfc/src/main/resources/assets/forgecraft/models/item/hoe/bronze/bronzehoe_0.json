@@ -1,8 +1,8 @@
 {
   "parent": "forgecraft:item/hoe",
   "textures": {
-    "particle": "forgecraft:items/raw_bronze",
+    "particle": "forgecraft:items/bronze/0",
     "texture": "blocks/planks_oak",
-    "texture1": "forgecraft:items/finished_bronze"
+    "texture1": "forgecraft:items/bronze/0"
   }
 }

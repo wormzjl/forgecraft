@@ -1,0 +1,28 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "forgecraft:items/copper/0",
+      "texture": "forgecraft:items/copper/0"
+    }
+  },
+  "variants": {
+    "active=false,facing=down": { "model": "forgecraft:chisel_model" },
+    "active=false,facing=up":  { "model": "forgecraft:chisel_model", "x": 180 },
+    "active=false,facing=east":  { "model": "forgecraft:chisel_model", "x": 90, "y": -90 },
+    "active=false,facing=west":  { "model": "forgecraft:chisel_model", "x": -90, "y": -90},
+    "active=false,facing=south": { "model": "forgecraft:chisel_model", "x": -90, "y": 180 },
+    "active=false,facing=north": { "model": "forgecraft:chisel_model", "x": 90, "y": 180 },
+
+    "active=true,facing=down": { "model": "forgecraft:chisel_model_active" },
+    "active=true,facing=up":  { "model": "forgecraft:chisel_model_active", "x": 180 },
+    "active=true,facing=east":  { "model": "forgecraft:chisel_model_active", "x": 90, "y": -90 },
+    "active=true,facing=west":  { "model": "forgecraft:chisel_model_active", "x": -90, "y": -90},
+    "active=true,facing=south": { "model": "forgecraft:chisel_model_active", "x": -90, "y": 180 },
+    "active=true,facing=north": { "model": "forgecraft:chisel_model_active", "x": 90, "y": 180 }
+  }
+}
+
+
+
+

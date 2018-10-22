@@ -2,12 +2,10 @@ package nmd.primal.forgecraft.proxy;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.init.ModTileRenders;
 import nmd.primal.forgecraft.models.ModelPlateHelmet;
-import nmd.primal.forgecraft.renders.blocks.*;
-import nmd.primal.forgecraft.tiles.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,12 +36,7 @@ public class ClientProxy implements CommonProxy {
     //@Override
     public void registerTileRendering()
     {
-        ClientRegistry.bindTileEntitySpecialRenderer(TileForge.class, new TileForgeRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TilePistonBellows.class, new TilePistonBellowsRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileBloomery.class, new TileBloomeryRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileAnvil.class, new TileAnvilRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileBreaker.class, new TileBreakerRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileCastingForm.class, new TileCastingformRender());
+        ModTileRenders.init();
     }
 
     public void registerModels(){
