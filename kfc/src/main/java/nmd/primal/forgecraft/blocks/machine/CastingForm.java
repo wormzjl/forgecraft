@@ -86,7 +86,6 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
                                 for(int i=0; i<25; i++){
                                     tempArray[i] = tile.getSlotStack(i).getItem();
                                 }
-                                System.out.println(crucibleRecipe.getDropsCooked());
 
                                 CastingCrafting casting = CastingCrafting.getRecipe(crucibleRecipe.getDropsCooked(), tempArray);
                                 if(casting != null){
