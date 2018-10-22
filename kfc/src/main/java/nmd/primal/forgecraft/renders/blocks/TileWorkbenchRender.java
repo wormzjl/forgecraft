@@ -11,7 +11,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.machine.Workbench;
+import nmd.primal.forgecraft.items.parts.WeaponHandle;
+import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
 import org.lwjgl.opengl.GL11;
 
@@ -84,13 +87,20 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack2.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.4375, 0.65625D, 0.26D);
-                    GL11.glScalef(0.7F, 1F, 0.55F);
-                    GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
 
+                    if(RecipeHelper.isOreName(stack2.getItem(), "cordageGeneral")){
+                        GL11.glTranslated(0.4375, 0.65625D, 0.26D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                        GL11.glRotated(90.0F, 1.0F, .0F, 0.0F);
+                        //GL11.glRotated(45.0F, 0.0F, 0.0F, 1.0F);
+                        //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    } else {
+                        GL11.glTranslated(0.4375, 0.65625D, 0.26D);
+                        GL11.glScalef(0.7F, 1F, 0.55F);
+                        GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                        GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
+
+                    }
                     renderItem.renderItem(stack2, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
@@ -98,8 +108,15 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.37D, 0.2075D, 0.21D);
-                    GL11.glScalef(1F, 1F, 1F);
+
+                    if(stack3.getItem() instanceof WeaponPart){
+                        GL11.glTranslated(0.67D, 0.376D, 0.25D);
+                        GL11.glScalef(0.6F, 0.6F, 0.6F);
+
+                    } else {
+                        GL11.glTranslated(0.37D, 0.2075D, 0.21D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
                     GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
 

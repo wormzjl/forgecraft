@@ -67,9 +67,7 @@ public class CommonEvents implements WeaponNBT {
             modStack = getOppositeStack(inputList, inputStack);
 
             if(inputStackItem != null) {
-                System.out.println("Stack is not null");
                 if (inputStack.hasTagCompound()) {
-                    System.out.println("Stack Has NBT");
                     if (getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
                         if (RecipeHelper.isOreName(modStack, "dustSilver")) {
                             setSmiteLevel(outputStack, getSmiteLevel(inputStack) + 1);

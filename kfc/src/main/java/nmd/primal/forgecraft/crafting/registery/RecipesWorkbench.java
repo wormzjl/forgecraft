@@ -379,9 +379,9 @@ public final class RecipesWorkbench {
         /*********WEAPONS********/
 
         recipes.register (new WorkbenchCrafting(
-                new OreIngredient("weaponHandle"),
+                new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawbronzegladius, 1)),
-                new OreIngredient("weaponGuard"),
+                Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new ItemStack(ModItems.bronzegladius, 1)).setRecipeName("bronzegladius"));
 

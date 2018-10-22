@@ -30,7 +30,7 @@ public class TileWorkbench extends TileBaseSlot{
         if(index == 2){
             if(RecipeHelper.isOreName(stack.getItem(), "stickTreatedWood") ||
                     RecipeHelper.isOreName(stack.getItem(), "stickLacquer") ||
-            stack.getItem() instanceof WeaponHandle){
+                    RecipeHelper.isOreName(stack.getItem(), "cordageGeneral")){
                 return true;
             }
         }
@@ -45,7 +45,8 @@ public class TileWorkbench extends TileBaseSlot{
             }
         }
         if(index == 4){
-            if ( (RecipeHelper.isOreName(stack.getItem(), "pinBasic")) || stack.getItem() instanceof WeaponGuard) {
+            if ( (RecipeHelper.isOreName(stack.getItem(), "pinBasic")) ||
+                    stack.getItem() instanceof WeaponGuard) {
                 return true;
             }
         }
