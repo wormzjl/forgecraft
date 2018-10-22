@@ -90,14 +90,11 @@ public class CastingForm extends CustomContainerFacing implements CastingFormHan
 
                                 CastingCrafting casting = CastingCrafting.getRecipe(crucibleRecipe.getDropsCooked(), tempArray);
                                 if(casting != null){
-                                    NBTTagCompound tagOutput = casting.getOutput().getTagCompound();
+                                    NBTTagCompound tagOutput = casting.getOutput().getOrCreateSubCompound("tags");
                                     NBTTagCompound crucibleOutput = crucibleRecipe.getDropsCooked().getTagCompound();
 
                                     if(tagOutput != null) {
                                         ItemStack dropStack = casting.getOutput();
-
-                                        System.out.println(dropStack);
-                                        System.out.println(crucibleOutput);
 
                                         dropStack.setTagCompound(new NBTTagCompound());
                                         NBTTagCompound tags = new NBTTagCompound();

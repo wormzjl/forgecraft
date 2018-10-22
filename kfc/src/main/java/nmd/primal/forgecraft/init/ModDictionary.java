@@ -19,6 +19,8 @@ public class ModDictionary {/***************************************************
  */
         public static void registerDictionaryNames()
         {
+            OreDictionary.registerOre("ingotBronze", ModItems.bronzeingotball);
+            OreDictionary.registerOre("nuggetBronze", ModItems.bronzechunk);
             if(COMPAT_DICTIONARY_WROUGHT_IRON) {
                 OreDictionary.registerOre("ingotIron", ModItems.ironingotball);
                 OreDictionary.registerOre("nuggetIron", ModItems.wroughtironchunk);

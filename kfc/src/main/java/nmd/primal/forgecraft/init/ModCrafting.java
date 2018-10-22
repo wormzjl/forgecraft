@@ -511,7 +511,7 @@ public class ModCrafting{
         );
         /***CASTING SLEDGEHAMMER***/
         CastingCrafting.addRecipe(
-                new ItemStack(PrimalAPI.Items.BRONZE_INGOT, 1),
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[]{
                         empty, empty, empty, empty, empty,
                         muddd, empty, empty, empty, muddd,
@@ -534,7 +534,7 @@ public class ModCrafting{
         );
         /***CASTING CHISEL***/
         CastingCrafting.addRecipe(
-                new ItemStack(PrimalAPI.Items.BRONZE_INGOT, 1),
+                new ItemStack(ModItems.bronzeingotball, 1),
                 new Item[]{
                         muddd, muddd, empty, muddd, muddd,
                         muddd, muddd, empty, muddd, muddd,
