@@ -13,6 +13,7 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.machine.Workbench;
+import nmd.primal.forgecraft.items.parts.WeaponGuard;
 import nmd.primal.forgecraft.items.parts.WeaponHandle;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
@@ -89,7 +90,7 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
 
                     if(RecipeHelper.isOreName(stack2.getItem(), "cordageGeneral")){
-                        GL11.glTranslated(0.4375, 0.65625D, 0.26D);
+                        GL11.glTranslated(0.3375, 0.64125D, 0.26D);
                         GL11.glScalef(0.5F, 0.5F, 0.5F);
                         GL11.glRotated(90.0F, 1.0F, .0F, 0.0F);
                         //GL11.glRotated(45.0F, 0.0F, 0.0F, 1.0F);
@@ -123,15 +124,13 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     renderItem.renderItem(stack3, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
-                if(!stack4.isEmpty()){
+                if(!stack4.isEmpty()) {
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+
                     GL11.glTranslated(0.85, 0.65625D, 0.25D);
                     GL11.glScalef(0.3F, 0.3F, 0.3F);
                     GL11.glRotated(45.0F, 0.0F, 1.0F, 0.0F);
                     GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-
                     renderItem.renderItem(stack4, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
@@ -183,21 +182,31 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 if(!stack2.isEmpty()){
                     GL11.glPushMatrix();
 
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.5625, 0.65625D, 0.7925D);
-                    GL11.glScalef(0.7F, 1F, 0.55F);
-                    GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-
+                    if(RecipeHelper.isOreName(stack2.getItem(), "cordageGeneral")){
+                        GL11.glTranslated(0.75, 0.64125D, 0.75D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                        GL11.glRotated(90.0F, 1.0F, .0F, 0.0F);
+                        //GL11.glRotated(45.0F, 0.0F, 0.0F, 1.0F);
+                        //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    } else {
+                        GL11.glTranslated(0.5625, 0.65625D, 0.7925D);
+                        GL11.glScalef(0.7F, 1F, 0.55F);
+                        GL11.glRotated(-45.0F, 0.0F, 1.0F, 0.0F);
+                        GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    }
                     renderItem.renderItem(stack2, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
                 if(!stack3.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.55, 0.2075D, 0.77D);
-                    GL11.glScalef(1F, 1F, 1F);
+                    if(stack3.getItem() instanceof WeaponPart){
+                        GL11.glTranslated(0.32D, 0.376D, 0.75D);
+                        GL11.glScalef(0.6F, 0.6F, 0.6F);
+
+                    } else {
+                        GL11.glTranslated(0.55, 0.2075D, 0.77D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
                     GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
 
@@ -263,25 +272,33 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack2.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.7925D, 0.65625D, 0.4375);
-                    GL11.glScalef(0.55F, 1F, 0.7F);
-                    GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-
+                    if(RecipeHelper.isOreName(stack2.getItem(), "cordageGeneral")){
+                        GL11.glTranslated(0.75, 0.64125D, 0.25D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                        GL11.glRotated(90.0F, 1.0F, .0F, 0.0F);
+                        //GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
+                    } else {
+                        GL11.glTranslated(0.7925D, 0.65625D, 0.4375);
+                        GL11.glScalef(0.55F, 1F, 0.7F);
+                        GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
+                        GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    }
                     renderItem.renderItem(stack2, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
                 if(!stack3.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.75, 0.2075D, 0.4D);
-                    GL11.glScalef(1F, 1F, 1F);
-                    GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    if(stack3.getItem() instanceof WeaponPart){
+                        GL11.glTranslated(0.75, 0.376D, 0.675D);
+                        GL11.glScalef(0.6F, 0.6F, 0.6F);
 
+                    } else {
+                        GL11.glTranslated(0.75, 0.2075D, 0.4D);
+                        GL11.glScalef(1F, 1F, 1F);
+
+                        //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    }
+                    GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
                     renderItem.renderItem(stack3, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
@@ -342,24 +359,31 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack2.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.255D, 0.65625D, 0.565);
-                    GL11.glScalef(0.55F, 1F, 0.7F);
-                    GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
-                    GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-
+                    if(RecipeHelper.isOreName(stack2.getItem(), "cordageGeneral")){
+                        GL11.glTranslated(0.25, 0.64125D, 0.75D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                        GL11.glRotated(90.0F, 1.0F, .0F, 0.0F);
+                        //GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
+                    } else {
+                        GL11.glTranslated(0.255D, 0.65625D, 0.565);
+                        GL11.glScalef(0.55F, 1F, 0.7F);
+                        GL11.glRotated(45F, 0.0F, 1.0F, 0.0F);
+                        GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+                    }
                     renderItem.renderItem(stack2, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
                 if(!stack3.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.235, 0.2075D, 0.6D);
-                    GL11.glScalef(1F, 1F, 1F);
-                    //GL11.glRotated(-180.0F, 0.0F, 1.0F, 0.0F);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
+
+                    if(stack3.getItem() instanceof WeaponPart){
+                        GL11.glTranslated(0.225, 0.376D, 0.325D);
+                        GL11.glScalef(0.6F, 0.6F, 0.6F);
+
+                    } else {
+                        GL11.glTranslated(0.235, 0.2075D, 0.6D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
 
                     renderItem.renderItem(stack3, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();

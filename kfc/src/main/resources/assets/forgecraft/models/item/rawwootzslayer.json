@@ -1,0 +1,9 @@
+{
+	"forge_marker":1,
+	"textures": {
+		"particle": "forgecraft:items/wootz/0",
+		"texture": "forgecraft:items/wootz/0",
+		"handle": "forgecraft:items/wootz/0"
+	},
+	"parent": "forgecraft:item/rawslayer_model"
+}

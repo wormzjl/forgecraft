@@ -1,10 +1,11 @@
 {
 	"forge_marker":1,
 	"textures": {
-		"particle": "forgecraft:blocks/steel_ingot",
-		"texture": "forgecraft:blocks/steel_ingot",
+		"particle": "forgecraft:items/steel/0",
+		"texture": "forgecraft:items/steel/0",
 		"light": "forgecraft:blocks/steel_ingot_light",
-		"dark": "forgecraft:blocks/steel_ingot_dark"
+		"dark": "forgecraft:blocks/steel_ingot_dark",
+		"handle": "forgecraft:items/leather_handle"
 	},
-	"parent": "forgecraft:item/slayer"
+	"parent": "forgecraft:item/slayer_model"
 }

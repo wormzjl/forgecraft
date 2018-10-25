@@ -1,0 +1,11 @@
+{
+	"forge_marker":1,
+	"textures": {
+		"particle": "forgecraft:items/wootz/0",
+		"texture": "forgecraft:items/wootz/0",
+        "light": "forgecraft:blocks/wootz_ingot_light",
+        "dark": "forgecraft:blocks/wootz_ingot_dark",
+		"handle": "forgecraft:items/wootz/0"
+	},
+	"parent": "forgecraft:item/rawlongsword_model"
+}

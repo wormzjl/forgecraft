@@ -1,10 +1,11 @@
 {
 	"__comment": "Designed by Captainaviator with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "blocks/e_particle",
+		"particle": "blocks/iron_ingot",
 		"texture": "blocks/iron_ingot",
 		"light": "blocks/iron_ingot_light",
-		"dark": "blocks/iron_ingot_dark"
+		"dark": "blocks/iron_ingot_dark",
+		"handle": "items/e_texture"
 	},
 	"elements": [ 	 
 		{
@@ -74,15 +75,15 @@
 		},
 		{
 			"__comment": "Box9",
-			"from": [ 7, 0, 16 ],
-			"to": [ 8.5, 0.5, 21 ],
+			"from": [ 7, -0.25, 16 ],
+			"to": [ 8.5, 0.75, 21 ],
 			"faces": {
-				"down": { "uv": [ 7, 11, 8.5, 15.5 ], "texture": "#texture" },
-				"up": { "uv": [ 7, 0.5, 8.5, 5 ], "texture": "#texture" },
-				"north": { "uv": [ 7.5, 15.25, 9, 16 ], "texture": "#texture" },
-				"south": { "uv": [ 7, 15.25, 8.5, 16 ], "texture": "#texture" },
-				"west": { "uv": [ 0.5, 15.25, 5, 16 ], "texture": "#texture" },
-				"east": { "uv": [ 11, 15.25, 15.5, 16 ], "texture": "#texture" }
+				"down": { "uv": [ 7, 11, 8.5, 15.5 ], "texture": "#handle" },
+				"up": { "uv": [ 7, 0.5, 8.5, 5 ], "texture": "#handle" },
+				"north": { "uv": [ 7.5, 15.25, 9, 16 ], "texture": "#handle" },
+				"south": { "uv": [ 7, 15.25, 8.5, 16 ], "texture": "#handle" },
+				"west": { "uv": [ 0.5, 15.25, 5, 16 ], "texture": "#handle" },
+				"east": { "uv": [ 11, 15.25, 15.5, 16 ], "texture": "#handle" }
 			}
 		},
 		{
@@ -90,12 +91,12 @@
 			"from": [ 7.25, -0.25, 21 ],
 			"to": [ 8.25, 0.75, 24.5 ],
 			"faces": {
-				"down": { "uv": [ 7.25, 7.5, 8.25, 11 ], "texture": "#texture" },
-				"up": { "uv": [ 7.25, 5, 8.25, 8.5 ], "texture": "#texture" },
-				"north": { "uv": [ 7.75, 15.25, 8.75, 16 ], "texture": "#texture" },
-				"south": { "uv": [ 7.25, 15.25, 8.25, 16 ], "texture": "#texture" },
-				"west": { "uv": [ 5, 15.25, 8.5, 16 ], "texture": "#texture" },
-				"east": { "uv": [ 7.5, 15.25, 11, 16 ], "texture": "#texture" }
+				"down": { "uv": [ 7.25, 7.5, 8.25, 11 ], "texture": "#handle" },
+				"up": { "uv": [ 7.25, 5, 8.25, 8.5 ], "texture": "#handle" },
+				"north": { "uv": [ 7.75, 15.25, 8.75, 16 ], "texture": "#handle" },
+				"south": { "uv": [ 7.25, 15.25, 8.25, 16 ], "texture": "#handle" },
+				"west": { "uv": [ 5, 15.25, 8.5, 16 ], "texture": "#handle" },
+				"east": { "uv": [ 7.5, 15.25, 11, 16 ], "texture": "#handle" }
 			}
 		},
 		{
@@ -138,9 +139,9 @@
 			"translation":  [ -0.7, -0.7, 4 ],
 			"scale":  [ 0.5, 0.5, 0.5 ]
 		},
-		"head": {
-			"translation":  [ 0, 14.65, 0 ]
-		},
+      "head": {
+        "translation":  [ 0, 14.75, 0 ]
+      },
 		"ground": {
 			"translation":  [ 0, 2, 0 ],
 			"scale":  [ 0.5, 0.5, 0.5 ]

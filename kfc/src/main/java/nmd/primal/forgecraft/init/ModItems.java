@@ -120,9 +120,6 @@ public class ModItems {
     public static Item wootzshovel;
     public static Item wootzhoe;
 
-    public static Item bonehandle;
-    public static Item boneguard;
-
     public static Item rawbronzegladius;
     public static Item rawcoppergladius;
     public static Item rawwroughtirongladius;
@@ -130,6 +127,16 @@ public class ModItems {
     public static Item rawsteelgladius;
     public static Item rawwootzgladius;
 
+    public static Item rawcleanironlongsword ;
+    public static Item rawsteellongsword;
+    public static Item rawwootzlongsword;
+
+    public static Item rawironslayer;
+    public static Item rawcleanironslayer;
+    public static Item rawsteelslayer;
+    public static Item rawwootzslayer;
+
+    public static Item coppergladius;
     public static Item bronzegladius;
     public static Item wroughtirongladius;
     public static Item cleanirongladius;
@@ -263,8 +270,6 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        bonehandle = new WeaponHandle("bonehandle").setDictionaryNames("weaponHandle");
-        boneguard = new WeaponGuard("boneguard").setDictionaryNames("weaponGuard");
 
         rawbronzegladius = new WeaponPart("rawbronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE);
         rawcoppergladius= new WeaponPart("rawcoppergladius", PrimalAPI.ToolMaterials.TOOL_COPPER);
@@ -273,6 +278,16 @@ public class ModItems {
         rawsteelgladius= new WeaponPart("rawsteelgladius", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
         rawwootzgladius= new WeaponPart("rawwootzgladius", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
 
+        rawcleanironlongsword = new WeaponPart("rawcleanironlongsword", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        rawsteellongsword = new WeaponPart("rawsteellongsword", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        rawwootzlongsword = new WeaponPart("rawwootzlongsword", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
+
+        rawironslayer = new WeaponPart("rawironslayer", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
+        rawcleanironslayer = new WeaponPart("rawcleanironslayer", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON);
+        rawsteelslayer = new WeaponPart("rawsteelslayer", PrimalAPI.ToolMaterials.TOOL_BASIC_STEEL);
+        rawwootzslayer = new WeaponPart("rawwootzslayer", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL);
+
+        coppergladius = new CustomSword("coppergladius", PrimalAPI.ToolMaterials.TOOL_COPPER, 5D, 2D);
         bronzegladius = new CustomSword("bronzegladius", PrimalAPI.ToolMaterials.TOOL_BRONZE, 5.5D, 2D);
         wroughtirongladius = new CustomSword("wroughtirongladius", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON, 4.5D, -1.85D);
         cleanirongladius = new CustomSword("cleanirongladius", PrimalAPI.ToolMaterials.TOOL_CLEAN_IRON, 5D, -1.85D);
@@ -425,8 +440,6 @@ public class ModItems {
         /**********
          WEAPONS
          **********/
-        ForgeRegistries.ITEMS.register(bonehandle);
-        ForgeRegistries.ITEMS.register(boneguard);
 
         ForgeRegistries.ITEMS.register(rawbronzegladius);
         ForgeRegistries.ITEMS.register(rawcoppergladius);
@@ -434,6 +447,15 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(rawcleanirongladius);
         ForgeRegistries.ITEMS.register(rawsteelgladius);
         ForgeRegistries.ITEMS.register(rawwootzgladius);
+
+        ForgeRegistries.ITEMS.register(rawcleanironlongsword);
+        ForgeRegistries.ITEMS.register(rawsteellongsword);
+        ForgeRegistries.ITEMS.register(rawwootzlongsword);
+
+        ForgeRegistries.ITEMS.register(rawironslayer);
+        ForgeRegistries.ITEMS.register(rawcleanironslayer);
+        ForgeRegistries.ITEMS.register(rawsteelslayer);
+        ForgeRegistries.ITEMS.register(rawwootzslayer);
 
         ForgeRegistries.ITEMS.register(wroughtirongladius);
         ForgeRegistries.ITEMS.register(bronzegladius);
@@ -573,15 +595,21 @@ public class ModItems {
          WEAPON PARTS
          **********/
         //registerRender(wroughtironshield);
-        registerRender(bonehandle);
-        registerRender(boneguard);
-
         registerRender(rawbronzegladius);
         registerRender(rawcoppergladius);
         registerRender(rawwroughtirongladius);
         registerRender(rawcleanirongladius);
         registerRender(rawsteelgladius);
         registerRender(rawwootzgladius);
+
+        registerRender(rawcleanironlongsword);
+        registerRender(rawsteellongsword);
+        registerRender(rawwootzlongsword);
+
+        registerRender(rawironslayer);
+        registerRender(rawcleanironslayer);
+        registerRender(rawsteelslayer);
+        registerRender(rawwootzslayer);
 
         /**********
          WEAPONS

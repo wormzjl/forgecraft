@@ -2,7 +2,8 @@
 	"forge_marker":1,
 	"textures": {
 		"particle": "forgecraft:items/bronze/0",
-		"texture": "forgecraft:items/bronze/0"
+		"texture": "forgecraft:items/bronze/0",
+		"handle": "forgecraft:items/bronze/0"
 	},
 	"parent": "forgecraft:item/rawgladius"
 }

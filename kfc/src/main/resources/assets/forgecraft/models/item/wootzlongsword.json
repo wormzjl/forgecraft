@@ -4,7 +4,8 @@
 		"particle": "forgecraft:blocks/steel_ingot",
 		"texture": "forgecraft:blocks/steel_ingot",
 		"light": "forgecraft:blocks/wootz_ingot_light",
-		"dark": "forgecraft:blocks/wootz_ingot_dark"
+		"dark": "forgecraft:blocks/wootz_ingot_dark",
+		"handle": "forgecraft:items/leather_handle"
 	},
-	"parent": "forgecraft:item/longsword"
+	"parent": "forgecraft:item/longsword_model"
 }

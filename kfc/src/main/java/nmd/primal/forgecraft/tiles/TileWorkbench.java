@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.tiles;
 
 import net.minecraft.item.ItemStack;
 import nmd.primal.core.common.helper.RecipeHelper;
+import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.parts.WeaponGuard;
 import nmd.primal.forgecraft.items.parts.WeaponHandle;
@@ -34,11 +35,6 @@ public class TileWorkbench extends TileBaseSlot{
                 return true;
             }
         }
-        /*if(index == 3){
-            if (RecipeHelper.isOreName(stack.getItem(), "cordageGeneral")) {
-                return true;
-            }
-        }*/
         if(index == 3){
             if ( (stack.getItem() instanceof ToolPart) || stack.getItem() instanceof WeaponPart) {
                 return true;
@@ -55,6 +51,11 @@ public class TileWorkbench extends TileBaseSlot{
                     stack.getItem() instanceof CustomHoe ||
                     stack.getItem() instanceof CustomPickaxe ||
                     stack.getItem() instanceof CustomShovel){
+                return true;
+            }
+        }
+        if(index == 6){
+            if (stack.getItem() instanceof Gallagher) {
                 return true;
             }
         }

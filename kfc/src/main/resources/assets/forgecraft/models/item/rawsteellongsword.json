@@ -3,7 +3,9 @@
 	"textures": {
 		"particle": "forgecraft:items/steel/0",
 		"texture": "forgecraft:items/steel/0",
+      "light": "forgecraft:blocks/steel_ingot_light",
+      "dark": "forgecraft:blocks/steel_ingot_dark",
 		"handle": "forgecraft:items/steel/0"
 	},
-	"parent": "forgecraft:item/rawgladius"
+	"parent": "forgecraft:item/rawlongsword_model"
 }

@@ -5,5 +5,5 @@
 		"texture": "forgecraft:items/clean_iron/0",
 		"handle": "forgecraft:items/clean_iron/0"
 	},
-	"parent": "forgecraft:item/rawgladius"
+	"parent": "forgecraft:item/rawslayer_model"
 }

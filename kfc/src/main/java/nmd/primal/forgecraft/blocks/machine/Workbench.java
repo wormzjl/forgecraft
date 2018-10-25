@@ -54,13 +54,25 @@ public class Workbench extends CustomContainerFacing {
                     ItemStack slot6 = tile.getSlotStack(6);
                     if (hitY > 0.5D) {
                         if (!player.isSneaking()) {
-                            /*if (tile.isItemValidForSlot(6, playerStack)) {
+                            if (tile.isItemValidForSlot(6, playerStack)) {
                                 if (slot6.isEmpty()) {
-                                    tile.setSlotStack(6, playerStack.splitStack(1));
-                                    //player.inventory.getCurrentItem().shrink(1);
-                                    return true;
+                                    if (slot2.isEmpty() && slot3.isEmpty() && slot4.isEmpty() && slot5.isEmpty()) {
+                                        ItemStack tempStack = player.inventory.getCurrentItem().copy();
+                                        tempStack.setCount(1);
+                                        tile.setSlotStack(6, tempStack);
+                                        player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+
+                                        System.out.println(tile.getSlotStack(0));
+                                        System.out.println(tile.getSlotStack(1));
+                                        System.out.println(tile.getSlotStack(2));
+                                        System.out.println(tile.getSlotStack(3));
+                                        System.out.println(tile.getSlotStack(4));
+                                        System.out.println(tile.getSlotStack(5));
+                                        System.out.println(tile.getSlotStack(6));
+                                        return true;
+                                    }
                                 }
-                            }*/
+                            }
                             if(! (playerStack.getItem() instanceof Gallagher)) {
                                 if (slot4.isEmpty() && slot3.isEmpty() && slot2.isEmpty()) {
                                     if (tile.isItemValidForSlot(5, playerStack)) {
@@ -71,25 +83,27 @@ public class Workbench extends CustomContainerFacing {
                                         }
                                     }
                                 }
-                                if (tile.isItemValidForSlot(4, playerStack)) {
-                                    if (slot4.isEmpty()) {
-                                        tile.setSlotStack(4, playerStack.splitStack(1));
-                                        //player.inventory.getCurrentItem().shrink(1);
-                                        return true;
+                                if(slot5.isEmpty()) {
+                                    if (tile.isItemValidForSlot(4, playerStack)) {
+                                        if (slot4.isEmpty()) {
+                                            tile.setSlotStack(4, playerStack.splitStack(1));
+                                            //player.inventory.getCurrentItem().shrink(1);
+                                            return true;
+                                        }
                                     }
-                                }
-                                if (tile.isItemValidForSlot(3, playerStack)) {
-                                    if (slot3.isEmpty()) {
-                                        tile.setSlotStack(3, playerStack.splitStack(1));
-                                        //player.inventory.getCurrentItem().shrink(1);
-                                        return true;
+                                    if (tile.isItemValidForSlot(3, playerStack)) {
+                                        if (slot3.isEmpty()) {
+                                            tile.setSlotStack(3, playerStack.splitStack(1));
+                                            //player.inventory.getCurrentItem().shrink(1);
+                                            return true;
+                                        }
                                     }
-                                }
-                                if (tile.isItemValidForSlot(2, playerStack)) {
-                                    if (slot2.isEmpty()) {
-                                        tile.setSlotStack(2, playerStack.splitStack(1));
-                                        //player.inventory.getCurrentItem().shrink(1);
-                                        return true;
+                                    if (tile.isItemValidForSlot(2, playerStack)) {
+                                        if (slot2.isEmpty()) {
+                                            tile.setSlotStack(2, playerStack.splitStack(1));
+                                            //player.inventory.getCurrentItem().shrink(1);
+                                            return true;
+                                        }
                                     }
                                 }
                             }
@@ -132,24 +146,38 @@ public class Workbench extends CustomContainerFacing {
                         }
                         if(player.isSneaking()){
                             if(!slot2.isEmpty()){
-                                PlayerHelper.spawnItemOnPlayer(world, player, slot2);
+                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(2));
                                 tile.clearSlot(2);
+                                return true;
                             }
                             if(!slot3.isEmpty()){
-                                PlayerHelper.spawnItemOnPlayer(world, player, slot3);
+                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(3));
                                 tile.clearSlot(3);
+                                return true;
                             }
                             if(!slot4.isEmpty()){
-                                PlayerHelper.spawnItemOnPlayer(world, player, slot4);
+                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(4));
                                 tile.clearSlot(4);
+                                return true;
                             }
                             if(!slot5.isEmpty()){
-                                PlayerHelper.spawnItemOnPlayer(world, player, slot5);
+                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(5));
                                 tile.clearSlot(5);
+                                return true;
                             }
                             if(!slot6.isEmpty()){
-                                PlayerHelper.spawnItemOnPlayer(world, player, slot6);
+
+                                System.out.println(tile.getSlotStack(0));
+                                System.out.println(tile.getSlotStack(1));
+                                System.out.println(tile.getSlotStack(2));
+                                System.out.println(tile.getSlotStack(3));
+                                System.out.println(tile.getSlotStack(4));
+                                System.out.println(tile.getSlotStack(5));
+                                System.out.println(tile.getSlotStack(6));
+
+                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(6));
                                 tile.clearSlot(6);
+                                return true;
                             }
 
                         }
