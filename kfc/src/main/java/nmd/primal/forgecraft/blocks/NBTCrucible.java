@@ -65,9 +65,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
 
             if(hand.equals(MAIN_HAND)) {
 
-                System.out.println(player.inventory.getCurrentItem());
-                System.out.println(hand);
-
                 ItemStack pItem = player.inventory.getCurrentItem().copy();
                 pItem.setCount(1);
 
@@ -87,7 +84,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
             }
 
             /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
-            if( player.inventory.getSlotFor(player.inventory.getCurrentItem()) != -1 ) {
+            if(hand.equals(MAIN_HAND)) {
                 ItemStack pItem = player.inventory.getCurrentItem().copy();
                 pItem.setCount(1);
                 if (!player.isSneaking()) {
