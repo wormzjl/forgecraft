@@ -344,7 +344,7 @@ public class ModCrafting{
                 "   ", " I ", " S ", 'I', "ingotIron", 'S', Blocks.STONE);
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.workbench, 1),
-                "ss ", "rrr", "f f", 's', "slabWood", 'r', Blocks.STONE_SLAB, 'f', "fenceWood");
+                "   ", "rrr", "f f", 'r', Blocks.STONE_SLAB, 'f', "fenceWood");
 
         /******************************************************************************
          CASTING
@@ -554,7 +554,7 @@ public class ModCrafting{
                 //800, 200
                 hotIronIngot,
                 800,
-                100,
+                250,
                 500,
                 1.0f,
                 1.0f
@@ -564,7 +564,7 @@ public class ModCrafting{
                 ModItems.ironcleaningotball,
                 hotCleanIronIngot,
                 900,
-                250,
+                275,
                 500,
                 1.0f,
                 1.0f
@@ -595,7 +595,7 @@ public class ModCrafting{
                 Items.IRON_INGOT,
                 hotIronIngot,
                 800,
-                200,
+                250,
                 500,
                 1.0f,
                 1.0f
