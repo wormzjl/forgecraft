@@ -36,6 +36,7 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
     private Ingredient toolPin;
     private Ingredient takeApart;
     private ItemStack output;
+    private Ingredient craftingTool;
 
     public Ingredient getTakeApart() {
         return takeApart;
@@ -85,15 +86,21 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
         this.ingredientList = ingredientList;
     }
 
+    public Ingredient getCraftingTool() {
+        return craftingTool;
+    }
+
+
     private List<Ingredient> ingredientList = new ArrayList<>();
 
-    public WorkbenchCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3 , ItemStack output){
+    public WorkbenchCrafting(Ingredient i0, Ingredient i1, Ingredient i2, Ingredient i3 , Ingredient craftingTool, ItemStack output){
         super();
         this.toolPart = i0;
         this.toolHead = i1;
         this.toolPin = i2;
         this.takeApart = i3;
         this.output = output;
+        this.craftingTool = craftingTool;
     }
 
     public static boolean compare(Ingredient ingredient, ItemStack stack){
@@ -116,7 +123,7 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
         return false;
     }
 
-    public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3){
+    public static boolean isRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack cTool){
         for(WorkbenchCrafting recipe : RECIPES){
             if(i0 == null){
                 i0 = ItemStack.EMPTY;
@@ -130,17 +137,21 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
             if(i3 == null){
                 i3 = ItemStack.EMPTY;
             }
+            if(cTool == null){
+                cTool = ItemStack.EMPTY;
+            }
             if(compare(recipe.toolPart, i0) &&
                     compare(recipe.toolHead, i1) &&
                     compare(recipe.toolPin, i2) &&
-                    compare(recipe.takeApart, i3) ){
+                    compare(recipe.takeApart, i3) &&
+                    compare(recipe.craftingTool, cTool)){
                 return true;
             }
         }
         return false;
     }
 
-    public static WorkbenchCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3){
+    public static WorkbenchCrafting getRecipe(ItemStack i0, ItemStack i1, ItemStack i2, ItemStack i3, ItemStack cTool){
         for(WorkbenchCrafting recipe : RECIPES){
 
             if(i0 == null){
@@ -155,8 +166,10 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
             if(i3 == null){
                 i3 = ItemStack.EMPTY;
             }
-
-            if(recipe.toolPart.apply(i0) && recipe.toolHead.apply(i1) && recipe.toolPin.apply(i2) && recipe.takeApart.apply(i3) ){
+            if(cTool == null){
+                cTool = ItemStack.EMPTY;
+            }
+            if(recipe.toolPart.apply(i0) && recipe.toolHead.apply(i1) && recipe.toolPin.apply(i2) && recipe.takeApart.apply(i3) && recipe.craftingTool.apply(cTool) ){
                 return recipe;
             }
         }

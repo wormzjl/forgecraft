@@ -12,12 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import nmd.primal.core.common.helper.PlayerHelper;
-import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
+import nmd.primal.core.common.items.tools.WorkBlade;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
-import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
 
 import javax.annotation.Nullable;
@@ -61,14 +59,6 @@ public class Workbench extends CustomContainerFacing {
                                         tempStack.setCount(1);
                                         tile.setSlotStack(6, tempStack);
                                         player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
-
-                                        System.out.println(tile.getSlotStack(0));
-                                        System.out.println(tile.getSlotStack(1));
-                                        System.out.println(tile.getSlotStack(2));
-                                        System.out.println(tile.getSlotStack(3));
-                                        System.out.println(tile.getSlotStack(4));
-                                        System.out.println(tile.getSlotStack(5));
-                                        System.out.println(tile.getSlotStack(6));
                                         return true;
                                     }
                                 }
@@ -107,10 +97,10 @@ public class Workbench extends CustomContainerFacing {
                                     }
                                 }
                             }
-                            if(playerStack.getItem() instanceof Gallagher) {
-                                if (!slot2.isEmpty() && !slot3.isEmpty() && !slot4.isEmpty() && slot5.isEmpty()) {
+                            if(player.inventory.getCurrentItem().getItem() instanceof Gallagher || player.inventory.getCurrentItem().getItem() instanceof WorkBlade) {
+                                if (slot5.isEmpty()) {
 
-                                    WorkbenchCrafting recipe = WorkbenchCrafting.getRecipe(slot2, slot3, slot4, slot5);
+                                    WorkbenchCrafting recipe = WorkbenchCrafting.getRecipe(slot2, slot3, slot4, slot5, player.inventory.getCurrentItem());
                                     if (recipe != null) {
                                         ItemStack drops = recipe.getOutput();
                                         if (slot3.hasTagCompound()) {
@@ -126,7 +116,7 @@ public class Workbench extends CustomContainerFacing {
                                     }
                                 }
                                 if (slot2.isEmpty() && slot3.isEmpty() && slot4.isEmpty() && !slot5.isEmpty()) {
-                                    WorkbenchCrafting recipe = WorkbenchCrafting.getRecipe(slot2, slot3, slot4, slot5);
+                                    WorkbenchCrafting recipe = WorkbenchCrafting.getRecipe(slot2, slot3, slot4, slot5, player.inventory.getCurrentItem());
                                     if (recipe != null) {
                                         ItemStack drops = recipe.getOutput();
                                         if (slot5.hasTagCompound()) {
@@ -143,8 +133,14 @@ public class Workbench extends CustomContainerFacing {
                                     }
                                 }
                             }
+
                         }
-                        if(player.isSneaking()){
+                        if(player.isSneaking() && player.inventory.getCurrentItem().isEmpty()){
+                            if(!slot6.isEmpty()){
+                                PlayerHelper.spawnItemOnGround(world, pos, tile.getSlotStack(6));
+                                tile.clearSlot(6);
+                                return true;
+                            }
                             if(!slot2.isEmpty()){
                                 PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(2));
                                 tile.clearSlot(2);
@@ -163,20 +159,6 @@ public class Workbench extends CustomContainerFacing {
                             if(!slot5.isEmpty()){
                                 PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(5));
                                 tile.clearSlot(5);
-                                return true;
-                            }
-                            if(!slot6.isEmpty()){
-
-                                System.out.println(tile.getSlotStack(0));
-                                System.out.println(tile.getSlotStack(1));
-                                System.out.println(tile.getSlotStack(2));
-                                System.out.println(tile.getSlotStack(3));
-                                System.out.println(tile.getSlotStack(4));
-                                System.out.println(tile.getSlotStack(5));
-                                System.out.println(tile.getSlotStack(6));
-
-                                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(6));
-                                tile.clearSlot(6);
                                 return true;
                             }
 
@@ -227,7 +209,7 @@ public class Workbench extends CustomContainerFacing {
                 }
             }
         }
-        return true;
+        return false;
     }
 
     private boolean sideInventoryManager(World world, EntityPlayer player, TileWorkbench tile, ItemStack slot, int index)

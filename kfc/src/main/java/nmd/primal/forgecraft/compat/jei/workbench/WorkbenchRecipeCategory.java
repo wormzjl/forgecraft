@@ -8,9 +8,7 @@ import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
-import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.CommonUtils;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.compat.jei.AbstractCategory;
@@ -90,16 +88,12 @@ public class WorkbenchRecipeCategory extends AbstractCategory<WorkbenchRecipeWra
         items.set(4, recipe.output);
 
         /***EXTRAS***/
-        items.init(5, false, 66, 20);
+        items.init(5, true, 66, 20);
         ItemStack bench = new ItemStack(Item.getItemFromBlock(ModBlocks.workbench), 1);
         items.set(5, bench);
 
         items.init(6, false, 66, 1);
-        NonNullList<ItemStack> tempDrops = NonNullList.<ItemStack>create();
-        tempDrops.add(0, new ItemStack(PrimalAPI.Items.STONE_GALLAGHER, 1));
-        tempDrops.add(1, new ItemStack(PrimalAPI.Items.NETHER_GALLAGHER, 1));
-        tempDrops.add(2, new ItemStack(PrimalAPI.Items.IRON_GALLAGHER, 1));
-        tempDrops.add(3, new ItemStack(PrimalAPI.Items.QUARTZ_GALLAGHER, 1));
-        items.set(6, tempDrops);
+        List<ItemStack> tool = Arrays.asList( recipe.tool.getMatchingStacks());
+        items.set(6, tool);
     }
 }

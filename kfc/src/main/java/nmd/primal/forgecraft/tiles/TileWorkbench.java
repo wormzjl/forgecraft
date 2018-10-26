@@ -5,7 +5,6 @@ import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.items.tools.Gallagher;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.parts.WeaponGuard;
-import nmd.primal.forgecraft.items.parts.WeaponHandle;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;

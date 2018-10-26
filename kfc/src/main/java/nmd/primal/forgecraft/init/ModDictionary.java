@@ -1,7 +1,7 @@
 package nmd.primal.forgecraft.init;
 
-import net.minecraftforge.oredict.OreDictionary;
 import net.minecraft.init.Items;
+import net.minecraftforge.oredict.OreDictionary;
 
 import static nmd.primal.forgecraft.init.ModConfig.Compatibility.COMPAT_DICTIONARY_WROUGHT_IRON;
 

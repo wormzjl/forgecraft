@@ -43,11 +43,11 @@ public class ModFluids {
         {
             final IForgeRegistry<Block> registry = event.getRegistry();
 
-            registerFluidBlock(registry,
+            /*registerFluidBlock(registry,
                     HOLY_WATER = createFluid("holy_water", 0xFFEDF1F5, true,
                             fluid -> fluid.setDensity(1000).setViscosity(1000).setTemperature(100).setLuminosity(5).setGaseous(false),
                             fluid -> new BasicFluidBlockKFC(fluid, Material.WATER)));
-
+*/
         }
 
         /**

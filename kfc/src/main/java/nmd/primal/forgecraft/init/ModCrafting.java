@@ -410,7 +410,7 @@ public class ModCrafting{
                         muddd,muddd,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,muddd,empty,muddd,muddd },
-                new ItemStack(ModItems.bronzegladius, 1)
+                new ItemStack(ModItems.rawbronzegladius, 1)
         );
 
         //Casting Bronze Plate
@@ -472,7 +472,7 @@ public class ModCrafting{
                         muddd, muddd, muddd, muddd, muddd},
                 copperhoehead
         );
-/*
+
         //Casting Gladius
         CastingCrafting.addRecipe(
                 new ItemStack(PrimalAPI.Items.COPPER_INGOT, 1),
@@ -482,9 +482,8 @@ public class ModCrafting{
                         muddd,muddd,empty,muddd,muddd,
                         muddd,empty,empty,empty,muddd,
                         muddd,muddd,empty,muddd,muddd },
-                new ItemStack(ModItems.coppergladius, 1)
+                new ItemStack(ModItems.rawcoppergladius, 1)
         );
-*/
 
             //Casting Bronze Plate
             CastingCrafting.addRecipe(
@@ -1065,7 +1064,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotChunk,emptyAir,emptyAir,
                         emptyAir,hotChunk,hotChunk,hotChunk,emptyAir,
                         emptyAir,emptyAir,hotChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.wroughtirongladius, 1),
+                new ItemStack(ModItems.rawwroughtirongladius, 1),
                 "null"
         );
         /*** Temp Clean Iron Sword ***/
@@ -1077,7 +1076,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
                         emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
                         emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.cleanirongladius, 1),
+                new ItemStack(ModItems.rawcleanirongladius, 1),
                 "null"
         );
         /*** Temp Steel Sword ***/
@@ -1088,7 +1087,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
                         emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
                         emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.steelgladius, 1),
+                new ItemStack(ModItems.rawsteelgladius, 1),
                 "null"
         );
         /*** Temp Wootz Sword ***/
@@ -1099,7 +1098,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
                         emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
                         emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.wootzgladius, 1),
+                new ItemStack(ModItems.rawwootzgladius, 1),
                 "null"
         );
         /*** Temp Clean Iron LongSword ***/
@@ -1110,7 +1109,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir,
                         emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,emptyAir,
                         emptyAir,emptyAir,hotCleanChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.cleanironlongsword, 1),
+                new ItemStack(ModItems.rawcleanironlongsword, 1),
                 "null"
         );
         /*** Temp Steel LongSword ***/
@@ -1121,7 +1120,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
                         emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,emptyAir,
                         emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.steellongsword, 1),
+                new ItemStack(ModItems.rawsteellongsword, 1),
                 "null"
         );
         /*** Temp Wootz LongSword ***/
@@ -1132,7 +1131,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
                         emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,emptyAir,
                         emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir },
-                new ItemStack(ModItems.wootzlongsword, 1),
+                new ItemStack(ModItems.rawwootzlongsword, 1),
                 "null"
         );
 
@@ -1144,7 +1143,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotChunk,hotChunk,emptyAir,
                         emptyAir,hotChunk,hotChunk,hotChunk,hotChunk,
                         emptyAir,emptyAir,hotChunk,hotChunk,emptyAir },
-                new ItemStack(ModItems.wroughtironslayer, 1),
+                new ItemStack(ModItems.rawironslayer, 1),
                 "null"
         );
         /*** Temp CLEANIRON SLAYER ***/
@@ -1155,7 +1154,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotCleanChunk,hotCleanChunk,emptyAir,
                         emptyAir,hotCleanChunk,hotCleanChunk,hotCleanChunk,hotCleanChunk,
                         emptyAir,emptyAir,hotCleanChunk,hotCleanChunk,emptyAir },
-                new ItemStack(ModItems.cleanironslayer, 1),
+                new ItemStack(ModItems.rawcleanironslayer, 1),
                 "null"
         );
         /*** Temp STEELSLAYER ***/
@@ -1166,7 +1165,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotSteelChunk,hotSteelChunk,emptyAir,
                         emptyAir,hotSteelChunk,hotSteelChunk,hotSteelChunk,hotSteelChunk,
                         emptyAir,emptyAir,hotSteelChunk,hotSteelChunk,emptyAir },
-                new ItemStack(ModItems.steelslayer, 1),
+                new ItemStack(ModItems.rawsteelslayer, 1),
                 "null"
         );
         /*** Temp WOOTZ SLAYER ***/
@@ -1177,7 +1176,7 @@ public class ModCrafting{
                         emptyAir,emptyAir,hotWootzChunk,hotWootzChunk,emptyAir,
                         emptyAir,hotWootzChunk,hotWootzChunk,hotWootzChunk,hotWootzChunk,
                         emptyAir,emptyAir,hotWootzChunk,hotWootzChunk,emptyAir },
-                new ItemStack(ModItems.wootzslayer, 1),
+                new ItemStack(ModItems.rawwootzslayer, 1),
                 "null"
         );
         

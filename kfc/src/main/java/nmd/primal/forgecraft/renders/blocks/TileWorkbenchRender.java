@@ -13,8 +13,6 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.machine.Workbench;
-import nmd.primal.forgecraft.items.parts.WeaponGuard;
-import nmd.primal.forgecraft.items.parts.WeaponHandle;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
 import org.lwjgl.opengl.GL11;
@@ -146,6 +144,17 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
+                if(!stack6.isEmpty()){
+                    GL11.glPushMatrix();
+                    //System.out.println(stack2);
+                    GL11.glTranslated(0.09375D, 0.6D, 0.53125D);
+                    GL11.glRotated(-45.0F, 0.0F, 0.0F, 1.0F);
+
+                    GL11.glScalef(0.5F, 0.5F, 0.5F);
+
+                    renderItem.renderItem(stack6, ItemCameraTransforms.TransformType.FIXED);
+                    GL11.glPopMatrix();
+                }
 
             }
             if (state.getValue(Workbench.FACING) == EnumFacing.SOUTH) {
@@ -237,6 +246,18 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
+                if(!stack6.isEmpty()){
+                    GL11.glPushMatrix();
+                    //System.out.println(stack2);
+                    //GL11.glTranslated(0.09375D, 0.6D, 0.53125D);
+                    GL11.glTranslated(1-0.09375D, 0.6D, 1-0.53125D);
+                    GL11.glRotated(-45.0F, 0.0F, 0.0F, 1.0F);
+
+                    GL11.glScalef(0.5F, 0.5F, 0.5F);
+
+                    renderItem.renderItem(stack6, ItemCameraTransforms.TransformType.FIXED);
+                    GL11.glPopMatrix();
+                }
             }
             if (state.getValue(Workbench.FACING) == EnumFacing.EAST) {
 
@@ -326,6 +347,17 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
+                if(!stack6.isEmpty()){
+                    GL11.glPushMatrix();
+                    //System.out.println(stack2);
+                    GL11.glTranslated(1-0.53125D, 0.6D, 0.09375D);
+                    GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
+                    GL11.glRotated(-45.0F, 0.0F, 0.0F, 1.0F);
+
+                    GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    renderItem.renderItem(stack6, ItemCameraTransforms.TransformType.FIXED);
+                    GL11.glPopMatrix();
+                }
             }
             if (state.getValue(Workbench.FACING) == EnumFacing.WEST) {
 
@@ -410,6 +442,15 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
 
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
+                    GL11.glPopMatrix();
+                }
+                if(!stack6.isEmpty()){
+                    GL11.glPushMatrix();
+                    GL11.glTranslated(0.53125D, 0.6D, 1-0.09375D);
+                    GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
+                    GL11.glRotated(-45.0F, 0.0F, 0.0F, 1.0F);
+                    GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    renderItem.renderItem(stack6, ItemCameraTransforms.TransformType.FIXED);
                     GL11.glPopMatrix();
                 }
             }

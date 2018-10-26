@@ -1,14 +1,11 @@
 package nmd.primal.forgecraft.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreIngredient;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.parts.WeaponPart;
 
 import java.util.Hashtable;
 

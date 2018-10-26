@@ -13,8 +13,6 @@ import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
-import nmd.primal.forgecraft.items.parts.WeaponGuard;
-import nmd.primal.forgecraft.items.parts.WeaponHandle;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
@@ -457,6 +455,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(rawsteelslayer);
         ForgeRegistries.ITEMS.register(rawwootzslayer);
 
+        ForgeRegistries.ITEMS.register(coppergladius);
         ForgeRegistries.ITEMS.register(wroughtirongladius);
         ForgeRegistries.ITEMS.register(bronzegladius);
         ForgeRegistries.ITEMS.register(cleanirongladius);
@@ -615,6 +614,7 @@ public class ModItems {
          WEAPONS
          **********/
 
+        registerRender(coppergladius);
         registerRender(bronzegladius);
         registerRender(wroughtirongladius);
         registerRender(cleanirongladius);

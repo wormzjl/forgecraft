@@ -1,8 +1,6 @@
 package nmd.primal.forgecraft.init.recipes;
 
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.NonNullList;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -15,7 +13,6 @@ import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.recipes.tile.CauldronRecipe;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.util.WeaponNBT;
 
 import java.util.List;
 
@@ -35,14 +32,22 @@ public class CauldronRecipes
         ItemStack defaultSteelGladius = new ItemStack(ModItems.rawsteelgladius, 1);
         ItemStack defaultWootzGladius = new ItemStack(ModItems.rawwootzgladius, 1);
 
-        setDefaultNBT(defaultBronzeGladius);
-        setDefaultNBT(defaultCopperGladius);
-        setDefaultNBT(defaultWroughtIronGladius);
-        setDefaultNBT(defaultCleanIronGladius);
-        setDefaultNBT(defaultSteelGladius);
-        setDefaultNBT(defaultWootzGladius);
+        ItemStack defaultCleanIronLongsword = new ItemStack(ModItems.rawcleanironlongsword, 1);
+        ItemStack defaultSteelLongsword = new ItemStack(ModItems.rawsteellongsword, 1);
+        ItemStack defaultWootzLongsword = new ItemStack(ModItems.rawwootzlongsword, 1);
 
-        List<ItemStack> recipeList = RecipeHelper.buildList(defaultBronzeGladius, defaultCopperGladius, defaultWroughtIronGladius, defaultCleanIronGladius, defaultSteelGladius, defaultWootzGladius);
+        ItemStack defaultIronSlayer = new ItemStack(ModItems.rawironslayer, 1);
+        ItemStack defaultCleanIronSlayer = new ItemStack(ModItems.rawcleanironslayer, 1);
+        ItemStack defaultSteelSlayer = new ItemStack(ModItems.rawsteelslayer, 1);
+        ItemStack defaultWootzSlayer = new ItemStack(ModItems.rawwootzslayer, 1);
+
+        List<ItemStack> recipeList = RecipeHelper.buildList(defaultBronzeGladius, defaultCopperGladius, defaultWroughtIronGladius, defaultCleanIronGladius, defaultSteelGladius, defaultWootzGladius,
+                defaultCleanIronLongsword, defaultSteelLongsword, defaultWootzLongsword,
+                defaultIronSlayer, defaultCleanIronSlayer, defaultSteelSlayer, defaultWootzSlayer);
+
+        for(ItemStack s : recipeList){
+            setDefaultNBT(s);
+        }
 
         genRecipesForList(recipeList, recipes);
 

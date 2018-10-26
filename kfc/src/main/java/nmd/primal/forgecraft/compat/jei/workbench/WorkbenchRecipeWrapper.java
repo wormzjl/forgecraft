@@ -20,6 +20,7 @@ public class WorkbenchRecipeWrapper implements IRecipeWrapper {
     protected Ingredient toolHead;
     protected Ingredient toolPin;
     protected Ingredient takeApart;
+    protected Ingredient tool;
     protected ItemStack output;
 
     public WorkbenchRecipeWrapper(WorkbenchCrafting recipe) {
@@ -29,6 +30,7 @@ public class WorkbenchRecipeWrapper implements IRecipeWrapper {
         this.toolHead = recipe.getToolHead();
         this.toolPin = recipe.getToolPin();
         this.takeApart = recipe.getTakeApart();
+        this.tool = recipe.getCraftingTool();
         this.output = recipe.getOutput();
     }
 
@@ -40,6 +42,7 @@ public class WorkbenchRecipeWrapper implements IRecipeWrapper {
         ingredients.setInput(ItemStack.class, this.toolHead);
         ingredients.setInput(ItemStack.class, this.toolPin);
         ingredients.setInput(ItemStack.class, this.takeApart);
+        ingredients.setInput(ItemStack.class, this.tool);
         ingredients.setOutput(ItemStack.class, this.output);
     }
 
