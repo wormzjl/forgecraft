@@ -1851,7 +1851,7 @@ public class ModCrafting{
         AnvilCrafting.addRecipe(
                 new ItemStack [] {
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
-                        emptyAir,emptyAir,hotSteelChunk,emptyAir,emptyAir,
+                        emptyAir,emptyAir,hotWootzChunk,emptyAir,emptyAir,
                         emptyAir,emptyAir,wootzshovelhead,emptyAir,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
                         emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },

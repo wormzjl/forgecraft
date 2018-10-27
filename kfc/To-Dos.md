@@ -1,11 +1,11 @@
 # To-Dos
 
 ## Bugs
+
 - [ ] Placement bug for crucible from tongs
 - [ ] Wootz shovel not rendering (NORTH)
 - [ ] Damascus Rendering in tongs
-- [ ] bug for recipe with damascus shovel
-- [ ] redstone 1 is ok redstone 2 is not ok
+
 
 ## Current Feature
 - [ ] weapon upgrades
