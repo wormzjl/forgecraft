@@ -1,9 +1,10 @@
 # To-Dos
 
 ## Bugs
-- [ ] Texture mismatch for 4diamond 1 redstone
+
 - [ ] ForgeHammer extend Gallagher
 - [ ] Placement bug for crucible from tongs
+
 
 ## Current Feature
 

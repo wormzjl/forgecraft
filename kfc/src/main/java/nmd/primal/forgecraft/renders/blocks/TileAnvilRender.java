@@ -129,7 +129,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             if (item.equals(ModItems.ironshovelhead) ||
                                     item.equals(ModItems.cleanironshovelhead) ||
                                     item.equals(ModItems.steelshovelhead) ||
-                                    item.equals(ModItems.steelshovelhead)
+                                    item.equals(ModItems.wootzshovelhead)
                                     ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
@@ -143,7 +143,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             if (item.equals(ModItems.ironhoehead) ||
                                     item.equals(ModItems.cleanironhoehead) ||
                                     item.equals(ModItems.steelhoehead) ||
-                                    item.equals(ModItems.steelhoehead)
+                                    item.equals(ModItems.wootzhoehead)
                                     ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
@@ -215,7 +215,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             if (item.equals(ModItems.ironshovelhead) ||
                                     item.equals(ModItems.cleanironshovelhead) ||
                                     item.equals(ModItems.steelshovelhead) ||
-                                    item.equals(ModItems.steelshovelhead)
+                                    item.equals(ModItems.wootzshovelhead)
                                     ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
@@ -302,7 +302,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             if (item.equals(ModItems.ironshovelhead) ||
                                     item.equals(ModItems.cleanironshovelhead) ||
                                     item.equals(ModItems.steelshovelhead) ||
-                                    item.equals(ModItems.steelshovelhead)
+                                    item.equals(ModItems.wootzshovelhead)
                                     ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
@@ -312,7 +312,10 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
-                            if (item.equals(ModItems.ironhoehead)) {
+                            if (item.equals(ModItems.ironhoehead) ||
+                                    item.equals(ModItems.cleanironhoehead) ||
+                                    item.equals(ModItems.steelhoehead) ||
+                                    item.equals(ModItems.wootzhoehead) ){
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
@@ -386,7 +389,7 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                             if (item.equals(ModItems.ironshovelhead) ||
                                     item.equals(ModItems.cleanironshovelhead) ||
                                     item.equals(ModItems.steelshovelhead) ||
-                                    item.equals(ModItems.steelshovelhead)
+                                    item.equals(ModItems.wootzshovelhead)
                                     ) {
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
@@ -396,7 +399,10 @@ public class TileAnvilRender extends TileEntitySpecialRenderer<TileAnvil>
                                 renderItem.renderItem(tile.getSlotStack(counter), ItemCameraTransforms.TransformType.FIXED);
                                 GL11.glPopMatrix();
                             }
-                            if (item.equals(ModItems.ironhoehead)) {
+                            if (item.equals(ModItems.ironhoehead) ||
+                                    item.equals(ModItems.cleanironhoehead) ||
+                                    item.equals(ModItems.steelhoehead) ||
+                                    item.equals(ModItems.wootzhoehead) ){
                                 GL11.glPushMatrix();
                                 double scale = 1.0D;
                                 GL11.glScaled(scale, scale, scale);
