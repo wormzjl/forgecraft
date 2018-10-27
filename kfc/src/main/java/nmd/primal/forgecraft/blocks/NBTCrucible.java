@@ -57,20 +57,16 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hands, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
-
             TileNBTCrucible tile = (TileNBTCrucible) world.getTileEntity(pos);
-
-            if(hand.equals(MAIN_HAND)) {
-
-                ItemStack pItem = player.inventory.getCurrentItem().copy();
-                pItem.setCount(1);
+            if(player.getActiveHand().equals(EnumHand.MAIN_HAND)) {
+                ItemStack playerStackStart = player.getHeldItemMainhand().copy();
 
                 /**PICKS UP THE CRUCIBLE**/
-                if (player.isSneaking() == false) {
-                    if (pItem.isEmpty()) {
+                if (playerStackStart.isEmpty()) {
+                    if (!player.isSneaking()) {
                         CrucibleCrafting recipe = CrucibleCrafting.getRecipe(tile.ingList.get(0), tile.ingList.get(1), tile.ingList.get(2), tile.ingList.get(3), tile.ingList.get(4));
                         if (recipe != null) {
                             tile.setDrops(recipe.getDropsRaw());
@@ -81,13 +77,11 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         return true;
                     }
                 }
-            }
 
-            /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
-            if(hand.equals(MAIN_HAND)) {
-                ItemStack pItem = player.inventory.getCurrentItem().copy();
-                pItem.setCount(1);
+                /**SET INGREDIENT ARRAY FOR THE CRUCIBLE NOW**/
                 if (!player.isSneaking()) {
+                    ItemStack pItem = player.inventory.getCurrentItem().copy();
+                    pItem.setCount(1);
                     if (!pItem.isEmpty()) {
                         if (!tile.getStatus() || tile.getHot() == 15 || tile.getHot() == 6) {
                             if (pItem.getItem() instanceof SlottedTongs) {
@@ -110,9 +104,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         }
                     }
                 }
-            }
-            /**CLEARS THE INVENTORY**/
-            if(hand.equals(MAIN_HAND)) {
+                /**CLEARS THE INVENTORY**/
                 if (player.isSneaking()) {
                     ItemStack pItem = player.inventory.getCurrentItem().copy();
                     if (pItem.isEmpty()) {
@@ -134,10 +126,9 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                         }
                     }
                 }
-            }
-/**REMOVE COOKED ITEM**/
-            if (player.isSneaking() == true) {
-                if (hand.equals(MAIN_HAND)) {
+
+                /**REMOVE COOKED ITEM**/
+                if (player.isSneaking()) {
                     ItemStack pItem = player.inventory.getCurrentItem().copy();
                     if (pItem.isEmpty()) {
                         if (tile.getStatus() && tile.getHot() == 6) {
@@ -147,8 +138,6 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                             tile.setStatus(false);
                             tile.setDrops(ItemStack.EMPTY);
                             tile.ingList.clear();
-                            //PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
-                            //PlayerHelper.spawnItemOnGround(world, player.getPosition(), dropStack);
                             EntityItem entityitem = new EntityItem(world, player.posX, player.posY, player.posZ, dropStack); // ? player.posY - 1.0D
                             world.spawnEntity(entityitem);
                             tile.update();
@@ -159,7 +148,7 @@ public class NBTCrucible extends BlockContainer implements ITileEntityProvider {
                 }
             }
         }
-        return false;
+        return true;
     }
 
     private IBlockState getReplacementBlock(World world, BlockPos pos, IBlockState state)
