@@ -48,22 +48,22 @@ public class WeaponPart extends Item implements WeaponNBT {
             public float apply(ItemStack item, @Nullable World worldIn, @Nullable EntityLivingBase entityIn) {
                 if (item.hasTagCompound()) {
                     Float returnFloat = 0.0F;
-                    if(getSmiteLevel(item)>0){
+                    if(WeaponNBT.getSmiteLevel(item)>0){
                         returnFloat += 0.1F;
                     }
-                    if(getBaneLevel(item)>0){
+                    if(WeaponNBT.getBaneLevel(item)>0){
                         returnFloat += (0.01F);
                     }
-                    if(getFireLevel(item)>0){
+                    if(WeaponNBT.getFireLevel(item)>0){
                         returnFloat += (0.001F);
                     }
-                    if(getFortuneLevel(item)>0){
+                    if(WeaponNBT.getFortuneLevel(item)>0){
                         returnFloat += (0.0001F);
                     }
-                    if(getLeechLevel(item)>0){
+                    if(WeaponNBT.getLeechLevel(item)>0){
                         returnFloat += (0.00001F);
                     }
-                    if(getHot(item)){
+                    if(WeaponNBT.getHot(item)){
                         returnFloat += 1.0F;
                     }
                     return returnFloat;
@@ -106,24 +106,24 @@ public class WeaponPart extends Item implements WeaponNBT {
     {
         if(stack.hasTagCompound()) {
             if (stack.getSubCompound("tags") != null) {
-                tooltip.add(ChatFormatting.GRAY + "Upgrades left: " + (WeaponNBT.materialModifiers.get(this.toolMaterial) - getModifiers(stack)));
-                if (getSmiteLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.GOLD + "Holy: " + getSmiteLevel(stack));
+                tooltip.add(ChatFormatting.GRAY + "Upgrades left: " + (WeaponNBT.materialModifiers.get(this.toolMaterial) - WeaponNBT.getModifiers(stack)));
+                if (WeaponNBT.getSmiteLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.GOLD + "Holy: " + WeaponNBT.getSmiteLevel(stack));
                 }
-                if (getBaneLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.GREEN + "Spider Killing: " + getBaneLevel(stack));
+                if (WeaponNBT.getBaneLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.GREEN + "Spider Killing: " + WeaponNBT.getBaneLevel(stack));
                 }
-                if (getFireLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.RED + "Flame: " + getFireLevel(stack));
+                if (WeaponNBT.getFireLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.RED + "Flame: " + WeaponNBT.getFireLevel(stack));
                 }
-                if (getFortuneLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.BLUE + "Thieving: " + getFortuneLevel(stack));
+                if (WeaponNBT.getFortuneLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.BLUE + "Thieving: " + WeaponNBT.getFortuneLevel(stack));
                 }
-                if (getLeechLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.BLACK + "Life Steal: " + getLeechLevel(stack));
+                if (WeaponNBT.getLeechLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.BLACK + "Life Steal: " + WeaponNBT.getLeechLevel(stack));
                 }
-                if (getSharpnessLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.WHITE + "Sharpness: " + getSharpnessLevel(stack));
+                if (WeaponNBT.getSharpnessLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.WHITE + "Sharpness: " + WeaponNBT.getSharpnessLevel(stack));
                 }
             }
         }

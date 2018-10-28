@@ -9,6 +9,9 @@
 
 ## Current Feature
 - [ ] weapon upgrades
+- [ ] Grinding Bench
+- [ ] Grinding Wheel Crafting Slack, Clay, Sand
+- [ ] Damascus Workblade Recipe
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker

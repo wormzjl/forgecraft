@@ -48,6 +48,7 @@ public class ModBlocks {
     public static Block ironanvil;
 
     public static Block workbench;
+    public static Block sharpbench;
 
     public static Block yewstave;
 
@@ -79,6 +80,7 @@ public class ModBlocks {
         //ironanvil = new AnvilIron(Material.ANVIL, "ironanvil", 6.0f, true);
 
         workbench = new Workbench(Material.WOOD, "toolbench");
+        sharpbench = new SharpBench(Material.WOOD, "sharpbench");
 
         yewstave = new YewStave(Material.WOOD, "yewstave", 3.0F);
 
@@ -112,6 +114,7 @@ public class ModBlocks {
         //registerBlockWithItem(ironanvil);
 
         registerBlockWithItem(workbench);
+        registerBlockWithItem(sharpbench);
 
         registerBlockWithItem(yewstave);
     }
@@ -144,6 +147,7 @@ public class ModBlocks {
         registerRender(stoneanvil);
         //registerRender(ironanvil);
         registerRender(workbench);
+        registerRender(sharpbench);
 
         registerRender(yewstave);
 

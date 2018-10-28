@@ -58,22 +58,22 @@ public class CommonEvents implements WeaponNBT {
 
             if(inputStackItem != null) {
                 if (inputStack.hasTagCompound()) {
-                    if (getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
+                    if (WeaponNBT.getModifiers(inputStack) < WeaponNBT.materialModifiers.get(((WeaponPart) outputStack.getItem()).getMaterial()) ) {
                         if (RecipeHelper.isOreName(modStack, "dustSilver")) {
-                            setSmiteLevel(outputStack, getSmiteLevel(inputStack) + 1);
-                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            WeaponNBT.setSmiteLevel(outputStack, WeaponNBT.getSmiteLevel(inputStack) + 1);
+                            WeaponNBT.setModifiers(outputStack, WeaponNBT.getModifiers(inputStack) + 1);
                         }
                         if (RecipeHelper.isOreName(modStack, "foodPoison")) {
-                            setBaneLevel(outputStack, getBaneLevel(inputStack) + 1);
-                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            WeaponNBT.setBaneLevel(outputStack, WeaponNBT.getBaneLevel(inputStack) + 1);
+                            WeaponNBT.setModifiers(outputStack, WeaponNBT.getModifiers(inputStack) + 1);
                         }
                         if (RecipeHelper.isOreName(modStack, "dustBlaze")) {
-                            setFireLevel(outputStack, getFireLevel(inputStack) + 1);
-                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            WeaponNBT.setFireLevel(outputStack, WeaponNBT.getFireLevel(inputStack) + 1);
+                            WeaponNBT.setModifiers(outputStack, WeaponNBT.getModifiers(inputStack) + 1);
                         }
                         if (RecipeHelper.isOreName(modStack, "gemLapis")) {
-                            setFortuneLevel(outputStack, getFortuneLevel(inputStack) + 1);
-                            setModifiers(outputStack, getModifiers(inputStack) + 1);
+                            WeaponNBT.setFortuneLevel(outputStack, WeaponNBT.getFortuneLevel(inputStack) + 1);
+                            WeaponNBT.setModifiers(outputStack, WeaponNBT.getModifiers(inputStack) + 1);
                         }
                     }
                 }

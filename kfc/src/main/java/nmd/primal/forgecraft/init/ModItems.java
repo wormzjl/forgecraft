@@ -35,7 +35,7 @@ public class ModItems {
     public static Item softcrucible;
     //public static Item stonetongs;
     public static Item castingmud;
-
+    public static Item grindingwheel;
 
 
     public static Item bronzeingotball;
@@ -191,7 +191,7 @@ public class ModItems {
         longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
         wootzworkblade = new Workblade("wootzworkblade", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, -1.0F).setFireProof(true);
-
+        grindingwheel = new BaseItem("grindingwheel").setMaxDamage(9000).setMaxStackSize(1).setNoRepair();
 
         /**********
          TOOL PARTS
@@ -348,6 +348,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(softcrucible);
         ForgeRegistries.ITEMS.register(wootzworkblade);
         ForgeRegistries.ITEMS.register(forgehammer);
+        ForgeRegistries.ITEMS.register(grindingwheel);
 
         ForgeRegistries.ITEMS.register(bronzeingotball);
         ForgeRegistries.ITEMS.register(bronzechunk);
@@ -502,6 +503,7 @@ public class ModItems {
         registerRender(softcrucible);
         registerRender(forgehammer);
         registerRender(wootzworkblade);
+        registerRender(grindingwheel);
 
         registerRender(bronzeingotball);
         registerRender(bronzechunk);

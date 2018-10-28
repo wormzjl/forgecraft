@@ -2,6 +2,7 @@ package nmd.primal.forgecraft.blocks.machine;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -37,7 +38,7 @@ public class Workbench extends CustomContainerFacing {
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
-            if (hand.equals(hand.MAIN_HAND) ) {
+            if(player.getActiveHand().equals(EnumHand.MAIN_HAND)) {
 
                 TileWorkbench tile = (TileWorkbench) world.getTileEntity(pos);
                 ItemStack playerStack = player.inventory.getCurrentItem();
@@ -268,6 +269,31 @@ public class Workbench extends CustomContainerFacing {
             case NORTH:
                 return boundBoxNorth;
         }
+    }
+
+    @Override
+    public void breakBlock(World world, BlockPos pos, IBlockState state)
+    {
+        if (!world.isRemote && world.getGameRules().getBoolean("doTileDrops"))
+        {
+            TileWorkbench tile = (TileWorkbench) world.getTileEntity(pos);
+            if (tile !=null)
+            {
+                for (ItemStack stack : tile.getSlotList())
+                {
+                    if (stack != null) {
+                        float offset = 0.7F;
+                        double offsetX = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetY = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        double offsetZ = world.rand.nextFloat() * offset + (1.0F - offset) * 0.5D;
+                        EntityItem item = new EntityItem(world, pos.getX() + offsetX, pos.getY() + offsetY, pos.getZ() + offsetZ, stack);
+                        item.setDefaultPickupDelay();
+                        world.spawnEntity(item);
+                    }
+                }
+            }
+        }
+        super.breakBlock(world, pos, state);
     }
 
     @Nullable

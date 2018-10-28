@@ -1,5 +1,7 @@
 package nmd.primal.forgecraft.util;
 
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.Ingredient;
@@ -29,7 +31,7 @@ public interface WeaponNBT {
      * @param stack The ItemStack to get Modifiers from
      * @return int The number of modifiers applied
      */
-    default int getModifiers(ItemStack stack) {
+    static int getModifiers(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -45,11 +47,11 @@ public interface WeaponNBT {
      * @param stack The stack to set modifiers to
      * @param mods The number of modifiers added
      */
-    default void setModifiers(ItemStack stack, Integer mods){
+    static void setModifiers(ItemStack stack, Integer mods){
         stack.getSubCompound("tags").setInteger("modifiers", mods);
     }
 
-    default int getSmiteLevel(ItemStack stack){
+    static int getSmiteLevel(ItemStack stack){
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -59,11 +61,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setSmiteLevel(ItemStack stack, int smite){
+    static void setSmiteLevel(ItemStack stack, int smite){
         stack.getSubCompound("tags").setInteger("smite", smite);
     }
 
-    default int getBaneLevel(ItemStack stack) {
+    static int getBaneLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -73,11 +75,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setBaneLevel(ItemStack stack, Integer level){
+    static void setBaneLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("bane", level);
     }
 
-    default int getFireLevel(ItemStack stack) {
+    static int getFireLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -87,11 +89,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setFireLevel(ItemStack stack, Integer level){
+    static void setFireLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("fire", level);
     }
 
-    default int getFortuneLevel(ItemStack stack) {
+    static int getFortuneLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -101,11 +103,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setFortuneLevel(ItemStack stack, Integer level){
+    static void setFortuneLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("fortune", level);
     }
 
-    default int getSweepingLevel(ItemStack stack) {
+    static int getSweepingLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -115,11 +117,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setSweepingLevel(ItemStack stack, Integer level){
+    static void setSweepingLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("sweeping", level);
     }
 
-    default int getSharpnessLevel(ItemStack stack) {
+    static int getSharpnessLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -129,11 +131,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setSharpnessLevel(ItemStack stack, Integer level){
+    static void setSharpnessLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("sharp", level);
     }
 
-    default int getLeechLevel(ItemStack stack) {
+    static int getLeechLevel(ItemStack stack) {
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -143,11 +145,11 @@ public interface WeaponNBT {
         }
         return 0;
     }
-    default void setLeechLevel(ItemStack stack, Integer level){
+    static void setLeechLevel(ItemStack stack, Integer level){
         stack.getSubCompound("tags").setInteger("leech", level);
     }
 
-    default NBTTagCompound getTags(ItemStack stack){
+    static NBTTagCompound getTags(ItemStack stack){
         if(!stack.isEmpty()) {
             if (stack.hasTagCompound()) {
                 if (stack.getSubCompound("tags") != null) {
@@ -158,7 +160,7 @@ public interface WeaponNBT {
         return null;
     }
 
-    default boolean getHot(ItemStack stack){
+    static boolean getHot(ItemStack stack){
 
         if(!stack.isEmpty()){
             if(stack.hasTagCompound()){
@@ -171,7 +173,7 @@ public interface WeaponNBT {
         return false;
     }
 
-    default void setHot(ItemStack stack){
+    static void setHot(ItemStack stack){
 
     }
 
@@ -187,6 +189,32 @@ public interface WeaponNBT {
         stack.getSubCompound("tags").setInteger("sharpness", 0);
         stack.getSubCompound("tags").setInteger("modifiers", 0);
         stack.getSubCompound("tags").setBoolean("hot", false);
+    }
+
+    static void removeAndSetEnchantsForStack(ItemStack stack){
+        if(stack.hasTagCompound()) {
+            //if(stack.isItemEnchanted()) {
+                stack.getTagCompound().removeTag("ench");
+                if (getSmiteLevel(stack)>0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(17), getSmiteLevel(stack));
+                }
+                if (getBaneLevel(stack)>0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(18), getBaneLevel(stack));
+                }
+                if (getFireLevel(stack)>0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(20), getFireLevel(stack));
+                }
+                if (getFortuneLevel(stack)>0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(21), getFortuneLevel(stack));
+                }
+                if (getSweepingLevel(stack) > 0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(22), getSweepingLevel(stack));
+                }
+                if (getSharpnessLevel(stack)>0) {
+                    stack.addEnchantment(Enchantment.getEnchantmentByID(16), getSharpnessLevel(stack));
+                }
+            //}
+        }
     }
 
     Hashtable<Item.ToolMaterial, Integer> materialModifiers = new Hashtable<Item.ToolMaterial, Integer>(){{

@@ -1,0 +1,9 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak",
+    "lever_handle": "blocks/planks_big_oak"
+  },
+  "parent": "forgecraft:block/grinder_model"
+}
