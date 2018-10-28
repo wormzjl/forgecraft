@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.oredict.OreDictionary;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.core.common.recipes.irecipe.RecipeHandler;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.crafting.CastingCrafting;
@@ -333,11 +334,11 @@ public class ModCrafting{
 
         /***Bellows Handle***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.bellowshandle),
-                "X X", "X X", " X ", 'X', Items.STICK);
+                "X X", "X X", " X ", 'X', "stickWood");
 
         /***Tongs***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.slottedtongs, 1),
-                "X X", "YSY", 'X', Blocks.STONE, 'S', Items.STRING, 'Y', Items.STICK);
+                "X X", "YSY", 'X', Blocks.STONE, 'S', "string", 'Y', "stickWood");
 
         /***Anvil***/
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.stoneanvil, 1),
@@ -345,6 +346,12 @@ public class ModCrafting{
 
         RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.workbench, 1),
                 "   ", "rrr", "f f", 'r', Blocks.STONE_SLAB, 'f', "fenceWood");
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModBlocks.sharpbench, 1),
+                "   ", "sss", "f f", 's', "stickWood", 'f', "fenceWood" );
+
+        RecipeHandler.addShapedOreRecipe(new ItemStack(ModItems.wootzworkblade, 1),
+                "   ", "sss", "f f", 's', "stickWood", 'f', "fenceWood" );
 
         /******************************************************************************
          CASTING
@@ -813,6 +820,18 @@ public class ModCrafting{
         /******************************************************************************
                ANVILING
          ******************************************************************************/
+
+        /*** WORKBLADE ***/
+        /*AnvilCrafting.addRecipe(
+                new ItemStack [] {
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir,
+                        emptyAir,emptyAir,emptyAir,emptyAir,emptyAir },
+                new ItemStack(ModItems.wootzworkblade, 1),
+                "null"
+        );*/
 
         /*** SLEDGEHAMMER ***/
         AnvilCrafting.addRecipe(

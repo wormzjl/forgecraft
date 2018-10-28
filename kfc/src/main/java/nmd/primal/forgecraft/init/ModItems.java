@@ -191,7 +191,7 @@ public class ModItems {
         longbow = new Longbow("longbow");
         //matchlockmusket = new Musket("matchlock_musket");
         wootzworkblade = new Workblade("wootzworkblade", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, -1.0F).setFireProof(true);
-        grindingwheel = new BaseItem("grindingwheel").setMaxDamage(9000).setMaxStackSize(1).setNoRepair();
+        grindingwheel = new BaseSingleItem("grindingwheel", 9000);
 
         /**********
          TOOL PARTS

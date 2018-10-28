@@ -51,6 +51,16 @@ public class CauldronRecipes
 
         genRecipesForList(recipeList, recipes);
 
+        recipes.register(new CauldronRecipe(
+            5,
+            new FluidStack(FluidRegistry.WATER, 500),
+            new FluidStack(PrimalAPI.Fluids.WASTE, 500),
+            RecipeHelper.getOreStack("sand", 1),
+            RecipeHelper.getOreStack("slackLime", 4),
+            RecipeHelper.getOreStack("clayball", 2),
+            new ItemStack(ModItems.grindingwheel, 1),
+            ItemStack.EMPTY).setRecipeName(ModInfo.MOD_ID, ModItems.grindingwheel.getUnlocalizedName().toString()));
+
     }
 
     static void setDefaultNBT(ItemStack stack){
@@ -67,8 +77,8 @@ public class CauldronRecipes
 
     static CauldronRecipe genSmiteRecipe(ItemStack stack) {
         return new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
+                8,
+                new FluidStack(PrimalAPI.Fluids.BRINE, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("dustSilver", 2),
                 RecipeHelper.buildList(stack),
@@ -77,8 +87,8 @@ public class CauldronRecipes
     }
     static CauldronRecipe genBaneRecipe(ItemStack stack) {
         return new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
+                8,
+                new FluidStack(PrimalAPI.Fluids.BRINE, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("foodPoison", 2),
                 RecipeHelper.buildList(stack),
@@ -88,8 +98,8 @@ public class CauldronRecipes
 
     static CauldronRecipe genFireRecipe(ItemStack stack) {
         return new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
+                8,
+                new FluidStack(PrimalAPI.Fluids.BRINE, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("dustBlaze", 2),
                 RecipeHelper.buildList(stack),
@@ -99,8 +109,8 @@ public class CauldronRecipes
 
     static CauldronRecipe genFortuneRecipe(ItemStack stack) {
         return new CauldronRecipe(
-                5,
-                new FluidStack(FluidRegistry.WATER, 1000),
+                8,
+                new FluidStack(PrimalAPI.Fluids.BRINE, 1000),
                 new FluidStack(PrimalAPI.Fluids.WASTE, 1000),
                 RecipeHelper.getOreStack("gemLapis", 2),
                 RecipeHelper.buildList(stack),

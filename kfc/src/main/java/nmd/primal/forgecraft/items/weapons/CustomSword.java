@@ -161,9 +161,6 @@ public class CustomSword extends ItemSword implements WeaponNBT {
             if (WeaponNBT.getLeechLevel(stack) > 0) {
                 tooltip.add(ChatFormatting.BLACK + "Life Steal: " + WeaponNBT.getLeechLevel(stack));
             }
-            //if (WeaponNBT.getSharpnessLevel(stack) > 0) {
-            //    tooltip.add(ChatFormatting.WHITE + "Sharpness: " + WeaponNBT.getSharpnessLevel(stack));
-            //}
         }
     }
 

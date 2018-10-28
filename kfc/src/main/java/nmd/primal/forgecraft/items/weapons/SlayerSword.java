@@ -5,72 +5,54 @@ import com.google.common.collect.Multimap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemSword;
+import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.forgecraft.ModInfo;
+import nmd.primal.forgecraft.util.WeaponNBT;
 
 /**
  * Created by mminaie on 6/25/17.
  */
-public class SlayerSword extends ItemSword {
-
-    private double attack, speed;
+public class SlayerSword extends CustomSword {
 
     public SlayerSword(String name, Item.ToolMaterial material, double attackDamage, double attackSpeed) {
-        super(material);
-        this.setUnlocalizedName(name);
-        this.setRegistryName(name);
-        this.setCreativeTab(ModInfo.TAB_FORGECRAFT);
-        this.setMaxStackSize(1);
-        this.setNoRepair();
-        this.attack = attackDamage;
-        this.speed = attackSpeed;
-
+        super(name, material, attackDamage, attackSpeed);
     }
 
     @Override
-    public void onUpdate(ItemStack item, World world, Entity playerin, int itemSlot, boolean isSelected) {
+    public void onUpdate(ItemStack stack, World world, Entity ent, int itemSlot, boolean isSelected) {
 
         if(isSelected){
-            playerin.setSprinting(false);
+            EntityPlayer player = (EntityPlayer) ent;
+            if(!player.inventory.offHandInventory.isEmpty()) {
+                ent.setSprinting(false);
+            }
+            if (stack.getItemDamage() < stack.getMaxDamage() * 0.5){
+                WeaponNBT.setSharpnessLevel(stack, 5);
+            }
+            if (stack.getItemDamage() > stack.getMaxDamage() * 0.5 && stack.getItemDamage() < stack.getMaxDamage() * 0.6){
+                WeaponNBT.setSharpnessLevel(stack, 4);
+            }
+            if (stack.getItemDamage() > stack.getMaxDamage() * 0.6 && stack.getItemDamage() < stack.getMaxDamage() * 0.7){
+                WeaponNBT.setSharpnessLevel(stack, 3);
+            }
+            if (stack.getItemDamage() > stack.getMaxDamage() * 0.7 && stack.getItemDamage() < stack.getMaxDamage() * 0.8){
+                WeaponNBT.setSharpnessLevel(stack, 2);
+            }
+            if (stack.getItemDamage() > stack.getMaxDamage() * 0.8 && stack.getItemDamage() < stack.getMaxDamage() * 0.9){
+                WeaponNBT.setSharpnessLevel(stack, 1);
+            }
+            if (stack.getItemDamage() > stack.getMaxDamage() * 0.9 && stack.getItemDamage() < stack.getMaxDamage()){
+                WeaponNBT.setSharpnessLevel(stack, 0);
+            }
         }
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public boolean hasEffect(ItemStack stack)
-    {
-        return false;
-    }
-
-    @Override
-    public boolean isRepairable()
-    {
-        return false;
-    }
-
-    public int getItemEnchantability(ItemStack stack)
-    {
-        return 0;
-    }
-
-    @Override
-    public Multimap<String, AttributeModifier> getItemAttributeModifiers(EntityEquipmentSlot equipmentSlot)
-    {
-        Multimap<String, AttributeModifier> multimap =  HashMultimap.<String, AttributeModifier>create();
-
-        if (equipmentSlot == EntityEquipmentSlot.MAINHAND)
-        {
-            multimap.put(SharedMonsterAttributes.ATTACK_DAMAGE.getName(), new AttributeModifier(ATTACK_DAMAGE_MODIFIER, "Weapon modifier", this.attack, 0));
-            multimap.put(SharedMonsterAttributes.ATTACK_SPEED.getName(), new AttributeModifier(ATTACK_SPEED_MODIFIER, "Weapon modifier", this.speed, 0));
-        }
-
-        return multimap;
     }
 
 }

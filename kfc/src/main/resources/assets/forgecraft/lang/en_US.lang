@@ -28,6 +28,7 @@ tile.copperchisel.name=Copper Chisel
 tile.bronzechisel.name=Bronze Chisel
 
 tile.toolbench.name=Tool Bench
+tile.sharpbench.name=Sharpening Bench
 
 item.bronzeingotball.name=Bronze Ingot
 item.bronzechunk.name=Bronze Chunk
@@ -49,6 +50,8 @@ item.brokenwootztool.name=Broken Damascus Tool
 item.unstrunglongbow.name=Unstrung Longbow
 item.longbow.name=Longbow
 item.rawlongbow.name=Raw Longbow
+item.grindingwheel.name=Grinding Wheel
+item.rawironslayer.name=Raw Wrought Iron Slayer
 
 item.bellowshandle.name=Bellows Handle
 item.softcrucible.name=Soft Crucible
@@ -176,8 +179,5 @@ jei.category.forgecraft.casting=Casting
 jei.category.forgecraft.forging=Forging
 jei.category.forgecraft.workbench=Tool Bench
 
-jei.info.forgecraft.crucible=Crucible Crafting
-jei.info.forgecraft.anvil=Anvil Crafting
-jei.info.forgecraft.casting=Casting
-jei.info.forgecraft.forging=Forging
-jei.info.forgecraft.workbench=Tool Bench
+jei.info.forgecraft.casting=Right Click the casting form while holding a hot crucible of the crafting material.
+jei.info.forgecraft.sharpbench=Right click with an empty hand to get the grinding wheel going. Make contact with the grinding wheel while holding a Weapon or Tool head.

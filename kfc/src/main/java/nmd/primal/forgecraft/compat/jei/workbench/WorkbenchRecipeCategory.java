@@ -6,6 +6,7 @@ import mezz.jei.api.gui.IGuiItemStackGroup;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
@@ -45,7 +46,7 @@ public class WorkbenchRecipeCategory extends AbstractCategory<WorkbenchRecipeWra
     @Override
     public String getTitle()
     {
-        return "jei.category.forgecraft.workbench";
+        return I18n.format("jei.category.forgecraft.workbench");
     }
 
     @Nonnull

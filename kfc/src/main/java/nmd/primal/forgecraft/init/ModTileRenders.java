@@ -14,6 +14,7 @@ public class ModTileRenders {
         ClientRegistry.bindTileEntitySpecialRenderer(TileBreaker.class, new TileBreakerRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileCastingForm.class, new TileCastingformRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileWorkbench.class, new TileWorkbenchRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileSharpBench.class, new TileSharpBenchRender());
     }
 
 }

@@ -46,6 +46,10 @@ public class TileSharpBench extends TileBaseSlot implements ITickable {
                     iteration = 0;
                 }
             }
+            if(this.charge==0){
+                world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 2);
+                this.updateBlock();
+            }
         }
     }
 

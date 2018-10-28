@@ -8,10 +8,15 @@
 
 
 ## Current Feature
-- [ ] weapon upgrades
-- [ ] Grinding Bench
-- [ ] Grinding Wheel Crafting Slack, Clay, Sand
+- [x] weapon upgrades
+- [x] Grinding Bench
+- [x] Repair ToolHead
+- [x] Grinding Wheel Crafting Slack, Clay, Sand
+- [x] Grinding Bench Recipe
+- [x] Dissasemble recipes for weapons
+- [x] Chisel Pickup
 - [ ] Damascus Workblade Recipe
+
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker

@@ -8,6 +8,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.PotionEffect;
@@ -24,6 +25,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.init.ModSounds;
 import nmd.primal.forgecraft.items.SledgeHammer;
 import nmd.primal.forgecraft.util.ToolMaterialMap;
@@ -146,6 +148,13 @@ public class Chisel extends CustomFacing implements ToolMaterialMap {
             ItemStack playerStack = player.inventory.getCurrentItem();
             ItemStack offStack = player.inventory.offHandInventory.get(0);
             int toolHarvestLevel = playerStack.getItem().getHarvestLevel(playerStack, "pickaxe", player, state);
+            if(player.getActiveItemStack().isEmpty()){
+                if(player.isSneaking()){
+                    PlayerHelper.spawnItemOnPlayer(world, player, new ItemStack(Item.getItemFromBlock(state.getBlock()), 1));
+                    world.setBlockToAir(pos);
+                    return true;
+                }
+            }
             if (hand.equals(hand.MAIN_HAND) && offStack == ItemStack.EMPTY) {
                 if(!player.isSwingInProgress) {
                     if(player.getActivePotionEffect(MobEffects.MINING_FATIGUE ) == null){

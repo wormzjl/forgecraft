@@ -434,12 +434,28 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.coppergladius, 1)).setRecipeName("coppergladius"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.coppergladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawcoppergladius, 1)).setRecipeName("rawcoppergladius"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawbronzegladius, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.bronzegladius, 1)).setRecipeName("bronzegladius"));
+
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.bronzegladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawbronzegladius, 1)).setRecipeName("rawbronzegladius"));
 
         recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
@@ -450,12 +466,28 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.wroughtirongladius, 1)).setRecipeName("wroughtirongladius"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.wroughtirongladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawwroughtirongladius, 1)).setRecipeName("rawwroughtirongladius"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawcleanirongladius, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.cleanirongladius, 1)).setRecipeName("cleanirongladius"));
+
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanirongladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawcleanirongladius, 1)).setRecipeName("rawcleanirongladius"));
 
         recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
@@ -466,12 +498,28 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.steelgladius, 1)).setRecipeName("steelgladius"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.steelgladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawsteelgladius, 1)).setRecipeName("rawsteelgladius"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawwootzgladius, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.wootzgladius, 1)).setRecipeName("wootzgladius"));
+
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzgladius, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawwootzgladius, 1)).setRecipeName("rawwootzgladius"));
 
         /***LONGSWORD***/
         recipes.register (new WorkbenchCrafting(
@@ -483,6 +531,14 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.cleanironlongsword, 1)).setRecipeName("cleanironlongsword"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironlongsword, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawcleanironlongsword, 1)).setRecipeName("rawcleanironlongsword"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawsteellongsword, 1)),
                 Ingredient.EMPTY,
@@ -491,12 +547,28 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.steellongsword, 1)).setRecipeName("steellongsword"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.steellongsword, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawsteellongsword, 1)).setRecipeName("rawsteellongsword"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawwootzlongsword, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.wootzlongsword, 1)).setRecipeName("wootzlongsword"));
+
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzlongsword, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawwootzlongsword, 1)).setRecipeName("rawwootzlongsword"));
 
         /***SLAYER***/
         recipes.register (new WorkbenchCrafting(
@@ -508,12 +580,28 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.wroughtironslayer, 1)).setRecipeName("ironslayer"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.wroughtironslayer, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawironslayer, 1)).setRecipeName("rawironslayer"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawcleanironslayer, 1)),
                 Ingredient.EMPTY,
                 Ingredient.EMPTY,
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.cleanironslayer, 1)).setRecipeName("cleanironslayer"));
+
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.cleanironslayer, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawcleanironslayer, 1)).setRecipeName("rawcleanironslayer"));
 
         recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
@@ -524,6 +612,14 @@ public final class RecipesWorkbench {
                 new ItemStack(ModItems.steelslayer, 1)).setRecipeName("steelslayer"));
 
         recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.steelslayer, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawsteelslayer, 1)).setRecipeName("rawsteelslayer"));
+
+        recipes.register (new WorkbenchCrafting(
                 new OreIngredient("cordageGeneral"),
                 Ingredient.fromStacks(new ItemStack(ModItems.rawwootzslayer, 1)),
                 Ingredient.EMPTY,
@@ -531,5 +627,12 @@ public final class RecipesWorkbench {
                 new OreIngredient("toolWorkBlade"),
                 new ItemStack(ModItems.wootzslayer, 1)).setRecipeName("wootzslayer"));
 
+        recipes.register (new WorkbenchCrafting(
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.EMPTY,
+                Ingredient.fromStacks(new ItemStack(ModItems.wootzslayer, 1)),
+                new OreIngredient("toolWorkBlade"),
+                new ItemStack(ModItems.rawwootzslayer, 1)).setRecipeName("rawwootzslayer"));
     }
 }

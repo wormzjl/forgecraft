@@ -10,6 +10,7 @@ import nmd.primal.forgecraft.items.tools.CustomAxe;
 import nmd.primal.forgecraft.items.tools.CustomHoe;
 import nmd.primal.forgecraft.items.tools.CustomPickaxe;
 import nmd.primal.forgecraft.items.tools.CustomShovel;
+import nmd.primal.forgecraft.items.weapons.CustomSword;
 
 public class TileWorkbench extends TileBaseSlot{
     public boolean isItemValidForSlot(int index, ItemStack stack) {
@@ -49,7 +50,8 @@ public class TileWorkbench extends TileBaseSlot{
             if(stack.getItem() instanceof CustomAxe ||
                     stack.getItem() instanceof CustomHoe ||
                     stack.getItem() instanceof CustomPickaxe ||
-                    stack.getItem() instanceof CustomShovel){
+                    stack.getItem() instanceof CustomShovel ||
+                    stack.getItem() instanceof CustomSword){
                 return true;
             }
         }
