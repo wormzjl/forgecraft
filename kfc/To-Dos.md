@@ -8,18 +8,11 @@
 
 
 ## Current Feature
-- [x] weapon upgrades
-- [x] Grinding Bench
-- [x] Repair ToolHead
-- [x] Grinding Wheel Crafting Slack, Clay, Sand
-- [x] Grinding Bench Recipe
-- [x] Dissasemble recipes for weapons
-- [x] Chisel Pickup
 - [ ] Damascus Workblade Recipe
-
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
+- [ ] Mass Ore Production
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)
@@ -33,13 +26,9 @@
 - [ ] Create lock assembly item
 
 ## Backlog
-- [ ] Play a sound when bloomery or forge finishes
-- [ ] Hardness and Resistance calculation for durability damage
 - [ ] Hardened Leather Helmet Inventory Model
 - [ ] Add Achievements
-- [ ] Bloomery Print out
 - [ ] Random Floats for hot texture
-- [ ] Mass Ore Production
 - [ ] Silver/Lead Production
 - [ ] Sparks to forging
 - [ ] Add Iron Ring Recipe
@@ -58,6 +47,13 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] weapon upgrades
+- [x] Grinding Bench
+- [x] Repair ToolHead
+- [x] Grinding Wheel Crafting Slack, Clay, Sand
+- [x] Grinding Bench Recipe
+- [x] Dissasemble recipes for weapons
+- [x] Chisel Pickup
 - [x] WorkBench
 - [x] Longbow change NBT management
 - [x] Check dict name for cluster
