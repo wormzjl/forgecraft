@@ -31,26 +31,32 @@ public class SlayerSword extends CustomSword {
 
         if(isSelected){
             EntityPlayer player = (EntityPlayer) ent;
+            if(!stack.hasTagCompound()) {
+                WeaponNBT.setDefaultNBT(stack);
+            }
+
             if(!player.inventory.offHandInventory.isEmpty()) {
                 ent.setSprinting(false);
             }
-            if (stack.getItemDamage() < stack.getMaxDamage() * 0.5){
-                WeaponNBT.setSharpnessLevel(stack, 5);
-            }
-            if (stack.getItemDamage() > stack.getMaxDamage() * 0.5 && stack.getItemDamage() < stack.getMaxDamage() * 0.6){
-                WeaponNBT.setSharpnessLevel(stack, 4);
-            }
-            if (stack.getItemDamage() > stack.getMaxDamage() * 0.6 && stack.getItemDamage() < stack.getMaxDamage() * 0.7){
-                WeaponNBT.setSharpnessLevel(stack, 3);
-            }
-            if (stack.getItemDamage() > stack.getMaxDamage() * 0.7 && stack.getItemDamage() < stack.getMaxDamage() * 0.8){
-                WeaponNBT.setSharpnessLevel(stack, 2);
-            }
-            if (stack.getItemDamage() > stack.getMaxDamage() * 0.8 && stack.getItemDamage() < stack.getMaxDamage() * 0.9){
-                WeaponNBT.setSharpnessLevel(stack, 1);
-            }
-            if (stack.getItemDamage() > stack.getMaxDamage() * 0.9 && stack.getItemDamage() < stack.getMaxDamage()){
-                WeaponNBT.setSharpnessLevel(stack, 0);
+            if(stack.hasTagCompound()) {
+                if (stack.getItemDamage() < stack.getMaxDamage() * 0.5) {
+                    WeaponNBT.setSharpnessLevel(stack, 5);
+                }
+                if (stack.getItemDamage() > stack.getMaxDamage() * 0.5 && stack.getItemDamage() < stack.getMaxDamage() * 0.6) {
+                    WeaponNBT.setSharpnessLevel(stack, 4);
+                }
+                if (stack.getItemDamage() > stack.getMaxDamage() * 0.6 && stack.getItemDamage() < stack.getMaxDamage() * 0.7) {
+                    WeaponNBT.setSharpnessLevel(stack, 3);
+                }
+                if (stack.getItemDamage() > stack.getMaxDamage() * 0.7 && stack.getItemDamage() < stack.getMaxDamage() * 0.8) {
+                    WeaponNBT.setSharpnessLevel(stack, 2);
+                }
+                if (stack.getItemDamage() > stack.getMaxDamage() * 0.8 && stack.getItemDamage() < stack.getMaxDamage() * 0.9) {
+                    WeaponNBT.setSharpnessLevel(stack, 1);
+                }
+                if (stack.getItemDamage() > stack.getMaxDamage() * 0.9 && stack.getItemDamage() < stack.getMaxDamage()) {
+                    WeaponNBT.setSharpnessLevel(stack, 0);
+                }
             }
         }
     }

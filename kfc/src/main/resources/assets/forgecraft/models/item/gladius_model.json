@@ -1,9 +1,9 @@
 {
 	"__comment": "Designed by Kitsushadow with Cubik Studio - https://cubik.studio",
 	"textures": {
-		"particle": "items/finished_bronze",
-		"texture": "items/finished_bronze",
-		"handle": "blocks/planks_oak"
+		"particle": "forgecraft:items/finished_bronze",
+		"texture": "forgecraft:items/finished_bronze",
+		"handle": "forgecraft:blocks/planks_oak"
 	},
 	"elements": [ 	 
 		{
@@ -279,6 +279,10 @@
 			"rotation":  [ 0, 0, -45 ],
 			"translation":  [ -0.4, -0.4, 0 ],
 			"scale":  [ 0.5, 0.5, 0.5 ]
+		},
+		"head": {
+			"rotation":  [ -90, 0, 0 ],
+			"translation":  [ 5, 7.2, -9 ]
 		},
 		"ground": {
 			"rotation":  [ 90, 0, 0 ],

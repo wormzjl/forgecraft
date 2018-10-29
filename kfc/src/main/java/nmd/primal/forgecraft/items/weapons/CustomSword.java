@@ -68,34 +68,34 @@ public class CustomSword extends ItemSword implements WeaponNBT {
     public void onUpdate(ItemStack stack, World world, Entity playerin, int itemSlot, boolean isSelected) {
         if(!world.isRemote){
             if(isSelected) {
-
-                //System.out.println( + stack.getMaxDamage() * 0.6 + " : " + stack.getItemDamage() + " : " + stack.getMaxDamage() * 0.5);
-                //System.out.println(stack.getItemDamage() + ">" + stack.getMaxDamage() * 0.5);
-                //System.out.println(stack.getItemDamage() + "<" + stack.getMaxDamage() * 0.6);
-                //System.out.println(WeaponNBT.getSharpnessLevel(stack));
-                if (stack.getItemDamage() < stack.getMaxDamage() * 0.5){
-                    WeaponNBT.setSharpnessLevel(stack, 5);
-                    //System.out.println("Sharpness = 5");
+                if(!stack.hasTagCompound()) {
+                    WeaponNBT.setDefaultNBT(stack);
                 }
-                if (stack.getItemDamage() > stack.getMaxDamage() * 0.5 && stack.getItemDamage() < stack.getMaxDamage() * 0.6){
-                    WeaponNBT.setSharpnessLevel(stack, 4);
-                    //System.out.println("Sharpness = 4");
-                }
-                if (stack.getItemDamage() > stack.getMaxDamage() * 0.6 && stack.getItemDamage() < stack.getMaxDamage() * 0.7){
-                    WeaponNBT.setSharpnessLevel(stack, 3);
-                    //System.out.println("Sharpness = 3");
-                }
-                if (stack.getItemDamage() > stack.getMaxDamage() * 0.7 && stack.getItemDamage() < stack.getMaxDamage() * 0.8){
-                    WeaponNBT.setSharpnessLevel(stack, 2);
-                    //System.out.println("Sharpness = 2");
-                }
-                if (stack.getItemDamage() > stack.getMaxDamage() * 0.8 && stack.getItemDamage() < stack.getMaxDamage() * 0.9){
-                    WeaponNBT.setSharpnessLevel(stack, 1);
-                    //System.out.println("Sharpness = 1");
-                }
-                if (stack.getItemDamage() > stack.getMaxDamage() * 0.9 && stack.getItemDamage() < stack.getMaxDamage()){
-                    WeaponNBT.setSharpnessLevel(stack, 0);
-                    //System.out.println("Sharpness = 0");
+                if(stack.hasTagCompound()) {
+                    if (stack.getItemDamage() < stack.getMaxDamage() * 0.5) {
+                        WeaponNBT.setSharpnessLevel(stack, 5);
+                        //System.out.println("Sharpness = 5");
+                    }
+                    if (stack.getItemDamage() > stack.getMaxDamage() * 0.5 && stack.getItemDamage() < stack.getMaxDamage() * 0.6) {
+                        WeaponNBT.setSharpnessLevel(stack, 4);
+                        //System.out.println("Sharpness = 4");
+                    }
+                    if (stack.getItemDamage() > stack.getMaxDamage() * 0.6 && stack.getItemDamage() < stack.getMaxDamage() * 0.7) {
+                        WeaponNBT.setSharpnessLevel(stack, 3);
+                        //System.out.println("Sharpness = 3");
+                    }
+                    if (stack.getItemDamage() > stack.getMaxDamage() * 0.7 && stack.getItemDamage() < stack.getMaxDamage() * 0.8) {
+                        WeaponNBT.setSharpnessLevel(stack, 2);
+                        //System.out.println("Sharpness = 2");
+                    }
+                    if (stack.getItemDamage() > stack.getMaxDamage() * 0.8 && stack.getItemDamage() < stack.getMaxDamage() * 0.9) {
+                        WeaponNBT.setSharpnessLevel(stack, 1);
+                        //System.out.println("Sharpness = 1");
+                    }
+                    if (stack.getItemDamage() > stack.getMaxDamage() * 0.9 && stack.getItemDamage() < stack.getMaxDamage()) {
+                        WeaponNBT.setSharpnessLevel(stack, 0);
+                        //System.out.println("Sharpness = 0");
+                    }
                 }
                 //System.out.println(WeaponNBT.getSharpnessLevel(stack));
             }

@@ -14,6 +14,7 @@ import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.machine.Workbench;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
+import nmd.primal.forgecraft.items.weapons.CustomSword;
 import nmd.primal.forgecraft.tiles.TileWorkbench;
 import org.lwjgl.opengl.GL11;
 
@@ -134,13 +135,15 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack5.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.48D, 0.20625D, -0.15D);
-                    GL11.glScalef(1F, 1F, 1F);
+                    if(!(stack5.getItem() instanceof CustomSword)) {
+                        GL11.glTranslated(0.48D, 0.20625D, -0.15D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
+                    if(stack5.getItem() instanceof CustomSword){
+                        GL11.glTranslated(0.2D, 0.42D, 0.075D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    }
                     GL11.glRotated(-90.0F, 0.0F, 1.0F, 0.0F);
-                    //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
-
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
                 }
@@ -238,8 +241,16 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                     GL11.glPushMatrix();
                     //System.out.println(stack2);
                     //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(0.52D, 0.20625D, 1.15D);
-                    GL11.glScalef(1F, 1F, 1F);
+
+                    if(!(stack5.getItem() instanceof CustomSword)) {
+                        GL11.glTranslated(0.52D, 0.20625D, 1.15D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
+                    if(stack5.getItem() instanceof CustomSword){
+                        GL11.glTranslated(0.8D, 0.42D, 0.9D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    }
+
                     GL11.glRotated(90.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
 
@@ -337,10 +348,15 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack5.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(1.15D, 0.20625D, 0.485D);
-                    GL11.glScalef(1F, 1F, 1F);
+
+                    if(!(stack5.getItem() instanceof CustomSword)) {
+                        GL11.glTranslated(1.15D, 0.20625D, 0.485D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
+                    if(stack5.getItem() instanceof CustomSword){
+                        GL11.glTranslated(0.91D, 0.42D, 0.235D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    }
                     GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
                     //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
 
@@ -434,12 +450,15 @@ public class TileWorkbenchRender extends TileEntitySpecialRenderer<TileWorkbench
                 }
                 if(!stack5.isEmpty()){
                     GL11.glPushMatrix();
-                    //System.out.println(stack2);
-                    //GL11.glRotated(90.0F, 1.0F, 0.0F, 0.0F);
-                    GL11.glTranslated(-0.138D, 0.20625D, 0.52D);
-                    GL11.glScalef(1F, 1F, 1F);
-                    //GL11.glRotated(180.0F, 0.0F, 1.0F, 0.0F);
-                    //GL11.glRotated(-90.0F, 1.0F, 0.0F, 0.0F);
+
+                    if(!(stack5.getItem() instanceof CustomSword)) {
+                        GL11.glTranslated(-0.138D, 0.20625D, 0.52D);
+                        GL11.glScalef(1F, 1F, 1F);
+                    }
+                    if(stack5.getItem() instanceof CustomSword){
+                        GL11.glTranslated(0.095D, 0.42D, 0.8D);
+                        GL11.glScalef(0.5F, 0.5F, 0.5F);
+                    }
 
                     renderItem.renderItem(stack5, ItemCameraTransforms.TransformType.HEAD);
                     GL11.glPopMatrix();
