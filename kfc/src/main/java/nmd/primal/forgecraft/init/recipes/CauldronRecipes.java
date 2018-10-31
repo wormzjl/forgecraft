@@ -54,7 +54,7 @@ public class CauldronRecipes
         recipes.register(new CauldronRecipe(
             5,
             new FluidStack(FluidRegistry.WATER, 500),
-            new FluidStack(PrimalAPI.Fluids.WASTE, 500),
+            null,
             RecipeHelper.getOreStack("sand", 1),
             RecipeHelper.getOreStack("slackLime", 4),
             RecipeHelper.getOreStack("clayball", 2),
