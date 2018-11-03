@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.anvil;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -8,6 +8,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 import nmd.primal.forgecraft.util.AnvilHandler;
 

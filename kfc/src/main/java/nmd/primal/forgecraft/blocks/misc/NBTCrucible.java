@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.misc;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.ITileEntityProvider;

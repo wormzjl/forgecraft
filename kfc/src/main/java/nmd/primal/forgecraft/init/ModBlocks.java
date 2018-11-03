@@ -11,10 +11,10 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.forgecraft.blocks.AnvilStone;
-import nmd.primal.forgecraft.blocks.Chisel;
-import nmd.primal.forgecraft.blocks.NBTCrucible;
-import nmd.primal.forgecraft.blocks.YewStave;
+import nmd.primal.forgecraft.blocks.anvil.AnvilStone;
+import nmd.primal.forgecraft.blocks.misc.Chisel;
+import nmd.primal.forgecraft.blocks.misc.NBTCrucible;
+import nmd.primal.forgecraft.blocks.misc.YewStave;
 import nmd.primal.forgecraft.blocks.machine.*;
 
 /**

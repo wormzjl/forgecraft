@@ -4,15 +4,16 @@
 
 - [ ] Placement bug for crucible from tongs
 - [ ] Wootz shovel not rendering (NORTH)
-- [ ] Damascus Rendering in tongs
-
+- [ ] Cool Damascus Rendering in tongs
 
 ## Current Feature
-- [ ] Damascus Workblade Recipe
+- [ ] ASM models
+
+## Feature Optimizations
 - [ ] Untick Bloomery and Forge
 - [ ] Craft Tweaker Support
 - [ ] Recipe Handler for Block Breaker
-- [ ] Mass Ore Production
+- [ ] Damascus Workblade Recipe
 
 ## Feature Musket
 - [ ] Create powder charge item (copper, charcoal, gunpowder)

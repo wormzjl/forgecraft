@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.blocks;
+package nmd.primal.forgecraft.blocks.misc;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -15,6 +15,7 @@ import net.minecraft.world.World;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.items.tools.WorkBlade;
+import nmd.primal.forgecraft.blocks.BlockCustomBase;
 import nmd.primal.forgecraft.init.ModItems;
 
 import static nmd.primal.core.api.PrimalAPI.randomCheck;
