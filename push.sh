@@ -7,7 +7,7 @@ git status
 #git commit -m "${com}"
 #echo $(git branch)
 git branch
-gitBranch=$(git branch)
+gitBranch=$(git symbolic-ref --short HEAD)
 
 read -p "Is this the correct branch (y/n)?" CONT
 if [ "$CONT" = "y" ]; then
