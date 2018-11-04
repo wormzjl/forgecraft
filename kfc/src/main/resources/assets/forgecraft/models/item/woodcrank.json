@@ -1,0 +1,8 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak"
+  },
+  "parent": "forgecraft:item/crank_wheel"
+}

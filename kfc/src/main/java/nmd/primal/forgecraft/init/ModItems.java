@@ -9,6 +9,7 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
@@ -37,6 +38,9 @@ public class ModItems {
     public static Item castingmud;
     public static Item grindingwheel;
 
+    public static Item woodpistonarm;
+    public static Item woodcrank;
+    public static Item woodpiston;
 
     public static Item bronzeingotball;
     public static Item bronzechunk;
@@ -185,6 +189,10 @@ public class ModItems {
         //stonetongs = new ItemStoneTongs("stonetongs");
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
+
+        woodpistonarm = new BaseItem("woodpistonarm");
+        woodcrank = new BaseItem("woodcrank");
+        woodpiston = new BaseItem("woodpiston");
 
         rawlongbow = new RawLongbow("rawlongbow");
         unstrunglongbow = new BaseItem("unstrunglongbow");
@@ -350,6 +358,10 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(forgehammer);
         ForgeRegistries.ITEMS.register(grindingwheel);
 
+        ForgeRegistries.ITEMS.register(woodpistonarm);
+        ForgeRegistries.ITEMS.register(woodcrank);
+        ForgeRegistries.ITEMS.register(woodpiston);
+
         ForgeRegistries.ITEMS.register(bronzeingotball);
         ForgeRegistries.ITEMS.register(bronzechunk);
         ForgeRegistries.ITEMS.register(ironingotball);
@@ -504,6 +516,10 @@ public class ModItems {
         registerRender(forgehammer);
         registerRender(wootzworkblade);
         registerRender(grindingwheel);
+
+        registerRender(woodpistonarm);
+        registerRender(woodpiston);
+        registerRender(woodcrank);
 
         registerRender(bronzeingotball);
         registerRender(bronzechunk);

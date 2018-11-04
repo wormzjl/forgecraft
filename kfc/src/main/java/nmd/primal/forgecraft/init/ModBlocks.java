@@ -29,6 +29,7 @@ public class ModBlocks {
     public static Block bloomery_adobe;
     public static Block blockbreaker;
     public static Block castingform;
+    public static Block redstonebellows;
 
     public static Block bronzechisel;
     public static Block copperchisel;
@@ -61,6 +62,7 @@ public class ModBlocks {
         bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 5000);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
+        redstonebellows = new RedstoneBellows(Material.WOOD, "redstonebellows");
 
         copperchisel = new Chisel(Material.IRON, "copperchisel", PrimalAPI.ToolMaterials.TOOL_COPPER);
         bronzechisel = new Chisel(Material.IRON, "bronzechisel", PrimalAPI.ToolMaterials.TOOL_BRONZE);
@@ -95,6 +97,7 @@ public class ModBlocks {
         registerBlockWithItem(bloomery_adobe);
         registerBlockWithItem(blockbreaker);
         registerBlockWithItem(castingform);
+        registerBlockWithItem(redstonebellows);
 
         registerBlockWithItem(copperchisel);
         registerBlockWithItem(bronzechisel);
@@ -125,6 +128,7 @@ public class ModBlocks {
         registerRender(forge_brick);
         registerRender(forge_adobe);
         registerRender(castingform);
+        registerRender(redstonebellows);
 
         registerRender(copperchisel);
         registerRender(bronzechisel);

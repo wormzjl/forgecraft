@@ -92,16 +92,28 @@ public abstract class CustomContainerFacingActive extends BlockContainer {
         IBlockState iblockstate = this.getDefaultState();
 
         if (meta == 0){
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalAPI.States.ACTIVE, false);
         }
         if (meta == 1) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalAPI.States.ACTIVE, false);
         }
         if (meta == 2) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalAPI.States.ACTIVE, false);
         }
         if (meta == 3) {
-            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH);
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, false);
+        }
+        if (meta == 4){
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.EAST).withProperty(PrimalAPI.States.ACTIVE, true);
+        }
+        if (meta == 5) {
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.WEST).withProperty(PrimalAPI.States.ACTIVE, true);
+        }
+        if (meta == 6) {
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.SOUTH).withProperty(PrimalAPI.States.ACTIVE, true);
+        }
+        if (meta == 7) {
+            iblockstate = iblockstate.withProperty(FACING, EnumFacing.NORTH).withProperty(PrimalAPI.States.ACTIVE, true);
         }
         return iblockstate;
     }

@@ -1,0 +1,20 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "blocks/planks_oak",
+      "texture": "blocks/planks_oak"
+    },
+    "parent": "forgecraft:block/redstone_bellows_model"
+  },
+  "variants": {
+    "active=false,facing=north": { "model": "forgecraft:redstone_bellows_model" },
+    "active=false,facing=east":  { "model": "forgecraft:redstone_bellows_model", "y": 90 },
+    "active=false,facing=south": { "model": "forgecraft:redstone_bellows_model", "y": 180 },
+    "active=false,facing=west":  { "model": "forgecraft:redstone_bellows_model", "y": 270 },
+    "active=true,facing=north": { "model": "forgecraft:redstone_bellows_model" },
+    "active=true,facing=east":  { "model": "forgecraft:redstone_bellows_model", "y": 90 },
+    "active=true,facing=south": { "model": "forgecraft:redstone_bellows_model", "y": 180 },
+    "active=true,facing=west":  { "model": "forgecraft:redstone_bellows_model", "y": 270 }
+  }
+}

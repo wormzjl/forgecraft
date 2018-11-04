@@ -19,6 +19,7 @@ public class ModTiles {
         registerTileEntity(TileNBTCrucible.class, "nbtcrucible");
         registerTileEntity(TileWorkbench.class, "workbench");
         registerTileEntity(TileSharpBench.class, "sharpbench");
+        registerTileEntity(TileRedstoneBellows.class, "redstonebellows");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {
