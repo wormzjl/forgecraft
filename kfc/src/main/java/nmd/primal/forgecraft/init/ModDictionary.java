@@ -36,6 +36,10 @@ public class ModDictionary {/***************************************************
             OreDictionary.registerOre("nuggetWootz", ModItems.wootzchunk);
             //}
             OreDictionary.registerOre("dustBlaze", Items.BLAZE_POWDER);
+
+
+            OreDictionary.registerOre("toolEngine", ModItems.woodfan);
+
             OreDictionary.registerOre("gearPrimal", ModItems.woodensmallgear);
             OreDictionary.registerOre("gearPrimalSmall", ModItems.woodensmallgear);
 

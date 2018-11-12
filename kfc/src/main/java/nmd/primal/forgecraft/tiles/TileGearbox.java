@@ -49,8 +49,10 @@ public class TileGearbox extends TileBaseSlot /*implements ITickable*/ {
             }
         }
         if(index == 2){
-            if (RecipeHelper.isOreName(stack, "gearboxCoverPrimal")) {
-                return true;
+            if(this.getSlotStack(2).isEmpty()) {
+                if (RecipeHelper.isOreName(stack, "gearboxCoverPrimal")) {
+                    return true;
+                }
             }
         }
         return false;

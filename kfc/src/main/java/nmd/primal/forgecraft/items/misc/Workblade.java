@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
 
 import nmd.primal.core.common.items.tools.WorkBlade;
 import nmd.primal.forgecraft.ModInfo;

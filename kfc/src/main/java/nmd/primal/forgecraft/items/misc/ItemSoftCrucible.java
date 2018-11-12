@@ -1,4 +1,6 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
+
+import nmd.primal.forgecraft.items.BaseItem;
 
 /**
  * Created by mminaie on 1/22/17.

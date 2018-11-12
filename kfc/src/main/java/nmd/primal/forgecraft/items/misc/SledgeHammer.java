@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

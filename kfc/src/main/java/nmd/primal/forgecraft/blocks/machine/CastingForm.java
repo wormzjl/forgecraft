@@ -30,12 +30,12 @@ import nmd.primal.forgecraft.crafting.CastingCrafting;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.init.ModItems;
-import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.misc.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileCastingForm;
 import nmd.primal.forgecraft.util.CastingFormHandler;
 import nmd.primal.forgecraft.util.ToolNBT;
 
-import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
+import static nmd.primal.forgecraft.items.misc.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/19/17.

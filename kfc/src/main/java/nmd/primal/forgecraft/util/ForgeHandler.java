@@ -10,12 +10,12 @@ import net.minecraftforge.items.IItemHandler;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.misc.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileForge;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
-import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
+import static nmd.primal.forgecraft.items.misc.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 9/22/18.

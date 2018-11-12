@@ -7,10 +7,13 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.client.renderer.block.model.ItemCameraTransforms;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import nmd.primal.core.api.PrimalAPI;
+import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.CustomContainerFacingActive;
 import nmd.primal.forgecraft.blocks.machine.RedstoneEngine;
 import nmd.primal.forgecraft.init.ModItems;
@@ -48,10 +51,14 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
     {
         BlockPos pos = tile.getPos();
         IBlockState state = this.getWorld().getBlockState(pos);
-        ItemStack crank = new ItemStack(ModItems.woodcrank);
-        ItemStack arm = new ItemStack(ModItems.woodpistonarm);
-        ItemStack piston = new ItemStack(ModItems.woodpiston);
-        ItemStack slotTool = new ItemStack(ModItems.woodfan);
+
+        ItemStack crank    = new ItemStack(ModItems.woodcrank);
+        ItemStack arm      = new ItemStack(ModItems.woodpistonarm);
+        ItemStack piston   = new ItemStack(ModItems.woodpiston);
+
+        ItemStack gearbox  = tile.getSlotStack(0);
+        ItemStack slotTool = tile.getSlotStack(1);
+
         float k = (60 - (tile.getRedstone()*2));
 
         time = (int) (tile.getWorld().getTotalWorldTime() % k);
@@ -75,14 +82,18 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
             float testRads = (float) Math.atan(tempY/ (tempZ+(6.5/16F)) );
             float testAngle = (float)Math.toDegrees(testRads);
 
+            /************************
+             N  O  R  T  H
+             ************************/
+
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.NORTH) {
                 /***CRANK***/
                 GL11.glPushMatrix();
-                    GL11.glTranslated((11/32D), (9/32D), (7/32D));
-                    if(state.getValue(PrimalAPI.States.ACTIVE)){
-                        GL11.glRotatef(360*(percentK), 1.0F, 0.0F, 0.0F);
-                    }
-                    renderItem.renderItem(crank, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glTranslated((11/32D), (9/32D), (7/32D));
+                if(state.getValue(PrimalAPI.States.ACTIVE)){
+                    GL11.glRotatef(360*(percentK), 1.0F, 0.0F, 0.0F);
+                }
+                renderItem.renderItem(crank, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
                 /***PISTON***/
@@ -97,29 +108,56 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***ARM1***/
                 GL11.glPushMatrix();
 
-                    GL11.glTranslated((3/32D), 9/32D, 29/32D);
-                    if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                        //GL11.glTranslated(0.0, ((3/16D) * Math.cos(Math.toRadians( (360*(time / k))-90) )),
-                        //        (3/16D)+((3/16D) * Math.sin(Math.toRadians( (360*(time / k))-90 ))) );
-                        doPistonRotations(time, k, angle, percentK, testAngle);
-                        GL11.glTranslated(0, 0, tempZ);
+                GL11.glTranslated((3/32D), 9/32D, 29/32D);
+                if(state.getValue(PrimalAPI.States.ACTIVE)) {
+                    //GL11.glTranslated(0.0, ((3/16D) * Math.cos(Math.toRadians( (360*(time / k))-90) )),
+                    //        (3/16D)+((3/16D) * Math.sin(Math.toRadians( (360*(time / k))-90 ))) );
+                    doPistonRotations(time, k, angle, percentK, testAngle);
+                    GL11.glTranslated(0, 0, tempZ);
 
-                    }
+                }
+                renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
 
-                    renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
+                /***GEARBOX***/
+                GL11.glPushMatrix();
+
+                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glRotatef(-90, 0F, 1F, 0.0F);
+                renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
                 /***TOOL SLOT***/
                 GL11.glPushMatrix();
+
+                float gearMulti = 1;
+
                 GL11.glTranslated((15/32D), 9/32D, 15/32D);
                 GL11.glRotatef(45, 1.0F, 0.0F, 0.0F);
+
+                NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+                if(gearbox.getSubCompound("BlockEntityTag") != null) {
+                    ItemStackHelper.loadAllItems(gearbox.getSubCompound("BlockEntityTag"), gearList);
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalSmall")) {
+                        gearMulti=4F;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalMedium")) {
+                        gearMulti=1;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalLarge")) {
+                        gearMulti=0.25f;
+                    }
+                }
+
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    GL11.glRotatef(-360*(percentK), 1.0F, 0.0F, 0.0F);
+                    GL11.glRotatef(-360*(percentK*gearMulti), 1.0F, 0.0F, 0.0F);
                 }
                 renderItem.renderItem(slotTool, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
             }
-
+            /************************
+             S  O  U  T  H
+             ************************/
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.SOUTH) {
                 /***CRANK***/
                 GL11.glPushMatrix();
@@ -149,24 +187,49 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
                     doPistonRotations(time, k, angle, percentK, testAngle);
                     GL11.glTranslated(0, 0, tempZ);
-
                 }
-
                 renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***TOOL SLOT***/
-                /*GL11.glPushMatrix();
-                GL11.glTranslated((29/32D), 9/32D, 13/32D);
-                GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
-                if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    //doPistonRotations(time, k, angle, percentK, testAngle);
-                    //GL11.glTranslated(0, 0, tempZ);
-                }
-                renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
-                GL11.glPopMatrix();*/
-            }
+                /***GEARBOX***/
+                GL11.glPushMatrix();
 
+                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glRotatef(90, 0F, 1F, 0.0F);
+                renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+
+                /***TOOL SLOT***/
+                GL11.glPushMatrix();
+
+                float gearMulti = 1;
+
+                GL11.glTranslated((16/32D), 9/32D, 17/32D);
+                GL11.glRotatef(180, 0F, 1F, 0F);
+
+                NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+                if(gearbox.getSubCompound("BlockEntityTag") != null) {
+                    ItemStackHelper.loadAllItems(gearbox.getSubCompound("BlockEntityTag"), gearList);
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalSmall")) {
+                        gearMulti=4F;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalMedium")) {
+                        gearMulti=1;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalLarge")) {
+                        gearMulti=0.25f;
+                    }
+                }
+
+                if(state.getValue(PrimalAPI.States.ACTIVE)) {
+                    GL11.glRotatef(-360*(percentK*gearMulti), 1.0F, 0.0F, 0.0F);
+                }
+                renderItem.renderItem(slotTool, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+            }
+            /************************
+             E  A  S  T
+             ************************/
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.EAST) {
                 /***CRANK***/
                 GL11.glPushMatrix();
@@ -201,18 +264,45 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***TOOL SLOT***/
-                /*GL11.glPushMatrix();
-                GL11.glTranslated((29/32D), 9/32D, 13/32D);
-                GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
-                if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    //doPistonRotations(time, k, angle, percentK, testAngle);
-                    //GL11.glTranslated(0, 0, tempZ);
-                }
-                renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
-                GL11.glPopMatrix();*/
-            }
+                /***GEARBOX***/
+                GL11.glPushMatrix();
 
+                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glRotatef(180, 0F, 1F, 0.0F);
+                renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+
+                /***TOOL SLOT***/
+                GL11.glPushMatrix();
+
+                float gearMulti = 1;
+
+                GL11.glTranslated((17/32D), 9/32D, 16/32D);
+                GL11.glRotatef(-90, 0F, 1F, 0F);
+
+                NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+                if(gearbox.getSubCompound("BlockEntityTag") != null) {
+                    ItemStackHelper.loadAllItems(gearbox.getSubCompound("BlockEntityTag"), gearList);
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalSmall")) {
+                        gearMulti=4F;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalMedium")) {
+                        gearMulti=1;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalLarge")) {
+                        gearMulti=0.25f;
+                    }
+                }
+
+                if(state.getValue(PrimalAPI.States.ACTIVE)) {
+                    GL11.glRotatef(-360*(percentK*gearMulti), 1.0F, 0.0F, 0.0F);
+                }
+                renderItem.renderItem(slotTool, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+            }
+            /************************
+             W  E  S  T
+             ************************/
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.WEST) {
                 /***CRANK***/
                 GL11.glPushMatrix();
@@ -247,16 +337,41 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
+                /***GEARBOX***/
+                GL11.glPushMatrix();
+
+                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                //GL11.glRotatef(180, 0F, 1F, 0.0F);
+                renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
+
                 /***TOOL SLOT***/
-                /*GL11.glPushMatrix();
-                GL11.glTranslated((29/32D), 9/32D, 13/32D);
-                GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
-                if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    //doPistonRotations(time, k, angle, percentK, testAngle);
-                    //GL11.glTranslated(0, 0, tempZ);
+                GL11.glPushMatrix();
+
+                float gearMulti = 1;
+
+                GL11.glTranslated((15/32D), 9/32D, 16/32D);
+                GL11.glRotatef(90, 0F, 1F, 0F);
+
+                NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
+                if(gearbox.getSubCompound("BlockEntityTag") != null) {
+                    ItemStackHelper.loadAllItems(gearbox.getSubCompound("BlockEntityTag"), gearList);
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalSmall")) {
+                        gearMulti=4F;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalMedium")) {
+                        gearMulti=1;
+                    }
+                    if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalLarge")) {
+                        gearMulti=0.25f;
+                    }
                 }
-                renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
-                GL11.glPopMatrix();*/
+
+                if(state.getValue(PrimalAPI.States.ACTIVE)) {
+                    GL11.glRotatef(-360*(percentK*gearMulti), 1.0F, 0.0F, 0.0F);
+                }
+                renderItem.renderItem(slotTool, ItemCameraTransforms.TransformType.FIXED);
+                GL11.glPopMatrix();
             }
 
             OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, prevLGTX, prevLGTY);

@@ -1,0 +1,8 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "primal:blocks/lacquer/planks_lacquer_normal",
+    "texture": "primal:blocks/lacquer/planks_lacquer_normal"
+  },
+  "parent": "forgecraft:item/gear_large_model"
+}

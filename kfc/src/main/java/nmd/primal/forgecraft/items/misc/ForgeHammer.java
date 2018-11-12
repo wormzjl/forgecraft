@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
 
 import net.minecraft.item.Item;
 import nmd.primal.forgecraft.ModInfo;

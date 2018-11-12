@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -36,6 +36,7 @@ import nmd.primal.forgecraft.blocks.anvil.AnvilBase;
 import nmd.primal.forgecraft.blocks.misc.NBTCrucible;
 import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.init.ModItems;
+import nmd.primal.forgecraft.items.BaseMultiItem;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;

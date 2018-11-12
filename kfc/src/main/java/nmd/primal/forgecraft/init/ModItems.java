@@ -9,10 +9,12 @@ import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
-import nmd.primal.forgecraft.blocks.machine.Forge;
 import nmd.primal.forgecraft.items.*;
 import nmd.primal.forgecraft.items.armor.CustomHelmet;
+import nmd.primal.forgecraft.items.blocks.ItemGearbox;
 import nmd.primal.forgecraft.items.blocks.ItemNBTCrucible;
+import nmd.primal.forgecraft.items.enginetools.BaseEngineTool;
+import nmd.primal.forgecraft.items.misc.*;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.items.parts.WeaponPart;
 import nmd.primal.forgecraft.items.tools.CustomAxe;
@@ -49,6 +51,7 @@ public class ModItems {
     public static Item woodenlargegear;
 
     public static Item woodengearboxcasecover;
+    public static Item woodengearbox;
 
     public static Item bronzeingotball;
     public static Item bronzechunk;
@@ -213,13 +216,14 @@ public class ModItems {
         woodpistonarm = new BaseItem("woodpistonarm");
         woodcrank = new BaseItem("woodcrank");
         woodpiston = new BaseItem("woodpiston");
-        woodfan = new BaseItem("woodfan");
+        woodfan = new BaseEngineTool("woodfan", PrimalAPI.ToolMaterials.TOOL_FLINT);
 
         woodensmallgear = new BaseSingleItem("woodensmallgear", 1000);
         woodenmediumgear = new BaseSingleItem("woodenmediumgear", 1000);
         woodenlargegear = new BaseSingleItem("woodenlargegear", 1000);
 
         woodengearboxcasecover = new BaseItem("woodengearboxcasecover");
+        woodengearbox = new ItemGearbox("woodengearbox", ModBlocks.woodengearbox);
 
         /**********
          TOOL PARTS
@@ -404,6 +408,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(woodenmediumgear);
         ForgeRegistries.ITEMS.register(woodenlargegear);
         ForgeRegistries.ITEMS.register(woodengearboxcasecover);
+        ForgeRegistries.ITEMS.register(woodengearbox);
 
 
         /**********
@@ -573,6 +578,7 @@ public class ModItems {
         registerRender(woodenmediumgear);
         registerRender(woodenlargegear);
         registerRender(woodengearboxcasecover);
+        registerRender(woodengearbox);
 
 
         /**********

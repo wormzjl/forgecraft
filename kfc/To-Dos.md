@@ -54,6 +54,10 @@
 ### Tid-Bits
 NonNullList<ItemStack> tempDrops = NonNullList.<ItemStack>create();
 ItemStack iron_gear = RecipeHelper.getFirstDictionaryMatch("gearIron", 1);
+public List<NBTBase> tagList = Lists.<NBTBase>newArrayList();
+NonNullList<ItemStack> renderList = NonNullList.<ItemStack>create();
+NBTTagList tagList = stack.getSubCompound("BlockEntityTag").getTagList("Items", 10);
+NBTTagEnd endList = new NBTTagEnd();
 ```
 sed -i -- 's/iron/steel/g' *
 rm *.json--

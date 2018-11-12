@@ -31,13 +31,13 @@ import nmd.primal.core.common.recipes.inworld.FireSource;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.blocks.CustomContainerFacing;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
-import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.misc.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileBloomery;
 
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
+import static nmd.primal.forgecraft.items.misc.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/11/17.

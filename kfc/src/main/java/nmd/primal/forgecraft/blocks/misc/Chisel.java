@@ -27,7 +27,7 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.blocks.CustomFacing;
 import nmd.primal.forgecraft.init.ModSounds;
-import nmd.primal.forgecraft.items.SledgeHammer;
+import nmd.primal.forgecraft.items.misc.SledgeHammer;
 import nmd.primal.forgecraft.util.ToolMaterialMap;
 
 import javax.annotation.Nullable;

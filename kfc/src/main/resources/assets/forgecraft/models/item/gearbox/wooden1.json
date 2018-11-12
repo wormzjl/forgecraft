@@ -1,0 +1,7 @@
+{
+  "parent": "forgecraft:item/gearbox_model_shut",
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak"
+  }
+}

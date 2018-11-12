@@ -29,12 +29,10 @@ import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
 import nmd.primal.forgecraft.init.ModBlocks;
-import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.misc.SlottedTongs;
 import nmd.primal.forgecraft.tiles.TileNBTCrucible;
 
 import java.util.Random;
-
-import static net.minecraft.util.EnumHand.MAIN_HAND;
 
 
 /**

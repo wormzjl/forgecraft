@@ -1,0 +1,12 @@
+{
+  "parent": "forgecraft:block/gearbox_model",
+  "textures": {
+    "particle": "blocks/planks_oak",
+    "texture": "blocks/planks_oak"
+  },
+  "overrides": [
+    {"predicate": {"type": 0.0},"model": "forgecraft:item/gearbox/wooden0"},
+    {"predicate": {"type": 0.1},"model": "forgecraft:item/gearbox/wooden1"}
+  ]
+}
+

@@ -1,4 +1,4 @@
-package nmd.primal.forgecraft.items;
+package nmd.primal.forgecraft.items.misc;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -7,6 +7,7 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.World;
 import nmd.primal.forgecraft.ForgeCraft;
+import nmd.primal.forgecraft.items.BaseItem;
 
 /**
  * Created by mminaie on 2/4/17.

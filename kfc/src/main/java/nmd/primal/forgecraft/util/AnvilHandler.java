@@ -17,15 +17,15 @@ import nmd.primal.forgecraft.CommonUtils;
 import nmd.primal.forgecraft.crafting.AnvilCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 import nmd.primal.forgecraft.items.BaseMultiItem;
-import nmd.primal.forgecraft.items.ForgeHammer;
-import nmd.primal.forgecraft.items.SlottedTongs;
+import nmd.primal.forgecraft.items.misc.ForgeHammer;
+import nmd.primal.forgecraft.items.misc.SlottedTongs;
 import nmd.primal.forgecraft.items.parts.ToolPart;
 import nmd.primal.forgecraft.tiles.TileAnvil;
 
 import java.util.concurrent.ThreadLocalRandom;
 
 import static nmd.primal.forgecraft.blocks.CustomContainerFacing.FACING;
-import static nmd.primal.forgecraft.items.SlottedTongs.ITEM_HANDLER;
+import static nmd.primal.forgecraft.items.misc.SlottedTongs.ITEM_HANDLER;
 
 /**
  * Created by mminaie on 6/10/17.

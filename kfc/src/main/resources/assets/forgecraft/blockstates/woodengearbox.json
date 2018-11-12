@@ -1,0 +1,16 @@
+{
+  "forge_marker":1,
+  "defaults": {
+    "textures": {
+      "particle": "blocks/planks_oak",
+      "texture": "blocks/planks_oak"
+    },
+    "parent": "forgecraft:gearbox_model"
+  },
+  "variants": {
+    "facing=north": { "model": "forgecraft:gearbox_model", "y": 90  },
+    "facing=east":  { "model": "forgecraft:gearbox_model", "y": 180 },
+    "facing=south": { "model": "forgecraft:gearbox_model", "y": 270 },
+    "facing=west":  { "model": "forgecraft:gearbox_model"}
+  }
+}

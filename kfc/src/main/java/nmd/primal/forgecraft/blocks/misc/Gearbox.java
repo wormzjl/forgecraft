@@ -29,8 +29,10 @@ import java.util.Random;
  */
 public class Gearbox extends CustomContainerFacing implements ITileEntityProvider {
 
-    protected static final AxisAlignedBB boundBox = new AxisAlignedBB(4/16D, 0.0D, 4/16D, 12/16D, 7/16D, 12/16D);
-
+    protected static final AxisAlignedBB northBox = new AxisAlignedBB(2/16D, 0.0D, 7/16D, 16/16D, 9/16D, 10/16D);
+    protected static final AxisAlignedBB southBox = new AxisAlignedBB(0/16D, 0.0D, 6/16D, 14/16D, 9/16D, 9/16D);
+    protected static final AxisAlignedBB eastBox  = new AxisAlignedBB(6/16D, 0.0D, 2/16D, 9/16D, 9/16D, 16/16D);
+    protected static final AxisAlignedBB westBox  = new AxisAlignedBB(7/16D, 0.0D, 0/16D, 10/16D, 9/16D, 14/16D);
     //private  Ingredient crucibleIngredients;
 
     public Gearbox(Material material, String registryName) {
@@ -38,76 +40,103 @@ public class Gearbox extends CustomContainerFacing implements ITileEntityProvide
     }
 
     @Override
-    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hands, EnumFacing face, float hitX, float hitY, float hitZ) {
+    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing face, float hitX, float hitY, float hitZ) {
 
         if (!world.isRemote) {
+            if(hand.equals(EnumHand.MAIN_HAND)) {
+                TileGearbox tile = (TileGearbox) world.getTileEntity(pos);
+                ItemStack slot0 = tile.getSlotStack(0);
+                ItemStack slot1 = tile.getSlotStack(1);
+                ItemStack slot2 = tile.getSlotStack(2);
+                ItemStack playerStack = player.inventory.getCurrentItem().copy();
 
-            TileGearbox tile = (TileGearbox) world.getTileEntity(pos);
-            ItemStack slot0 = tile.getSlotStack(0);
-            ItemStack slot1 = tile.getSlotStack(1);
-            ItemStack slot2 = tile.getSlotStack(2);
-            ItemStack playerStack = player.getHeldItemMainhand();
+                if(playerStack.isEmpty()) {
+                    if (!player.isSneaking()) {
+                        if (!slot0.isEmpty() && !slot1.isEmpty() && !slot2.isEmpty()) {
+                            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getThisItem(world, pos, state, player));
+                            world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                            world.markTileEntityForRemoval(tile);
+                            return true;
+                        } else {
+                            PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotStack(0), tile.getSlotStack(1), tile.getSlotStack(2));
+                            tile.clearSlots();
+                            PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getThisItem(world, pos, state, player));
+                            world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                            world.markTileEntityForRemoval(tile);
+                            return true;
+                        }
+                    }
+                }
 
-            if (slot2.isEmpty()) {
+                if (tile.isItemValidForSlot(2, playerStack)) {
+                    return sideInventoryManager(world, player, tile, slot2, 2, pos, state);
+                }
                 if (state.getValue(FACING) == EnumFacing.NORTH) {
-                    if (hitX < 0.5) {
-                        return sideInventoryManager(world, player, tile, slot0, 0);
+                    if (slot2.isEmpty()) {
+                        if (hitX < 0.5) {
+                            return sideInventoryManager(world, player, tile, slot0, 0, pos, state);
+                        }
+                        if (hitX > 0.5) {
+                            return sideInventoryManager(world, player, tile, slot1, 1, pos, state);
+                        }
                     }
-                    if (hitX > 0.5) {
-                        return sideInventoryManager(world, player, tile, slot1, 1);
-                    }
-
-                    return true;
+                    return sideInventoryManager(world, player, tile, slot2, 2, pos, state);
+                    //return true;
                 }
                 if (state.getValue(FACING) == EnumFacing.SOUTH) {
-                    if (hitX > 0.5) {
-                        return sideInventoryManager(world, player, tile, slot0, 0);
+                    if (slot2.isEmpty()) {
+                        if (hitX > 0.5) {
+                            return sideInventoryManager(world, player, tile, slot0, 0, pos, state);
+                        }
+                        if (hitX < 0.5) {
+                            return sideInventoryManager(world, player, tile, slot1, 1, pos, state);
+                        }
                     }
-                    if (hitX < 0.5) {
-                        return sideInventoryManager(world, player, tile, slot1, 1);
-                    }
-
-                    return true;
+                    return sideInventoryManager(world, player, tile, slot2, 2, pos, state);
+                    //return true;
                 }
                 if (state.getValue(FACING) == EnumFacing.EAST) {
-                    if (hitZ < 0.5) {
-                        return sideInventoryManager(world, player, tile, slot0, 0);
+                    if (slot2.isEmpty()) {
+                        if (hitZ < 0.5) {
+                            return sideInventoryManager(world, player, tile, slot0, 0, pos, state);
+                        }
+                        if (hitZ > 0.5) {
+                            return sideInventoryManager(world, player, tile, slot1, 1, pos, state);
+                        }
                     }
-                    if (hitZ > 0.5) {
-                        return sideInventoryManager(world, player, tile, slot1, 1);
-                    }
-
-                    return true;
+                    return sideInventoryManager(world, player, tile, slot2, 2, pos, state);
+                    //return true;
                 }
                 if (state.getValue(FACING) == EnumFacing.WEST) {
-                    if (hitZ > 0.5) {
-                        return sideInventoryManager(world, player, tile, slot0, 0);
+                    if (slot2.isEmpty()) {
+                        if (hitZ > 0.5) {
+                            return sideInventoryManager(world, player, tile, slot0, 0, pos, state);
+                        }
+                        if (hitZ < 0.5) {
+                            return sideInventoryManager(world, player, tile, slot1, 1, pos, state);
+                        }
                     }
-                    if (hitZ < 0.5) {
-                        return sideInventoryManager(world, player, tile, slot1, 1);
-                    }
-
-                    return true;
-                }
-                if (tile.isItemValidForSlot(2, playerStack)) {
-                    return sideInventoryManager(world, player, tile, slot0, 2);
+                    return sideInventoryManager(world, player, tile, slot2, 2, pos, state);
+                    //return true;
                 }
             }
-
+            return false;
         }
 
         return false;
     }
 
-    private boolean sideInventoryManager(World world, EntityPlayer player, TileGearbox tile, ItemStack slot, int index)
+    private boolean sideInventoryManager(World world, EntityPlayer player, TileGearbox tile, ItemStack slot, int index, BlockPos pos, IBlockState state)
     {
+
         if(!player.isSneaking()) {
             ItemStack stack = player.getHeldItemMainhand();
             if (slot.isEmpty()) {
-                if(tile.isItemValidForSlot(index, slot)) {
-                    tile.setSlotStack(index, stack);
-                    player.setHeldItem(EnumHand.MAIN_HAND, ItemStack.EMPTY);
-                    //player.inventory.setInventorySlotContents(player.inventory.currentItem, ItemStack.EMPTY);
+                if(tile.isItemValidForSlot(index, stack)) {
+                    ItemStack setStack = stack.copy();
+                    setStack.setCount(1);
+                    tile.setSlotStack(index, setStack);
+                    player.getHeldItemMainhand().shrink(1);
                     return true;
                 }
             }
@@ -147,6 +176,7 @@ public class Gearbox extends CustomContainerFacing implements ITileEntityProvide
                 //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
                 ItemStack dropStack = new ItemStack(this, 1);
                 PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                PlayerHelper.spawnItemOnPlayer(world, player, ((TileGearbox) tile).slotList);
                 world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
                 world.markTileEntityForRemoval(tile);
                 return true;
@@ -187,15 +217,15 @@ public class Gearbox extends CustomContainerFacing implements ITileEntityProvide
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack)
     {
-        TileEntity tileentity = world.getTileEntity(pos);
-        if (tileentity instanceof TileGearbox) {
-            TileGearbox tile = (TileGearbox) world.getTileEntity(pos);
-            if(NBTHelper.hasNBT(stack)){
-                NBTTagCompound tag = stack.getTagCompound();
+        //TileEntity tileentity = world.getTileEntity(pos);
+        //if (tileentity instanceof TileGearbox) {
+        //    TileGearbox tile = (TileGearbox) world.getTileEntity(pos);
+        //    if(NBTHelper.hasNBT(stack)){
+        //        NBTTagCompound tag = stack.getTagCompound();
                 world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing()), 2);
                 //tile.readNBT(tag);
-            }
-        }
+        //    }
+        //}
     }
 
     @Override
@@ -213,6 +243,20 @@ public class Gearbox extends CustomContainerFacing implements ITileEntityProvide
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
     {
-        return boundBox;
+        state = state.getActualState(source, pos);
+        EnumFacing enumfacing = state.getValue(FACING);
+
+        switch (enumfacing)
+        {
+            case EAST:
+            default:
+                return eastBox;
+            case SOUTH:
+                return southBox;
+            case WEST:
+                return westBox;
+            case NORTH:
+                return northBox;
+        }
     }
 }
