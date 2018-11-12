@@ -13,6 +13,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.blocks.anvil.AnvilStone;
 import nmd.primal.forgecraft.blocks.misc.Chisel;
+import nmd.primal.forgecraft.blocks.misc.Gearbox;
 import nmd.primal.forgecraft.blocks.misc.NBTCrucible;
 import nmd.primal.forgecraft.blocks.misc.YewStave;
 import nmd.primal.forgecraft.blocks.machine.*;
@@ -29,7 +30,9 @@ public class ModBlocks {
     public static Block bloomery_adobe;
     public static Block blockbreaker;
     public static Block castingform;
-    public static Block redstonebellows;
+
+    public static Block redstoneengine;
+    public static Block woodengearbox;
 
     public static Block bronzechisel;
     public static Block copperchisel;
@@ -62,7 +65,9 @@ public class ModBlocks {
         bloomery_adobe = new BloomeryBase(Material.ROCK, "bloomery_adobe", 5000);
         blockbreaker = new Breaker(Material.WOOD, "blockbreaker", 4.0f);
         castingform = new CastingForm(Material.WOOD, "castingform");
-        redstonebellows = new RedstoneBellows(Material.WOOD, "redstonebellows");
+
+        redstoneengine = new RedstoneEngine(Material.WOOD, "redstoneengine");
+        woodengearbox = new Gearbox(Material.WOOD, "woodengearbox");
 
         copperchisel = new Chisel(Material.IRON, "copperchisel", PrimalAPI.ToolMaterials.TOOL_COPPER);
         bronzechisel = new Chisel(Material.IRON, "bronzechisel", PrimalAPI.ToolMaterials.TOOL_BRONZE);
@@ -97,7 +102,9 @@ public class ModBlocks {
         registerBlockWithItem(bloomery_adobe);
         registerBlockWithItem(blockbreaker);
         registerBlockWithItem(castingform);
-        registerBlockWithItem(redstonebellows);
+
+        registerBlockWithItem(redstoneengine);
+        registerBlock(woodengearbox);
 
         registerBlockWithItem(copperchisel);
         registerBlockWithItem(bronzechisel);
@@ -128,7 +135,7 @@ public class ModBlocks {
         registerRender(forge_brick);
         registerRender(forge_adobe);
         registerRender(castingform);
-        registerRender(redstonebellows);
+        registerRender(redstoneengine);
 
         registerRender(copperchisel);
         registerRender(bronzechisel);

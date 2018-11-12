@@ -1,6 +1,7 @@
 package nmd.primal.forgecraft.init;
 
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import nmd.primal.forgecraft.tiles.*;
 
@@ -19,7 +20,8 @@ public class ModTiles {
         registerTileEntity(TileNBTCrucible.class, "nbtcrucible");
         registerTileEntity(TileWorkbench.class, "workbench");
         registerTileEntity(TileSharpBench.class, "sharpbench");
-        registerTileEntity(TileRedstoneBellows.class, "redstonebellows");
+        registerTileEntity(TileRedstoneEngine.class, "redstoneengine");
+        registerTileEntity(TileGearbox.class, "gearbox");
     }
 
     private static void registerTileEntity(Class<? extends TileEntity> tile_class, String baseName) {

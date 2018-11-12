@@ -176,7 +176,9 @@ public class Forge extends CustomContainerFacing implements ITileEntityProvider,
                     }
 
 
-
+                    /***********************
+                     PUT STUFF ON TOP
+                     ***********************/
                     if (facing == EnumFacing.UP) {
                         doForgeInventoryManager(pItem, world, tile, pos, hitX, hitY, hitZ, state, player);
                         return true;

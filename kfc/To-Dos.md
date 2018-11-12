@@ -5,9 +5,22 @@
 - [ ] Placement bug for crucible from tongs
 - [ ] Wootz shovel not rendering (NORTH)
 - [ ] Cool Damascus Rendering in tongs
+- [ ] Grinding Wheel pull out
+- [ ] Grinding wheel wont turn off
+- [ ] Grinding wheel rotate
 
 ## Current Feature
-- [ ] ASM models
+- [ ] Redstone Engine Model
+- [ ] Engine Refactor
+- [ ] Slots for Engines
+- [ ] Tool Slot
+- [ ] Gearbox Slot
+- [ ] Grinding Blade
+- [ ] Fan
+- [ ] powered-axle
+- [ ] Gearbox Block
+- [ ] Engine Overclocking
+- [ ] Gears
 
 ## Feature Optimizations
 - [ ] Untick Bloomery and Forge

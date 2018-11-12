@@ -36,5 +36,15 @@ public class ModDictionary {/***************************************************
             OreDictionary.registerOre("nuggetWootz", ModItems.wootzchunk);
             //}
             OreDictionary.registerOre("dustBlaze", Items.BLAZE_POWDER);
+            OreDictionary.registerOre("gearPrimal", ModItems.woodensmallgear);
+            OreDictionary.registerOre("gearPrimalSmall", ModItems.woodensmallgear);
+
+            OreDictionary.registerOre("gearPrimal", ModItems.woodenmediumgear);
+            OreDictionary.registerOre("gearPrimalMedium", ModItems.woodenmediumgear);
+
+            OreDictionary.registerOre("gearPrimal", ModItems.woodenlargegear);
+            OreDictionary.registerOre("gearPrimalLarge", ModItems.woodenlargegear);
+
+            OreDictionary.registerOre("gearboxCoverPrimal", ModItems.woodengearboxcasecover);
         }
 }

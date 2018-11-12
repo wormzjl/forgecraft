@@ -38,9 +38,17 @@ public class ModItems {
     public static Item castingmud;
     public static Item grindingwheel;
 
+
     public static Item woodpistonarm;
     public static Item woodcrank;
     public static Item woodpiston;
+    public static Item woodfan;
+
+    public static Item woodensmallgear;
+    public static Item woodenmediumgear;
+    public static Item woodenlargegear;
+
+    public static Item woodengearboxcasecover;
 
     public static Item bronzeingotball;
     public static Item bronzechunk;
@@ -190,9 +198,7 @@ public class ModItems {
         forgehammer = new ForgeHammer("forgehammer");
         castingmud = new BaseItem("castingmud");
 
-        woodpistonarm = new BaseItem("woodpistonarm");
-        woodcrank = new BaseItem("woodcrank");
-        woodpiston = new BaseItem("woodpiston");
+
 
         rawlongbow = new RawLongbow("rawlongbow");
         unstrunglongbow = new BaseItem("unstrunglongbow");
@@ -200,6 +206,20 @@ public class ModItems {
         //matchlockmusket = new Musket("matchlock_musket");
         wootzworkblade = new Workblade("wootzworkblade", PrimalAPI.ToolMaterials.TOOL_WOOTZ_STEEL, -1.0F).setFireProof(true);
         grindingwheel = new BaseSingleItem("grindingwheel", 9000);
+
+        /**********
+         GEARS AND ENGINES
+         **********/
+        woodpistonarm = new BaseItem("woodpistonarm");
+        woodcrank = new BaseItem("woodcrank");
+        woodpiston = new BaseItem("woodpiston");
+        woodfan = new BaseItem("woodfan");
+
+        woodensmallgear = new BaseSingleItem("woodensmallgear", 1000);
+        woodenmediumgear = new BaseSingleItem("woodenmediumgear", 1000);
+        woodenlargegear = new BaseSingleItem("woodenlargegear", 1000);
+
+        woodengearboxcasecover = new BaseItem("woodengearboxcasecover");
 
         /**********
          TOOL PARTS
@@ -358,9 +378,7 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(forgehammer);
         ForgeRegistries.ITEMS.register(grindingwheel);
 
-        ForgeRegistries.ITEMS.register(woodpistonarm);
-        ForgeRegistries.ITEMS.register(woodcrank);
-        ForgeRegistries.ITEMS.register(woodpiston);
+
 
         ForgeRegistries.ITEMS.register(bronzeingotball);
         ForgeRegistries.ITEMS.register(bronzechunk);
@@ -374,6 +392,19 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(wootzchunk);
 
         //ForgeRegistries.ITEMS.register(test);
+        /**********
+         GEARS AND ENGINES
+         **********/
+        ForgeRegistries.ITEMS.register(woodpistonarm);
+        ForgeRegistries.ITEMS.register(woodcrank);
+        ForgeRegistries.ITEMS.register(woodpiston);
+        ForgeRegistries.ITEMS.register(woodfan);
+
+        ForgeRegistries.ITEMS.register(woodensmallgear);
+        ForgeRegistries.ITEMS.register(woodenmediumgear);
+        ForgeRegistries.ITEMS.register(woodenlargegear);
+        ForgeRegistries.ITEMS.register(woodengearboxcasecover);
+
 
         /**********
          TOOL PARTS
@@ -517,10 +548,6 @@ public class ModItems {
         registerRender(wootzworkblade);
         registerRender(grindingwheel);
 
-        registerRender(woodpistonarm);
-        registerRender(woodpiston);
-        registerRender(woodcrank);
-
         registerRender(bronzeingotball);
         registerRender(bronzechunk);
         registerRender(ironingotball);
@@ -535,9 +562,22 @@ public class ModItems {
         //registerRender(test);
 
         /**********
+         GEARS AND ENGINES
+         **********/
+        registerRender(woodpistonarm);
+        registerRender(woodcrank);
+        registerRender(woodpiston);
+        registerRender(woodfan);
+
+        registerRender(woodensmallgear);
+        registerRender(woodenmediumgear);
+        registerRender(woodenlargegear);
+        registerRender(woodengearboxcasecover);
+
+
+        /**********
          TOOL PARTS
          **********/
-
         registerRender(copperpickaxehead);
         registerRender(copperaxehead);
         registerRender(coppershovelhead);
