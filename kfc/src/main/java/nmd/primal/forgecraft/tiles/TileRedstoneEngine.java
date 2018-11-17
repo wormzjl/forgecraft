@@ -58,7 +58,7 @@ public class TileRedstoneEngine extends TileBaseSlot implements ITickable {
         }
 
         if(index == 1){
-            if(this.getSlotStack(1).isEmpty() && stack.getItem() instanceof BaseEngineTool) {
+            if(this.getSlotStack(1).isEmpty() && !this.getSlotStack(0).isEmpty() && stack.getItem() instanceof BaseEngineTool) {
                 return true;
             }
         }

@@ -56,14 +56,25 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
         ItemStack arm      = new ItemStack(ModItems.woodpistonarm);
         ItemStack piston   = new ItemStack(ModItems.woodpiston);
 
+
         ItemStack gearbox  = tile.getSlotStack(0);
         ItemStack slotTool = tile.getSlotStack(1);
 
         float k = (60 - (tile.getRedstone()*2));
-
         time = (int) (tile.getWorld().getTotalWorldTime() % k);
-
         float percentK = time / k;
+
+        float slowk = (60 - (tile.getRedstone()*2))*0.25F;
+        float slowTime = (int) (tile.getWorld().getTotalWorldTime() % slowk);
+        float percentKSlow = slowTime / slowk;
+
+        float fastk = (60 - (tile.getRedstone()*2))*4F;
+        float fastTime = (int) (tile.getWorld().getTotalWorldTime() % fastk);
+        float percentKFast = fastTime / fastk;
+
+        float percentKMed = percentK;
+        //System.out.println(k + ":" + time + ":" + percentK);
+
         if (state.getBlock() instanceof RedstoneEngine) {
 
             GL11.glPushMatrix();
@@ -87,28 +98,28 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
              ************************/
 
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.NORTH) {
-                /***CRANK***/
+                /***C R A N K***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((11/32D), (9/32D), (7/32D));
+                GL11.glTranslated((11/32D), (16/32D), (7/32D));
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     GL11.glRotatef(360*(percentK), 1.0F, 0.0F, 0.0F);
                 }
                 renderItem.renderItem(crank, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***PISTON***/
+                /***P I S T O N***/
                 GL11.glPushMatrix();
-                    GL11.glTranslated((3/32D), 9/32D, 15/16D);
+                    GL11.glTranslated((3/32D), 16/32D, 15/16D);
                     if(state.getValue(PrimalAPI.States.ACTIVE)){
                         doPistonRotations(time, k, angle, percentK, testAngle);
                     }
                     renderItem.renderItem(piston, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***ARM1***/
+                /***A R M***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated((3/32D), 9/32D, 29/32D);
+                GL11.glTranslated((3/32D), 16/32D, 29/32D);
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
                     //GL11.glTranslated(0.0, ((3/16D) * Math.cos(Math.toRadians( (360*(time / k))-90) )),
                     //        (3/16D)+((3/16D) * Math.sin(Math.toRadians( (360*(time / k))-90 ))) );
@@ -119,38 +130,38 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 renderItem.renderItem(arm, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***GEARBOX***/
+                /***G E A R B O X***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glTranslated(16/32D, 23/32D, 16/32D);
                 GL11.glRotatef(-90, 0F, 1F, 0.0F);
                 renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
 
-                /***TOOL SLOT***/
+                /***A X L E***/
                 GL11.glPushMatrix();
 
                 float gearMulti = 1;
 
-                GL11.glTranslated((15/32D), 9/32D, 15/32D);
-                GL11.glRotatef(45, 1.0F, 0.0F, 0.0F);
+                GL11.glTranslated((16/32D), 16/32D, 16/32D);
+                //GL11.glRotatef(45, 1.0F, 0.0F, 0.0F);
 
                 NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
                 if(gearbox.getSubCompound("BlockEntityTag") != null) {
                     ItemStackHelper.loadAllItems(gearbox.getSubCompound("BlockEntityTag"), gearList);
                     if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalSmall")) {
-                        gearMulti=4F;
+                        gearMulti=percentKSlow;
                     }
                     if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalMedium")) {
-                        gearMulti=1;
+                        gearMulti=percentKMed;
                     }
                     if(RecipeHelper.isOreName(gearList.get(0), "gearPrimalLarge")) {
-                        gearMulti=0.25f;
+                        gearMulti=percentKFast;
                     }
                 }
 
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
-                    GL11.glRotatef(-360*(percentK*gearMulti), 1.0F, 0.0F, 0.0F);
+                    GL11.glRotatef(-360*(gearMulti), 1.0F, 0.0F, 0.0F);
                 }
                 renderItem.renderItem(slotTool, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
@@ -161,7 +172,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.SOUTH) {
                 /***CRANK***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((21/32D), (9/32D), (25/32D));
+                GL11.glTranslated((21/32D), (16/32D), (25/32D));
                 GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     GL11.glRotatef(360*(time / k), 1.0F, 0.0F, 0.0F);
@@ -171,7 +182,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 /***PISTON***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((29/32D), 9/32D, 1/16D);
+                GL11.glTranslated((29/32D), 16/32D, 1/16D);
                 GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -182,7 +193,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***ARM1***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated((29/32D), 9/32D, 3/32D);
+                GL11.glTranslated((29/32D), 16/32D, 3/32D);
                 GL11.glRotatef(180, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -194,7 +205,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***GEARBOX***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glTranslated(16/32D, 23/32D, 16/32D);
                 GL11.glRotatef(90, 0F, 1F, 0.0F);
                 renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
@@ -204,7 +215,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 float gearMulti = 1;
 
-                GL11.glTranslated((16/32D), 9/32D, 17/32D);
+                GL11.glTranslated((16/32D), 16/32D, 16/32D);
                 GL11.glRotatef(180, 0F, 1F, 0F);
 
                 NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
@@ -233,7 +244,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.EAST) {
                 /***CRANK***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((25/32D), (9/32D), (11/32D));
+                GL11.glTranslated((25/32D), (16/32D), (11/32D));
                 GL11.glRotatef(-90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     GL11.glRotatef(360*(time / k), 1.0F, 0.0F, 0.0F);
@@ -243,7 +254,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 /***PISTON***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((3/32D), 9/32D, 3/32D);
+                GL11.glTranslated((3/32D), 16/32D, 3/32D);
                 GL11.glRotatef(-90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -254,7 +265,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***ARM1***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated((3/32D), 9/32D, 3/32D);
+                GL11.glTranslated((3/32D), 16/32D, 3/32D);
                 GL11.glRotatef(-90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -267,7 +278,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***GEARBOX***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glTranslated(16/32D, 23/32D, 16/32D);
                 GL11.glRotatef(180, 0F, 1F, 0.0F);
                 renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
@@ -277,7 +288,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 float gearMulti = 1;
 
-                GL11.glTranslated((17/32D), 9/32D, 16/32D);
+                GL11.glTranslated((16/32D), 16/32D, 16/32D);
                 GL11.glRotatef(-90, 0F, 1F, 0F);
 
                 NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
@@ -306,7 +317,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
             if (state.getValue(CustomContainerFacingActive.FACING) == EnumFacing.WEST) {
                 /***CRANK***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((7/32D), (9/32D), (21/32D));
+                GL11.glTranslated((7/32D), (16/32D), (21/32D));
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     GL11.glRotatef(360*(time / k), 1.0F, 0.0F, 0.0F);
@@ -316,7 +327,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 /***PISTON***/
                 GL11.glPushMatrix();
-                GL11.glTranslated((29/32D), 9/32D, 29/32D);
+                GL11.glTranslated((29/32D), 16/32D, 29/32D);
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)){
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -327,7 +338,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***ARM1***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated((29/32D), 9/32D, 29/32D);
+                GL11.glTranslated((29/32D), 16/32D, 29/32D);
                 GL11.glRotatef(90, 0.0F, 1.0F, 0.0F);
                 if(state.getValue(PrimalAPI.States.ACTIVE)) {
                     doPistonRotations(time, k, angle, percentK, testAngle);
@@ -340,7 +351,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
                 /***GEARBOX***/
                 GL11.glPushMatrix();
 
-                GL11.glTranslated(16/32D, 16/32D, 16/32D);
+                GL11.glTranslated(16/32D, 23/32D, 16/32D);
                 //GL11.glRotatef(180, 0F, 1F, 0.0F);
                 renderItem.renderItem(gearbox, ItemCameraTransforms.TransformType.FIXED);
                 GL11.glPopMatrix();
@@ -350,7 +361,7 @@ public class TileRedstoneEngineRender extends TileEntitySpecialRenderer<TileReds
 
                 float gearMulti = 1;
 
-                GL11.glTranslated((15/32D), 9/32D, 16/32D);
+                GL11.glTranslated((16/32D), 16/32D, 16/32D);
                 GL11.glRotatef(90, 0F, 1F, 0F);
 
                 NonNullList<ItemStack> gearList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);

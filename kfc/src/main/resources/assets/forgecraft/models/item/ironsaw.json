@@ -1,0 +1,9 @@
+{
+  "forge_marker":1,
+  "textures": {
+    "particle": "forgecraft:items/iron/0",
+    "texture": "forgecraft:items/iron/0",
+    "light": "forgecraft:blocks/iron_ingot_light"
+  },
+  "parent": "forgecraft:item/saw_model"
+}

@@ -44,7 +44,10 @@ public class ModItems {
     public static Item woodpistonarm;
     public static Item woodcrank;
     public static Item woodpiston;
+    public static Item woodaxle;
+
     public static Item woodfan;
+    public static Item ironsaw;
 
     public static Item woodensmallgear;
     public static Item woodenmediumgear;
@@ -216,7 +219,10 @@ public class ModItems {
         woodpistonarm = new BaseItem("woodpistonarm");
         woodcrank = new BaseItem("woodcrank");
         woodpiston = new BaseItem("woodpiston");
+        woodaxle = new BaseEngineTool("woodaxle", PrimalAPI.ToolMaterials.TOOL_FLINT);
+
         woodfan = new BaseEngineTool("woodfan", PrimalAPI.ToolMaterials.TOOL_FLINT);
+        ironsaw = new BaseEngineTool("ironsaw", PrimalAPI.ToolMaterials.TOOL_WROUGHT_IRON);
 
         woodensmallgear = new BaseSingleItem("woodensmallgear", 1000);
         woodenmediumgear = new BaseSingleItem("woodenmediumgear", 1000);
@@ -402,7 +408,10 @@ public class ModItems {
         ForgeRegistries.ITEMS.register(woodpistonarm);
         ForgeRegistries.ITEMS.register(woodcrank);
         ForgeRegistries.ITEMS.register(woodpiston);
+        ForgeRegistries.ITEMS.register(woodaxle);
+
         ForgeRegistries.ITEMS.register(woodfan);
+        ForgeRegistries.ITEMS.register(ironsaw);
 
         ForgeRegistries.ITEMS.register(woodensmallgear);
         ForgeRegistries.ITEMS.register(woodenmediumgear);
@@ -572,7 +581,10 @@ public class ModItems {
         registerRender(woodpistonarm);
         registerRender(woodcrank);
         registerRender(woodpiston);
+        registerRender(woodaxle);
+
         registerRender(woodfan);
+        registerRender(ironsaw);
 
         registerRender(woodensmallgear);
         registerRender(woodenmediumgear);

@@ -11,8 +11,17 @@ public class EngineToolFan extends BaseEngineTool {
         super(registryName, toolMaterial);
     }
 
-    public void doWork(World world, BlockPos pos, IBlockState state, EnumFacing facing){
+    public void doExtraFanWork(World world, BlockPos pos, IBlockState state, EnumFacing facing){
+        if(!world.isRemote){
+            /***
+            B L O O M E R Y
+            ***/
 
+            /***
+             F O R G E
+             ***/
+
+        }
     }
 
 }
