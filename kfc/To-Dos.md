@@ -10,17 +10,8 @@
 - [ ] Grinding wheel rotate
 
 ## Current Feature
-- [ ] Redstone Engine Model
-- [ ] Engine Refactor
-- [ ] Slots for Engines
-- [ ] Tool Slot
-- [ ] Gearbox Slot
-- [ ] Grinding Blade
-- [ ] Fan
-- [ ] powered-axle
-- [ ] Gearbox Block
-- [ ] Engine Overclocking
-- [ ] Gears
+- [ ] Recipe Handler for saw
+- [ ] Sound for block break
 
 ## Feature Optimizations
 - [ ] Untick Bloomery and Forge
@@ -65,6 +56,17 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Redstone Engine Model
+- [x] Engine Refactor
+- [x] Slots for Engines
+- [x] Tool Slot
+- [x] Gearbox Slot
+- [x] Grinding Blade
+- [x] Fan
+- [x] powered-axle
+- [x] Gearbox Block
+- [x] Engine Overclocking
+- [x] Gears
 - [x] weapon upgrades
 - [x] Grinding Bench
 - [x] Repair ToolHead

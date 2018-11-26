@@ -17,6 +17,7 @@ public class ModTileRenders {
         ClientRegistry.bindTileEntitySpecialRenderer(TileSharpBench.class, new TileSharpBenchRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileRedstoneEngine.class, new TileRedstoneEngineRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileGearbox.class, new TileGearboxRender());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileMachineSaw.class, new TileMachineSawRender());
     }
 
 

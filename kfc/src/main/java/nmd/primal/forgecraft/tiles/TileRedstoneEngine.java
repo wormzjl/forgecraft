@@ -1,54 +1,46 @@
 package nmd.primal.forgecraft.tiles;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.ITickable;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.items.blocks.ItemGearbox;
 import nmd.primal.forgecraft.items.enginetools.BaseEngineTool;
 
-public class TileRedstoneEngine extends TileBaseSlot implements ITickable {
+public class TileRedstoneEngine extends TileBaseSlot {
 
     private int redstone; // AKA power
-    private int torque;   // = power/speed
-    private int speed;    // = power/torque
+    private float torque;   // = power/speed
+    private float power;// = 100*redstone;
+    private float rpm;
+
+    private boolean transfer = false;
+    private float gearMulti;
+
+    public float getGearMulti() { return gearMulti; }
+    public void setGearMulti(float gearMulti){ this.gearMulti = gearMulti;}
 
     public int getRedstone() { return redstone; }
     public void setRedstone(int redstone) { this.redstone = redstone; }
-    public int getTorque() { return torque; }
-    public void setTorque(int torque) { this.torque = torque; }
-    public int getSpeed() { return speed; }
-    public void setSpeed(int speed) { this.speed = speed; }
+
+    public float getTorque() { return torque; }
+    public void setTorque(float torque) {
+        this.torque = torque;
+    }
+
+    public float getRPM() { return rpm; }
+    public void setRPM(float rpm) {
+        this.rpm = rpm;
+    }
+
+    public float getPower() {return power; }
+    public void setPower() { this.power = 100*redstone; }
+
+    public boolean getTransfer() { return transfer; }
+    public void setTransfer(boolean transfer) {
+        this.transfer = transfer;
+    }
 
     public TileRedstoneEngine() {
     }
-
-
-
-    @Override
-    public void update () {
-        if(!world.isRemote) {
-            World world = this.getWorld();
-            IBlockState state = world.getBlockState(this.pos);
-            BlockPos pos = new BlockPos(this.getPos().getX(), this.getPos().getY(), this.getPos().getZ());
-            Block block = world.getBlockState(pos).getBlock();
-
-            NonNullList<ItemStack> renderList = NonNullList.<ItemStack>withSize(3, ItemStack.EMPTY);
-            //System.out.println(this.getSlotStack(0).getTagCompound());
-            if(this.getSlotStack(0).getSubCompound("BlockEntityTag") != null) {
-                ItemStackHelper.loadAllItems(this.getSlotStack(0).getSubCompound("BlockEntityTag"), renderList);
-                //System.out.println(renderList);
-            }
-        }
-    }
-
-
 
     public boolean isItemValidForSlot(int index, ItemStack stack) {
         if(index == 0 ) {
@@ -73,7 +65,11 @@ public class TileRedstoneEngine extends TileBaseSlot implements ITickable {
     {
         super.readNBT(nbt);
         this.redstone = nbt.getInteger("redstone");
-
+        this.torque = nbt.getFloat("torque");
+        this.power = nbt.getFloat("power");
+        this.rpm = nbt.getFloat("rpm");
+        this.transfer = nbt.getBoolean("transfer");
+        this.gearMulti = nbt.getFloat("gear");
         return nbt;
     }
 
@@ -81,6 +77,11 @@ public class TileRedstoneEngine extends TileBaseSlot implements ITickable {
     public NBTTagCompound writeNBT(NBTTagCompound nbt)
     {
         nbt.setInteger("redstone", this.redstone);
+        nbt.setFloat("torque", this.torque);
+        nbt.setFloat("power", this.power);
+        nbt.setFloat("rpm", this.rpm);
+        nbt.setBoolean("transfer", this.transfer);
+        nbt.setFloat("gear", this.gearMulti);
         super.writeNBT(nbt);
         return nbt;
     }

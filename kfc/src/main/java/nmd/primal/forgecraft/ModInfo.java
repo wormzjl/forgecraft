@@ -6,7 +6,9 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.registries.IForgeRegistry;
+import nmd.primal.forgecraft.blocks.machine.MachineSaw;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.crafting.MachineSawCrafting;
 import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
 import nmd.primal.forgecraft.init.ModItems;
 //import nmd.primal.forgecraft.Item.ModItems;
@@ -57,6 +59,7 @@ public class ModInfo {
         // In-World Recipes
         public static final IForgeRegistry<CrucibleCrafting> CRUCIBLE_CRAFTING = GameRegistry.findRegistry(CrucibleCrafting.class);
         public static final IForgeRegistry<WorkbenchCrafting> WORKBENCH_CRAFTING = GameRegistry.findRegistry(WorkbenchCrafting.class);
+        public static final IForgeRegistry<MachineSawCrafting> MACHINE_SAW_CRAFTING = GameRegistry.findRegistry(MachineSawCrafting.class);
     }
 
 }

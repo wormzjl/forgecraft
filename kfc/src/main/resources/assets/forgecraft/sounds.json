@@ -23,7 +23,25 @@
 
   "chisel_hit_finished": {
     "category": "block",
-    "subtitle": "forgecraft.subtitle.chisel_hit_finishedg",
+    "subtitle": "forgecraft.subtitle.chisel_hit_finished",
     "sounds": [ "forgecraft:chisel_hit_finished" ]
+  },
+
+  "piston_engine_in": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.piston_engine_in",
+    "sounds": [ "forgecraft:piston_engine_in" ]
+  },
+
+  "piston_engine_out": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.piston_engine_out",
+    "sounds": [ "forgecraft:piston_engine_out" ]
+  },
+
+  "saw_machine": {
+    "category": "block",
+    "subtitle": "forgecraft.subtitle.saw_machine",
+    "sounds": [ "forgecraft:saw_machine" ]
   }
 }

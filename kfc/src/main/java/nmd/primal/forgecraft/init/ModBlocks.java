@@ -49,12 +49,15 @@ public class ModBlocks {
     public static Block pistonbellowsacacia;
 
     public static Block stoneanvil;
-    public static Block ironanvil;
+    //public static Block ironanvil;
 
     public static Block workbench;
     public static Block sharpbench;
 
     public static Block yewstave;
+
+    /** M A C H I N E S **/
+    public static Block machinesaw;
 
     public static void init() {
 
@@ -90,6 +93,8 @@ public class ModBlocks {
         sharpbench = new SharpBench(Material.WOOD, "sharpbench");
 
         yewstave = new YewStave(Material.WOOD, "yewstave", 3.0F);
+
+        machinesaw = new MachineSaw(Material.IRON, "ironmachinesaw");
 
     }
 
@@ -127,6 +132,8 @@ public class ModBlocks {
         registerBlockWithItem(sharpbench);
 
         registerBlockWithItem(yewstave);
+
+        registerBlockWithItem(machinesaw);
     }
 
     @SideOnly(Side.CLIENT)
@@ -162,6 +169,7 @@ public class ModBlocks {
 
         registerRender(yewstave);
 
+        registerRender(machinesaw);
     }
 
     private static void registerBlockWithItem(Block block)

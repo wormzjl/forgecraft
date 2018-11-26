@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryBuilder;
 import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.forgecraft.ModInfo;
 import nmd.primal.forgecraft.crafting.CrucibleCrafting;
+import nmd.primal.forgecraft.crafting.MachineSawCrafting;
 import nmd.primal.forgecraft.crafting.WorkbenchCrafting;
 
 /**
@@ -34,6 +35,13 @@ public class ModRegistries {
         registryWorkbench.setName(new ResourceLocation(ModInfo.MOD_ID, "recipes_" + WorkbenchCrafting.RECIPE_PREFIX));
         registryWorkbench.setIDRange(0, 1000);
         registryWorkbench.create();
+
+        PrimalAPI.logger(1, "Custom Registry", MachineSawCrafting.RECIPE_PREFIX);
+        RegistryBuilder registryMachineSaw = new RegistryBuilder();
+        registryMachineSaw.setType(MachineSawCrafting.class);
+        registryMachineSaw.setName(new ResourceLocation(ModInfo.MOD_ID, "recipes_" + MachineSawCrafting.RECIPE_PREFIX));
+        registryMachineSaw.setIDRange(0, 1000);
+        registryMachineSaw.create();
 
     }
 }
