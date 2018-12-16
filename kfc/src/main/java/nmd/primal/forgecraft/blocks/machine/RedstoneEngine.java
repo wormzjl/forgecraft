@@ -19,6 +19,7 @@ import nmd.primal.core.api.PrimalAPI;
 import nmd.primal.core.common.helper.PlayerHelper;
 import nmd.primal.core.common.helper.RecipeHelper;
 import nmd.primal.forgecraft.blocks.CustomContainerFacingActive;
+import nmd.primal.forgecraft.init.ModBlocks;
 import nmd.primal.forgecraft.tiles.TileRedstoneEngine;
 
 import javax.annotation.Nullable;
@@ -103,6 +104,39 @@ public class RedstoneEngine extends CustomContainerFacingActive {
                     world.setBlockState(pos, state.withProperty(PrimalAPI.States.ACTIVE, false), 3);
                 }
             }
+        }
+    }
+
+    @Override
+    public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest)
+    {
+        this.onBlockHarvested(world, pos, state, player);
+        return this.destroyBlock(world, pos, state, EnumFacing.UP, player);
+    }
+
+    public boolean destroyBlock(World world, BlockPos pos, IBlockState state, EnumFacing face, EntityPlayer player)
+    {
+        if (!world.isRemote) {
+            TileEntity tile = world.getTileEntity(pos);
+            if (tile instanceof TileRedstoneEngine) {
+                //PlayerHelper.playerTakeItem(world, pos, EnumFacing.DOWN, player, player.getActiveHand(), this.getCrucibleItem(world, pos, state, player));
+                ItemStack dropStack = new ItemStack(ModBlocks.redstoneengine, 1);
+                PlayerHelper.spawnItemOnPlayer(world, player, dropStack);
+                //world.setBlockState(pos, this.getReplacementBlock(world, pos, state));
+                world.setBlockToAir(pos);
+                world.markTileEntityForRemoval(tile);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onBlockHarvested(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+    {
+        if (!world.isRemote) {
+            TileRedstoneEngine tile = (TileRedstoneEngine) world.getTileEntity(pos);
+                PlayerHelper.spawnItemOnPlayer(world, player, tile.getSlotList());
         }
     }
 

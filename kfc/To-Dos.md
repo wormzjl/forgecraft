@@ -10,8 +10,15 @@
 - [ ] Grinding wheel rotate
 
 ## Current Feature
-- [ ] Recipe Handler for saw
-- [ ] Sound for block break
+- [x] Test Redstone Engine drops
+- [x] Figure out tile update for crucible after cooking.
+- [ ] Item Render for engine
+- [ ] Item Render for Saw Block
+- [ ] Machine Chassis Recipe
+- [ ] Redstone Engine Recipe
+- [ ] Gear recipes
+- [ ] Gearbox recipe
+- [ ] Saw Recipe
 
 ## Feature Optimizations
 - [ ] Untick Bloomery and Forge
@@ -56,6 +63,8 @@ rename s/iron/steel/ iron*
 ```
 
 ### Completed
+- [x] Recipe Handler for saw
+- [x] Sound for block break
 - [x] Redstone Engine Model
 - [x] Engine Refactor
 - [x] Slots for Engines

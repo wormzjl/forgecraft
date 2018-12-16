@@ -79,8 +79,12 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
         if(recipe!=null){
             if( (this.getHot() == 15) && (this.getStatus()) ){
                 this.setDrops(recipe.getDropsCooked());
+                this.updateBlock();
+                this.markDirty();
             } else if ((this.getHot() == 15) && (!this.getStatus())){
                 this.setDrops(recipe.getDropsRaw());
+                this.updateBlock();
+                this.markDirty();
             }
         }
     }
@@ -91,6 +95,8 @@ public class TileNBTCrucible extends BaseTile implements ITickable {
             if(this.getHeat() > 0){
                 this.setHeat( this.getHeat() - 1);
                 world.setBlockState(pos, state.withProperty(PrimalAPI.States.LAYERS, 15), 2);
+                this.updateBlock();
+                this.markDirty();
             }
             if(this.getHeat() == 0){
                 this.setHot(6);
