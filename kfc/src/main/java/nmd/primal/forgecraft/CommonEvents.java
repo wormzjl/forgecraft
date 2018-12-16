@@ -21,7 +21,6 @@ public class CommonEvents implements WeaponNBT {
     public void onItemCrafted(CauldronRecipeEvent.Pre event){
 
         CauldronRecipe recipe = event.getRecipe();
-        System.out.println(recipe.getRecipeName());
         if (recipe.matches("forgecraft:cauldron_item.rawcoppergladiussmite", "forgecraft:cauldron_item.rawcoppergladiusbane", "forgecraft:cauldron_item.rawcoppergladiusfire", "forgecraft:cauldron_item.rawcoppergladiusfortune",
                 "forgecraft:cauldron_item.rawbronzegladiussmite", "forgecraft:cauldron_item.rawbronzegladiusbane", "forgecraft:cauldron_item.rawbronzegladiusfire", "forgecraft:cauldron_item.rawbronzegladiusfortune",
                 "forgecraft:cauldron_item.rawwroughtirongladiussmite", "forgecraft:cauldron_item.rawwroughtirongladiusbane", "forgecraft:cauldron_item.rawwroughtirongladiusfire", "forgecraft:cauldron_item.rawwroughtirongladiusfortune",
@@ -86,11 +85,9 @@ public class CommonEvents implements WeaponNBT {
 
         for (int i = 0; i < inputList.size(); i++) {
             if(inputList.get(i) != ItemStack.EMPTY && !(inputList.get(i).getItem() instanceof WeaponPart) ){
-                System.out.println(inputList.get(i));
                 modStack = inputList.get(i);
             }
         }
-        System.out.println(modStack);
         return modStack;
     }
 

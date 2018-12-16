@@ -228,14 +228,11 @@ public class CrucibleCrafting extends AbstractRecipe<CrucibleCrafting> { //exten
     }
 
 
-
-
-    @Override
     public Collection<CrucibleCrafting> getRecipes() {
         return RECIPES;
     }
 
-    @Override
+
     public String getRecipePrefix() {
         return RECIPE_PREFIX;
     }

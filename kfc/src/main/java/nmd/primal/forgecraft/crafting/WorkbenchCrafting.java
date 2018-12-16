@@ -189,12 +189,10 @@ public class WorkbenchCrafting extends AbstractRecipe<WorkbenchCrafting> { //ext
     }*/
 
 
-    @Override
     public Collection<WorkbenchCrafting> getRecipes() {
         return RECIPES;
     }
 
-    @Override
     public String getRecipePrefix() {
         return RECIPE_PREFIX;
     }
