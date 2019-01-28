@@ -106,25 +106,27 @@ public class WeaponPart extends Item implements WeaponNBT {
     {
         if(stack.hasTagCompound()) {
             if (stack.getSubCompound("tags") != null) {
+                //System.out.println(WeaponNBT.materialModifiers.get(this.toolMaterial));
+                //System.out.println(stack.getSubCompound("tags").getInteger("modifiers"));
                 tooltip.add(ChatFormatting.GRAY + "Upgrades left: " + (WeaponNBT.materialModifiers.get(this.toolMaterial) - WeaponNBT.getModifiers(stack)));
-                if (WeaponNBT.getSmiteLevel(stack) > 0) {
+                //if (WeaponNBT.getSmiteLevel(stack) > 0) {
                     tooltip.add(ChatFormatting.GOLD + "Holy: " + WeaponNBT.getSmiteLevel(stack));
-                }
-                if (WeaponNBT.getBaneLevel(stack) > 0) {
+                //}
+                //if (WeaponNBT.getBaneLevel(stack) > 0) {
                     tooltip.add(ChatFormatting.GREEN + "Spider Killing: " + WeaponNBT.getBaneLevel(stack));
-                }
-                if (WeaponNBT.getFireLevel(stack) > 0) {
+                //}
+                //if (WeaponNBT.getFireLevel(stack) > 0) {
                     tooltip.add(ChatFormatting.RED + "Flame: " + WeaponNBT.getFireLevel(stack));
-                }
-                if (WeaponNBT.getFortuneLevel(stack) > 0) {
+                //}
+                //if (WeaponNBT.getFortuneLevel(stack) > 0) {
                     tooltip.add(ChatFormatting.BLUE + "Thieving: " + WeaponNBT.getFortuneLevel(stack));
-                }
-                if (WeaponNBT.getLeechLevel(stack) > 0) {
-                    tooltip.add(ChatFormatting.BLACK + "Life Steal: " + WeaponNBT.getLeechLevel(stack));
-                }
-                if (WeaponNBT.getSharpnessLevel(stack) > 0) {
+                //}
+                //if (WeaponNBT.getLeechLevel(stack) > 0) {
+                    tooltip.add(ChatFormatting.LIGHT_PURPLE + "Life Steal: " + WeaponNBT.getLeechLevel(stack));
+                //}
+                //if (WeaponNBT.getSharpnessLevel(stack) > 0) {
                     tooltip.add(ChatFormatting.WHITE + "Sharpness: " + WeaponNBT.getSharpnessLevel(stack));
-                }
+                //}
             }
         }
     }
